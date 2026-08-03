@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, MapPin, Linkedin, Send, Phone, Building } from 'lucide-react';
 
 export function Contact() {
@@ -327,11 +328,19 @@ export function Contact() {
       <section className="py-12 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
-            <h3 className="font-semibold text-gray-900 mb-2">Privacy & Data Protection</h3>
-            <p className="text-sm text-gray-600">
-              Your information will be handled in accordance with European data protection regulations. 
-              We will only use your contact details to respond to your inquiry and may add you to our 
+            <h3 className="font-semibold text-gray-900 mb-2">Privacy &amp; Data Protection</h3>
+            <p className="text-sm text-gray-700">
+              Your information will be handled in accordance with European data protection regulations.
+              We will only use your contact details to respond to your inquiry and may add you to our
               professional network mailing list if you express interest. You can unsubscribe at any time.
+            </p>
+            {/* A paragraph is not a privacy statement — this links to the real one. */}
+            <p className="text-sm text-gray-700 mt-3">
+              Read our{' '}
+              <Link to="/privacy" className="text-blue-700 underline hover:text-blue-900 font-medium">
+                privacy statement
+              </Link>{' '}
+              for full details on what we collect, why, how long we keep it, and your rights.
             </p>
           </div>
         </div>
