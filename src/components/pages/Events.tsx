@@ -1,365 +1,418 @@
-import React from 'react';
-import { Calendar, MapPin, Heart, Users, Star, MessageCircle } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Calendar, MapPin, Clock, Users, X, Check } from 'lucide-react';
+import {
+  EVENTS,
+  EVENT_TYPE_LABELS,
+  upcomingEvents,
+  pastEvents,
+  formatEventDate,
+  type CDDEvent,
+  type EventType,
+} from '../../data/events';
+import { COMMISSIONS } from '../../data/commissions';
+import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
+import { BrandedImage } from '../BrandedImage';
 
+/**
+ * Events (ticket 19).
+ *
+ * The upcoming/past split is computed from each event's date, so nothing can be
+ * left badged "Upcoming" months after it happened — the defect that made an
+ * active organisation look dormant.
+ *
+ * Registration opens a modal that captures the RSVP. Payment and confirmation
+ * emails need the same backend as membership checkout (see src/lib/payments.ts);
+ * until that exists the modal records interest and says so honestly.
+ */
 export function Events() {
+  const [typeFilter, setTypeFilter] = useState<EventType | 'all'>('all');
+  const [commissionFilter, setCommissionFilter] = useState<AdvisorGroup | 'all'>('all');
+  const [rsvpFor, setRsvpFor] = useState<CDDEvent | null>(null);
+
+  const matches = useMemo(
+    () => (event: CDDEvent) =>
+      (typeFilter === 'all' || event.type === typeFilter) &&
+      (commissionFilter === 'all' || event.commissions.includes(commissionFilter)),
+    [typeFilter, commissionFilter]
+  );
+
+  const upcoming = upcomingEvents().filter(matches);
+  const past = pastEvents().filter(matches);
+  const filtersActive = typeFilter !== 'all' || commissionFilter !== 'all';
+
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
+      <section className="relative py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-transparent to-orange-600/10"></div>
-        
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-amber-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
+          <div className="max-w-3xl">
+            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
               Events
             </div>
-            <h1 className="text-5xl lg:text-6xl font-bold mb-8 text-white tracking-tight">
-              Events & Gatherings
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
+              Events &amp; Gatherings
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              CDD Pays-Bas organizes meaningful gatherings that strengthen connections, celebrate shared values, 
-              and build a vibrant community of leaders and professionals.
+            <p className="text-xl text-gray-200 leading-relaxed">
+              Roundtables, delegations, forums and community gatherings — convened by the
+              commissions and open to members.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Upcoming Events */}
-      <section className="py-20 bg-white border-b border-gray-100">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <div className="text-center">
-            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Upcoming
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-              Next Gathering
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Our next event is being finalised and will be announced here shortly.
-              Members and subscribers are notified first.
-            </p>
-            <a
-              href="/contact"
-              className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium"
-            >
-              Get Notified
-            </a>
-          </div>
+      {/* Filters */}
+      <section className="sticky top-24 z-30 bg-white/95 backdrop-blur border-b border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-4 space-y-3">
+          <FilterRow label="Type">
+            <Chip active={typeFilter === 'all'} onClick={() => setTypeFilter('all')}>
+              All types
+            </Chip>
+            {(Object.keys(EVENT_TYPE_LABELS) as EventType[]).map((type) => (
+              <Chip key={type} active={typeFilter === type} onClick={() => setTypeFilter(type)}>
+                {EVENT_TYPE_LABELS[type]}
+              </Chip>
+            ))}
+          </FilterRow>
+
+          <FilterRow label="Commission">
+            <Chip active={commissionFilter === 'all'} onClick={() => setCommissionFilter('all')}>
+              All commissions
+            </Chip>
+            {COMMISSIONS.map((commission) => (
+              <Chip
+                key={commission.slug}
+                active={commissionFilter === commission.group}
+                onClick={() => setCommissionFilter(commission.group)}
+              >
+                {commission.title}
+              </Chip>
+            ))}
+          </FilterRow>
         </div>
       </section>
 
-      {/*
-        Past Events archive.
-
-        The Iftar of 28 February 2026 was still labelled "Upcoming Event" months
-        after it took place, alongside "RSVP information will be shared soon" —
-        which made an active organisation look dormant. Presented as a completed
-        gathering with a recap, the same content becomes proof that CDD convenes
-        people. Event photography and a fuller recap follow under ticket 21.
-      */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-white via-amber-50/30 to-white">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <div className="text-center mb-12">
-            <div className="inline-block px-4 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold tracking-wide uppercase">
-              Past Events
-            </div>
-          </div>
-          {/* Event Header */}
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full mb-8 shadow-xl">
-              <Heart className="h-10 w-10 text-white" />
-            </div>
-            <div className="inline-block px-4 py-1.5 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Held 28 February 2026
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-              CDD Pays-Bas – First Collective Iftar
-            </h2>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-lg text-gray-700 mb-4">
-              <div className="flex items-center">
-                <Calendar className="h-6 w-6 mr-3 text-amber-600" />
-                <span className="font-semibold">February 28th, 2026</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin className="h-6 w-6 mr-3 text-amber-600" />
-                <span className="font-semibold">Rotterdam</span>
-              </div>
-            </div>
-            <p className="text-sm text-gray-600 italic">
-              The first collective gathering of the CDD Pays-Bas network
-            </p>
-          </div>
-
-          {/* Event Card */}
-          <div className="bg-white rounded-3xl border border-amber-100 shadow-2xl overflow-hidden mb-16">
-            <div className="p-12 lg:p-16">
-              {/* Introduction */}
-              <div className="mb-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <span className="w-2 h-8 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full mr-4"></span>
-                  A Symbolic Moment
-                </h3>
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  This first collective Iftar marked a symbolic moment for CDD Pays-Bas — a warm and informal
-                  gathering that brought the network together and strengthened the human connections behind it.
-                </p>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  Beyond professional roles, the evening centred on shared stories, cultural understanding,
-                  and community building during the holy month of Ramadan.
-                </p>
-              </div>
-
-              {/* Programme */}
-              <div className="mb-12">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
-                  <span className="w-2 h-8 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full mr-4"></span>
-                  The Programme
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-2xl border border-amber-100">
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                        <Heart className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-gray-900 mb-2">Informal & Warm Atmosphere</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          A relaxed, welcoming environment where everyone can be themselves
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-2xl border border-blue-100">
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-gray-900 mb-2">Shared Meal (Iftar)</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          Breaking fast together in the spirit of unity and tradition
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl border border-purple-100">
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                        <MessageCircle className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-gray-900 mb-2">Light Introduction Round</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          Getting to know each other beyond titles and roles
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-2xl border border-green-100">
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                        <Star className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-gray-900 mb-2">Reflection on CDD's Role</h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          Understanding our mission as a bridge between Netherlands and Morocco
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Core Values */}
-              <div className="bg-gradient-to-br from-gray-50 to-white p-10 rounded-3xl border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Guided by Our Values</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                      </svg>
-                    </div>
-                    <p className="font-bold text-gray-900">Neutrality</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Heart className="h-8 w-8 text-green-600" />
-                    </div>
-                    <p className="font-bold text-gray-900">Respect</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="h-8 w-8 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
-                    </div>
-                    <p className="font-bold text-gray-900">Openness</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Users className="h-8 w-8 text-purple-600" />
-                    </div>
-                    <p className="font-bold text-gray-900">Connection</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="text-center bg-gradient-to-br from-amber-50 to-orange-50 p-12 rounded-3xl border border-amber-100">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Be Part of the Next One
-            </h3>
-            <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-              This gathering set the tone for how CDD Pays-Bas convenes its network.
-              Let us know you would like an invitation to the next event.
-            </p>
-            <a
-              href="/contact"
-              className="inline-block px-10 py-5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300 font-medium text-lg"
-            >
-              Request an Invitation
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Attend CDD Events */}
-      <section className="py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-transparent to-orange-600/10"></div>
-        
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-amber-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Our Approach
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
-              Why Attend CDD Events?
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Our gatherings create space for authentic connection and meaningful dialogue
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/5 backdrop-blur-sm p-10 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-amber-500/30 to-orange-500/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="h-8 w-8 text-amber-300" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Human Connection</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Building genuine relationships beyond business cards and titles in a warm, welcoming atmosphere
-              </p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm p-10 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-amber-500/30 to-orange-500/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="h-8 w-8 text-amber-300" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Community Building</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Strengthening our network through shared experiences, cultural understanding, and mutual respect
-              </p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm p-10 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300 text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-amber-500/30 to-orange-500/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="h-8 w-8 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Cultural Bridge</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Celebrating diversity and creating bridges between Dutch and Moroccan communities
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Event Formats */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+      {/* Upcoming */}
+      <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Event Types
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Upcoming</h2>
+          {upcoming.length === 0 ? (
+            <div className="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center">
+              <p className="text-lg text-gray-800 font-medium">
+                {filtersActive
+                  ? 'No upcoming events match these filters.'
+                  : 'Our next event is being finalised.'}
+              </p>
+              <p className="mt-2 text-gray-700">
+                {filtersActive
+                  ? 'Try clearing a filter, or see what the commissions have run before.'
+                  : 'Members and subscribers are notified first.'}
+              </p>
+              <Link
+                to="/contact"
+                className="inline-block mt-6 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg transition-all"
+              >
+                Get notified
+              </Link>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-              What We Organize
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              CDD Pays-Bas hosts diverse formats designed to foster connection, collaboration, and community
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {upcoming.map((event) => (
+                <EventCard key={event.slug} event={event} onRsvp={() => setRsvpFor(event)} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Past */}
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+          <div className="flex flex-wrap items-baseline justify-between gap-3 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900">Past events</h2>
+            <p className="text-sm text-gray-700">
+              Recaps are published within five working days of every event.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center mb-6">
-                <Heart className="h-7 w-7 text-amber-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Community Gatherings</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Warm events that strengthen bonds and celebrate shared values
-              </p>
+          {past.length === 0 ? (
+            <p className="text-gray-700">No past events match these filters.</p>
+          ) : (
+            <div className="space-y-8">
+              {past.map((event) => (
+                <PastEventCard key={event.slug} event={event} />
+              ))}
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Business Delegations</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                High-level missions connecting decision-makers across borders
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-cyan-50 rounded-xl flex items-center justify-center mb-6">
-                <svg className="h-7 w-7 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Summits & Forums</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Strategic gatherings addressing key sectors and opportunities
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center mb-6">
-                <MessageCircle className="h-7 w-7 text-purple-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Executive Roundtables</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Focused discussions on specific topics with senior leaders
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
-      {/* Partnerships Section */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-          <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-            Our Network
+      {rsvpFor && <RsvpModal event={rsvpFor} onClose={() => setRsvpFor(null)} />}
+    </div>
+  );
+}
+
+/* ── Pieces ─────────────────────────────────────────────────────────────── */
+
+function FilterRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <span className="text-xs font-bold uppercase tracking-wider text-gray-700 w-24 flex-shrink-0">
+        {label}
+      </span>
+      {children}
+    </div>
+  );
+}
+
+function Chip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={`px-3.5 py-1.5 rounded-xl text-sm font-medium transition-all ${
+        active
+          ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md shadow-blue-500/30'
+          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
+  if (groups.length === 0) return null;
+  return (
+    <div className="flex flex-wrap gap-2 mt-3">
+      {groups.map((group) => (
+        <Link
+          key={group}
+          to={`/focus-areas/${group}`}
+          className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 hover:bg-blue-100"
+        >
+          {GROUP_LABELS[group]}
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
+  return (
+    <article className="flex flex-col rounded-3xl border border-gray-100 shadow-lg overflow-hidden bg-white">
+      <div className="h-44">
+        <BrandedImage
+          label={EVENT_TYPE_LABELS[event.type]}
+          title={event.title}
+          className="rounded-none"
+        />
+      </div>
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-xl font-bold text-gray-900 leading-tight">{event.title}</h3>
+        <dl className="mt-3 space-y-1.5 text-sm text-gray-700">
+          <div className="flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-blue-700" aria-hidden="true" />
+            <dd>{formatEventDate(event.date)}</dd>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-            Stay Connected
+          {event.time && (
+            <div className="flex items-center gap-2">
+              <Clock className="h-4 w-4 text-blue-700" aria-hidden="true" />
+              <dd>{event.time}</dd>
+            </div>
+          )}
+          <div className="flex items-center gap-2">
+            <MapPin className="h-4 w-4 text-blue-700" aria-hidden="true" />
+            <dd>{event.location}</dd>
+          </div>
+          {event.capacity && (
+            <div className="flex items-center gap-2">
+              <Users className="h-4 w-4 text-blue-700" aria-hidden="true" />
+              <dd>{event.capacity} places</dd>
+            </div>
+          )}
+        </dl>
+        <p className="mt-4 text-gray-700 leading-relaxed flex-grow">{event.summary}</p>
+        <CommissionTags groups={event.commissions} />
+        <button
+          type="button"
+          onClick={onRsvp}
+          disabled={!event.registrationOpen}
+          className="mt-6 px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {event.registrationOpen ? 'Register' : 'Registration opens soon'}
+        </button>
+      </div>
+    </article>
+  );
+}
+
+function PastEventCard({ event }: { event: CDDEvent }) {
+  return (
+    <article className="rounded-3xl border border-gray-200 bg-white p-8">
+      <div className="flex flex-wrap items-center gap-3 mb-3">
+        <span className="text-xs font-bold uppercase tracking-wide px-2.5 py-1 rounded-lg bg-gray-100 text-gray-800">
+          {EVENT_TYPE_LABELS[event.type]}
+        </span>
+        <span className="text-sm text-gray-700">{formatEventDate(event.date)}</span>
+        <span className="text-sm text-gray-700">· {event.location}</span>
+      </div>
+      <h3 className="text-2xl font-bold text-gray-900">{event.title}</h3>
+      <p className="mt-3 text-gray-700 leading-relaxed max-w-3xl">
+        {event.recap ?? event.summary}
+      </p>
+      <CommissionTags groups={event.commissions} />
+      {event.photos && event.photos.length > 0 && (
+        <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {event.photos.map((photo) => (
+            <img
+              key={photo}
+              src={photo}
+              alt={`${event.title}`}
+              loading="lazy"
+              className="rounded-xl object-cover w-full h-28"
+            />
+          ))}
+        </div>
+      )}
+    </article>
+  );
+}
+
+/** RSVP modal (ticket 19). Records the registration; see note in the body. */
+function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void }) {
+  const [done, setDone] = useState(false);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="rsvp-title"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-lg rounded-3xl bg-white p-8 max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-start justify-between gap-4 mb-5">
+          <h2 id="rsvp-title" className="text-2xl font-bold text-gray-900">
+            {done ? 'Registration received' : `Register — ${event.title}`}
           </h2>
-          <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-            Want to receive invitations to upcoming events and be part of our growing community? 
-            Get in touch with us.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block px-8 py-4 bg-white border-2 border-gray-200 text-gray-900 rounded-xl hover:bg-gray-50 transition-all duration-300 font-medium"
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="p-2 rounded-lg text-gray-600 hover:bg-gray-100"
           >
-            Contact Us
-          </a>
+            <X className="h-5 w-5" />
+          </button>
         </div>
-      </section>
+
+        {done ? (
+          <div className="text-center py-4">
+            <div className="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-5">
+              <Check className="h-7 w-7 text-blue-700" aria-hidden="true" />
+            </div>
+            <p className="text-gray-700 leading-relaxed">
+              Thank you — your registration for <strong>{event.title}</strong> is recorded. We will
+              confirm your place by email and send joining details closer to the date.
+            </p>
+            <button
+              type="button"
+              onClick={onClose}
+              className="mt-6 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold"
+            >
+              Close
+            </button>
+          </div>
+        ) : (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setDone(true);
+            }}
+            className="space-y-5"
+          >
+            <div className="rounded-xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700">
+              <p className="flex items-center gap-2 font-medium text-gray-900">
+                <Calendar className="h-4 w-4 text-blue-700" aria-hidden="true" />
+                {formatEventDate(event.date)}
+                {event.time ? ` · ${event.time}` : ''}
+              </p>
+              <p className="mt-1">{event.location}</p>
+              {(event.memberPrice || event.guestPrice) && (
+                <p className="mt-2">
+                  {event.memberPrice && <>Members: {event.memberPrice}. </>}
+                  {event.guestPrice && <>Guests: {event.guestPrice}.</>}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="rsvp-name" className="block text-sm font-semibold text-gray-900 mb-2">
+                Full name <span className="text-red-700">*</span>
+              </label>
+              <input
+                id="rsvp-name"
+                name="name"
+                required
+                autoComplete="name"
+                className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+            <div>
+              <label htmlFor="rsvp-email" className="block text-sm font-semibold text-gray-900 mb-2">
+                Email <span className="text-red-700">*</span>
+              </label>
+              <input
+                id="rsvp-email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+            <div>
+              <label htmlFor="rsvp-org" className="block text-sm font-semibold text-gray-900 mb-2">
+                Organisation <span className="font-normal text-gray-600">(optional)</span>
+              </label>
+              <input
+                id="rsvp-org"
+                name="organisation"
+                autoComplete="organization"
+                className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+              />
+            </div>
+
+            <p className="text-sm text-gray-700">
+              Your details are handled in line with our{' '}
+              <Link to="/privacy" className="text-blue-700 underline hover:text-blue-900">
+                privacy statement
+              </Link>
+              .
+            </p>
+
+            <button
+              type="submit"
+              className="w-full px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg transition-all"
+            >
+              Confirm registration
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }
