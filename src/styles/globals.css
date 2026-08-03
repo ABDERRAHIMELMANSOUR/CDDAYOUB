@@ -219,11 +219,26 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, var(--accent-blue-start) 0%, var(--accent-blue-end) 100%);
 }
 
+/*
+ * Gradient text.
+ *
+ * The transparent fill is applied ONLY where background-clip:text is actually
+ * supported. Without this guard, a browser that ignores background-clip:text
+ * still honours -webkit-text-fill-color:transparent and the text renders
+ * completely invisible (this is what truncated the homepage H1 to
+ * "Connecting Leaders,"). The solid colour below is the safe resting state.
+ */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-blue-start) 0%, var(--accent-blue-end) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent-blue-end);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent-blue-start) 0%, var(--accent-blue-end) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .gradient-mesh {

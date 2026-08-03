@@ -2166,9 +2166,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-blue-start) 0%, var(--accent-blue-end) 100%);
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent-blue-end);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent-blue-start) 0%, var(--accent-blue-end) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .gradient-mesh {
