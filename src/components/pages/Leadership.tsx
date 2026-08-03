@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin, Mail, Award, Globe2, Users, TrendingUp } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { BrandedImage } from '../BrandedImage';
 import presidentPhoto from '../../assets/NouraddineGRIBI.png';
 import founderPhoto from '../../assets/DrissDrif.png';
 import treasurerPhoto from '../../assets/Ahmed_Rahmouni.png';
@@ -217,10 +218,17 @@ export function Leadership() {
 
           <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10"></div>
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1704652329540-851160c7741f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGxlYWRlcnMlMjBtZWV0aW5nJTIwcGFydG5lcnNoaXAlMjBjb2xsYWJvcmF0aW9ufGVufDF8fHx8MTc3MTM1MzI3OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="CDD Leadership - Nouraddine Gribi and Driss DRIF"
-              className="w-full h-full object-cover"
+            {/*
+              This was a stock photograph of unrelated people captioned "CDD
+              Leadership - Nouraddine Gribi and Driss DRIF". Presenting stock
+              models as two named, real individuals misrepresents them, so it is
+              removed rather than merely swapped. A genuine photograph of the two
+              belongs here.
+            */}
+            <BrandedImage
+              label="From vision to reality"
+              title="CDD and CDD Pays-Bas"
+              caption="Replace with a photograph of Nouraddine Gribi and Driss DRIF."
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 p-12">
@@ -245,10 +253,12 @@ export function Leadership() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="relative h-[500px] rounded-3xl overflow-hidden mb-16">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-2xl"></div>
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1764810815228-b7f9432eec5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxleGVjdXRpdmUlMjBtZWV0aW5nJTIwYm9hcmRyb29tfGVufDF8fHx8MTc2OTcyMTM3MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Executive leadership meeting"
-              className="relative w-full h-full object-cover rounded-3xl shadow-2xl"
+            {/* Was a generic stock boardroom photo. */}
+            <BrandedImage
+              label="Our team"
+              title="Experienced leadership"
+              caption="Replace with a photograph from a CDD Pays-Bas board or member gathering."
+              className="relative"
             />
           </div>
 
