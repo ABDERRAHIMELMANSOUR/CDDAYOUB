@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Linkedin, Mail, Award, Globe2, Users, TrendingUp } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import presidentPhoto from '../../assets/NouraddineGRIBI.png';
@@ -278,6 +279,31 @@ export function Leadership() {
               CDD Pays-Bas is governed by its statutory board, distinct from the Advisory
               Council of senior experts who advise the organisation.
             </p>
+          </div>
+
+          {/* Statutory facts — the details an institutional partner checks first. */}
+          <div className="max-w-4xl mx-auto mb-16 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="rounded-2xl border border-gray-200 p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">Remuneration</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Board members serve unpaid. Expenses incurred on behalf of the organisation are
+                reimbursed against receipt.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-gray-200 p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">Statutory details</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Legal form, KvK and RSIN, together with our statutes, policy plan, annual report and
+                financial summary, are published on our{' '}
+                <Link
+                  to="/transparency"
+                  className="text-blue-700 underline hover:text-blue-900 font-medium"
+                >
+                  transparency page
+                </Link>
+                .
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
