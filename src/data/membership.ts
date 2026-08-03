@@ -1,4 +1,8 @@
 import type { Locale } from '../i18n/config';
+import { pick, type Localised } from '../i18n/localised';
+
+export { pick };
+export type { Localised };
 
 /**
  * Membership tiers (ticket 17), fully localised.
@@ -25,14 +29,6 @@ import type { Locale } from '../i18n/config';
  * €1,500.
  */
 export const PRICING_PUBLISHED = true;
-
-/** A value translated into every supported locale. */
-export type Localised<T> = Record<Locale, T>;
-
-/** Reads the value for a locale, falling back to English. */
-export function pick<T>(value: Localised<T>, locale: Locale): T {
-  return value[locale] ?? value.en;
-}
 
 export type TierId = 'individual' | 'sme' | 'corporate' | 'institutional' | 'honorary';
 

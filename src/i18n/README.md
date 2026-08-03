@@ -37,10 +37,19 @@ partially translated data is still usable. Use this pattern for any content
 where the copy and the structure belong together (a tier's name sits with its
 price; a commission's mandate sits with its slug).
 
-Membership tiers — names, audiences, headlines, benefit bullets and dues
-formatting — are fully localised this way. They are conversion copy, not
-editorial: a Dutch SME reading a Dutch pricing table converts, one reading an
-English table hesitates.
+The helper now lives in `src/i18n/localised.ts` and is used by:
+
+- `data/membership.ts` — tier names, audiences, headlines, benefit bullets
+- `data/events.ts` — event type labels
+- `data/insights.ts` — category labels and blurbs
+- `data/advisors.ts` — group / commission labels and descriptions
+
+These are conversion copy and interface labels, not editorial: a Dutch SME
+reading a Dutch pricing table converts, one reading an English table hesitates.
+
+**Dates and numbers also localise.** `formatEventDate` and `formatInsightDate`
+take a locale, and prices use `Intl.NumberFormat`, so a Dutch reader sees
+"28 februari 2026" and "€1.500" rather than "28 February 2026" and "€1,500".
 
 ## What is deliberately NOT translated here
 
@@ -84,10 +93,12 @@ in one sweep; each is independent.
 Priority order, highest value first:
 
 1. ~~**Membership**~~ — done; the tier table is fully localised.
-2. **Home and About** — first impressions for both non-English audiences.
-3. **Commission mandates and priorities** — what institutional partners evaluate.
-4. **Legal statements** — needs a professional translator, not a general one.
-5. **Advisor biographies** — largest volume, lowest urgency; do with sign-off.
+2. ~~**Events and Insights**~~ — done; cards, filters, badges and modals.
+3. **Home and About** — first impressions for both non-English audiences.
+4. **Commission mandates and priorities** — what institutional partners evaluate.
+   (Their short *titles* are already localised, since they appear as filter chips.)
+5. **Legal statements** — needs a professional translator, not a general one.
+6. **Advisor biographies** — largest volume, lowest urgency; do with sign-off.
 
 ### Where to draw the line
 

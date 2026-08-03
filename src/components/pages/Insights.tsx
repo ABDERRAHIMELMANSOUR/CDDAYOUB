@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
-import { useTranslation } from '../../i18n/LocaleProvider';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { pick } from '../../i18n/localised';
 import {
   sortedInsights,
   getInsight,
@@ -22,6 +23,7 @@ import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
  */
 export function Insights() {
   const t = useTranslation();
+  const { locale } = useLocale();
   const [category, setCategory] = useState<InsightCategory | 'all'>('all');
   const all = sortedInsights();
   const items = category === 'all' ? all : all.filter((i) => i.category === category);
@@ -50,13 +52,13 @@ export function Insights() {
       <section className="sticky top-24 z-30 bg-white/95 backdrop-blur border-b border-gray-100">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-4 flex flex-wrap gap-2">
           <CategoryChip active={category === 'all'} onClick={() => setCategory('all')}>
-            All ({all.length})
+            {t.insights.all} ({all.length})
           </CategoryChip>
           {(Object.keys(INSIGHT_CATEGORY_LABELS) as InsightCategory[]).map((key) => {
             const count = all.filter((i) => i.category === key).length;
             return (
               <CategoryChip key={key} active={category === key} onClick={() => setCategory(key)}>
-                {INSIGHT_CATEGORY_LABELS[key]} ({count})
+                {pick(INSIGHT_CATEGORY_LABELS[key], locale)} ({count})
               </CategoryChip>
             );
           })}
@@ -67,16 +69,14 @@ export function Insights() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           {category !== 'all' && (
             <p className="text-lg text-gray-700 mb-8 max-w-3xl">
-              {INSIGHT_CATEGORY_BLURBS[category]}
+              {pick(INSIGHT_CATEGORY_BLURBS[category], locale)}
             </p>
           )}
 
           {items.length === 0 ? (
             <div className="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center">
-              <p className="text-gray-800 font-medium">Nothing published in this category yet.</p>
-              <p className="mt-2 text-gray-700">
-                CDD Pays-Bas aims to publish at least two items a month.
-              </p>
+              <p className="text-gray-800 font-medium">{t.insights.nothingPublished}</p>
+              <p className="mt-2 text-gray-700">{t.insights.cadenceNote}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -93,6 +93,8 @@ export function Insights() {
 
 /** Single article. */
 export function InsightArticle() {
+  const t = useTranslation();
+  const { locale } = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const insight = slug ? getInsight(slug) : undefined;
   if (!insight) return <Navigate to="/insights" replace />;
@@ -106,16 +108,16 @@ export function InsightArticle() {
             to="/insights"
             className="inline-flex items-center text-sm text-blue-200 hover:text-white transition-colors mb-5"
           >
-            ← Insights
+            ← {t.insights.backToInsights}
           </Link>
           <p className="text-sm font-semibold uppercase tracking-widest text-cyan-200">
-            {INSIGHT_CATEGORY_LABELS[insight.category]}
+            {pick(INSIGHT_CATEGORY_LABELS[insight.category], locale)}
           </p>
           <h1 className="mt-3 text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
             {insight.title}
           </h1>
           <p className="mt-4 text-gray-300">
-            {formatInsightDate(insight.date)}
+            {formatInsightDate(insight.date, locale)}
             {insight.author ? ` · ${insight.author}` : ''}
           </p>
         </div>
@@ -135,7 +137,7 @@ export function InsightArticle() {
           {insight.commissions.length > 0 && (
             <div className="mt-12 pt-8 border-t border-gray-200">
               <h2 className="text-sm font-bold uppercase tracking-wider text-gray-700 mb-3">
-                Related commissions
+                {t.insights.relatedCommissions}
               </h2>
               <CommissionTags groups={insight.commissions} />
             </div>
@@ -172,6 +174,7 @@ function CategoryChip({
 }
 
 function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
+  const { locale } = useLocale();
   return (
     <div className="flex flex-wrap gap-2">
       {groups.map((group) => (
@@ -180,7 +183,7 @@ function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
           to={`/focus-areas/${group}`}
           className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 hover:bg-blue-100"
         >
-          {GROUP_LABELS[group]}
+          {pick(GROUP_LABELS[group], locale)}
         </Link>
       ))}
     </div>
@@ -188,18 +191,20 @@ function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
 }
 
 function InsightCard({ insight }: { insight: Insight }) {
+  const t = useTranslation();
+  const { locale } = useLocale();
   return (
     <Link
       to={`/insights/${insight.slug}`}
       className="flex flex-col rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white p-7"
     >
       <span className="text-xs font-bold uppercase tracking-wide text-blue-800">
-        {INSIGHT_CATEGORY_LABELS[insight.category]}
+        {pick(INSIGHT_CATEGORY_LABELS[insight.category], locale)}
       </span>
       <h2 className="mt-3 text-xl font-bold text-gray-900 leading-tight">{insight.title}</h2>
-      <p className="mt-1 text-sm text-gray-700">{formatInsightDate(insight.date)}</p>
+      <p className="mt-1 text-sm text-gray-700">{formatInsightDate(insight.date, locale)}</p>
       <p className="mt-4 text-gray-700 leading-relaxed flex-grow">{insight.summary}</p>
-      <span className="mt-5 text-sm font-semibold text-blue-700">Read more →</span>
+      <span className="mt-5 text-sm font-semibold text-blue-700">{t.insights.readMore} →</span>
     </Link>
   );
 }

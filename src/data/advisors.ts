@@ -36,6 +36,8 @@ import photo22 from '../assets/NoraKasmi.png';
 import photo23 from '../assets/Youssef_boulle.png';
 
 /** Commission slugs, plus the two groups that are not commissions. */
+import type { Localised } from '../i18n/localised';
+
 export type AdvisorGroup =
   | 'energy-water-transition'
   | 'digital-ai-infrastructure'
@@ -54,23 +56,62 @@ export interface Advisor {
   group: AdvisorGroup;
 }
 
-/** Labels for the non-commission groups (commissions get theirs from commissions.ts). */
-export const GROUP_LABELS: Record<AdvisorGroup, string> = {
-  'energy-water-transition': 'Energy & Water Transition',
-  'digital-ai-infrastructure': 'Digital, AI & Infrastructure',
-  'industry-trade-logistics': 'Industry, Trade & Logistics',
-  'talent-knowledge-society': 'Talent, Knowledge & Society',
-  'governance-public-affairs': 'Governance, Trust & Public Affairs',
-  secretariat: 'Operations & Secretariat',
-  honorary: 'Honorary Members',
+/**
+ * Group names. These appear as filter chips and content tags across Advisors,
+ * Events and Insights, so they are interface copy and are translated. The
+ * commission *mandates* and narratives remain English pending human
+ * translation — see src/i18n/README.md.
+ */
+export const GROUP_LABELS: Record<AdvisorGroup, Localised<string>> = {
+  'energy-water-transition': {
+    en: 'Energy & Water Transition',
+    nl: 'Energie- & watertransitie',
+    fr: "Transition énergétique & hydrique",
+  },
+  'digital-ai-infrastructure': {
+    en: 'Digital, AI & Infrastructure',
+    nl: 'Digitaal, AI & infrastructuur',
+    fr: 'Numérique, IA & infrastructures',
+  },
+  'industry-trade-logistics': {
+    en: 'Industry, Trade & Logistics',
+    nl: 'Industrie, handel & logistiek',
+    fr: 'Industrie, commerce & logistique',
+  },
+  'talent-knowledge-society': {
+    en: 'Talent, Knowledge & Society',
+    nl: 'Talent, kennis & samenleving',
+    fr: 'Talents, savoir & société',
+  },
+  'governance-public-affairs': {
+    en: 'Governance, Trust & Public Affairs',
+    nl: 'Governance, vertrouwen & publieke zaken',
+    fr: 'Gouvernance, confiance & affaires publiques',
+  },
+  secretariat: {
+    en: 'Operations & Secretariat',
+    nl: 'Operatie & secretariaat',
+    fr: 'Opérations & secrétariat',
+  },
+  honorary: { en: 'Honorary Members', nl: 'Ereleden', fr: "Membres d'honneur" },
 };
 
-export const GROUP_DESCRIPTIONS: Partial<Record<AdvisorGroup, string>> = {
-  'governance-public-affairs':
-    'A cross-cutting group rather than a commission: governance, legal, statistics and public affairs support the work of all four commissions.',
-  secretariat:
-    'Operational roles supporting communications and day-to-day running of the organisation — distinct from the advisory function.',
-  honorary: 'Recognised by the board for their contribution to CDD Pays-Bas.',
+export const GROUP_DESCRIPTIONS: Partial<Record<AdvisorGroup, Localised<string>>> = {
+  'governance-public-affairs': {
+    en: 'A cross-cutting group rather than a commission: governance, legal, statistics and public affairs support the work of all four commissions.',
+    nl: 'Een overkoepelende groep in plaats van een commissie: governance, juridische zaken, statistiek en publieke zaken ondersteunen het werk van alle vier de commissies.',
+    fr: "Un groupe transversal plutôt qu'une commission : la gouvernance, le juridique, les statistiques et les affaires publiques soutiennent le travail des quatre commissions.",
+  },
+  secretariat: {
+    en: 'Operational roles supporting communications and day-to-day running of the organisation — distinct from the advisory function.',
+    nl: 'Operationele rollen die communicatie en de dagelijkse gang van zaken ondersteunen — losstaand van de adviesfunctie.',
+    fr: "Des fonctions opérationnelles qui soutiennent la communication et la gestion quotidienne de l'organisation — distinctes de la fonction consultative.",
+  },
+  honorary: {
+    en: 'Recognised by the board for their contribution to CDD Pays-Bas.',
+    nl: 'Door het bestuur erkend voor hun bijdrage aan CDD Pays-Bas.',
+    fr: 'Reconnus par le conseil pour leur contribution à CDD Pays-Bas.',
+  },
 };
 
 export const ADVISORS: Advisor[] = [

@@ -1,4 +1,6 @@
 import type { AdvisorGroup } from './advisors';
+import type { Locale } from '../i18n/config';
+import type { Localised } from '../i18n/localised';
 
 /**
  * Insights (ticket 20).
@@ -16,16 +18,33 @@ import type { AdvisorGroup } from './advisors';
  */
 export type InsightCategory = 'news' | 'spotlight' | 'briefing';
 
-export const INSIGHT_CATEGORY_LABELS: Record<InsightCategory, string> = {
-  news: 'News',
-  spotlight: 'Member & Advisor Spotlight',
-  briefing: 'Market Briefing',
+/** Category names. Filter chips and card badges — interface copy, translated. */
+export const INSIGHT_CATEGORY_LABELS: Record<InsightCategory, Localised<string>> = {
+  news: { en: 'News', nl: 'Nieuws', fr: 'Actualités' },
+  spotlight: {
+    en: 'Member & Advisor Spotlight',
+    nl: 'Portret van leden & adviseurs',
+    fr: 'Portrait de membres & conseillers',
+  },
+  briefing: { en: 'Market Briefing', nl: 'Marktbriefing', fr: 'Briefing marché' },
 };
 
-export const INSIGHT_CATEGORY_BLURBS: Record<InsightCategory, string> = {
-  news: 'Announcements and developments from CDD Pays-Bas.',
-  spotlight: 'The people in the network, and the work they do.',
-  briefing: 'Regulation, tenders and sector openings in both markets.',
+export const INSIGHT_CATEGORY_BLURBS: Record<InsightCategory, Localised<string>> = {
+  news: {
+    en: 'Announcements and developments from CDD Pays-Bas.',
+    nl: 'Aankondigingen en ontwikkelingen van CDD Pays-Bas.',
+    fr: 'Annonces et actualités de CDD Pays-Bas.',
+  },
+  spotlight: {
+    en: 'The people in the network, and the work they do.',
+    nl: 'De mensen in het netwerk en het werk dat zij doen.',
+    fr: 'Les personnes du réseau et le travail qu’elles accomplissent.',
+  },
+  briefing: {
+    en: 'Regulation, tenders and sector openings in both markets.',
+    nl: 'Regelgeving, aanbestedingen en sectorkansen in beide markten.',
+    fr: "Réglementation, appels d'offres et ouvertures sectorielles sur les deux marchés.",
+  },
 };
 
 export interface Insight {
@@ -104,8 +123,10 @@ export function getInsight(slug: string): Insight | undefined {
   return INSIGHTS.find((i) => i.slug === slug);
 }
 
-export function formatInsightDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-GB', {
+const DATE_LOCALE: Record<Locale, string> = { en: 'en-GB', nl: 'nl-NL', fr: 'fr-FR' };
+
+export function formatInsightDate(iso: string, locale: Locale = 'en'): string {
+  return new Date(iso).toLocaleDateString(DATE_LOCALE[locale], {
     day: 'numeric',
     month: 'long',
     year: 'numeric',

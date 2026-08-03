@@ -1,4 +1,6 @@
 import type { AdvisorGroup } from './advisors';
+import type { Locale } from '../i18n/config';
+import type { Localised } from '../i18n/localised';
 
 /**
  * Events (ticket 19).
@@ -16,11 +18,24 @@ export type EventType =
   | 'summit'
   | 'roundtable';
 
-export const EVENT_TYPE_LABELS: Record<EventType, string> = {
-  community: 'Community Gathering',
-  delegation: 'Business Delegation',
-  summit: 'Summit & Forum',
-  roundtable: 'Executive Roundtable',
+/** Event categories. Filter chips, so they are interface copy and translated. */
+export const EVENT_TYPE_LABELS: Record<EventType, Localised<string>> = {
+  community: {
+    en: 'Community Gathering',
+    nl: 'Netwerkbijeenkomst',
+    fr: 'Rencontre du réseau',
+  },
+  delegation: {
+    en: 'Business Delegation',
+    nl: 'Handelsmissie',
+    fr: "Délégation d'affaires",
+  },
+  summit: { en: 'Summit & Forum', nl: 'Top & forum', fr: 'Sommet & forum' },
+  roundtable: {
+    en: 'Executive Roundtable',
+    nl: 'Bestuurlijke rondetafel',
+    fr: 'Table ronde des dirigeants',
+  },
 };
 
 export interface CDDEvent {
@@ -100,8 +115,11 @@ export function getEvent(slug: string): CDDEvent | undefined {
   return EVENTS.find((e) => e.slug === slug);
 }
 
-export function formatEventDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-GB', {
+/** Date locales — a Dutch reader expects "28 februari 2026", not "28 February". */
+const DATE_LOCALE: Record<Locale, string> = { en: 'en-GB', nl: 'nl-NL', fr: 'fr-FR' };
+
+export function formatEventDate(iso: string, locale: Locale = 'en'): string {
+  return new Date(iso).toLocaleDateString(DATE_LOCALE[locale], {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
