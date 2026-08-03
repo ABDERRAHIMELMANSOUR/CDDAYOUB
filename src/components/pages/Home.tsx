@@ -2,30 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Globe, Users, Target, TrendingUp, Lightbulb, HandshakeIcon, Sparkles } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { FOCUS_AREAS } from '../../data/focusAreas';
 
 export function Home() {
-  const focusAreas = [
-    {
-      icon: TrendingUp,
-      title: 'Energy Transition',
-      description: 'Green hydrogen, renewable energy, and sustainable infrastructure',
-    },
-    {
-      icon: Lightbulb,
-      title: 'Innovation & Technology',
-      description: 'Digital transformation, R&D, and knowledge-driven solutions',
-    },
-    {
-      icon: Globe,
-      title: 'Cross-Border Collaboration',
-      description: 'Connecting Europe, Morocco, and Africa ecosystems',
-    },
-    {
-      icon: HandshakeIcon,
-      title: 'Public-Private Partnerships',
-      description: 'Strategic alliances between business and government',
-    },
-  ];
+  // Shared with the Focus Areas page so the two can never disagree again.
+  const focusAreas = FOCUS_AREAS;
 
   const values = [
     { title: 'Leadership', description: 'Empowering decision-makers to drive meaningful change' },
@@ -64,28 +45,24 @@ export function Home() {
               and decision-makers driving cross-border collaboration and sustainable development.
             </p>
             
+            {/*
+              One primary CTA, one secondary. Three equal-weight buttons meant
+              none of them won; the Smart Platform link stays in the header as a
+              member entry point rather than competing with the hero's action.
+            */}
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/about"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium group"
-              >
-                Learn More
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium group"
-              >
-                Access the Smart Platform
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <Link
                 to="/contact"
-                className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-2xl hover:bg-gray-50 border-2 border-gray-200 transition-all duration-300 font-medium shadow-sm hover:shadow-md"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium group"
               >
                 Get Involved
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/events"
+                className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-2xl hover:bg-gray-50 border-2 border-gray-200 transition-all duration-300 font-medium shadow-sm hover:shadow-md"
+              >
+                Upcoming Events
               </Link>
             </div>
           </div>
@@ -100,10 +77,10 @@ export function Home() {
               Our Vision
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-              Our Vision
+              A Strategic Bridge Between Two Markets
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              To serve as a strategic bridge connecting European, Moroccan, and African ecosystems, 
+              To serve as a strategic bridge connecting European, Moroccan, and African ecosystems,
               fostering economic diplomacy, innovation, and sustainable growth through purposeful 
               collaboration between business leaders, public institutions, and international partners.
             </p>
@@ -127,14 +104,18 @@ export function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {focusAreas.map((area, index) => (
-              <div key={index} className="group bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
+            {focusAreas.map((area) => (
+              <Link
+                key={area.slug}
+                to="/focus-areas"
+                className="group bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1"
+              >
                 <div className="w-14 h-14 gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
                   <area.icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{area.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{area.description}</p>
-              </div>
+                <p className="text-sm text-gray-600 leading-relaxed">{area.summary}</p>
+              </Link>
             ))}
           </div>
 
