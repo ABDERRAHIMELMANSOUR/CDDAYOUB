@@ -61,12 +61,26 @@ export interface Dictionary {
     applyCta: string;
     seeTiers: string;
     whyJoin: string;
+    whyJoinIntro: string;
     tiers: string;
+    duesIntro: string;
+    duesIntroPrivate: string;
+    mostChosen: string;
     perYear: string;
     byInvitation: string;
     contactForDues: string;
+    honoraryTitle: string;
+    honoraryText: string;
     ourMembers: string;
+    membersIntro: string;
+    membersEmpty: string;
+    membersEmptyCta: string;
     paymentNote: string;
+    paymentIdeal: string;
+    paymentSepa: string;
+    paymentCard: string;
+    readyToJoin: string;
+    readyText: string;
   };
   events: {
     title: string;
@@ -155,16 +169,37 @@ const en: Dictionary = {
   },
   membership: {
     title: 'Join the Club',
-    subtitle: 'Membership gives you access to our advisors, commissions and network.',
+    subtitle:
+      "CDD Pays-Bas is a members' club. Membership gives you access to {advisors} senior advisors, {commissions} working commissions, and a network that spans the Netherlands and Morocco.",
     applyCta: 'Apply for membership',
     seeTiers: 'See tiers & dues',
     whyJoin: 'Why join',
+    whyJoinIntro: 'Written as what you actually get, rather than as abstractions.',
     tiers: 'Tiers & dues',
+    duesIntro:
+      'Annual dues, published openly. Membership runs for twelve months and is renewable.',
+    duesIntroPrivate:
+      'Membership runs for twelve months and is renewable. Contact us for current dues.',
+    mostChosen: 'Most chosen',
     perYear: 'per year',
     byInvitation: 'By invitation',
     contactForDues: 'Contact us for current dues',
+    honoraryTitle: 'Honorary membership',
+    honoraryText:
+      'Extended by board invitation to individuals recognised for their contribution to CDD Pays-Bas. It cannot be applied for.',
     ourMembers: 'Our members',
+    membersIntro:
+      'A logo wall of member and partner organisations belongs here. It is the strongest proof a club can offer, and it stays empty rather than filled with placeholders until there are real names to show.',
+    membersEmpty:
+      'Member organisations will be listed here with their consent. If your organisation is already working with CDD Pays-Bas and you would like to be included,',
+    membersEmptyCta: 'let us know',
     paymentNote: 'Payment',
+    paymentIdeal: 'Standard for Dutch members',
+    paymentSepa: 'Used for annual renewals',
+    paymentCard: 'For international members',
+    readyToJoin: 'Ready to join?',
+    readyText:
+      'The application takes a couple of minutes. We review every application and come back to you personally.',
   },
   events: {
     title: 'Events & Gatherings',
@@ -253,16 +288,37 @@ const nl: Dictionary = {
   },
   membership: {
     title: 'Word lid van de club',
-    subtitle: 'Een lidmaatschap geeft u toegang tot onze adviseurs, commissies en netwerk.',
+    subtitle:
+      'CDD Pays-Bas is een ledenclub. Een lidmaatschap geeft u toegang tot {advisors} senior adviseurs, {commissions} werkende commissies en een netwerk dat Nederland en Marokko omspant.',
     applyCta: 'Lidmaatschap aanvragen',
     seeTiers: 'Bekijk categorieën & contributie',
     whyJoin: 'Waarom lid worden',
+    whyJoinIntro: 'Beschreven als wat u daadwerkelijk krijgt, in plaats van als abstracties.',
     tiers: 'Categorieën & contributie',
+    duesIntro:
+      'Jaarlijkse contributie, openlijk gepubliceerd. Het lidmaatschap loopt twaalf maanden en is verlengbaar.',
+    duesIntroPrivate:
+      'Het lidmaatschap loopt twaalf maanden en is verlengbaar. Neem contact op voor de actuele contributie.',
+    mostChosen: 'Meest gekozen',
     perYear: 'per jaar',
     byInvitation: 'Op uitnodiging',
     contactForDues: 'Neem contact op voor de actuele contributie',
+    honoraryTitle: 'Erelidmaatschap',
+    honoraryText:
+      'Wordt op uitnodiging van het bestuur toegekend aan personen die worden erkend voor hun bijdrage aan CDD Pays-Bas. Hiervoor kan niet worden aangemeld.',
     ourMembers: 'Onze leden',
+    membersIntro:
+      'Hier hoort een logowand van leden- en partnerorganisaties. Het is het sterkste bewijs dat een club kan leveren, en blijft leeg in plaats van gevuld met plaatsvervangers totdat er echte namen te tonen zijn.',
+    membersEmpty:
+      'Ledenorganisaties worden hier met hun toestemming vermeld. Werkt uw organisatie al samen met CDD Pays-Bas en wilt u worden opgenomen,',
+    membersEmptyCta: 'laat het ons weten',
     paymentNote: 'Betaling',
+    paymentIdeal: 'Standaard voor Nederlandse leden',
+    paymentSepa: 'Gebruikt voor jaarlijkse verlengingen',
+    paymentCard: 'Voor internationale leden',
+    readyToJoin: 'Klaar om lid te worden?',
+    readyText:
+      'De aanmelding kost een paar minuten. Wij beoordelen elke aanmelding en nemen persoonlijk contact met u op.',
   },
   events: {
     title: 'Evenementen & bijeenkomsten',
@@ -352,16 +408,38 @@ const fr: Dictionary = {
   },
   membership: {
     title: 'Rejoignez le Club',
-    subtitle: "L'adhésion vous donne accès à nos conseillers, commissions et réseau.",
+    subtitle:
+      "CDD Pays-Bas est un club de membres. L'adhésion vous donne accès à {advisors} conseillers seniors, {commissions} commissions actives et un réseau qui couvre les Pays-Bas et le Maroc.",
     applyCta: "Demander l'adhésion",
     seeTiers: 'Voir les catégories & cotisations',
     whyJoin: 'Pourquoi adhérer',
+    whyJoinIntro:
+      "Formulé en fonction de ce que vous obtenez réellement, plutôt qu'en abstractions.",
     tiers: 'Catégories & cotisations',
+    duesIntro:
+      "Cotisations annuelles, publiées ouvertement. L'adhésion court sur douze mois et est renouvelable.",
+    duesIntroPrivate:
+      "L'adhésion court sur douze mois et est renouvelable. Contactez-nous pour les cotisations en vigueur.",
+    mostChosen: 'Le plus choisi',
     perYear: 'par an',
     byInvitation: 'Sur invitation',
     contactForDues: 'Contactez-nous pour les cotisations en vigueur',
+    honoraryTitle: "Membre d'honneur",
+    honoraryText:
+      "Accordé sur invitation du conseil aux personnes reconnues pour leur contribution à CDD Pays-Bas. Il ne peut faire l'objet d'une candidature.",
     ourMembers: 'Nos membres',
+    membersIntro:
+      "Un mur de logos des organisations membres et partenaires a sa place ici. C'est la preuve la plus forte qu'un club puisse offrir : il reste vide plutôt que rempli d'espaces réservés tant qu'il n'y a pas de vrais noms à montrer.",
+    membersEmpty:
+      "Les organisations membres seront listées ici avec leur accord. Si votre organisation collabore déjà avec CDD Pays-Bas et souhaite y figurer,",
+    membersEmptyCta: 'faites-le nous savoir',
     paymentNote: 'Paiement',
+    paymentIdeal: 'Standard pour les membres néerlandais',
+    paymentSepa: 'Utilisé pour les renouvellements annuels',
+    paymentCard: 'Pour les membres internationaux',
+    readyToJoin: 'Prêt à nous rejoindre ?',
+    readyText:
+      'La demande prend quelques minutes. Nous examinons chaque candidature et vous répondons personnellement.',
   },
   events: {
     title: 'Événements & rencontres',

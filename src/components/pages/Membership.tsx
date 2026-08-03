@@ -1,10 +1,11 @@
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
-import { useTranslation } from '../../i18n/LocaleProvider';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Check, ArrowRight, Users } from 'lucide-react';
 import {
   MEMBERSHIP_TIERS,
   WHY_JOIN,
   formatPrice,
+  pick,
   PRICING_PUBLISHED,
 } from '../../data/membership';
 import { ADVISORS } from '../../data/advisors';
@@ -20,6 +21,12 @@ import { PAYMENT_METHODS } from '../../lib/payments';
  */
 export function Membership() {
   const t = useTranslation();
+  const { locale } = useLocale();
+  const priceLabels = {
+    perYear: t.membership.perYear,
+    byInvitation: t.membership.byInvitation,
+    contactForDues: t.membership.contactForDues,
+  };
   return (
     <div>
       {/* Hero */}
@@ -35,9 +42,9 @@ export function Membership() {
               {t.membership.title}
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed">
-              CDD Pays-Bas is a members' club. Membership gives you access to {ADVISORS.length}{' '}
-              senior advisors, {COMMISSIONS.length} working commissions, and a network that spans
-              the Netherlands and Morocco.
+              {t.membership.subtitle
+                .replace('{advisors}', String(ADVISORS.length))
+                .replace('{commissions}', String(COMMISSIONS.length))}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
@@ -63,13 +70,16 @@ export function Membership() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.membership.whyJoin}</h2>
           <p className="text-lg text-gray-700 max-w-3xl mb-12 leading-relaxed">
-            Written as what you actually get, rather than as abstractions.
+            {t.membership.whyJoinIntro}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {WHY_JOIN.map((item) => (
-              <div key={item.title} className="rounded-3xl border border-gray-100 shadow-sm p-8">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
-                <p className="text-gray-700 leading-relaxed">{item.text}</p>
+              <div
+                key={pick(item.title, 'en')}
+                className="rounded-3xl border border-gray-100 shadow-sm p-8"
+              >
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{pick(item.title, locale)}</h3>
+                <p className="text-gray-700 leading-relaxed">{pick(item.text, locale)}</p>
               </div>
             ))}
           </div>
@@ -81,9 +91,7 @@ export function Membership() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.membership.tiers}</h2>
           <p className="text-lg text-gray-700 max-w-3xl mb-12 leading-relaxed">
-            {PRICING_PUBLISHED
-              ? 'Annual dues, published openly. Membership runs for twelve months and is renewable.'
-              : 'Membership runs for twelve months and is renewable. Contact us for current dues.'}
+            {PRICING_PUBLISHED ? t.membership.duesIntro : t.membership.duesIntroPrivate}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 items-start">
@@ -98,18 +106,20 @@ export function Membership() {
               >
                 {tier.featured && (
                   <span className="absolute -top-3 left-8 px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xs font-bold uppercase tracking-wide">
-                    Most chosen
+                    {t.membership.mostChosen}
                   </span>
                 )}
 
-                <h3 className="text-2xl font-bold text-gray-900">{tier.name}</h3>
-                <p className="text-sm text-gray-600 mt-1">{tier.audience}</p>
+                <h3 className="text-2xl font-bold text-gray-900">{pick(tier.name, locale)}</h3>
+                <p className="text-sm text-gray-600 mt-1">{pick(tier.audience, locale)}</p>
 
-                <p className="mt-5 text-2xl font-bold text-blue-700">{formatPrice(tier)}</p>
-                <p className="mt-3 text-gray-800 leading-relaxed">{tier.headline}</p>
+                <p className="mt-5 text-2xl font-bold text-blue-700">
+                  {formatPrice(tier, locale, priceLabels)}
+                </p>
+                <p className="mt-3 text-gray-800 leading-relaxed">{pick(tier.headline, locale)}</p>
 
                 <ul className="mt-6 space-y-3 flex-grow">
-                  {tier.benefits.map((benefit) => (
+                  {pick(tier.benefits, locale).map((benefit) => (
                     <li key={benefit} className="flex items-start gap-3">
                       <Check
                         className="h-5 w-5 text-blue-700 flex-shrink-0 mt-0.5"
@@ -128,7 +138,7 @@ export function Membership() {
                       : 'border border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white'
                   }`}
                 >
-                  Apply
+                  {t.nav.apply}
                 </Link>
               </div>
             ))}
@@ -136,11 +146,8 @@ export function Membership() {
 
           {/* Honorary, presented separately since it is not purchasable. */}
           <div className="mt-10 rounded-3xl border border-dashed border-gray-300 bg-white p-8 max-w-3xl">
-            <h3 className="text-xl font-bold text-gray-900">Honorary membership</h3>
-            <p className="mt-2 text-gray-700 leading-relaxed">
-              Extended by board invitation to individuals recognised for their contribution to CDD
-              Pays-Bas. It cannot be applied for.
-            </p>
+            <h3 className="text-xl font-bold text-gray-900">{t.membership.honoraryTitle}</h3>
+            <p className="mt-2 text-gray-700 leading-relaxed">{t.membership.honoraryText}</p>
           </div>
 
           {/* Payment methods */}
@@ -150,7 +157,12 @@ export function Membership() {
             </span>
             {PAYMENT_METHODS.map((method) => (
               <span key={method.id} className="text-sm text-gray-700">
-                <strong className="text-gray-900">{method.label}</strong> — {method.note}
+                <strong className="text-gray-900">{method.label}</strong> —{' '}
+                {method.id === 'ideal'
+                  ? t.membership.paymentIdeal
+                  : method.id === 'sepa'
+                    ? t.membership.paymentSepa
+                    : t.membership.paymentCard}
               </span>
             ))}
           </div>
@@ -162,17 +174,14 @@ export function Membership() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.membership.ourMembers}</h2>
           <p className="text-lg text-gray-700 max-w-3xl mb-10 leading-relaxed">
-            A logo wall of member and partner organisations belongs here. It is the strongest proof
-            a club can offer, and it stays empty rather than filled with placeholders until there
-            are real names to show.
+            {t.membership.membersIntro}
           </p>
           <div className="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-12 text-center">
             <Users className="h-10 w-10 text-gray-500 mx-auto mb-4" aria-hidden="true" />
             <p className="text-gray-700 max-w-xl mx-auto leading-relaxed">
-              Member organisations will be listed here with their consent. If your organisation is
-              already working with CDD Pays-Bas and you would like to be included,{' '}
+              {t.membership.membersEmpty}{' '}
               <Link to="/contact" className="text-blue-700 underline hover:text-blue-900">
-                let us know
+                {t.membership.membersEmptyCta}
               </Link>
               .
             </p>
@@ -183,10 +192,9 @@ export function Membership() {
       {/* CTA */}
       <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Ready to join?</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.membership.readyToJoin}</h2>
           <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-            The application takes a couple of minutes. We review every application and come back to
-            you personally.
+            {t.membership.readyText}
           </p>
           <Link
             to="/membership/apply"
