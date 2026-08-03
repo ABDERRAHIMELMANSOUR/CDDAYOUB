@@ -8,6 +8,7 @@ import { useLocale, useTranslation } from '../i18n/LocaleProvider';
 import { LocaleLink } from '../i18n/LocaleLink';
 import { LocaleSwitcher } from '../i18n/LocaleSwitcher';
 import { localisePath } from '../i18n/config';
+import { pick } from '../i18n/localised';
 import { SMART_PLATFORM, buildLoginUrl, isPlatformLive } from '../lib/smartPlatform';
 
 /**
@@ -59,7 +60,7 @@ export function Navigation() {
           children: [
             { name: t.nav.allFocusAreas, path: '/focus-areas' },
             ...COMMISSIONS.map((c) => ({
-              name: c.title,
+              name: pick(c.title, locale),
               path: `/focus-areas/${c.slug}`,
             })),
           ],

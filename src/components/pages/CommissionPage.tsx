@@ -1,6 +1,7 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
-import { useLocale } from '../../i18n/LocaleProvider';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { pick } from '../../i18n/localised';
 import { Linkedin, CalendarClock, Users, ShieldCheck, ArrowRight } from 'lucide-react';
 import { getCommission } from '../../data/commissions';
 import { advisorsInGroup } from '../../data/advisors';
@@ -18,6 +19,7 @@ import { BrandedImage } from '../BrandedImage';
  * commission can, and that is the whole point of the change.
  */
 export function CommissionPage() {
+  const t = useTranslation();
   const { locale } = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const commission = slug ? getCommission(slug) : undefined;
@@ -42,7 +44,7 @@ export function CommissionPage() {
             to="/focus-areas"
             className="inline-flex items-center text-sm text-blue-200 hover:text-white transition-colors mb-6"
           >
-            ← All focus areas
+            ← {t.nav.allFocusAreas}
           </Link>
           <div className="flex items-start gap-5">
             <div className="hidden sm:flex w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm items-center justify-center flex-shrink-0">
@@ -50,13 +52,13 @@ export function CommissionPage() {
             </div>
             <div>
               <p className="text-sm uppercase tracking-widest text-cyan-200 font-semibold mb-2">
-                Commission {commission.number}
+                {t.commissions.commission} {commission.number}
               </p>
               <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
-                {commission.title}
+                {pick(commission.title, locale)}
               </h1>
               <p className="mt-5 text-xl text-gray-200 leading-relaxed max-w-3xl">
-                {commission.mandate}
+                {pick(commission.mandate, locale)}
               </p>
             </div>
           </div>
@@ -69,27 +71,27 @@ export function CommissionPage() {
           <dl className="flex flex-wrap items-center gap-x-10 gap-y-4 text-sm">
             <div className="flex items-center gap-2">
               <Users className="h-4 w-4 text-blue-700" aria-hidden="true" />
-              <dt className="font-semibold text-blue-900">Chair:</dt>
+              <dt className="font-semibold text-blue-900">{t.commissions.chair}:</dt>
               <dd className="text-gray-800">
                 {commission.chair ?? (
-                  <span className="italic text-gray-700">To be appointed by the board</span>
+                  <span className="italic text-gray-700">{t.commissions.toBeAppointed}</span>
                 )}
               </dd>
             </div>
             {commission.established && (
               <div className="flex items-center gap-2">
-                <dt className="font-semibold text-blue-900">Established:</dt>
+                <dt className="font-semibold text-blue-900">{t.commissions.established}:</dt>
                 <dd className="text-gray-800">{commission.established}</dd>
               </div>
             )}
             <div className="flex items-center gap-2">
               <CalendarClock className="h-4 w-4 text-blue-700" aria-hidden="true" />
-              <dt className="sr-only">Cadence:</dt>
-              <dd className="text-gray-800">{commission.cadence}</dd>
+              <dt className="sr-only">{t.commissions.cadence}</dt>
+              <dd className="text-gray-800">{pick(commission.cadence, locale)}</dd>
             </div>
             <div className="flex items-center gap-2">
-              <dt className="sr-only">Membership:</dt>
-              <dd className="text-gray-800">Open to all members</dd>
+              <dt className="sr-only">{t.nav.membership}</dt>
+              <dd className="text-gray-800">{t.commissions.openToMembers}</dd>
             </div>
           </dl>
         </div>
@@ -99,15 +101,15 @@ export function CommissionPage() {
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-5">The Netherlands–Morocco opportunity</h2>
-            <p className="text-lg text-gray-700 leading-relaxed">{commission.opportunity}</p>
-            <p className="mt-5 text-base text-gray-700">{DELIVERY_METHOD}</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-5">{t.commissions.opportunity}</h2>
+            <p className="text-lg text-gray-700 leading-relaxed">{pick(commission.opportunity, locale)}</p>
+            <p className="mt-5 text-base text-gray-700">{pick(DELIVERY_METHOD, locale)}</p>
           </div>
           <div className="h-72 lg:h-80">
             <BrandedImage
-              label={`Commission ${commission.number}`}
-              title={commission.title}
-              caption={commission.summary}
+              label={`${t.commissions.commission} ${commission.number}`}
+              title={pick(commission.title, locale)}
+              caption={pick(commission.summary, locale)}
               icon={Icon}
             />
           </div>
@@ -117,9 +119,9 @@ export function CommissionPage() {
       {/* What we do */}
       <section className="py-16 lg:py-20 bg-gray-50">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">What we do</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t.commissions.whatWeDo}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {commission.activities.map((activity) => (
+            {pick(commission.activities, locale).map((activity) => (
               <div
                 key={activity}
                 className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm flex items-start gap-4"
@@ -135,17 +137,17 @@ export function CommissionPage() {
       {/* Chair & advisors */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">Chair &amp; advisors</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-3">{t.commissions.chairAndAdvisors}</h2>
           <p className="text-gray-700 mb-10 max-w-3xl leading-relaxed">
-            Senior advisors whose domains sit within this commission. They are drawn from the{' '}
+            {t.commissions.advisorsIntro}{' '}
             <Link to="/advisors" className="text-blue-700 underline hover:text-blue-900">
-              Advisory Council
+              {t.nav.advisoryCouncil}
             </Link>
             .
           </p>
 
           {advisors.length === 0 ? (
-            <p className="text-gray-700 italic">Advisors for this commission are being confirmed.</p>
+            <p className="text-gray-700 italic">{t.commissions.advisorsPending}</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {advisors.map((advisor) => (
@@ -187,11 +189,11 @@ export function CommissionPage() {
       <section className="py-16 lg:py-20 bg-gray-50">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="flex flex-wrap items-baseline justify-between gap-3 mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">Current priorities</h2>
-            <p className="text-sm text-gray-700">Refreshed quarterly</p>
+            <h2 className="text-3xl font-bold text-gray-900">{t.commissions.currentPriorities}</h2>
+            <p className="text-sm text-gray-700">{t.commissions.refreshedQuarterly}</p>
           </div>
           <ol className="space-y-5">
-            {commission.priorities.map((priority, i) => (
+            {pick(commission.priorities, locale).map((priority, i) => (
               <li key={priority} className="flex items-start gap-5">
                 <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center">
                   {i + 1}
@@ -209,8 +211,8 @@ export function CommissionPage() {
           <div className="rounded-3xl border border-gray-200 p-8 lg:p-10 flex flex-col sm:flex-row gap-6">
             <ShieldCheck className="h-10 w-10 text-blue-700 flex-shrink-0" aria-hidden="true" />
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-3">Governance &amp; trust</h2>
-              <p className="text-gray-700 leading-relaxed">{commission.governanceNote}</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">{t.commissions.governanceTrust}</h2>
+              <p className="text-gray-700 leading-relaxed">{pick(commission.governanceNote, locale)}</p>
             </div>
           </div>
         </div>
@@ -229,7 +231,7 @@ export function CommissionPage() {
           <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
             {relatedEvents.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Related events</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.commissions.relatedEvents}</h2>
                 <ul className="space-y-4">
                   {relatedEvents.map((event) => (
                     <li key={event.slug} className="rounded-2xl bg-white border border-gray-100 p-5">
@@ -243,14 +245,14 @@ export function CommissionPage() {
                   to="/events"
                   className="inline-block mt-5 text-sm font-semibold text-blue-700 hover:text-blue-900"
                 >
-                  All events →
+                  {t.commissions.allEvents} →
                 </Link>
               </div>
             )}
 
             {relatedInsights.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Related insights</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.commissions.relatedInsights}</h2>
                 <ul className="space-y-4">
                   {relatedInsights.map((insight) => (
                     <li key={insight.slug}>
@@ -268,7 +270,7 @@ export function CommissionPage() {
                   to="/insights"
                   className="inline-block mt-5 text-sm font-semibold text-blue-700 hover:text-blue-900"
                 >
-                  All insights →
+                  {t.commissions.allInsights} →
                 </Link>
               </div>
             )}
@@ -280,17 +282,16 @@ export function CommissionPage() {
       <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Join the {commission.title} Commission
+            {t.commissions.joinNamed.replace('{name}', pick(commission.title, locale))}
           </h2>
           <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Commissions are open to all CDD members. Tell us you would like to take part and we
-            will bring you into the next session.
+            {t.commissions.joinText}
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg group"
           >
-            Join this commission
+            {t.commissions.joinCommission}
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

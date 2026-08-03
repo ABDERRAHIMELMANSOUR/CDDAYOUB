@@ -4,8 +4,12 @@ import { ArrowRight, Globe, Users, Target, TrendingUp, Lightbulb, HandshakeIcon,
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { BrandedImage } from '../BrandedImage';
 import { FOCUS_AREAS } from '../../data/focusAreas';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { pick } from '../../i18n/localised';
 
 export function Home() {
+  const t = useTranslation();
+  const { locale } = useLocale();
   // Shared with the Focus Areas page so the two can never disagree again.
   const focusAreas = FOCUS_AREAS;
 
@@ -114,8 +118,8 @@ export function Home() {
                 <div className="w-14 h-14 gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
                   <area.icon className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{area.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{area.summary}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{pick(area.title, locale)}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{pick(area.summary, locale)}</p>
               </Link>
             ))}
           </div>

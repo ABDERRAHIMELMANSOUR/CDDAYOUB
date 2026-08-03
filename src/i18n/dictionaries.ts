@@ -112,7 +112,28 @@ export interface Dictionary {
     privacyNote: string;
     confirmRegistration: string;
   };
+  focusAreas: {
+    title: string;
+    mechanism: string;
+    howTheyWork: string;
+    rulesIntro: string;
+    takePart: string;
+    takePartText: string;
+  };
   commissions: {
+    commission: string;
+    established: string;
+    cadence: string;
+    advisor: string;
+    advisors: string;
+    viewCommission: string;
+    advisorsIntro: string;
+    advisorsPending: string;
+    refreshedQuarterly: string;
+    allEvents: string;
+    allInsights: string;
+    joinNamed: string;
+    joinText: string;
     chair: string;
     toBeAppointed: string;
     openToMembers: string;
@@ -254,7 +275,32 @@ const en: Dictionary = {
     privacyNote: 'Your details are handled in line with our',
     confirmRegistration: 'Confirm registration',
   },
+  focusAreas: {
+    title: 'Where our work happens',
+    mechanism:
+      'CDD Pays-Bas organises its work through four standing commissions, each chaired by a senior advisor and open to all members.',
+    howTheyWork: 'How the commissions work',
+    rulesIntro:
+      'A commission that exists only as a page is a focus area with a better name. These rules are published so members and partners can hold us to them.',
+    takePart: 'Take part in a commission',
+    takePartText:
+      'Commissions are open to all CDD members. Tell us which one fits your work and we will bring you into the next session.',
+  },
   commissions: {
+    commission: 'Commission',
+    established: 'Established',
+    cadence: 'Cadence',
+    advisor: 'senior advisor',
+    advisors: 'senior advisors',
+    viewCommission: 'View commission',
+    advisorsIntro: 'Senior advisors whose domains sit within this commission. They are drawn from the',
+    advisorsPending: 'Advisors for this commission are being confirmed.',
+    refreshedQuarterly: 'Refreshed quarterly',
+    allEvents: 'All events',
+    allInsights: 'All insights',
+    joinNamed: 'Join the {name} Commission',
+    joinText:
+      'Commissions are open to all CDD members. Tell us you would like to take part and we will bring you into the next session.',
     chair: 'Chair',
     toBeAppointed: 'To be appointed by the board',
     openToMembers: 'Open to all members',
@@ -396,7 +442,33 @@ const nl: Dictionary = {
     privacyNote: 'Uw gegevens worden verwerkt conform onze',
     confirmRegistration: 'Aanmelding bevestigen',
   },
+  focusAreas: {
+    title: 'Waar ons werk gebeurt',
+    mechanism:
+      'CDD Pays-Bas organiseert haar werk via vier vaste commissies, elk voorgezeten door een senior adviseur en open voor alle leden.',
+    howTheyWork: 'Hoe de commissies werken',
+    rulesIntro:
+      'Een commissie die alleen als pagina bestaat, is een aandachtsgebied met een mooiere naam. Deze regels zijn gepubliceerd zodat leden en partners ons eraan kunnen houden.',
+    takePart: 'Neem deel aan een commissie',
+    takePartText:
+      'Commissies staan open voor alle CDD-leden. Laat ons weten welke aansluit bij uw werk en wij nemen u mee naar de volgende sessie.',
+  },
   commissions: {
+    commission: 'Commissie',
+    established: 'Opgericht',
+    cadence: 'Vergaderfrequentie',
+    advisor: 'senior adviseur',
+    advisors: 'senior adviseurs',
+    viewCommission: 'Bekijk commissie',
+    advisorsIntro:
+      'Senior adviseurs wier vakgebied binnen deze commissie valt. Zij zijn afkomstig uit de',
+    advisorsPending: 'De adviseurs voor deze commissie worden nog bevestigd.',
+    refreshedQuarterly: 'Elk kwartaal geactualiseerd',
+    allEvents: 'Alle evenementen',
+    allInsights: 'Alle inzichten',
+    joinNamed: 'Neem deel aan de commissie {name}',
+    joinText:
+      'Commissies staan open voor alle CDD-leden. Laat ons weten dat u wilt deelnemen en wij nemen u mee naar de volgende sessie.',
     chair: 'Voorzitter',
     toBeAppointed: 'Nog te benoemen door het bestuur',
     openToMembers: 'Open voor alle leden',
@@ -540,7 +612,33 @@ const fr: Dictionary = {
     privacyNote: 'Vos données sont traitées conformément à notre',
     confirmRegistration: "Confirmer l'inscription",
   },
+  focusAreas: {
+    title: 'Là où se fait notre travail',
+    mechanism:
+      'CDD Pays-Bas organise son travail à travers quatre commissions permanentes, chacune présidée par un conseiller senior et ouverte à tous les membres.',
+    howTheyWork: 'Comment fonctionnent les commissions',
+    rulesIntro:
+      "Une commission qui n'existe que sous forme de page est un domaine d'action avec un plus joli nom. Ces règles sont publiées pour que membres et partenaires puissent nous y tenir.",
+    takePart: 'Participer à une commission',
+    takePartText:
+      'Les commissions sont ouvertes à tous les membres du CDD. Dites-nous laquelle correspond à votre activité et nous vous intégrerons à la prochaine session.',
+  },
   commissions: {
+    commission: 'Commission',
+    established: 'Créée en',
+    cadence: 'Fréquence',
+    advisor: 'conseiller senior',
+    advisors: 'conseillers seniors',
+    viewCommission: 'Voir la commission',
+    advisorsIntro:
+      'Les conseillers seniors dont les domaines relèvent de cette commission. Ils sont issus du',
+    advisorsPending: 'Les conseillers de cette commission sont en cours de confirmation.',
+    refreshedQuarterly: 'Actualisées chaque trimestre',
+    allEvents: 'Tous les événements',
+    allInsights: 'Toutes les analyses',
+    joinNamed: 'Rejoindre la commission {name}',
+    joinText:
+      'Les commissions sont ouvertes à tous les membres du CDD. Dites-nous que vous souhaitez y participer et nous vous intégrerons à la prochaine session.',
     chair: 'Président',
     toBeAppointed: 'À nommer par le conseil',
     openToMembers: 'Ouverte à tous les membres',
