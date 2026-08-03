@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Link, useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useTranslation } from '../../i18n/LocaleProvider';
 import {
   sortedInsights,
   getInsight,
@@ -19,6 +21,7 @@ import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
  * page automatically — no cross-referencing by hand.
  */
 export function Insights() {
+  const t = useTranslation();
   const [category, setCategory] = useState<InsightCategory | 'all'>('all');
   const all = sortedInsights();
   const items = category === 'all' ? all : all.filter((i) => i.category === category);
@@ -31,13 +34,13 @@ export function Insights() {
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Insights
+              {t.nav.insights}
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              News, spotlights &amp; briefings
+              {t.insights.title}
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed">
-              What the network is doing, who is in it, and what is changing in both markets.
+              {t.insights.subtitle}
             </p>
           </div>
         </div>

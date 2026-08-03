@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useTranslation } from '../../i18n/LocaleProvider';
 import { Check, ArrowRight, Users } from 'lucide-react';
 import {
   MEMBERSHIP_TIERS,
@@ -18,6 +19,7 @@ import { PAYMENT_METHODS } from '../../lib/payments';
  * visitor was a dead end. This page is the conversion path.
  */
 export function Membership() {
+  const t = useTranslation();
   return (
     <div>
       {/* Hero */}
@@ -27,10 +29,10 @@ export function Membership() {
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Membership
+              {t.nav.membership}
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              Join the Club
+              {t.membership.title}
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed">
               CDD Pays-Bas is a members' club. Membership gives you access to {ADVISORS.length}{' '}
@@ -42,14 +44,14 @@ export function Membership() {
                 to="/membership/apply"
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium group"
               >
-                Apply for membership
+                {t.membership.applyCta}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
                 href="#tiers"
                 className="inline-flex items-center px-8 py-4 border border-white/40 text-white rounded-2xl hover:bg-white/10 transition-all duration-300 font-medium"
               >
-                See tiers &amp; dues
+                {t.membership.seeTiers}
               </a>
             </div>
           </div>
@@ -59,7 +61,7 @@ export function Membership() {
       {/* Why join */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Why join</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.membership.whyJoin}</h2>
           <p className="text-lg text-gray-700 max-w-3xl mb-12 leading-relaxed">
             Written as what you actually get, rather than as abstractions.
           </p>
@@ -77,7 +79,7 @@ export function Membership() {
       {/* Tiers */}
       <section id="tiers" className="py-16 lg:py-24 bg-gray-50 scroll-mt-28">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Tiers &amp; dues</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.membership.tiers}</h2>
           <p className="text-lg text-gray-700 max-w-3xl mb-12 leading-relaxed">
             {PRICING_PUBLISHED
               ? 'Annual dues, published openly. Membership runs for twelve months and is renewable.'
@@ -144,7 +146,7 @@ export function Membership() {
           {/* Payment methods */}
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3">
             <span className="text-sm font-semibold uppercase tracking-wide text-gray-700">
-              Payment
+              {t.membership.paymentNote}
             </span>
             {PAYMENT_METHODS.map((method) => (
               <span key={method.id} className="text-sm text-gray-700">
@@ -158,7 +160,7 @@ export function Membership() {
       {/* Our members */}
       <section id="members" className="py-16 lg:py-24 bg-white scroll-mt-28">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our members</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.membership.ourMembers}</h2>
           <p className="text-lg text-gray-700 max-w-3xl mb-10 leading-relaxed">
             A logo wall of member and partner organisations belongs here. It is the strongest proof
             a club can offer, and it stays empty rather than filled with placeholders until there
@@ -190,7 +192,7 @@ export function Membership() {
             to="/membership/apply"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg group"
           >
-            Apply for membership
+            {t.membership.applyCta}
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
