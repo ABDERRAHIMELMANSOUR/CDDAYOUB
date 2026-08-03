@@ -1,0 +1,233 @@
+import { Link, useParams, Navigate } from 'react-router-dom';
+import { Linkedin, CalendarClock, Users, ShieldCheck, ArrowRight } from 'lucide-react';
+import { getCommission } from '../../data/commissions';
+import { advisorsInGroup } from '../../data/advisors';
+import { DELIVERY_METHOD } from '../../data/focusAreas';
+import { BrandedImage } from '../BrandedImage';
+
+/**
+ * Commission page template (Part D4) — one shared structure for all four.
+ *
+ * The section that distinguishes a body from a theme is the standing line:
+ * chair, established, cadence, open to all members. Four facts, one line. A
+ * "focus area" cannot justify naming a chair or carrying a join action; a
+ * commission can, and that is the whole point of the change.
+ */
+export function CommissionPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const commission = slug ? getCommission(slug) : undefined;
+
+  // Unknown slug falls back to the landing page rather than a dead end.
+  if (!commission) return <Navigate to="/focus-areas" replace />;
+
+  const advisors = advisorsInGroup(commission.group);
+  const Icon = commission.icon;
+
+  return (
+    <div>
+      {/* Header */}
+      <section className="relative py-20 lg:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
+
+        <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
+          <Link
+            to="/focus-areas"
+            className="inline-flex items-center text-sm text-blue-200 hover:text-white transition-colors mb-6"
+          >
+            ← All focus areas
+          </Link>
+          <div className="flex items-start gap-5">
+            <div className="hidden sm:flex w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm items-center justify-center flex-shrink-0">
+              <Icon className="h-8 w-8 text-cyan-200" />
+            </div>
+            <div>
+              <p className="text-sm uppercase tracking-widest text-cyan-200 font-semibold mb-2">
+                Commission {commission.number}
+              </p>
+              <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                {commission.title}
+              </h1>
+              <p className="mt-5 text-xl text-gray-200 leading-relaxed max-w-3xl">
+                {commission.mandate}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Standing line — what makes this a body rather than a theme */}
+      <section className="bg-blue-50 border-b border-blue-100">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-6">
+          <dl className="flex flex-wrap items-center gap-x-10 gap-y-4 text-sm">
+            <div className="flex items-center gap-2">
+              <Users className="h-4 w-4 text-blue-700" aria-hidden="true" />
+              <dt className="font-semibold text-blue-900">Chair:</dt>
+              <dd className="text-gray-800">
+                {commission.chair ?? (
+                  <span className="italic text-gray-700">To be appointed by the board</span>
+                )}
+              </dd>
+            </div>
+            {commission.established && (
+              <div className="flex items-center gap-2">
+                <dt className="font-semibold text-blue-900">Established:</dt>
+                <dd className="text-gray-800">{commission.established}</dd>
+              </div>
+            )}
+            <div className="flex items-center gap-2">
+              <CalendarClock className="h-4 w-4 text-blue-700" aria-hidden="true" />
+              <dt className="sr-only">Cadence:</dt>
+              <dd className="text-gray-800">{commission.cadence}</dd>
+            </div>
+            <div className="flex items-center gap-2">
+              <dt className="sr-only">Membership:</dt>
+              <dd className="text-gray-800">Open to all members</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      {/* The NL–MA opportunity */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-5">The Netherlands–Morocco opportunity</h2>
+            <p className="text-lg text-gray-700 leading-relaxed">{commission.opportunity}</p>
+            <p className="mt-5 text-base text-gray-700">{DELIVERY_METHOD}</p>
+          </div>
+          <div className="h-72 lg:h-80">
+            <BrandedImage
+              label={`Commission ${commission.number}`}
+              title={commission.title}
+              caption={commission.summary}
+              icon={Icon}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* What we do */}
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">What we do</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {commission.activities.map((activity) => (
+              <div
+                key={activity}
+                className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm flex items-start gap-4"
+              >
+                <div className="w-2 h-2 rounded-full bg-blue-600 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                <p className="text-gray-800 leading-relaxed">{activity}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Chair & advisors */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-3">Chair &amp; advisors</h2>
+          <p className="text-gray-700 mb-10 max-w-3xl leading-relaxed">
+            Senior advisors whose domains sit within this commission. They are drawn from the{' '}
+            <Link to="/advisors" className="text-blue-700 underline hover:text-blue-900">
+              Advisory Council
+            </Link>
+            .
+          </p>
+
+          {advisors.length === 0 ? (
+            <p className="text-gray-700 italic">Advisors for this commission are being confirmed.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {advisors.map((advisor) => (
+                <div
+                  key={advisor.name}
+                  className="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 p-6 text-center"
+                >
+                  <div className="mb-5 flex justify-center">
+                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                      <img
+                        src={advisor.photo}
+                        alt={advisor.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <h3 className="font-bold text-gray-900 leading-tight">{advisor.name}</h3>
+                  <p className="text-sm text-blue-700 mt-1 leading-snug">{advisor.role}</p>
+                  {advisor.linkedin && (
+                    <a
+                      href={advisor.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex mt-3 text-gray-600 hover:text-blue-700 transition-colors"
+                      aria-label={`${advisor.name} on LinkedIn`}
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Current priorities */}
+      <section className="py-16 lg:py-20 bg-gray-50">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <div className="flex flex-wrap items-baseline justify-between gap-3 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900">Current priorities</h2>
+            <p className="text-sm text-gray-700">Refreshed quarterly</p>
+          </div>
+          <ol className="space-y-5">
+            {commission.priorities.map((priority, i) => (
+              <li key={priority} className="flex items-start gap-5">
+                <span className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center">
+                  {i + 1}
+                </span>
+                <p className="text-lg text-gray-800 leading-relaxed pt-1.5">{priority}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Governance & trust note */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <div className="rounded-3xl border border-gray-200 p-8 lg:p-10 flex flex-col sm:flex-row gap-6">
+            <ShieldCheck className="h-10 w-10 text-blue-700 flex-shrink-0" aria-hidden="true" />
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Governance &amp; trust</h2>
+              <p className="text-gray-700 leading-relaxed">{commission.governanceNote}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Join CTA */}
+      <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            Join the {commission.title} Commission
+          </h2>
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
+            Commissions are open to all CDD members. Tell us you would like to take part and we
+            will bring you into the next session.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg group"
+          >
+            Join this commission
+            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -6,6 +6,7 @@ import { About } from './components/pages/About';
 import { Leadership } from './components/pages/Leadership';
 import { Advisors } from './components/pages/Advisors';
 import { FocusAreas } from './components/pages/FocusAreas';
+import { CommissionPage } from './components/pages/CommissionPage';
 import { Partnerships } from './components/pages/Partnerships';
 import { Projects } from './components/pages/Projects';
 import { Events } from './components/pages/Events';
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/advisors" element={<Advisors />} />
             <Route path="/focus-areas" element={<FocusAreas />} />
+            <Route path="/focus-areas/:slug" element={<CommissionPage />} />
             <Route path="/partnerships" element={<Partnerships />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/events" element={<Events />} />
