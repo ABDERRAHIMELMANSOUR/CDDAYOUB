@@ -3,53 +3,29 @@ import { Linkedin, Mail, Award, Globe2, Users, TrendingUp } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import presidentPhoto from '../../assets/NouraddineGRIBI.png';
 import founderPhoto from '../../assets/DrissDrif.png';
+import treasurerPhoto from '../../assets/Ahmed_Rahmouni.png';
 
 export function Leadership() {
+  /*
+   * The statutory board. Ahmed Rahmouni (Treasurer) is a board officer and was
+   * previously presented in the Advisors grid, which misrepresents governance.
+   * The remaining seats are confirmed with the treasurer before publishing
+   * (ticket 10); only verified officers are listed here.
+   */
   const boardMembers = [
     {
-      name: 'Board Member Name',
-      role: 'Vice President',
-      bio: 'Senior executive with deep expertise in energy transition, infrastructure development, and public-private partnerships.',
-      expertise: ['Energy Transition', 'Infrastructure', 'Public Policy', 'Investment'],
+      name: 'Nouraddine Gribi',
+      role: 'President',
+      bio: 'Leads CDD Pays-Bas with a strategic vision focused on strengthening economic bridges between Morocco and the Netherlands. Drives partnerships, governance, and sustainable impact initiatives.',
+      photo: presidentPhoto,
+      linkedin: 'https://www.linkedin.com/in/nouraddine-gribi-4a639435/',
     },
     {
-      name: 'Board Member Name',
-      role: 'Secretary General',
-      bio: 'Accomplished professional specializing in organizational development, stakeholder engagement, and international relations.',
-      expertise: ['Organizational Development', 'Stakeholder Relations', 'Communications', 'Operations'],
-    },
-  ];
-
-  const advisors = [
-    {
-      name: 'Senior Advisor Name',
-      specialization: 'Energy & Sustainability',
-      background: 'Former executive in renewable energy sector with 20+ years experience in green hydrogen and solar projects.',
-    },
-    {
-      name: 'Senior Advisor Name',
-      specialization: 'Finance & Investment',
-      background: 'International finance expert with expertise in project finance, private equity, and cross-border investments.',
-    },
-    {
-      name: 'Senior Advisor Name',
-      specialization: 'Innovation & Technology',
-      background: 'Technology strategist and entrepreneur focused on digital transformation and innovation ecosystems.',
-    },
-    {
-      name: 'Senior Advisor Name',
-      specialization: 'Infrastructure & Real Estate',
-      background: 'Infrastructure development specialist with extensive experience in large-scale projects across Africa.',
-    },
-    {
-      name: 'Senior Advisor Name',
-      specialization: 'Public Policy & Governance',
-      background: 'Former government official and policy advisor with deep knowledge of EU-Africa relations.',
-    },
-    {
-      name: 'Senior Advisor Name',
-      specialization: 'Education & Capacity Building',
-      background: 'Academic leader and expert in executive education, knowledge transfer, and institutional development.',
+      name: 'Ahmed Rahmouni',
+      role: 'Treasurer',
+      bio: 'International business professional with strong financial and commercial expertise. Supports CDD Pays-Bas with strategic financial oversight and cross-border business insight.',
+      photo: treasurerPhoto,
+      linkedin: 'https://www.linkedin.com/in/ahmed-rahmouni-prfile/',
     },
   ];
 
@@ -284,6 +260,55 @@ export function Leadership() {
               CDD Pays-Bas is guided by a distinguished board and advisory team with proven track records 
               in international business, public policy, and strategic development.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Statutory Board */}
+      <section className="py-24 lg:py-32 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
+              Governance
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+              The Board
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              CDD Pays-Bas is governed by its statutory board, distinct from the Advisory
+              Council of senior experts who advise the organisation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            {boardMembers.map((member) => (
+              <div
+                key={member.name}
+                className="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 p-8 text-center"
+              >
+                <div className="mb-6 flex justify-center">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                <p className="text-blue-600 font-semibold mb-4">{member.role}</p>
+                <p className="text-gray-600 leading-relaxed mb-6">{member.bio}</p>
+                <a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-gray-500 hover:text-blue-600 transition-colors"
+                  aria-label={`${member.name} on LinkedIn`}
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
