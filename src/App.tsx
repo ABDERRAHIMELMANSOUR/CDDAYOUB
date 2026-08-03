@@ -11,6 +11,9 @@ import { Partnerships } from './components/pages/Partnerships';
 import { Projects } from './components/pages/Projects';
 import { Events } from './components/pages/Events';
 import { Contact } from './components/pages/Contact';
+import { Membership } from './components/pages/Membership';
+import { MembershipApply } from './components/pages/MembershipApply';
+import { Insights, InsightArticle } from './components/pages/Insights';
 import { Privacy } from './components/pages/legal/Privacy';
 import { Cookies } from './components/pages/legal/Cookies';
 import { Accessibility } from './components/pages/legal/Accessibility';
@@ -36,6 +39,10 @@ export default function App() {
             <Route path="/partnerships" element={<Partnerships />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/membership" element={<Membership />} />
+            <Route path="/membership/apply" element={<MembershipApply />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:slug" element={<InsightArticle />} />
             <Route path="/contact" element={<Contact />} />
             {/* Trust layer — legal and transparency pages */}
             <Route path="/transparency" element={<Transparency />} />

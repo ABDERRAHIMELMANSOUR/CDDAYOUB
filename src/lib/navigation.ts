@@ -46,10 +46,9 @@ export const PRIMARY_NAV: NavItem[] = [
   {
     name: 'Membership',
     path: '/membership',
-    pending: true,
     children: [
       { name: 'Why Join', path: '/membership' },
-      { name: 'Tiers & Pricing', path: '/membership#tiers' },
+      { name: 'Tiers & Dues', path: '/membership#tiers' },
       { name: 'Our Members', path: '/membership#members' },
       { name: 'Apply', path: '/membership/apply' },
     ],
@@ -61,12 +60,6 @@ export const PRIMARY_NAV: NavItem[] = [
   {
     name: 'Insights',
     path: '/insights',
-    pending: true,
-    children: [
-      { name: 'News', path: '/insights' },
-      { name: 'Spotlights', path: '/insights/spotlights' },
-      { name: 'Market Briefings', path: '/insights/briefings' },
-    ],
   },
   {
     name: 'Contact',
