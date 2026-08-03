@@ -112,6 +112,32 @@ export interface Dictionary {
     privacyNote: string;
     confirmRegistration: string;
   };
+  home: {
+    badge: string;
+    heroLine1: string;
+    heroLine2: string;
+    heroText: string;
+    getInvolved: string;
+    upcomingEvents: string;
+    visionEyebrow: string;
+    visionTitle: string;
+    visionText: string;
+    whatWeDo: string;
+    focusTitle: string;
+    focusText: string;
+    exploreAll: string;
+    impactEyebrow: string;
+    impactTitle: string;
+    impactText: string;
+    impactPoints: string[];
+    imageCaption: string;
+    valuesEyebrow: string;
+    valuesTitle: string;
+    valuesText: string;
+    values: { title: string; description: string }[];
+    ctaTitle: string;
+    ctaText: string;
+  };
   focusAreas: {
     title: string;
     mechanism: string;
@@ -274,6 +300,45 @@ const en: Dictionary = {
     organisation: 'Organisation',
     privacyNote: 'Your details are handled in line with our',
     confirmRegistration: 'Confirm registration',
+  },
+  home: {
+    badge: 'International Business Leadership Platform',
+    heroLine1: 'Connecting Leaders,',
+    heroLine2: 'Building the Future',
+    heroText:
+      'CDD Pays-Bas is an international platform for business leaders, investors, and decision-makers driving cross-border collaboration and sustainable development.',
+    getInvolved: 'Get Involved',
+    upcomingEvents: 'Upcoming Events',
+    visionEyebrow: 'Our Vision',
+    visionTitle: 'A Strategic Bridge Between Two Markets',
+    visionText:
+      'To serve as a strategic bridge connecting European, Moroccan, and African ecosystems, fostering economic diplomacy, innovation, and sustainable growth through purposeful collaboration between business leaders, public institutions, and international partners.',
+    whatWeDo: 'What We Do',
+    focusTitle: 'Strategic Focus Areas',
+    focusText: 'We drive impact across key sectors shaping the future of international business',
+    exploreAll: 'Explore All Focus Areas',
+    impactEyebrow: 'Our Impact',
+    impactTitle: 'Driving Cross-Border Impact',
+    impactText:
+      'CDD Pays-Bas brings together business leaders, investors, public institutions, and international experts to create meaningful partnerships that transcend borders.',
+    impactPoints: [
+      'Economic diplomacy and strategic representation',
+      'High-level business delegations and networking',
+      'Knowledge sharing and executive education',
+    ],
+    imageCaption: 'Connecting leaders across two markets',
+    valuesEyebrow: 'Core Values',
+    valuesTitle: 'Our Core Values',
+    valuesText: 'Principles that guide our mission and shape our impact',
+    values: [
+      { title: 'Leadership', description: 'Empowering decision-makers to drive meaningful change' },
+      { title: 'Sustainability', description: 'Promoting inclusive and sustainable economic growth' },
+      { title: 'Collaboration', description: 'Building bridges between sectors and geographies' },
+      { title: 'Impact', description: 'Creating measurable value for communities and economies' },
+    ],
+    ctaTitle: 'Join Our Network',
+    ctaText:
+      'Connect with decision-makers, explore strategic partnerships, and be part of initiatives shaping the future of cross-border collaboration.',
   },
   focusAreas: {
     title: 'Where our work happens',
@@ -441,6 +506,46 @@ const nl: Dictionary = {
     organisation: 'Organisatie',
     privacyNote: 'Uw gegevens worden verwerkt conform onze',
     confirmRegistration: 'Aanmelding bevestigen',
+  },
+  home: {
+    badge: 'Internationaal platform voor zakelijk leiderschap',
+    heroLine1: 'Leiders verbinden,',
+    heroLine2: 'de toekomst bouwen',
+    heroText:
+      'CDD Pays-Bas is een internationaal platform voor bestuurders, investeerders en besluitvormers die grensoverschrijdende samenwerking en duurzame ontwikkeling stimuleren.',
+    getInvolved: 'Doe mee',
+    upcomingEvents: 'Aankomende evenementen',
+    visionEyebrow: 'Onze visie',
+    visionTitle: 'Een strategische brug tussen twee markten',
+    visionText:
+      'Fungeren als strategische brug tussen Europese, Marokkaanse en Afrikaanse ecosystemen, en economische diplomatie, innovatie en duurzame groei bevorderen door doelgerichte samenwerking tussen bestuurders, publieke instellingen en internationale partners.',
+    whatWeDo: 'Wat wij doen',
+    focusTitle: 'Strategische aandachtsgebieden',
+    focusText:
+      'Wij creëren impact in sleutelsectoren die de toekomst van internationaal ondernemen vormgeven',
+    exploreAll: 'Bekijk alle aandachtsgebieden',
+    impactEyebrow: 'Onze impact',
+    impactTitle: 'Grensoverschrijdende impact realiseren',
+    impactText:
+      'CDD Pays-Bas brengt bestuurders, investeerders, publieke instellingen en internationale experts samen om betekenisvolle partnerschappen te vormen die grenzen overstijgen.',
+    impactPoints: [
+      'Economische diplomatie en strategische vertegenwoordiging',
+      'Hoogwaardige handelsmissies en netwerkvorming',
+      'Kennisdeling en executive education',
+    ],
+    imageCaption: 'Leiders verbinden in twee markten',
+    valuesEyebrow: 'Kernwaarden',
+    valuesTitle: 'Onze kernwaarden',
+    valuesText: 'Principes die onze missie sturen en onze impact vormgeven',
+    values: [
+      { title: 'Leiderschap', description: 'Besluitvormers in staat stellen betekenisvolle verandering te realiseren' },
+      { title: 'Duurzaamheid', description: 'Inclusieve en duurzame economische groei bevorderen' },
+      { title: 'Samenwerking', description: 'Bruggen bouwen tussen sectoren en regio\'s' },
+      { title: 'Impact', description: 'Meetbare waarde creëren voor gemeenschappen en economieën' },
+    ],
+    ctaTitle: 'Sluit u aan bij ons netwerk',
+    ctaText:
+      'Kom in contact met besluitvormers, verken strategische partnerschappen en maak deel uit van initiatieven die de toekomst van grensoverschrijdende samenwerking vormgeven.',
   },
   focusAreas: {
     title: 'Waar ons werk gebeurt',
@@ -611,6 +716,46 @@ const fr: Dictionary = {
     organisation: 'Organisation',
     privacyNote: 'Vos données sont traitées conformément à notre',
     confirmRegistration: "Confirmer l'inscription",
+  },
+  home: {
+    badge: 'Plateforme internationale de leadership économique',
+    heroLine1: 'Relier les dirigeants,',
+    heroLine2: "construire l'avenir",
+    heroText:
+      'CDD Pays-Bas est une plateforme internationale réunissant dirigeants, investisseurs et décideurs qui font avancer la collaboration transfrontalière et le développement durable.',
+    getInvolved: 'Participer',
+    upcomingEvents: 'Événements à venir',
+    visionEyebrow: 'Notre vision',
+    visionTitle: 'Un pont stratégique entre deux marchés',
+    visionText:
+      "Servir de pont stratégique entre les écosystèmes européens, marocains et africains, en favorisant la diplomatie économique, l'innovation et une croissance durable par une collaboration réfléchie entre dirigeants, institutions publiques et partenaires internationaux.",
+    whatWeDo: 'Ce que nous faisons',
+    focusTitle: "Domaines d'action stratégiques",
+    focusText:
+      "Nous créons de l'impact dans les secteurs clés qui façonnent l'avenir des affaires internationales",
+    exploreAll: "Découvrir tous les domaines d'action",
+    impactEyebrow: 'Notre impact',
+    impactTitle: 'Créer un impact transfrontalier',
+    impactText:
+      'CDD Pays-Bas réunit dirigeants, investisseurs, institutions publiques et experts internationaux pour créer des partenariats significatifs qui dépassent les frontières.',
+    impactPoints: [
+      'Diplomatie économique et représentation stratégique',
+      "Délégations d'affaires de haut niveau et mise en réseau",
+      'Partage de connaissances et formation des dirigeants',
+    ],
+    imageCaption: 'Relier les dirigeants de deux marchés',
+    valuesEyebrow: 'Valeurs fondamentales',
+    valuesTitle: 'Nos valeurs fondamentales',
+    valuesText: 'Les principes qui guident notre mission et façonnent notre impact',
+    values: [
+      { title: 'Leadership', description: 'Donner aux décideurs les moyens de conduire un vrai changement' },
+      { title: 'Durabilité', description: "Favoriser une croissance économique inclusive et durable" },
+      { title: 'Collaboration', description: 'Bâtir des ponts entre secteurs et territoires' },
+      { title: 'Impact', description: 'Créer une valeur mesurable pour les communautés et les économies' },
+    ],
+    ctaTitle: 'Rejoignez notre réseau',
+    ctaText:
+      "Échangez avec des décideurs, explorez des partenariats stratégiques et prenez part aux initiatives qui façonnent l'avenir de la collaboration transfrontalière.",
   },
   focusAreas: {
     title: 'Là où se fait notre travail',
