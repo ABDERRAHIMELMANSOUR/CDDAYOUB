@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../i18n/LocaleLink';
+import { useTranslation } from '../i18n/LocaleProvider';
 import { Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import logo from 'figma:asset/b1faa4031595f1461db9b2a05d08177da0e5c2ec.png';
 import { ORGANISATION } from '../data/organisation';
 
 export function Footer() {
+  const t = useTranslation();
   /**
    * Legal identity items for the bottom bar. Each entry is omitted entirely
    * until the real value exists in src/data/organisation.ts — a missing KvK is
@@ -31,30 +33,29 @@ export function Footer() {
               />
             </div>
             <p className="text-sm text-gray-300 max-w-md leading-relaxed">
-              An international business and leadership platform connecting decision-makers,
-              entrepreneurs, investors, and senior experts across Europe, Morocco, and Africa.
+              {t.footer.tagline}
             </p>
           </div>
 
           {/* Organisation */}
           <div>
             <h3 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">
-              Organisation
+              {t.footer.organisation}
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link to="/about" className="text-gray-300 hover:text-white transition-colors">
-                  About
+                  {t.nav.about}
                 </Link>
               </li>
               <li>
                 <Link to="/leadership" className="text-gray-300 hover:text-white transition-colors">
-                  Governance &amp; Board
+                  {t.nav.governanceBoard}
                 </Link>
               </li>
               <li>
                 <Link to="/advisors" className="text-gray-300 hover:text-white transition-colors">
-                  Advisory Council
+                  {t.nav.advisoryCouncil}
                 </Link>
               </li>
               <li>
@@ -62,7 +63,7 @@ export function Footer() {
                   to="/transparency"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  Transparency
+                  {t.nav.transparency}
                 </Link>
               </li>
             </ul>
@@ -71,7 +72,7 @@ export function Footer() {
           {/* Engage */}
           <div>
             <h3 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">
-              Engage
+              {t.footer.engage}
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
@@ -79,12 +80,12 @@ export function Footer() {
                   to="/focus-areas"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  Focus Areas
+                  {t.nav.focusAreas}
                 </Link>
               </li>
               <li>
                 <Link to="/events" className="text-gray-300 hover:text-white transition-colors">
-                  Events
+                  {t.nav.events}
                 </Link>
               </li>
               <li>
@@ -92,12 +93,12 @@ export function Footer() {
                   to="/partnerships"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  Partnerships
+                  {t.nav.partnerships}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
-                  Contact
+                  {t.nav.contact}
                 </Link>
               </li>
             </ul>
@@ -106,7 +107,7 @@ export function Footer() {
           {/* Connect */}
           <div>
             <h3 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">
-              Connect
+              {t.footer.connect}
             </h3>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start space-x-3">
@@ -164,30 +165,30 @@ export function Footer() {
 
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm">
             <Link to="/privacy" className="text-gray-300 hover:text-white transition-colors">
-              Privacy
+              {t.footer.privacy}
             </Link>
             <span className="text-gray-500" aria-hidden="true">
               ·
             </span>
             <Link to="/cookies" className="text-gray-300 hover:text-white transition-colors">
-              Cookies
+              {t.footer.cookies}
             </Link>
             <span className="text-gray-500" aria-hidden="true">
               ·
             </span>
             <Link to="/accessibility" className="text-gray-300 hover:text-white transition-colors">
-              Accessibility
+              {t.footer.accessibility}
             </Link>
             <span className="text-gray-500" aria-hidden="true">
               ·
             </span>
             <Link to="/transparency" className="text-gray-300 hover:text-white transition-colors">
-              Transparency
+              {t.nav.transparency}
             </Link>
           </div>
 
           <p className="text-sm text-center text-gray-400">
-            &copy; {new Date().getFullYear()} {ORGANISATION.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {ORGANISATION.name}. {t.footer.rightsReserved}
           </p>
         </div>
       </div>

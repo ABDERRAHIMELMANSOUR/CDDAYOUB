@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useTranslation } from '../../i18n/LocaleProvider';
 import { Calendar, MapPin, Clock, Users, X, Check } from 'lucide-react';
 import {
   EVENTS,
@@ -26,6 +27,7 @@ import { BrandedImage } from '../BrandedImage';
  * until that exists the modal records interest and says so honestly.
  */
 export function Events() {
+  const t = useTranslation();
   const [typeFilter, setTypeFilter] = useState<EventType | 'all'>('all');
   const [commissionFilter, setCommissionFilter] = useState<AdvisorGroup | 'all'>('all');
   const [rsvpFor, setRsvpFor] = useState<CDDEvent | null>(null);
@@ -50,10 +52,10 @@ export function Events() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Events
+              {t.nav.events}
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              Events &amp; Gatherings
+              {t.events.title}
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed">
               Roundtables, delegations, forums and community gatherings — convened by the
@@ -66,9 +68,9 @@ export function Events() {
       {/* Filters */}
       <section className="sticky top-24 z-30 bg-white/95 backdrop-blur border-b border-gray-100">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-4 space-y-3">
-          <FilterRow label="Type">
+          <FilterRow label={t.events.filterType}>
             <Chip active={typeFilter === 'all'} onClick={() => setTypeFilter('all')}>
-              All types
+              {t.events.allTypes}
             </Chip>
             {(Object.keys(EVENT_TYPE_LABELS) as EventType[]).map((type) => (
               <Chip key={type} active={typeFilter === type} onClick={() => setTypeFilter(type)}>
@@ -77,9 +79,9 @@ export function Events() {
             ))}
           </FilterRow>
 
-          <FilterRow label="Commission">
+          <FilterRow label={t.events.filterCommission}>
             <Chip active={commissionFilter === 'all'} onClick={() => setCommissionFilter('all')}>
-              All commissions
+              {t.events.allCommissions}
             </Chip>
             {COMMISSIONS.map((commission) => (
               <Chip
@@ -97,13 +99,13 @@ export function Events() {
       {/* Upcoming */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">Upcoming</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t.events.upcoming}</h2>
           {upcoming.length === 0 ? (
             <div className="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center">
               <p className="text-lg text-gray-800 font-medium">
                 {filtersActive
                   ? 'No upcoming events match these filters.'
-                  : 'Our next event is being finalised.'}
+                  : t.events.noUpcoming}
               </p>
               <p className="mt-2 text-gray-700">
                 {filtersActive
@@ -114,7 +116,7 @@ export function Events() {
                 to="/contact"
                 className="inline-block mt-6 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg transition-all"
               >
-                Get notified
+                {t.events.getNotified}
               </Link>
             </div>
           ) : (
@@ -131,7 +133,7 @@ export function Events() {
       <section className="py-16 lg:py-20 bg-gray-50">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="flex flex-wrap items-baseline justify-between gap-3 mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">Past events</h2>
+            <h2 className="text-3xl font-bold text-gray-900">{t.events.past}</h2>
             <p className="text-sm text-gray-700">
               Recaps are published within five working days of every event.
             </p>
@@ -209,6 +211,7 @@ function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
 }
 
 function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
+  const tt = useTranslation();
   return (
     <article className="flex flex-col rounded-3xl border border-gray-100 shadow-lg overflow-hidden bg-white">
       <div className="h-44">
@@ -250,7 +253,7 @@ function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
           disabled={!event.registrationOpen}
           className="mt-6 px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {event.registrationOpen ? 'Register' : 'Registration opens soon'}
+          {event.registrationOpen ? tt.events.register : tt.events.registrationSoon}
         </button>
       </div>
     </article>

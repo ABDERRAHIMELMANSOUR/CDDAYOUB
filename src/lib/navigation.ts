@@ -67,19 +67,6 @@ export const PRIMARY_NAV: NavItem[] = [
   },
 ];
 
-/**
- * Member Login — the CDD Smart Platform moves out of the content navigation to
- * a right-aligned member entry point, where a member area belongs.
- *
- * `url` stays null until the platform's role and SSO endpoint are defined
- * (ticket 23); while null the entry renders as a disabled affordance rather
- * than a link to '#'.
- */
-export const MEMBER_LOGIN: { label: string; url: string | null } = {
-  label: 'Member Login',
-  url: null,
-};
-
 /** Items actually rendered — anything still pending is withheld. */
 export function visibleNav(): NavItem[] {
   return PRIMARY_NAV.filter((item) => !item.pending).map((item) => ({
