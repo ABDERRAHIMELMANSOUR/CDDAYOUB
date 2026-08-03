@@ -3,6 +3,8 @@ import { Linkedin, CalendarClock, Users, ShieldCheck, ArrowRight } from 'lucide-
 import { getCommission } from '../../data/commissions';
 import { advisorsInGroup } from '../../data/advisors';
 import { DELIVERY_METHOD } from '../../data/focusAreas';
+import { eventsForCommission, formatEventDate } from '../../data/events';
+import { insightsForCommission, formatInsightDate } from '../../data/insights';
 import { BrandedImage } from '../BrandedImage';
 
 /**
@@ -21,6 +23,8 @@ export function CommissionPage() {
   if (!commission) return <Navigate to="/focus-areas" replace />;
 
   const advisors = advisorsInGroup(commission.group);
+  const relatedEvents = eventsForCommission(commission.group);
+  const relatedInsights = insightsForCommission(commission.group);
   const Icon = commission.icon;
 
   return (
@@ -208,6 +212,66 @@ export function CommissionPage() {
           </div>
         </div>
       </section>
+
+      {/*
+        Related events and insights, auto-populated by tag.
+
+        This is what makes commission pages self-maintaining rather than another
+        set of pages that go stale: anything tagged with this commission in
+        events.ts or insights.ts appears here without being cross-referenced by
+        hand.
+      */}
+      {(relatedEvents.length > 0 || relatedInsights.length > 0) && (
+        <section className="py-16 lg:py-20 bg-gray-50">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {relatedEvents.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Related events</h2>
+                <ul className="space-y-4">
+                  {relatedEvents.map((event) => (
+                    <li key={event.slug} className="rounded-2xl bg-white border border-gray-100 p-5">
+                      <p className="text-sm text-gray-700">{formatEventDate(event.date)}</p>
+                      <p className="font-semibold text-gray-900 mt-1">{event.title}</p>
+                      <p className="text-sm text-gray-700 mt-1">{event.location}</p>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/events"
+                  className="inline-block mt-5 text-sm font-semibold text-blue-700 hover:text-blue-900"
+                >
+                  All events →
+                </Link>
+              </div>
+            )}
+
+            {relatedInsights.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Related insights</h2>
+                <ul className="space-y-4">
+                  {relatedInsights.map((insight) => (
+                    <li key={insight.slug}>
+                      <Link
+                        to={`/insights/${insight.slug}`}
+                        className="block rounded-2xl bg-white border border-gray-100 p-5 hover:border-blue-200 transition-colors"
+                      >
+                        <p className="text-sm text-gray-700">{formatInsightDate(insight.date)}</p>
+                        <p className="font-semibold text-gray-900 mt-1">{insight.title}</p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/insights"
+                  className="inline-block mt-5 text-sm font-semibold text-blue-700 hover:text-blue-900"
+                >
+                  All insights →
+                </Link>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Join CTA */}
       <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white">
