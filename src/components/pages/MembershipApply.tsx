@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Check, AlertCircle, Loader2 } from 'lucide-react';
-import { MEMBERSHIP_TIERS, getTier, formatPrice, type TierId } from '../../data/membership';
+import { MEMBERSHIP_TIERS, getTier, formatPrice, pick, type TierId } from '../../data/membership';
 import { COMMISSIONS } from '../../data/commissions';
 import { paymentProvider, PAYMENT_METHODS, type Applicant } from '../../lib/payments';
 
@@ -18,6 +20,13 @@ import { paymentProvider, PAYMENT_METHODS, type Applicant } from '../../lib/paym
  * SPA cannot take iDEAL or card payments directly.
  */
 export function MembershipApply() {
+  const t = useTranslation();
+  const { locale } = useLocale();
+  const priceLabels = {
+    perYear: t.membership.perYear,
+    byInvitation: t.membership.byInvitation,
+    contactForDues: t.membership.contactForDues,
+  };
   const [params] = useSearchParams();
   const initialTier = (params.get('tier') as TierId) || 'individual';
 
@@ -69,8 +78,9 @@ export function MembershipApply() {
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-4">Application received</h1>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Thank you. Your application for <strong>{tier?.name}</strong> membership has been
-            recorded under reference <strong>{reference}</strong>.
+            Thank you. Your application for{' '}
+            <strong>{tier ? pick(tier.name, locale) : ''}</strong> membership has been recorded
+            under reference <strong>{reference}</strong>.
           </p>
           <p className="mt-4 text-gray-700 leading-relaxed">
             A member of the board reviews every application personally. We will be in touch shortly
@@ -131,10 +141,14 @@ export function MembershipApply() {
                     className="mt-1 h-4 w-4 text-blue-600"
                   />
                   <span>
-                    <span className="block font-bold text-gray-900">{option.name}</span>
-                    <span className="block text-sm text-gray-600 mt-0.5">{option.audience}</span>
+                    <span className="block font-bold text-gray-900">
+                      {pick(option.name, locale)}
+                    </span>
+                    <span className="block text-sm text-gray-600 mt-0.5">
+                      {pick(option.audience, locale)}
+                    </span>
                     <span className="block text-sm font-semibold text-blue-700 mt-1">
-                      {formatPrice(option)}
+                      {formatPrice(option, locale, priceLabels)}
                     </span>
                   </span>
                 </label>
@@ -188,7 +202,7 @@ export function MembershipApply() {
           {/* Review */}
           <div className="rounded-2xl bg-gray-50 border border-gray-200 p-6 mb-8">
             <h2 className="font-bold text-gray-900 mb-2">
-              {tier?.name} membership — {tier ? formatPrice(tier) : ''}
+              {tier ? pick(tier.name, locale) : ''} — {tier ? formatPrice(tier, locale, priceLabels) : ''}
             </h2>
             {!paymentProvider.isLive ? (
               <p className="text-gray-700 leading-relaxed">
