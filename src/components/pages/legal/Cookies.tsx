@@ -46,12 +46,27 @@ export function Cookies() {
         </p>
       </LegalSection>
 
-      <LegalSection title="If this changes">
+      <LegalSection title="Website statistics">
         <p>
-          Should we introduce website statistics in future, we will use a privacy-friendly,
-          cookieless tool that does not track individuals across sites. If we ever introduce
-          anything that does require consent, we will ask for it before it loads, and this page
-          will be updated first.
+          We measure how the site is used with a privacy-friendly, cookieless analytics tool. It
+          sets no cookies, writes nothing to your device, does not fingerprint your browser, and
+          cannot follow you to other websites. All figures are aggregated, and none of them
+          identify you.
+        </p>
+        <p>
+          Because nothing is stored on or read from your device, this measurement does not require
+          consent under article 11.7a of the Telecommunicatiewet — which is precisely why we chose
+          a tool that works this way rather than one that would oblige us to interrupt you with a
+          banner.
+        </p>
+      </LegalSection>
+
+      <LegalSection title="What we will never add without asking">
+        <p>
+          Tools such as Google Analytics, advertising pixels or session-recording scripts do store
+          identifiers on your device. We do not use them. If we ever introduced anything of that
+          kind, we would ask for your consent before it loaded, and this page would be updated
+          first.
         </p>
       </LegalSection>
 
