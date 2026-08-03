@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Globe, Users, Target, TrendingUp, Lightbulb, HandshakeIcon, Sparkles } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { BrandedImage } from '../BrandedImage';
 import { FOCUS_AREAS } from '../../data/focusAreas';
 
 export function Home() {
@@ -169,10 +170,12 @@ export function Home() {
             </div>
             <div className="relative h-[500px] lg:h-[600px]">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-3xl blur-2xl"></div>
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1745847768380-2caeadbb3b71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGhhbmRzaGFrZSUyMHBhcnRuZXJzaGlwfGVufDF8fHx8MTc2OTY4ODcwN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="International business collaboration"
-                className="relative w-full h-full object-cover rounded-3xl shadow-2xl"
+              {/* Was a generic stock handshake, reused identically on Partnerships. */}
+              <BrandedImage
+                label="CDD Pays-Bas"
+                title="Connecting leaders across two markets"
+                caption="Replace with CDD's own event photography — see src/assets/photos/README.md"
+                className="relative"
               />
             </div>
           </div>

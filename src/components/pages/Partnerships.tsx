@@ -1,5 +1,6 @@
 import { Building2, Users, Globe2, Briefcase, Heart, Network } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { BrandedImage } from '../BrandedImage';
 
 export function Partnerships() {
   const partnerCategories = [
@@ -94,10 +95,12 @@ export function Partnerships() {
               </p>
             </div>
             <div className="relative h-96">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1745847768380-2caeadbb3b71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMGhhbmRzaGFrZSUyMHBhcnRuZXJzaGlwfGVufDF8fHx8MTc2OTY4ODcwN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Partnership collaboration"
-                className="w-full h-full object-cover rounded-lg shadow-lg"
+              {/* Was the same stock handshake used on the homepage. */}
+              <BrandedImage
+                label="Partnerships"
+                title="Building durable institutional relationships"
+                caption="Replace with photography from a CDD partnership signing or event."
+                variant="light"
               />
             </div>
           </div>
