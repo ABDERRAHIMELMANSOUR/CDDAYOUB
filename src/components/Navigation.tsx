@@ -8,6 +8,13 @@ export function Navigation() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  /*
+   * Projects is intentionally absent: the page is an empty "coming soon"
+   * placeholder, and a nav item that leads nowhere costs credibility. The route
+   * still resolves so existing links do not 404 — restore the nav entry once
+   * there is a first project to show. The full collapse to six items lands in
+   * ticket 14.
+   */
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -15,7 +22,6 @@ export function Navigation() {
     { name: 'Advisors', path: '/advisors' },
     { name: 'Focus Areas', path: '/focus-areas' },
     { name: 'Partnerships', path: '/partnerships' },
-    { name: 'Projects', path: '/projects' },
     { name: 'Events', path: '/events' },
     { name: 'Contact', path: '/contact' },
   ];

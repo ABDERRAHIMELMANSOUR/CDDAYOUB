@@ -30,6 +30,10 @@ export function Footer() {
               <li><Link to="/advisors" className="text-gray-400 hover:text-white transition-colors">Advisors</Link></li>
               <li><Link to="/focus-areas" className="text-gray-400 hover:text-white transition-colors">Focus Areas</Link></li>
               <li><Link to="/partnerships" className="text-gray-400 hover:text-white transition-colors">Partnerships</Link></li>
+              {/* Events and Contact were missing, so header and footer disagreed
+                  about what the site contains. */}
+              <li><Link to="/events" className="text-gray-400 hover:text-white transition-colors">Events</Link></li>
+              <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 
