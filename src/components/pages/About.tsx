@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import { Target, Eye, Award, Globe } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { ORGANISATION, MOROCCO_RELATIONSHIP_TEXT } from '../../data/organisation';
 
 export function About() {
   const pillars = [
@@ -41,6 +43,36 @@ export function About() {
               collaboration between Europe, Morocco, and Africa.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/*
+        Our relationship to CDD Morocco, stated structurally.
+
+        The site asserts a shared vision with CDD Morocco but never explained the
+        structure. A Dutch corporate legal team, ministry or bank will ask
+        whether CDD Pays-Bas is a chapter, a licensed affiliate, or an
+        independent Dutch entity. Set `moroccoRelationship` in
+        src/data/organisation.ts and the precise sentence replaces the general
+        one below.
+      */}
+      <section className="py-12 bg-blue-50 border-b border-blue-100">
+        <div className="max-w-[900px] mx-auto px-6 lg:px-12">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-blue-800 mb-3">
+            Our relationship to CDD Morocco
+          </h2>
+          <p className="text-lg text-gray-800 leading-relaxed">
+            {ORGANISATION.moroccoRelationship
+              ? MOROCCO_RELATIONSHIP_TEXT[ORGANISATION.moroccoRelationship]
+              : 'CDD Pays-Bas works in close partnership with Club des Dirigeants (CDD), founded in Morocco, around a shared mission of connecting business leaders across both markets.'}
+          </p>
+          <p className="mt-3 text-sm text-gray-700">
+            Our statutory details and governance documents are published on our{' '}
+            <Link to="/transparency" className="text-blue-700 underline hover:text-blue-900 font-medium">
+              transparency page
+            </Link>
+            .
+          </p>
         </div>
       </section>
 

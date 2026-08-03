@@ -25,16 +25,53 @@ export function Events() {
         </div>
       </section>
 
-      {/* Featured Event - First Collective Iftar */}
+      {/* Upcoming Events */}
+      <section className="py-20 bg-white border-b border-gray-100">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <div className="text-center">
+            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
+              Upcoming
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+              Next Gathering
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Our next event is being finalised and will be announced here shortly.
+              Members and subscribers are notified first.
+            </p>
+            <a
+              href="/contact"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium"
+            >
+              Get Notified
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/*
+        Past Events archive.
+
+        The Iftar of 28 February 2026 was still labelled "Upcoming Event" months
+        after it took place, alongside "RSVP information will be shared soon" —
+        which made an active organisation look dormant. Presented as a completed
+        gathering with a recap, the same content becomes proof that CDD convenes
+        people. Event photography and a fuller recap follow under ticket 21.
+      */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-white via-amber-50/30 to-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+          <div className="text-center mb-12">
+            <div className="inline-block px-4 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-semibold tracking-wide uppercase">
+              Past Events
+            </div>
+          </div>
           {/* Event Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full mb-8 shadow-xl">
               <Heart className="h-10 w-10 text-white" />
             </div>
             <div className="inline-block px-4 py-1.5 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Upcoming Event
+              Held 28 February 2026
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
               CDD Pays-Bas – First Collective Iftar
@@ -50,7 +87,7 @@ export function Events() {
               </div>
             </div>
             <p className="text-sm text-gray-600 italic">
-              Exact location to be confirmed
+              The first collective gathering of the CDD Pays-Bas network
             </p>
           </div>
 
@@ -64,20 +101,20 @@ export function Events() {
                   A Symbolic Moment
                 </h3>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                  This first collective Iftar marks a symbolic moment for CDD Pays-Bas — a warm and informal 
-                  gathering designed to strengthen human connection within the network.
+                  This first collective Iftar marked a symbolic moment for CDD Pays-Bas — a warm and informal
+                  gathering that brought the network together and strengthened the human connections behind it.
                 </p>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Beyond professional roles, the evening focuses on shared stories, cultural understanding, 
+                  Beyond professional roles, the evening centred on shared stories, cultural understanding,
                   and community building during the holy month of Ramadan.
                 </p>
               </div>
 
-              {/* What to Expect */}
+              {/* Programme */}
               <div className="mb-12">
                 <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
                   <span className="w-2 h-8 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full mr-4"></span>
-                  What to Expect
+                  The Programme
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-2xl border border-amber-100">
@@ -177,17 +214,17 @@ export function Events() {
           {/* CTA */}
           <div className="text-center bg-gradient-to-br from-amber-50 to-orange-50 p-12 rounded-3xl border border-amber-100">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Join Us for This Special Evening
+              Be Part of the Next One
             </h3>
             <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-              More details and RSVP information will be shared soon. We look forward to welcoming 
-              you to this meaningful gathering.
+              This gathering set the tone for how CDD Pays-Bas convenes its network.
+              Let us know you would like an invitation to the next event.
             </p>
             <a
               href="/contact"
               className="inline-block px-10 py-5 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300 font-medium text-lg"
             >
-              Express Interest
+              Request an Invitation
             </a>
           </div>
         </div>

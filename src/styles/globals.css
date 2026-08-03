@@ -219,11 +219,26 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(135deg, var(--accent-blue-start) 0%, var(--accent-blue-end) 100%);
 }
 
+/*
+ * Gradient text.
+ *
+ * The transparent fill is applied ONLY where background-clip:text is actually
+ * supported. Without this guard, a browser that ignores background-clip:text
+ * still honours -webkit-text-fill-color:transparent and the text renders
+ * completely invisible (this is what truncated the homepage H1 to
+ * "Connecting Leaders,"). The solid colour below is the safe resting state.
+ */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-blue-start) 0%, var(--accent-blue-end) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent-blue-end);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent-blue-start) 0%, var(--accent-blue-end) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .gradient-mesh {
@@ -344,5 +359,59 @@ h1, h2, h3, h4, h5, h6 {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Accessibility — WCAG 2.2 AA (ticket 13)
+
+   The pale CTAs and headings flagged in the audit traced back to the
+   .gradient-text defect fixed above (transparent fill applied without the
+   background clip, painting nothing) rather than to low-contrast colour
+   choices: the named items are white on dark or white on a saturated blue and
+   pass AA once they actually render.
+
+   What was genuinely missing is keyboard and motion support.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* 2.4.7 Focus Visible / 2.4.11 Focus Not Obscured — every interactive element
+   needs a clearly visible focus ring for keyboard users. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--accent-blue-end);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Keep the ring visible against dark sections. */
+.bg-gray-900 :where(a, button):focus-visible,
+[class*='from-gray-900'] :where(a, button):focus-visible {
+  outline-color: #ffffff;
+}
+
+/* Skip link — lets keyboard users bypass the navigation. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--accent-blue-end);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* 2.3.3 Animation from Interactions — honour the OS reduced-motion setting. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

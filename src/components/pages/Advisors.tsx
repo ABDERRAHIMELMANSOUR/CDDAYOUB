@@ -41,14 +41,13 @@ interface Advisor {
 //alll
 
 export function Advisors() {
+  /*
+   * Advisory Council only. Statutory board officers (President, Treasurer) are
+   * presented on the Leadership page — mixing them into a list of advisors is a
+   * governance-presentation error. Grouping the council by focus area, plus the
+   * Honorary and Secretariat sections, follows under ticket 16.
+   */
   const advisors: Advisor[] = [
-    {
-      name: 'Nouraddine Gribi',
-      role: 'President – CDD Pays-Bas',
-      bio: 'Leads CDD Pays-Bas with a strategic vision focused on strengthening economic bridges between Morocco and the Netherlands. Drives partnerships, governance, and sustainable impact initiatives.',
-      imageUrl: photo1,
-      Linkedin: 'https://www.linkedin.com/in/nouraddine-gribi-4a639435/'
-    },
     {
       name: 'Yassine Saddiki',
       role: 'Senior Advisor Commercial Strategy & Infrastructure Development',
@@ -217,13 +216,6 @@ export function Advisors() {
       bio: 'Senior expert with 23+ years of experience in social policy and labour market strategy. Bridges public policy, inclusion, and societal impact.',
       imageUrl: photo26,
       Linkedin: 'https://www.linkedin.com/in/nora-kasmi/',
-    },
-    {
-      name: 'Ahmed Rahmouni',
-      role: ' Treasurer within our organization',
-      bio: 'International business professional with strong financial and commercial expertise. Supports CDD Pays-Bas with strategic financial oversight and cross-border business insight.',
-      imageUrl: photo27,
-      Linkedin: 'https://www.linkedin.com/in/ahmed-rahmouni-prfile/',
     },
     {
       name: 'Youssef Boulal',
