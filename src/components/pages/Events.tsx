@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
-import { useTranslation } from '../../i18n/LocaleProvider';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { pick } from '../../i18n/localised';
 import { Calendar, MapPin, Clock, Users, X, Check } from 'lucide-react';
 import {
   EVENTS,
@@ -28,6 +29,7 @@ import { BrandedImage } from '../BrandedImage';
  */
 export function Events() {
   const t = useTranslation();
+  const { locale } = useLocale();
   const [typeFilter, setTypeFilter] = useState<EventType | 'all'>('all');
   const [commissionFilter, setCommissionFilter] = useState<AdvisorGroup | 'all'>('all');
   const [rsvpFor, setRsvpFor] = useState<CDDEvent | null>(null);
@@ -58,8 +60,7 @@ export function Events() {
               {t.events.title}
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed">
-              Roundtables, delegations, forums and community gatherings — convened by the
-              commissions and open to members.
+              {t.events.subtitle}
             </p>
           </div>
         </div>
@@ -74,7 +75,7 @@ export function Events() {
             </Chip>
             {(Object.keys(EVENT_TYPE_LABELS) as EventType[]).map((type) => (
               <Chip key={type} active={typeFilter === type} onClick={() => setTypeFilter(type)}>
-                {EVENT_TYPE_LABELS[type]}
+                {pick(EVENT_TYPE_LABELS[type], locale)}
               </Chip>
             ))}
           </FilterRow>
@@ -89,7 +90,7 @@ export function Events() {
                 active={commissionFilter === commission.group}
                 onClick={() => setCommissionFilter(commission.group)}
               >
-                {commission.title}
+                {pick(GROUP_LABELS[commission.group], locale)}
               </Chip>
             ))}
           </FilterRow>
@@ -103,14 +104,10 @@ export function Events() {
           {upcoming.length === 0 ? (
             <div className="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center">
               <p className="text-lg text-gray-800 font-medium">
-                {filtersActive
-                  ? 'No upcoming events match these filters.'
-                  : t.events.noUpcoming}
+                {filtersActive ? t.events.noMatch : t.events.noUpcoming}
               </p>
               <p className="mt-2 text-gray-700">
-                {filtersActive
-                  ? 'Try clearing a filter, or see what the commissions have run before.'
-                  : 'Members and subscribers are notified first.'}
+                {filtersActive ? t.events.noMatchNote : t.events.noUpcomingNote}
               </p>
               <Link
                 to="/contact"
@@ -135,11 +132,11 @@ export function Events() {
           <div className="flex flex-wrap items-baseline justify-between gap-3 mb-8">
             <h2 className="text-3xl font-bold text-gray-900">{t.events.past}</h2>
             <p className="text-sm text-gray-700">
-              Recaps are published within five working days of every event.
+              {t.events.recapNote}
             </p>
           </div>
           {past.length === 0 ? (
-            <p className="text-gray-700">No past events match these filters.</p>
+            <p className="text-gray-700">{t.events.noPastMatch}</p>
           ) : (
             <div className="space-y-8">
               {past.map((event) => (
@@ -194,6 +191,7 @@ function Chip({
 }
 
 function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
+  const { locale } = useLocale();
   if (groups.length === 0) return null;
   return (
     <div className="flex flex-wrap gap-2 mt-3">
@@ -203,7 +201,7 @@ function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
           to={`/focus-areas/${group}`}
           className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 hover:bg-blue-100"
         >
-          {GROUP_LABELS[group]}
+          {pick(GROUP_LABELS[group], locale)}
         </Link>
       ))}
     </div>
@@ -212,11 +210,12 @@ function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
 
 function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
   const tt = useTranslation();
+  const { locale } = useLocale();
   return (
     <article className="flex flex-col rounded-3xl border border-gray-100 shadow-lg overflow-hidden bg-white">
       <div className="h-44">
         <BrandedImage
-          label={EVENT_TYPE_LABELS[event.type]}
+          label={pick(EVENT_TYPE_LABELS[event.type], locale)}
           title={event.title}
           className="rounded-none"
         />
@@ -226,7 +225,7 @@ function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
         <dl className="mt-3 space-y-1.5 text-sm text-gray-700">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4 text-blue-700" aria-hidden="true" />
-            <dd>{formatEventDate(event.date)}</dd>
+            <dd>{formatEventDate(event.date, locale)}</dd>
           </div>
           {event.time && (
             <div className="flex items-center gap-2">
@@ -241,7 +240,9 @@ function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
           {event.capacity && (
             <div className="flex items-center gap-2">
               <Users className="h-4 w-4 text-blue-700" aria-hidden="true" />
-              <dd>{event.capacity} places</dd>
+              <dd>
+                {event.capacity} {tt.events.places}
+              </dd>
             </div>
           )}
         </dl>
@@ -261,13 +262,15 @@ function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
 }
 
 function PastEventCard({ event }: { event: CDDEvent }) {
+  const t = useTranslation();
+  const { locale } = useLocale();
   return (
     <article className="rounded-3xl border border-gray-200 bg-white p-8">
       <div className="flex flex-wrap items-center gap-3 mb-3">
         <span className="text-xs font-bold uppercase tracking-wide px-2.5 py-1 rounded-lg bg-gray-100 text-gray-800">
-          {EVENT_TYPE_LABELS[event.type]}
+          {pick(EVENT_TYPE_LABELS[event.type], locale)}
         </span>
-        <span className="text-sm text-gray-700">{formatEventDate(event.date)}</span>
+        <span className="text-sm text-gray-700">{formatEventDate(event.date, locale)}</span>
         <span className="text-sm text-gray-700">· {event.location}</span>
       </div>
       <h3 className="text-2xl font-bold text-gray-900">{event.title}</h3>
@@ -294,6 +297,8 @@ function PastEventCard({ event }: { event: CDDEvent }) {
 
 /** RSVP modal (ticket 19). Records the registration; see note in the body. */
 function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void }) {
+  const t = useTranslation();
+  const { locale } = useLocale();
   const [done, setDone] = useState(false);
 
   return (
@@ -310,12 +315,12 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
       >
         <div className="flex items-start justify-between gap-4 mb-5">
           <h2 id="rsvp-title" className="text-2xl font-bold text-gray-900">
-            {done ? 'Registration received' : `Register — ${event.title}`}
+            {done ? t.events.rsvpDone : `${t.events.rsvpTitle} — ${event.title}`}
           </h2>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label={t.common.close}
             className="p-2 rounded-lg text-gray-600 hover:bg-gray-100"
           >
             <X className="h-5 w-5" />
@@ -328,15 +333,14 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
               <Check className="h-7 w-7 text-blue-700" aria-hidden="true" />
             </div>
             <p className="text-gray-700 leading-relaxed">
-              Thank you — your registration for <strong>{event.title}</strong> is recorded. We will
-              confirm your place by email and send joining details closer to the date.
+              {t.events.rsvpThanks}
             </p>
             <button
               type="button"
               onClick={onClose}
               className="mt-6 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold"
             >
-              Close
+              {t.common.close}
             </button>
           </div>
         ) : (
@@ -350,21 +354,29 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
             <div className="rounded-xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700">
               <p className="flex items-center gap-2 font-medium text-gray-900">
                 <Calendar className="h-4 w-4 text-blue-700" aria-hidden="true" />
-                {formatEventDate(event.date)}
+                {formatEventDate(event.date, locale)}
                 {event.time ? ` · ${event.time}` : ''}
               </p>
               <p className="mt-1">{event.location}</p>
               {(event.memberPrice || event.guestPrice) && (
                 <p className="mt-2">
-                  {event.memberPrice && <>Members: {event.memberPrice}. </>}
-                  {event.guestPrice && <>Guests: {event.guestPrice}.</>}
+                  {event.memberPrice && (
+                    <>
+                      {t.events.membersPrice}: {event.memberPrice}.{' '}
+                    </>
+                  )}
+                  {event.guestPrice && (
+                    <>
+                      {t.events.guestsPrice}: {event.guestPrice}.
+                    </>
+                  )}
                 </p>
               )}
             </div>
 
             <div>
               <label htmlFor="rsvp-name" className="block text-sm font-semibold text-gray-900 mb-2">
-                Full name <span className="text-red-700">*</span>
+                {t.events.fullName} <span className="text-red-700">*</span>
               </label>
               <input
                 id="rsvp-name"
@@ -376,7 +388,7 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
             </div>
             <div>
               <label htmlFor="rsvp-email" className="block text-sm font-semibold text-gray-900 mb-2">
-                Email <span className="text-red-700">*</span>
+                {t.events.email} <span className="text-red-700">*</span>
               </label>
               <input
                 id="rsvp-email"
@@ -389,7 +401,8 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
             </div>
             <div>
               <label htmlFor="rsvp-org" className="block text-sm font-semibold text-gray-900 mb-2">
-                Organisation <span className="font-normal text-gray-600">(optional)</span>
+                {t.events.organisation}{' '}
+                <span className="font-normal text-gray-600">{t.common.optional}</span>
               </label>
               <input
                 id="rsvp-org"
@@ -400,9 +413,9 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
             </div>
 
             <p className="text-sm text-gray-700">
-              Your details are handled in line with our{' '}
+              {t.events.privacyNote}{' '}
               <Link to="/privacy" className="text-blue-700 underline hover:text-blue-900">
-                privacy statement
+                {t.footer.privacy}
               </Link>
               .
             </p>
@@ -411,7 +424,7 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
               type="submit"
               className="w-full px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg transition-all"
             >
-              Confirm registration
+              {t.events.confirmRegistration}
             </button>
           </form>
         )}

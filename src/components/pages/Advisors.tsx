@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { pick } from '../../i18n/localised';
 import { Linkedin } from 'lucide-react';
 import {
   ADVISORS,
@@ -34,17 +36,21 @@ const GROUP_ORDER: AdvisorGroup[] = [
 const COMMISSION_GROUPS = new Set<AdvisorGroup>(COMMISSIONS.map((c) => c.group));
 
 export function Advisors() {
+  const t = useTranslation();
+  const { locale } = useLocale();
   const [active, setActive] = useState<AdvisorGroup | 'all'>('all');
 
   const grouped = useMemo(
     () =>
       GROUP_ORDER.map((group) => ({
         group,
-        label: GROUP_LABELS[group],
-        description: GROUP_DESCRIPTIONS[group],
+        label: pick(GROUP_LABELS[group], locale),
+        description: GROUP_DESCRIPTIONS[group]
+          ? pick(GROUP_DESCRIPTIONS[group]!, locale)
+          : undefined,
         members: ADVISORS.filter((a) => a.group === group),
       })).filter((section) => section.members.length > 0),
-    []
+    [locale]
   );
 
   const visible = active === 'all' ? grouped : grouped.filter((s) => s.group === active);
@@ -84,7 +90,7 @@ export function Advisors() {
             <FilterButton
               isActive={active === 'all'}
               onClick={() => setActive('all')}
-              label={`All (${ADVISORS.length})`}
+              label={`${t.insights.all} (${ADVISORS.length})`}
             />
             {grouped.map((section) => (
               <FilterButton

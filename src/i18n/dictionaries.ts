@@ -84,9 +84,15 @@ export interface Dictionary {
   };
   events: {
     title: string;
+    subtitle: string;
     upcoming: string;
     past: string;
     noUpcoming: string;
+    noUpcomingNote: string;
+    noMatch: string;
+    noMatchNote: string;
+    noPastMatch: string;
+    recapNote: string;
     getNotified: string;
     register: string;
     registrationSoon: string;
@@ -94,6 +100,17 @@ export interface Dictionary {
     filterCommission: string;
     allTypes: string;
     allCommissions: string;
+    places: string;
+    membersPrice: string;
+    guestsPrice: string;
+    rsvpTitle: string;
+    rsvpDone: string;
+    rsvpThanks: string;
+    fullName: string;
+    email: string;
+    organisation: string;
+    privacyNote: string;
+    confirmRegistration: string;
   };
   commissions: {
     chair: string;
@@ -116,6 +133,10 @@ export interface Dictionary {
     briefing: string;
     all: string;
     relatedCommissions: string;
+    nothingPublished: string;
+    cadenceNote: string;
+    readMore: string;
+    backToInsights: string;
   };
 }
 
@@ -203,9 +224,16 @@ const en: Dictionary = {
   },
   events: {
     title: 'Events & Gatherings',
+    subtitle:
+      'Roundtables, delegations, forums and community gatherings — convened by the commissions and open to members.',
     upcoming: 'Upcoming',
     past: 'Past events',
     noUpcoming: 'Our next event is being finalised.',
+    noUpcomingNote: 'Members and subscribers are notified first.',
+    noMatch: 'No upcoming events match these filters.',
+    noMatchNote: 'Try clearing a filter, or see what the commissions have run before.',
+    noPastMatch: 'No past events match these filters.',
+    recapNote: 'Recaps are published within five working days of every event.',
     getNotified: 'Get notified',
     register: 'Register',
     registrationSoon: 'Registration opens soon',
@@ -213,6 +241,18 @@ const en: Dictionary = {
     filterCommission: 'Commission',
     allTypes: 'All types',
     allCommissions: 'All commissions',
+    places: 'places',
+    membersPrice: 'Members',
+    guestsPrice: 'Guests',
+    rsvpTitle: 'Register',
+    rsvpDone: 'Registration received',
+    rsvpThanks:
+      'Thank you — your registration is recorded. We will confirm your place by email and send joining details closer to the date.',
+    fullName: 'Full name',
+    email: 'Email',
+    organisation: 'Organisation',
+    privacyNote: 'Your details are handled in line with our',
+    confirmRegistration: 'Confirm registration',
   },
   commissions: {
     chair: 'Chair',
@@ -235,6 +275,10 @@ const en: Dictionary = {
     briefing: 'Market Briefing',
     all: 'All',
     relatedCommissions: 'Related commissions',
+    nothingPublished: 'Nothing published in this category yet.',
+    cadenceNote: 'CDD Pays-Bas aims to publish at least two items a month.',
+    readMore: 'Read more',
+    backToInsights: 'Insights',
   },
 };
 
@@ -322,9 +366,16 @@ const nl: Dictionary = {
   },
   events: {
     title: 'Evenementen & bijeenkomsten',
+    subtitle:
+      'Rondetafelgesprekken, handelsmissies, fora en netwerkbijeenkomsten — georganiseerd door de commissies en open voor leden.',
     upcoming: 'Aankomend',
     past: 'Afgelopen evenementen',
     noUpcoming: 'Ons volgende evenement wordt momenteel voorbereid.',
+    noUpcomingNote: 'Leden en abonnees worden als eerste op de hoogte gebracht.',
+    noMatch: 'Geen aankomende evenementen komen overeen met deze filters.',
+    noMatchNote: 'Wis een filter, of bekijk wat de commissies eerder hebben georganiseerd.',
+    noPastMatch: 'Geen afgelopen evenementen komen overeen met deze filters.',
+    recapNote: 'Verslagen worden binnen vijf werkdagen na elk evenement gepubliceerd.',
     getNotified: 'Houd mij op de hoogte',
     register: 'Aanmelden',
     registrationSoon: 'Aanmelding opent binnenkort',
@@ -332,6 +383,18 @@ const nl: Dictionary = {
     filterCommission: 'Commissie',
     allTypes: 'Alle typen',
     allCommissions: 'Alle commissies',
+    places: 'plaatsen',
+    membersPrice: 'Leden',
+    guestsPrice: 'Gasten',
+    rsvpTitle: 'Aanmelden',
+    rsvpDone: 'Aanmelding ontvangen',
+    rsvpThanks:
+      'Dank u — uw aanmelding is geregistreerd. Wij bevestigen uw plaats per e-mail en sturen praktische informatie dichter bij de datum.',
+    fullName: 'Volledige naam',
+    email: 'E-mailadres',
+    organisation: 'Organisatie',
+    privacyNote: 'Uw gegevens worden verwerkt conform onze',
+    confirmRegistration: 'Aanmelding bevestigen',
   },
   commissions: {
     chair: 'Voorzitter',
@@ -355,6 +418,10 @@ const nl: Dictionary = {
     briefing: 'Marktbriefing',
     all: 'Alles',
     relatedCommissions: 'Gerelateerde commissies',
+    nothingPublished: 'Nog niets gepubliceerd in deze categorie.',
+    cadenceNote: 'CDD Pays-Bas streeft ernaar minimaal twee items per maand te publiceren.',
+    readMore: 'Lees meer',
+    backToInsights: 'Inzichten',
   },
 };
 
@@ -443,9 +510,16 @@ const fr: Dictionary = {
   },
   events: {
     title: 'Événements & rencontres',
+    subtitle:
+      'Tables rondes, délégations, forums et rencontres du réseau — organisés par les commissions et ouverts aux membres.',
     upcoming: 'À venir',
     past: 'Événements passés',
     noUpcoming: 'Notre prochain événement est en cours de finalisation.',
+    noUpcomingNote: 'Les membres et abonnés sont informés en priorité.',
+    noMatch: 'Aucun événement à venir ne correspond à ces filtres.',
+    noMatchNote: "Retirez un filtre, ou découvrez ce que les commissions ont déjà organisé.",
+    noPastMatch: 'Aucun événement passé ne correspond à ces filtres.',
+    recapNote: 'Les comptes rendus sont publiés dans les cinq jours ouvrés suivant chaque événement.',
     getNotified: 'Être informé',
     register: "S'inscrire",
     registrationSoon: 'Les inscriptions ouvrent prochainement',
@@ -453,6 +527,18 @@ const fr: Dictionary = {
     filterCommission: 'Commission',
     allTypes: 'Tous les types',
     allCommissions: 'Toutes les commissions',
+    places: 'places',
+    membersPrice: 'Membres',
+    guestsPrice: 'Invités',
+    rsvpTitle: "S'inscrire",
+    rsvpDone: 'Inscription reçue',
+    rsvpThanks:
+      'Merci — votre inscription est enregistrée. Nous confirmerons votre place par e-mail et vous enverrons les informations pratiques à l’approche de la date.',
+    fullName: 'Nom complet',
+    email: 'E-mail',
+    organisation: 'Organisation',
+    privacyNote: 'Vos données sont traitées conformément à notre',
+    confirmRegistration: "Confirmer l'inscription",
   },
   commissions: {
     chair: 'Président',
@@ -476,6 +562,10 @@ const fr: Dictionary = {
     briefing: 'Briefing marché',
     all: 'Tout',
     relatedCommissions: 'Commissions associées',
+    nothingPublished: 'Rien de publié dans cette catégorie pour le moment.',
+    cadenceNote: 'CDD Pays-Bas vise à publier au moins deux contenus par mois.',
+    readMore: 'Lire la suite',
+    backToInsights: 'Analyses',
   },
 };
 
