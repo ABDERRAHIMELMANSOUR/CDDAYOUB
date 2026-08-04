@@ -166,7 +166,7 @@ export function CommissionPage() {
                     </div>
                   </div>
                   <h3 className="font-bold text-gray-900 leading-tight">{advisor.name}</h3>
-                  <p className="text-sm text-blue-700 mt-1 leading-snug">{advisor.role}</p>
+                  <p className="text-sm text-blue-700 mt-1 leading-snug">{pick(advisor.role, locale)}</p>
                   {advisor.linkedin && (
                     <a
                       href={advisor.linkedin}
@@ -236,7 +236,7 @@ export function CommissionPage() {
                   {relatedEvents.map((event) => (
                     <li key={event.slug} className="rounded-2xl bg-white border border-gray-100 p-5">
                       <p className="text-sm text-gray-700">{formatEventDate(event.date, locale)}</p>
-                      <p className="font-semibold text-gray-900 mt-1">{event.title}</p>
+                      <p className="font-semibold text-gray-900 mt-1">{pick(event.title, locale)}</p>
                       <p className="text-sm text-gray-700 mt-1">{event.location}</p>
                     </li>
                   ))}
@@ -261,7 +261,7 @@ export function CommissionPage() {
                         className="block rounded-2xl bg-white border border-gray-100 p-5 hover:border-blue-200 transition-colors"
                       >
                         <p className="text-sm text-gray-700">{formatInsightDate(insight.date, locale)}</p>
-                        <p className="font-semibold text-gray-900 mt-1">{insight.title}</p>
+                        <p className="font-semibold text-gray-900 mt-1">{pick(insight.title, locale)}</p>
                       </Link>
                     </li>
                   ))}

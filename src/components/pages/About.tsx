@@ -1,29 +1,14 @@
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
-import { useTranslation } from '../../i18n/LocaleProvider';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { pick } from '../../i18n/localised';
 import { Target, Eye, Award, Globe } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { ORGANISATION, MOROCCO_RELATIONSHIP_TEXT } from '../../data/organisation';
 
 export function About() {
   const t = useTranslation();
-  const pillars = [
-    {
-      title: 'Economic Diplomacy',
-      description: 'Representing and advocating for business interests across Europe, Morocco, and Africa',
-    },
-    {
-      title: 'Strategic Partnerships',
-      description: 'Facilitating high-value connections between corporations, investors, and institutions',
-    },
-    {
-      title: 'Knowledge Exchange',
-      description: 'Organizing thought leadership events, roundtables, and executive programs',
-    },
-    {
-      title: 'Project Development',
-      description: 'Supporting cross-border initiatives in energy, infrastructure, and innovation',
-    },
-  ];
+  const { locale } = useLocale();
+  const pillars = t.about.whatWeDoItems;
 
   return (
     <div>
@@ -64,7 +49,7 @@ export function About() {
           </h2>
           <p className="text-lg text-gray-800 leading-relaxed">
             {ORGANISATION.moroccoRelationship
-              ? MOROCCO_RELATIONSHIP_TEXT[ORGANISATION.moroccoRelationship]
+              ? pick(MOROCCO_RELATIONSHIP_TEXT[ORGANISATION.moroccoRelationship], locale)
               : t.about.moroccoDefault}
           </p>
           <p className="mt-3 text-sm text-gray-700">
@@ -83,25 +68,22 @@ export function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-                Who We Are
+                {t.about.whoWeAre}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">Who We Are</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+                {t.about.whoWeAre}
+              </h2>
               <div className="space-y-6 text-gray-600 leading-relaxed">
                 <p>
-                  <span className="font-semibold text-gray-900">CDD Pays-Bas</span> (Club des Dirigeants – Netherlands) 
-                  is an international business and leadership platform that serves as a strategic bridge between European, 
-                  Moroccan, and African ecosystems.
+                  <span className="font-semibold text-gray-900">{t.about.whoWeAreP1Lead}</span>{' '}
+                  {t.about.whoWeAreP1}
                 </p>
                 <p>
-                  We bring together <span className="font-semibold text-gray-900">business leaders, investors, 
-                  senior experts, public institutions, and international organizations</span> to foster economic 
-                  diplomacy, innovation, and sustainable development.
+                  {t.about.whoWeAreP2Before}{' '}
+                  <span className="font-semibold text-gray-900">{t.about.whoWeAreP2Emphasis}</span>{' '}
+                  {t.about.whoWeAreP2After}
                 </p>
-                <p>
-                  Our network includes CEOs, entrepreneurs, project developers, policymakers, diaspora leaders, 
-                  and knowledge partners committed to creating cross-border impact in sectors such as energy transition, 
-                  infrastructure, technology, finance, real estate, and education.
-                </p>
+                <p>{t.about.whoWeAreP3}</p>
               </div>
             </div>
             <div className="relative h-[500px] lg:h-[600px]">
@@ -124,26 +106,16 @@ export function About() {
               <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
                 <Target className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                To empower business leaders and decision-makers by creating strategic connections, 
-                facilitating cross-border collaboration, and promoting sustainable and inclusive economic 
-                development across Europe, Morocco, and Africa through purposeful dialogue, knowledge sharing, 
-                and actionable partnerships.
-              </p>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">{t.about.ourMission}</h3>
+              <p className="text-gray-600 leading-relaxed text-lg">{t.about.missionText}</p>
             </div>
 
             <div className="bg-white p-10 rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300">
               <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20">
                 <Eye className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                To be the premier international platform connecting European, Moroccan, and African business 
-                ecosystems, recognized for driving impactful collaborations in strategic sectors such as energy 
-                transition, innovation, infrastructure, and finance, while championing leadership, governance, 
-                and sustainable growth.
-              </p>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">{t.about.ourVision}</h3>
+              <p className="text-gray-600 leading-relaxed text-lg">{t.about.visionText}</p>
             </div>
           </div>
         </div>
@@ -154,11 +126,13 @@ export function About() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              What We Do
+              {t.about.whatWeDo}
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">What We Do</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+              {t.about.whatWeDo}
+            </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              CDD Pays-Bas acts as a convener, facilitator, and strategic partner across four core pillars
+              {t.about.whatWeDoSubtitle}
             </p>
           </div>
 
@@ -185,25 +159,18 @@ export function About() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Our Stakeholders
+              {t.about.stakeholders}
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">Who We Serve</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+              {t.about.whoWeServe}
+            </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Our platform connects diverse stakeholders committed to cross-border impact
+              {t.about.whoWeServeSubtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              'Business Leaders & CEOs',
-              'Investors & Project Developers',
-              'Public Institutions & Policymakers',
-              'Entrepreneurs & Innovators',
-              'International Organizations',
-              'Senior Advisors & Experts',
-              'Diaspora Networks',
-              'Knowledge & Research Partners',
-            ].map((stakeholder, index) => (
+            {t.about.serveItems.map((stakeholder, index) => (
               <div key={index} className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300">
                 <div className="flex items-center space-x-3">
                   <Globe className="h-5 w-5 text-blue-400 flex-shrink-0" />
@@ -220,44 +187,26 @@ export function About() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Why Choose Us
+              {t.about.whyEyebrow}
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Why CDD Pays-Bas</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+              {t.about.whyTitle}
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="w-20 h-20 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-300">
-                <Award className="h-10 w-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Credibility & Trust</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Led by experienced professionals with deep expertise in international business, 
-                governance, and strategic partnerships
-              </p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-20 h-20 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-300">
-                <Globe className="h-10 w-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Cross-Border Network</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Access to a vetted ecosystem spanning Europe, Morocco, and Africa with institutional 
-                and private sector connections
-              </p>
-            </div>
-
-            <div className="text-center group">
-              <div className="w-20 h-20 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-300">
-                <Target className="h-10 w-10 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Impact-Oriented</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Focused on actionable outcomes, sustainable development, and creating measurable 
-                value for partners and communities
-              </p>
-            </div>
+            {t.about.whyItems.map((item, index) => {
+              const Icon = [Award, Globe, Target][index] ?? Award;
+              return (
+                <div key={item.title} className="text-center group">
+                  <div className="w-20 h-20 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="h-10 w-10 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

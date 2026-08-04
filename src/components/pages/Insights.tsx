@@ -114,7 +114,7 @@ export function InsightArticle() {
             {pick(INSIGHT_CATEGORY_LABELS[insight.category], locale)}
           </p>
           <h1 className="mt-3 text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
-            {insight.title}
+            {pick(insight.title, locale)}
           </h1>
           <p className="mt-4 text-gray-300">
             {formatInsightDate(insight.date, locale)}
@@ -125,9 +125,9 @@ export function InsightArticle() {
 
       <article className="py-14 lg:py-16 bg-white">
         <div className="max-w-[820px] mx-auto px-6 lg:px-12">
-          <p className="text-xl text-gray-800 leading-relaxed font-medium">{insight.summary}</p>
+          <p className="text-xl text-gray-800 leading-relaxed font-medium">{pick(insight.summary, locale)}</p>
           <div className="mt-8 space-y-6">
-            {insight.body.map((paragraph, i) => (
+            {pick(insight.body, locale).map((paragraph, i) => (
               <p key={i} className="text-lg text-gray-700 leading-relaxed">
                 {paragraph}
               </p>
@@ -201,9 +201,11 @@ function InsightCard({ insight }: { insight: Insight }) {
       <span className="text-xs font-bold uppercase tracking-wide text-blue-800">
         {pick(INSIGHT_CATEGORY_LABELS[insight.category], locale)}
       </span>
-      <h2 className="mt-3 text-xl font-bold text-gray-900 leading-tight">{insight.title}</h2>
+      <h2 className="mt-3 text-xl font-bold text-gray-900 leading-tight">
+        {pick(insight.title, locale)}
+      </h2>
       <p className="mt-1 text-sm text-gray-700">{formatInsightDate(insight.date, locale)}</p>
-      <p className="mt-4 text-gray-700 leading-relaxed flex-grow">{insight.summary}</p>
+      <p className="mt-4 text-gray-700 leading-relaxed flex-grow">{pick(insight.summary, locale)}</p>
       <span className="mt-5 text-sm font-semibold text-blue-700">{t.insights.readMore} →</span>
     </Link>
   );

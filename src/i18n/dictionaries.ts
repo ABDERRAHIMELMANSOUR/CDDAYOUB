@@ -181,9 +181,20 @@ export interface Dictionary {
     transparencyLine: string;
     transparencyLink: string;
     whoWeAre: string;
+    whoWeAreP1Lead: string;
+    whoWeAreP1: string;
+    whoWeAreP2Before: string;
+    whoWeAreP2Emphasis: string;
+    whoWeAreP2After: string;
+    whoWeAreP3: string;
     ourMission: string;
+    missionText: string;
     ourVision: string;
+    visionText: string;
     whatWeDo: string;
+    whatWeDoSubtitle: string;
+    whoWeServeSubtitle: string;
+    whyEyebrow: string;
     whatWeDoItems: { title: string; description: string }[];
     whoWeServe: string;
     stakeholders: string;
@@ -196,7 +207,25 @@ export interface Dictionary {
     title: string;
     subtitle: string;
     president: string;
+    presidentRole: string;
+    presidentBio1: string;
+    presidentBio2: string;
+    contactLabel: string;
+    highlights: { title: string; description: string }[];
     founder: string;
+    founderRole: string;
+    founderBio1: string;
+    founderBio2: string;
+    continuityEyebrow: string;
+    continuityTitle: string;
+    continuitySubtitle: string;
+    fromVisionTitle: string;
+    fromVisionText: string;
+    /** Board officer roles and biographies, keyed by the officer's name. */
+    boardBios: Record<string, { role: string; bio: string }>;
+    ctaTitle: string;
+    ctaText: string;
+    ctaButton: string;
     boardEyebrow: string;
     boardTitle: string;
     boardIntro: string;
@@ -215,10 +244,32 @@ export interface Dictionary {
     visionCaption: string;
     teamCaption: string;
   };
+  advisorsPage: {
+    eyebrow: string;
+    /** "{advisors} senior advisors across {commissions} commissions, …" */
+    introBefore: string;
+    introAfter: string;
+    leadershipLink: string;
+    joinTitle: string;
+    joinText: string;
+  };
   contact: {
     eyebrow: string;
     title: string;
     subtitle: string;
+    heroTitle: string;
+    heroSubtitle: string;
+    introText: string;
+    labelLocation: string;
+    labelEmail: string;
+    labelPhone: string;
+    labelLinkedin: string;
+    phone: string;
+    phonePlaceholder: string;
+    emailPlaceholder: string;
+    messagePlaceholder: string;
+    hours: string;
+    whoShouldContactSubtitle: string;
     getInTouch: string;
     sendMessage: string;
     sent: string;
@@ -244,14 +295,29 @@ export interface Dictionary {
     privacyText: string;
     privacyLinkIntro: string;
     privacyLinkText: string;
+    privacyLinkOutro: string;
+    country: string;
   };
   partnerships: {
     eyebrow: string;
     title: string;
     subtitle: string;
     caption: string;
+    heroTitle: string;
+    heroSubtitle: string;
+    ecosystemTitle: string;
+    ecosystemP1: string;
+    ecosystemP2: string;
+    categoriesTitle: string;
+    categoriesSubtitle: string;
+    benefitsSubtitle: string;
+    geoTitle: string;
+    geoSubtitle: string;
     typesTitle: string;
     types: { title: string; description: string }[];
+    /** Example organisations per partner category, index-aligned with `types`. */
+    typeExamples: string[][];
+    regions: { name: string; description: string; bullets: string[] }[];
     benefitsTitle: string;
     benefits: { title: string; description: string }[];
     ctaTitle: string;
@@ -264,6 +330,7 @@ export interface Dictionary {
     subtitle: string;
     comingSoon: string;
     comingSoonText: string;
+    announcement: string;
     pillars: { title: string; description: string }[];
     ctaTitle: string;
     ctaText: string;
@@ -302,6 +369,24 @@ const en: Dictionary = {
     closeMenu: 'Close menu',
     skipToContent: 'Skip to main content',
     whoWeAre: 'Who We Are',
+    whoWeAreP1Lead: 'CDD Pays-Bas',
+    whoWeAreP1:
+      '(Club des Dirigeants – Netherlands) is an international business and leadership platform that serves as a strategic bridge between European, Moroccan, and African ecosystems.',
+    whoWeAreP2Before: 'We bring together',
+    whoWeAreP2Emphasis:
+      'business leaders, investors, senior experts, public institutions, and international organizations',
+    whoWeAreP2After: 'to foster economic diplomacy, innovation, and sustainable development.',
+    whoWeAreP3:
+      'Our network includes CEOs, entrepreneurs, project developers, policymakers, diaspora leaders, and knowledge partners committed to creating cross-border impact in sectors such as energy transition, infrastructure, technology, finance, real estate, and education.',
+    missionText:
+      'To empower business leaders and decision-makers by creating strategic connections, facilitating cross-border collaboration, and promoting sustainable and inclusive economic development across Europe, Morocco, and Africa through purposeful dialogue, knowledge sharing, and actionable partnerships.',
+    visionText:
+      'To be the premier international platform connecting European, Moroccan, and African business ecosystems, recognized for driving impactful collaborations in strategic sectors such as energy transition, innovation, infrastructure, and finance, while championing leadership, governance, and sustainable growth.',
+    whatWeDoSubtitle:
+      'CDD Pays-Bas acts as a convener, facilitator, and strategic partner across four core pillars',
+    whoWeServeSubtitle:
+      'Our platform connects diverse stakeholders committed to cross-border impact',
+    whyEyebrow: 'Why Choose Us',
     governanceBoard: 'Governance & Board',
     advisoryCouncil: 'Advisory Council',
     partnerships: 'Partnerships',
@@ -524,6 +609,44 @@ const en: Dictionary = {
     subtitle:
       'Experienced leaders guiding CDD Pays-Bas with a commitment to transparency, accountability and measurable impact.',
     president: 'President',
+    presidentRole: 'President – CDD Pays-Bas',
+    presidentBio1:
+      'Nouraddine Gribi is the President of CDD Pays-Bas and a strategic leader dedicated to strengthening economic and institutional ties between Morocco and the Netherlands. With extensive experience in business development, governance, and international partnerships, he drives high-impact collaborations between public and private stakeholders.',
+    presidentBio2:
+      'He actively promotes entrepreneurship, inclusion, and sustainable growth within the Moroccan-Dutch ecosystem. Through his leadership, CDD Pays-Bas continues to build bridges, create opportunities, and deliver measurable value for its members and partners.',
+    contactLabel: 'Contact',
+    highlights: [
+      { title: 'Leadership & Governance', description: 'Driving strategic vision and organizational excellence' },
+      { title: 'Cross-Border Cooperation', description: 'Netherlands ↔ Morocco partnerships and collaboration' },
+      { title: 'Entrepreneurship & Ecosystem Building', description: 'Supporting entrepreneurs and fostering innovation' },
+      { title: 'Institutional Credibility', description: 'Building trusted international partnerships' },
+    ],
+    founderRole: 'Founder & President – CDD',
+    founderBio1:
+      'Driss DRIF is the Founder and President of CDD (Club des Dirigeants), an organization established with the vision of connecting leaders, fostering strategic dialogue, and building strong bridges between Morocco and international ecosystems.',
+    founderBio2:
+      'Under his leadership, CDD has become a growing network of decision-makers and advisors across sectors, driving impactful collaborations between public and private stakeholders. His initiative laid the foundation for CDD Pays-Bas, which continues this legacy in the Netherlands.',
+    continuityEyebrow: 'Leadership Continuity',
+    continuityTitle: 'A Shared Vision',
+    continuitySubtitle:
+      'United by a commitment to connecting leaders, fostering collaboration, and building bridges between the Netherlands, Morocco, and Africa.',
+    fromVisionTitle: 'From Vision to Reality',
+    fromVisionText:
+      'Driss DRIF founded CDD with a vision of connecting leaders and fostering strategic dialogue. Nouraddine Gribi continues this legacy as President of CDD Pays-Bas, strengthening ties between the Netherlands, Morocco, and Africa through impactful partnerships and sustainable development.',
+    boardBios: {
+      'Nouraddine Gribi': {
+        role: 'President',
+        bio: 'Leads CDD Pays-Bas with a strategic vision focused on strengthening economic bridges between Morocco and the Netherlands. Drives partnerships, governance, and sustainable impact initiatives.',
+      },
+      'Ahmed Rahmouni': {
+        role: 'Treasurer',
+        bio: 'International business professional with strong financial and commercial expertise. Supports CDD Pays-Bas with strategic financial oversight and cross-border business insight.',
+      },
+    },
+    ctaTitle: 'Interested in Contributing?',
+    ctaText:
+      'CDD Pays-Bas welcomes senior experts and advisors who share our commitment to cross-border collaboration and sustainable development.',
+    ctaButton: 'Contact Us',
     founder: 'Founder',
     boardEyebrow: 'Governance',
     boardTitle: 'The Board',
@@ -552,11 +675,36 @@ const en: Dictionary = {
     visionCaption: 'From vision to reality',
     teamCaption: 'Experienced leadership',
   },
+  advisorsPage: {
+    eyebrow: 'Advisory Council',
+    introBefore:
+      'senior advisors across {commissions} commissions, bringing domain expertise to the work CDD Pays-Bas convenes.',
+    introAfter: 'Our statutory board is presented separately on the',
+    leadershipLink: 'Leadership page',
+    joinTitle: 'Join the Advisory Council',
+    joinText:
+      'CDD Pays-Bas welcomes senior experts who share our commitment to building durable ties between the Netherlands and Morocco.',
+  },
   contact: {
     eyebrow: 'Contact',
     title: 'Get in Touch',
     subtitle:
       'Whether you are exploring partnership, membership or a specific project, we would like to hear from you.',
+    heroTitle: 'Contact & Collaboration',
+    heroSubtitle:
+      'Connect with CDD Pays-Bas to explore partnerships, join our network, or participate in cross-border initiatives.',
+    introText:
+      'We welcome inquiries from business leaders, investors, institutions, and organizations interested in cross-border collaboration.',
+    labelLocation: 'Location',
+    labelEmail: 'Email',
+    labelPhone: 'Phone',
+    labelLinkedin: 'LinkedIn',
+    phone: 'Phone Number',
+    phonePlaceholder: '+31 XX XXX XXXX',
+    emailPlaceholder: 'your.email@example.com',
+    messagePlaceholder: 'Tell us about your inquiry or collaboration interest...',
+    hours: '9:00 – 18:00 CET',
+    whoShouldContactSubtitle: 'CDD Pays-Bas welcomes engagement from diverse stakeholders',
     getInTouch: 'Get in Touch',
     sendMessage: 'Send Us a Message',
     sent: 'Message Sent!',
@@ -598,6 +746,9 @@ const en: Dictionary = {
       'Your information will be handled in accordance with European data protection regulations. We will only use your contact details to respond to your inquiry and may add you to our professional network mailing list if you express interest. You can unsubscribe at any time.',
     privacyLinkIntro: 'Read our',
     privacyLinkText: 'privacy statement',
+    privacyLinkOutro:
+      'for full details on what we collect, why, how long we keep it, and your rights.',
+    country: 'The Netherlands',
   },
   partnerships: {
     eyebrow: 'Partnerships',
@@ -605,6 +756,49 @@ const en: Dictionary = {
     subtitle:
       'CDD Pays-Bas builds durable relationships with organisations that share our commitment to cross-border collaboration.',
     caption: 'Building durable institutional relationships',
+    heroTitle: 'Partnerships & Ecosystem',
+    heroSubtitle:
+      'CDD Pays-Bas brings together a diverse ecosystem of partners committed to cross-border collaboration, innovation, and sustainable development.',
+    ecosystemTitle: 'A Multi-Stakeholder Ecosystem',
+    ecosystemP1:
+      'Our partnership network spans the public and private sectors, connecting organizations that share our commitment to economic diplomacy, strategic collaboration, and impact.',
+    ecosystemP2:
+      'By bringing together diverse stakeholders — from corporations and investors to government agencies and knowledge institutions — we create a dynamic platform for meaningful dialogue, project development, and mutual growth.',
+    categoriesTitle: 'Our Partner Ecosystem',
+    categoriesSubtitle:
+      'We collaborate with six key categories of partners, each bringing unique value to our network',
+    benefitsSubtitle:
+      'Partners of CDD Pays-Bas gain access to a vetted network and strategic opportunities',
+    geoTitle: 'Geographic Reach',
+    geoSubtitle: 'Our partnership network spans three strategic regions',
+    typeExamples: [
+      ['Energy Companies', 'Infrastructure Firms', 'Technology Leaders', 'Financial Institutions'],
+      ['Private Equity Funds', 'Development Finance Institutions', 'Family Offices', 'Venture Capital'],
+      ['Government Agencies', 'Embassies & Trade Offices', 'EU Institutions', 'International Organizations'],
+      ['Universities', 'Research Centres', 'Think Tanks', 'Professional Associations'],
+      ['Business Associations', 'Professional Networks', 'Community Organizations', 'Alumni Groups'],
+      ['Chambers of Commerce', 'Business Clubs', 'Sector Associations', 'Innovation Hubs'],
+    ],
+    regions: [
+      {
+        name: 'Europe',
+        description:
+          'Strong presence in the Netherlands with connections across EU member states, institutions, and business networks.',
+        bullets: ['Business clusters & innovation hubs', 'EU institutions & agencies', 'Financial & investment networks'],
+      },
+      {
+        name: 'Morocco',
+        description:
+          'Deep connections with the Moroccan business community, government stakeholders, and development institutions.',
+        bullets: ['Public & private sector leaders', 'Strategic infrastructure projects', 'Economic development agencies'],
+      },
+      {
+        name: 'Africa',
+        description:
+          'Growing network across sub-Saharan Africa focusing on trade, investment, and development partnerships.',
+        bullets: ['Regional economic communities', 'Development finance institutions', 'Sector-specific partnerships'],
+      },
+    ],
     typesTitle: 'Partnership Types',
     types: [
       { title: 'Corporate Partners', description: 'Leading corporations and multinationals committed to cross-border growth and innovation' },
@@ -630,6 +824,8 @@ const en: Dictionary = {
     title: 'Strategic Projects',
     subtitle: 'Cross-border initiatives developed with our members and partners.',
     comingSoon: 'Coming Soon',
+    announcement:
+      'Our strategic projects will be announced soon. Stay tuned for upcoming initiatives and partnerships that will drive cross-border collaboration, sustainable development, and economic growth.',
     comingSoonText:
       'Our first strategic projects are in development. They will be published here, tagged to the commission that leads them.',
     pillars: [
@@ -675,6 +871,25 @@ const nl: Dictionary = {
     closeMenu: 'Menu sluiten',
     skipToContent: 'Naar hoofdinhoud',
     whoWeAre: 'Wie wij zijn',
+    whoWeAreP1Lead: 'CDD Pays-Bas',
+    whoWeAreP1:
+      '(Club des Dirigeants – Nederland) is een internationaal platform voor ondernemerschap en leiderschap dat fungeert als strategische brug tussen het Europese, Marokkaanse en Afrikaanse ecosysteem.',
+    whoWeAreP2Before: 'Wij brengen',
+    whoWeAreP2Emphasis:
+      'ondernemers en bestuurders, investeerders, ervaren experts, publieke instellingen en internationale organisaties',
+    whoWeAreP2After:
+      'bijeen om economische diplomatie, innovatie en duurzame ontwikkeling te bevorderen.',
+    whoWeAreP3:
+      'Ons netwerk omvat CEO’s, ondernemers, projectontwikkelaars, beleidsmakers, diasporaleiders en kennispartners die zich inzetten voor grensoverschrijdende impact in sectoren als energietransitie, infrastructuur, technologie, financiën, vastgoed en onderwijs.',
+    missionText:
+      'Ondernemers en besluitvormers versterken door strategische verbindingen te leggen, grensoverschrijdende samenwerking te faciliteren en duurzame, inclusieve economische ontwikkeling te bevorderen in Europa, Marokko en Afrika — via gerichte dialoog, kennisdeling en werkbare partnerschappen.',
+    visionText:
+      'Hét internationale platform zijn dat de Europese, Marokkaanse en Afrikaanse zakelijke ecosystemen verbindt, erkend om samenwerkingen met impact in strategische sectoren als energietransitie, innovatie, infrastructuur en financiën, met leiderschap, goed bestuur en duurzame groei als leidraad.',
+    whatWeDoSubtitle:
+      'CDD Pays-Bas treedt op als verbinder, facilitator en strategisch partner langs vier kernpijlers',
+    whoWeServeSubtitle:
+      'Ons platform verbindt uiteenlopende partijen die zich inzetten voor grensoverschrijdende impact',
+    whyEyebrow: 'Waarom voor ons kiezen',
     governanceBoard: 'Bestuur & governance',
     advisoryCouncil: 'Raad van adviseurs',
     partnerships: 'Partnerschappen',
@@ -899,6 +1114,44 @@ const nl: Dictionary = {
     subtitle:
       'Ervaren bestuurders die CDD Pays-Bas leiden met toewijding aan transparantie, verantwoording en meetbare impact.',
     president: 'Voorzitter',
+    presidentRole: 'Voorzitter – CDD Pays-Bas',
+    presidentBio1:
+      'Nouraddine Gribi is voorzitter van CDD Pays-Bas en een strategisch leider die zich inzet voor sterkere economische en institutionele banden tussen Marokko en Nederland. Met ruime ervaring in bedrijfsontwikkeling, governance en internationale partnerschappen brengt hij samenwerkingen met grote impact tot stand tussen publieke en private partijen.',
+    presidentBio2:
+      'Hij zet zich actief in voor ondernemerschap, inclusie en duurzame groei binnen het Marokkaans-Nederlandse ecosysteem. Onder zijn leiding blijft CDD Pays-Bas bruggen slaan, kansen creëren en meetbare waarde leveren voor leden en partners.',
+    contactLabel: 'Contact',
+    highlights: [
+      { title: 'Leiderschap & governance', description: 'Strategische visie en organisatorische kwaliteit aanjagen' },
+      { title: 'Grensoverschrijdende samenwerking', description: 'Partnerschappen en samenwerking Nederland ↔ Marokko' },
+      { title: 'Ondernemerschap & ecosysteemontwikkeling', description: 'Ondernemers ondersteunen en innovatie stimuleren' },
+      { title: 'Institutionele geloofwaardigheid', description: 'Betrouwbare internationale partnerschappen opbouwen' },
+    ],
+    founderRole: 'Oprichter & voorzitter – CDD',
+    founderBio1:
+      'Driss DRIF is oprichter en voorzitter van CDD (Club des Dirigeants), opgericht vanuit de visie om leiders te verbinden, strategische dialoog te bevorderen en sterke bruggen te bouwen tussen Marokko en internationale ecosystemen.',
+    founderBio2:
+      'Onder zijn leiding is CDD uitgegroeid tot een groeiend netwerk van besluitvormers en adviseurs uit uiteenlopende sectoren, dat samenwerkingen met impact tot stand brengt tussen publieke en private partijen. Zijn initiatief legde de basis voor CDD Pays-Bas, dat deze lijn in Nederland voortzet.',
+    continuityEyebrow: 'Continuïteit in leiderschap',
+    continuityTitle: 'Een gedeelde visie',
+    continuitySubtitle:
+      'Verenigd in de inzet om leiders te verbinden, samenwerking te bevorderen en bruggen te bouwen tussen Nederland, Marokko en Afrika.',
+    fromVisionTitle: 'Van visie naar werkelijkheid',
+    fromVisionText:
+      'Driss DRIF richtte CDD op vanuit de visie om leiders te verbinden en strategische dialoog te bevorderen. Nouraddine Gribi zet deze lijn voort als voorzitter van CDD Pays-Bas en versterkt de banden tussen Nederland, Marokko en Afrika via partnerschappen met impact en duurzame ontwikkeling.',
+    boardBios: {
+      'Nouraddine Gribi': {
+        role: 'Voorzitter',
+        bio: 'Leidt CDD Pays-Bas vanuit een strategische visie gericht op sterkere economische bruggen tussen Marokko en Nederland. Stuurt op partnerschappen, governance en initiatieven met duurzame impact.',
+      },
+      'Ahmed Rahmouni': {
+        role: 'Penningmeester',
+        bio: 'Internationaal zakelijk professional met sterke financiële en commerciële expertise. Ondersteunt CDD Pays-Bas met strategisch financieel toezicht en grensoverschrijdend zakelijk inzicht.',
+      },
+    },
+    ctaTitle: 'Wilt u bijdragen?',
+    ctaText:
+      'CDD Pays-Bas verwelkomt ervaren experts en adviseurs die onze inzet voor grensoverschrijdende samenwerking en duurzame ontwikkeling delen.',
+    ctaButton: 'Neem contact op',
     founder: 'Oprichter',
     boardEyebrow: 'Governance',
     boardTitle: 'Het bestuur',
@@ -927,11 +1180,37 @@ const nl: Dictionary = {
     visionCaption: 'Van visie naar werkelijkheid',
     teamCaption: 'Ervaren leiderschap',
   },
+  advisorsPage: {
+    eyebrow: 'Raad van advies',
+    introBefore:
+      'ervaren adviseurs verdeeld over {commissions} commissies, die vakinhoudelijke expertise inbrengen in het werk dat CDD Pays-Bas samenbrengt.',
+    introAfter: 'Ons statutair bestuur wordt apart gepresenteerd op de',
+    leadershipLink: 'pagina Leiderschap',
+    joinTitle: 'Sluit u aan bij de raad van advies',
+    joinText:
+      'CDD Pays-Bas verwelkomt ervaren experts die onze inzet delen voor duurzame banden tussen Nederland en Marokko.',
+  },
   contact: {
     eyebrow: 'Contact',
     title: 'Neem contact op',
     subtitle:
       'Of u nu een partnerschap, een lidmaatschap of een concreet project verkent — wij horen graag van u.',
+    heroTitle: 'Contact & samenwerking',
+    heroSubtitle:
+      'Neem contact op met CDD Pays-Bas om partnerschappen te verkennen, u bij ons netwerk aan te sluiten of deel te nemen aan grensoverschrijdende initiatieven.',
+    introText:
+      'Wij verwelkomen vragen van ondernemers en bestuurders, investeerders, instellingen en organisaties met belangstelling voor grensoverschrijdende samenwerking.',
+    labelLocation: 'Locatie',
+    labelEmail: 'E-mail',
+    labelPhone: 'Telefoon',
+    labelLinkedin: 'LinkedIn',
+    phone: 'Telefoonnummer',
+    phonePlaceholder: '+31 XX XXX XXXX',
+    emailPlaceholder: 'uw.email@voorbeeld.nl',
+    messagePlaceholder: 'Vertel ons over uw vraag of uw interesse in samenwerking...',
+    hours: '9:00 – 18:00 uur CET',
+    whoShouldContactSubtitle:
+      'CDD Pays-Bas staat open voor contact met uiteenlopende belanghebbenden',
     getInTouch: 'Neem contact op',
     sendMessage: 'Stuur ons een bericht',
     sent: 'Bericht verzonden!',
@@ -973,6 +1252,9 @@ const nl: Dictionary = {
       'Uw gegevens worden verwerkt conform de Europese regelgeving voor gegevensbescherming. Wij gebruiken uw contactgegevens uitsluitend om op uw vraag te reageren en kunnen u bij interesse toevoegen aan onze mailinglijst. U kunt zich op elk moment afmelden.',
     privacyLinkIntro: 'Lees onze',
     privacyLinkText: 'privacyverklaring',
+    privacyLinkOutro:
+      'voor alle details over wat wij verzamelen, waarom, hoe lang wij het bewaren en welke rechten u heeft.',
+    country: 'Nederland',
   },
   partnerships: {
     eyebrow: 'Partnerschappen',
@@ -980,6 +1262,49 @@ const nl: Dictionary = {
     subtitle:
       'CDD Pays-Bas bouwt duurzame relaties met organisaties die onze inzet voor grensoverschrijdende samenwerking delen.',
     caption: 'Duurzame institutionele relaties opbouwen',
+    heroTitle: 'Partnerschappen & ecosysteem',
+    heroSubtitle:
+      'CDD Pays-Bas brengt een divers ecosysteem van partners samen die zich inzetten voor grensoverschrijdende samenwerking, innovatie en duurzame ontwikkeling.',
+    ecosystemTitle: 'Een ecosysteem van vele belanghebbenden',
+    ecosystemP1:
+      'Ons partnernetwerk beslaat de publieke en private sector en verbindt organisaties die onze inzet voor economische diplomatie, strategische samenwerking en impact delen.',
+    ecosystemP2:
+      'Door uiteenlopende partijen samen te brengen — van bedrijven en investeerders tot overheidsinstanties en kennisinstellingen — creëren wij een dynamisch platform voor betekenisvolle dialoog, projectontwikkeling en wederzijdse groei.',
+    categoriesTitle: 'Ons partnerecosysteem',
+    categoriesSubtitle:
+      'Wij werken samen met zes hoofdcategorieën partners, elk met een eigen waarde voor ons netwerk',
+    benefitsSubtitle:
+      'Partners van CDD Pays-Bas krijgen toegang tot een getoetst netwerk en strategische kansen',
+    geoTitle: 'Geografisch bereik',
+    geoSubtitle: 'Ons partnernetwerk beslaat drie strategische regio’s',
+    typeExamples: [
+      ['Energiebedrijven', 'Infrastructuurbedrijven', 'Technologiekoplopers', 'Financiële instellingen'],
+      ['Participatiefondsen', 'Ontwikkelingsbanken', 'Family offices', 'Durfkapitaal'],
+      ['Overheidsinstanties', 'Ambassades & handelskantoren', 'EU-instellingen', 'Internationale organisaties'],
+      ['Universiteiten', 'Onderzoekscentra', 'Denktanks', 'Beroepsverenigingen'],
+      ['Brancheverenigingen', 'Professionele netwerken', 'Gemeenschapsorganisaties', 'Alumniverenigingen'],
+      ['Kamers van koophandel', 'Businessclubs', 'Sectororganisaties', 'Innovatiehubs'],
+    ],
+    regions: [
+      {
+        name: 'Europa',
+        description:
+          'Een sterke aanwezigheid in Nederland, met verbindingen naar EU-lidstaten, instellingen en zakelijke netwerken.',
+        bullets: ['Bedrijfsclusters & innovatiehubs', 'EU-instellingen & agentschappen', 'Financiële & investeringsnetwerken'],
+      },
+      {
+        name: 'Marokko',
+        description:
+          'Diepe verbindingen met het Marokkaanse bedrijfsleven, overheidspartijen en ontwikkelingsinstellingen.',
+        bullets: ['Leiders uit publieke & private sector', 'Strategische infrastructuurprojecten', 'Agentschappen voor economische ontwikkeling'],
+      },
+      {
+        name: 'Afrika',
+        description:
+          'Een groeiend netwerk in Sub-Saharaans Afrika, gericht op handel, investeringen en ontwikkelingspartnerschappen.',
+        bullets: ['Regionale economische gemeenschappen', 'Ontwikkelingsbanken', 'Sectorspecifieke partnerschappen'],
+      },
+    ],
     typesTitle: 'Soorten partnerschap',
     types: [
       { title: 'Corporate partners', description: 'Toonaangevende bedrijven en multinationals die zich inzetten voor grensoverschrijdende groei en innovatie' },
@@ -1004,6 +1329,8 @@ const nl: Dictionary = {
     title: 'Strategische projecten',
     subtitle: 'Grensoverschrijdende initiatieven ontwikkeld met onze leden en partners.',
     comingSoon: 'Binnenkort',
+    announcement:
+      'Onze strategische projecten worden binnenkort aangekondigd. Houd deze pagina in de gaten voor komende initiatieven en partnerschappen die grensoverschrijdende samenwerking, duurzame ontwikkeling en economische groei aanjagen.',
     comingSoonText:
       'Onze eerste strategische projecten zijn in ontwikkeling. Zij worden hier gepubliceerd, gekoppeld aan de commissie die ze leidt.',
     pillars: [
@@ -1241,6 +1568,25 @@ const fr: Dictionary = {
     transparencyLine: 'Nos données statutaires et documents de gouvernance sont publiés sur notre',
     transparencyLink: 'page de transparence',
     whoWeAre: 'Qui nous sommes',
+    whoWeAreP1Lead: 'CDD Pays-Bas',
+    whoWeAreP1:
+      "(Club des Dirigeants – Pays-Bas) est une plateforme internationale d'affaires et de leadership qui fait office de passerelle stratégique entre les écosystèmes européen, marocain et africain.",
+    whoWeAreP2Before: 'Nous réunissons',
+    whoWeAreP2Emphasis:
+      "des dirigeants d'entreprise, des investisseurs, des experts confirmés, des institutions publiques et des organisations internationales",
+    whoWeAreP2After:
+      "afin de favoriser la diplomatie économique, l'innovation et le développement durable.",
+    whoWeAreP3:
+      "Notre réseau rassemble des PDG, des entrepreneurs, des porteurs de projets, des décideurs publics, des leaders de la diaspora et des partenaires de savoir engagés à produire un impact transfrontalier dans des secteurs tels que la transition énergétique, les infrastructures, la technologie, la finance, l'immobilier et l'éducation.",
+    missionText:
+      "Donner aux dirigeants et décideurs les moyens d'agir en créant des connexions stratégiques, en facilitant la collaboration transfrontalière et en promouvant un développement économique durable et inclusif en Europe, au Maroc et en Afrique, par le dialogue utile, le partage de connaissances et des partenariats concrets.",
+    visionText:
+      "Être la première plateforme internationale reliant les écosystèmes d'affaires européen, marocain et africain, reconnue pour des collaborations à fort impact dans des secteurs stratégiques tels que la transition énergétique, l'innovation, les infrastructures et la finance, tout en portant le leadership, la bonne gouvernance et la croissance durable.",
+    whatWeDoSubtitle:
+      'CDD Pays-Bas agit comme fédérateur, facilitateur et partenaire stratégique autour de quatre piliers',
+    whoWeServeSubtitle:
+      'Notre plateforme relie des acteurs divers engagés dans un impact transfrontalier',
+    whyEyebrow: 'Pourquoi nous choisir',
     ourMission: 'Notre mission',
     ourVision: 'Notre vision',
     whatWeDo: 'Ce que nous faisons',
@@ -1275,6 +1621,44 @@ const fr: Dictionary = {
     subtitle:
       'Des dirigeants expérimentés qui guident CDD Pays-Bas avec un engagement de transparence, de responsabilité et d’impact mesurable.',
     president: 'Président',
+    presidentRole: 'Président – CDD Pays-Bas',
+    presidentBio1:
+      "Nouraddine Gribi est le président de CDD Pays-Bas, dirigeant stratégique engagé à renforcer les liens économiques et institutionnels entre le Maroc et les Pays-Bas. Fort d'une longue expérience du développement des affaires, de la gouvernance et des partenariats internationaux, il impulse des collaborations à fort impact entre acteurs publics et privés.",
+    presidentBio2:
+      "Il promeut activement l'entrepreneuriat, l'inclusion et une croissance durable au sein de l'écosystème maroco-néerlandais. Sous sa direction, CDD Pays-Bas continue de bâtir des ponts, de créer des opportunités et d'apporter une valeur mesurable à ses membres et partenaires.",
+    contactLabel: 'Contact',
+    highlights: [
+      { title: 'Leadership & gouvernance', description: "Porter la vision stratégique et l'excellence organisationnelle" },
+      { title: 'Coopération transfrontalière', description: 'Partenariats et collaboration Pays-Bas ↔ Maroc' },
+      { title: "Entrepreneuriat & développement de l'écosystème", description: "Accompagner les entrepreneurs et encourager l'innovation" },
+      { title: 'Crédibilité institutionnelle', description: 'Construire des partenariats internationaux de confiance' },
+    ],
+    founderRole: 'Fondateur & président – CDD',
+    founderBio1:
+      "Driss DRIF est le fondateur et président du CDD (Club des Dirigeants), organisation créée avec la volonté de relier les dirigeants, de nourrir le dialogue stratégique et de bâtir des ponts solides entre le Maroc et les écosystèmes internationaux.",
+    founderBio2:
+      "Sous sa direction, le CDD est devenu un réseau grandissant de décideurs et de conseillers de tous secteurs, à l'origine de collaborations à fort impact entre acteurs publics et privés. Son initiative a posé les fondations de CDD Pays-Bas, qui prolonge cet héritage aux Pays-Bas.",
+    continuityEyebrow: 'Continuité du leadership',
+    continuityTitle: 'Une vision partagée',
+    continuitySubtitle:
+      'Unis par la volonté de relier les dirigeants, de favoriser la collaboration et de bâtir des ponts entre les Pays-Bas, le Maroc et l’Afrique.',
+    fromVisionTitle: 'De la vision à la réalité',
+    fromVisionText:
+      "Driss DRIF a fondé le CDD avec l'ambition de relier les dirigeants et de nourrir le dialogue stratégique. Nouraddine Gribi poursuit cet héritage comme président de CDD Pays-Bas, en renforçant les liens entre les Pays-Bas, le Maroc et l'Afrique par des partenariats à fort impact et un développement durable.",
+    boardBios: {
+      'Nouraddine Gribi': {
+        role: 'Président',
+        bio: 'Dirige CDD Pays-Bas avec une vision stratégique centrée sur le renforcement des ponts économiques entre le Maroc et les Pays-Bas. Pilote les partenariats, la gouvernance et les initiatives à impact durable.',
+      },
+      'Ahmed Rahmouni': {
+        role: 'Trésorier',
+        bio: "Professionnel du commerce international doté d'une solide expertise financière et commerciale. Il appuie CDD Pays-Bas par une supervision financière stratégique et une connaissance fine des affaires transfrontalières.",
+      },
+    },
+    ctaTitle: 'Envie de contribuer ?',
+    ctaText:
+      'CDD Pays-Bas accueille les experts et conseillers confirmés qui partagent son engagement pour la collaboration transfrontalière et le développement durable.',
+    ctaButton: 'Nous contacter',
     founder: 'Fondateur',
     boardEyebrow: 'Gouvernance',
     boardTitle: 'Le conseil',
@@ -1303,11 +1687,37 @@ const fr: Dictionary = {
     visionCaption: 'De la vision à la réalité',
     teamCaption: 'Une direction expérimentée',
   },
+  advisorsPage: {
+    eyebrow: 'Conseil consultatif',
+    introBefore:
+      "conseillers expérimentés répartis sur {commissions} commissions, qui apportent leur expertise sectorielle aux travaux réunis par CDD Pays-Bas.",
+    introAfter: 'Notre conseil statutaire est présenté séparément sur la',
+    leadershipLink: 'page Leadership',
+    joinTitle: 'Rejoignez le conseil consultatif',
+    joinText:
+      "CDD Pays-Bas accueille les experts confirmés qui partagent son engagement à bâtir des liens durables entre les Pays-Bas et le Maroc.",
+  },
   contact: {
     eyebrow: 'Contact',
     title: 'Nous contacter',
     subtitle:
       "Que vous exploriez un partenariat, une adhésion ou un projet précis, nous serions heureux d'avoir de vos nouvelles.",
+    heroTitle: 'Contact & collaboration',
+    heroSubtitle:
+      'Contactez CDD Pays-Bas pour explorer des partenariats, rejoindre notre réseau ou participer à des initiatives transfrontalières.',
+    introText:
+      "Nous accueillons les demandes des dirigeants d'entreprise, des investisseurs, des institutions et des organisations intéressés par la collaboration transfrontalière.",
+    labelLocation: 'Localisation',
+    labelEmail: 'E-mail',
+    labelPhone: 'Téléphone',
+    labelLinkedin: 'LinkedIn',
+    phone: 'Numéro de téléphone',
+    phonePlaceholder: '+31 XX XXX XXXX',
+    emailPlaceholder: 'votre.email@exemple.com',
+    messagePlaceholder: 'Parlez-nous de votre demande ou de votre intérêt pour une collaboration...',
+    hours: '9h00 – 18h00 CET',
+    whoShouldContactSubtitle:
+      'CDD Pays-Bas est ouvert aux échanges avec des parties prenantes de tous horizons',
     getInTouch: 'Nous contacter',
     sendMessage: 'Envoyez-nous un message',
     sent: 'Message envoyé !',
@@ -1349,6 +1759,9 @@ const fr: Dictionary = {
       "Vos informations sont traitées conformément à la réglementation européenne sur la protection des données. Nous n'utilisons vos coordonnées que pour répondre à votre demande et pouvons vous ajouter à notre liste de diffusion si vous en manifestez l'intérêt. Vous pouvez vous désinscrire à tout moment.",
     privacyLinkIntro: 'Consultez notre',
     privacyLinkText: 'déclaration de confidentialité',
+    privacyLinkOutro:
+      "pour tout le détail de ce que nous collectons, pourquoi, combien de temps nous le conservons et quels sont vos droits.",
+    country: 'Pays-Bas',
   },
   partnerships: {
     eyebrow: 'Partenariats',
@@ -1356,6 +1769,49 @@ const fr: Dictionary = {
     subtitle:
       'CDD Pays-Bas construit des relations durables avec les organisations qui partagent notre engagement pour la collaboration transfrontalière.',
     caption: 'Construire des relations institutionnelles durables',
+    heroTitle: 'Partenariats & écosystème',
+    heroSubtitle:
+      "CDD Pays-Bas réunit un écosystème diversifié de partenaires engagés dans la collaboration transfrontalière, l'innovation et le développement durable.",
+    ecosystemTitle: 'Un écosystème multi-acteurs',
+    ecosystemP1:
+      "Notre réseau de partenaires couvre les secteurs public et privé et relie des organisations qui partagent notre engagement pour la diplomatie économique, la collaboration stratégique et l'impact.",
+    ecosystemP2:
+      "En réunissant des acteurs très divers — des entreprises et investisseurs aux agences publiques et institutions de savoir — nous créons une plateforme dynamique de dialogue utile, de développement de projets et de croissance mutuelle.",
+    categoriesTitle: 'Notre écosystème de partenaires',
+    categoriesSubtitle:
+      'Nous collaborons avec six grandes catégories de partenaires, chacune apportant une valeur propre à notre réseau',
+    benefitsSubtitle:
+      "Les partenaires de CDD Pays-Bas accèdent à un réseau qualifié et à des opportunités stratégiques",
+    geoTitle: 'Portée géographique',
+    geoSubtitle: 'Notre réseau de partenaires couvre trois régions stratégiques',
+    typeExamples: [
+      ["Entreprises de l'énergie", 'Sociétés d’infrastructure', 'Leaders technologiques', 'Institutions financières'],
+      ['Fonds de capital-investissement', 'Institutions de financement du développement', 'Family offices', 'Capital-risque'],
+      ['Agences publiques', 'Ambassades & bureaux commerciaux', 'Institutions européennes', 'Organisations internationales'],
+      ['Universités', 'Centres de recherche', 'Think tanks', 'Associations professionnelles'],
+      ['Associations d’entreprises', 'Réseaux professionnels', 'Organisations communautaires', 'Associations d’anciens élèves'],
+      ['Chambres de commerce', 'Clubs d’affaires', 'Fédérations sectorielles', 'Pôles d’innovation'],
+    ],
+    regions: [
+      {
+        name: 'Europe',
+        description:
+          "Une présence forte aux Pays-Bas, avec des liens dans les États membres de l'UE, les institutions et les réseaux d'affaires.",
+        bullets: ['Clusters d’entreprises & pôles d’innovation', 'Institutions & agences européennes', "Réseaux financiers & d'investissement"],
+      },
+      {
+        name: 'Maroc',
+        description:
+          'Des liens étroits avec la communauté d’affaires marocaine, les acteurs publics et les institutions de développement.',
+        bullets: ['Dirigeants des secteurs public & privé', "Projets d'infrastructure stratégiques", 'Agences de développement économique'],
+      },
+      {
+        name: 'Afrique',
+        description:
+          "Un réseau en croissance en Afrique subsaharienne, centré sur le commerce, l'investissement et les partenariats de développement.",
+        bullets: ['Communautés économiques régionales', 'Institutions de financement du développement', 'Partenariats sectoriels'],
+      },
+    ],
     typesTitle: 'Types de partenariat',
     types: [
       { title: 'Partenaires entreprises', description: 'Grandes entreprises et multinationales engagées dans la croissance transfrontalière et l’innovation' },
@@ -1380,6 +1836,8 @@ const fr: Dictionary = {
     title: 'Projets stratégiques',
     subtitle: 'Des initiatives transfrontalières développées avec nos membres et partenaires.',
     comingSoon: 'Prochainement',
+    announcement:
+      "Nos projets stratégiques seront annoncés prochainement. Restez informé des initiatives et partenariats à venir, qui porteront la collaboration transfrontalière, le développement durable et la croissance économique.",
     comingSoonText:
       'Nos premiers projets stratégiques sont en cours de développement. Ils seront publiés ici, rattachés à la commission qui les pilote.',
     pillars: [
