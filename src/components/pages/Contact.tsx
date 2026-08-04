@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useTranslation } from '../../i18n/LocaleProvider';
 import { Mail, MapPin, Linkedin, Send, Phone, Building } from 'lucide-react';
 
 export function Contact() {
+  const t = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     organization: '',
@@ -44,7 +46,7 @@ export function Contact() {
     {
       icon: MapPin,
       title: 'Location',
-      details: ['The Netherlands', 'Rotterdam & Amsterdam'],
+      details: ['The Netherlands', t.contact.location],
     },
     {
       icon: Mail,
@@ -95,7 +97,7 @@ export function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Information */}
             <div className="lg:col-span-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.getInTouch}</h2>
               <p className="text-gray-600 mb-8">
                 We welcome inquiries from business leaders, investors, institutions, 
                 and organizations interested in cross-border collaboration.
@@ -118,7 +120,7 @@ export function Contact() {
               </div>
 
               <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-100">
-                <h3 className="font-semibold text-gray-900 mb-2">Office Hours</h3>
+                <h3 className="font-semibold text-gray-900 mb-2">{t.contact.officeHours}</h3>
                 <p className="text-sm text-gray-600">Monday - Friday</p>
                 <p className="text-sm text-gray-600">9:00 AM - 6:00 PM CET</p>
               </div>
@@ -127,14 +129,14 @@ export function Contact() {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.sendMessage}</h2>
 
                 {submitted ? (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Send className="h-8 w-8 text-green-600" />
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Message Sent!</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{t.contact.sent}</h3>
                     <p className="text-gray-600">
                       Thank you for contacting CDD Pays-Bas. We'll get back to you within 24-48 hours.
                     </p>
@@ -219,7 +221,7 @@ export function Contact() {
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
-                        <option value="">Select an option</option>
+                        <option value="">{t.contact.selectOption}</option>
                         {collaborationAreas.map((area, index) => (
                           <option key={index} value={area}>
                             {area}
@@ -279,39 +281,14 @@ export function Contact() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Who Should Contact Us?</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.contact.whoShouldContact}</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               CDD Pays-Bas welcomes engagement from diverse stakeholders
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Business Leaders & CEOs',
-                description: 'Explore strategic partnerships and cross-border opportunities',
-              },
-              {
-                title: 'Investors',
-                description: 'Access vetted projects and investment opportunities',
-              },
-              {
-                title: 'Government & Institutions',
-                description: 'Collaborate on economic diplomacy and policy initiatives',
-              },
-              {
-                title: 'Project Developers',
-                description: 'Present projects to our network of partners and investors',
-              },
-              {
-                title: 'Knowledge Partners',
-                description: 'Share expertise and participate in advisory capacity',
-              },
-              {
-                title: 'Media & Press',
-                description: 'Request interviews, information, or event coverage',
-              },
-            ].map((stakeholder, index) => (
+            {t.contact.audiences.map((stakeholder, index) => (
               <div key={index} className="bg-white p-6 rounded-lg border border-gray-200">
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <Building className="h-5 w-5 text-blue-900" />

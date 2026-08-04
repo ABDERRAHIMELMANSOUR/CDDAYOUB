@@ -68,7 +68,7 @@ export function Advisors() {
               Advisory Council
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              Senior Advisory Council
+              {t.nav.advisoryCouncil}
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed">
               {ADVISORS.length} senior advisors across {COMMISSIONS.length} commissions, bringing
