@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from '../../../i18n/LocaleProvider';
+import { useLocale } from '../../../i18n/LocaleProvider';
 
 /**
  * Shared shell for the legal / compliance pages (privacy, cookies,
@@ -18,6 +20,8 @@ export function LegalPage({
   lastUpdated?: string;
   children: React.ReactNode;
 }) {
+  const t = useTranslation();
+  const { locale } = useLocale();
   return (
     <div>
       <section className="relative py-20 lg:py-24 overflow-hidden">
@@ -35,7 +39,28 @@ export function LegalPage({
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-[900px] mx-auto px-6 lg:px-12">
           {lastUpdated && (
-            <p className="text-sm text-gray-600 mb-10">Last updated: {lastUpdated}</p>
+            <p className="text-sm text-gray-600 mb-6">
+              {t.legal.lastUpdated}: {lastUpdated}
+            </p>
+          )}
+
+          {/*
+            Authoritative-version clause.
+
+            The legal statements are published in three languages, but the
+            English text is the reference. A mistranslated retention period or
+            lawful-basis clause is a compliance exposure rather than a cosmetic
+            bug, so the prevailing version is stated explicitly — standard
+            practice for multilingual legal notices. A professional legal review
+            is still recommended before the board relies on the translations.
+          */}
+          {locale !== 'en' && (
+            <div className="mb-10 rounded-xl border border-blue-100 bg-blue-50 px-5 py-4">
+              <p className="text-sm font-semibold text-blue-900">{t.legal.authoritativeTitle}</p>
+              <p className="mt-1 text-sm text-blue-900/90 leading-relaxed">
+                {t.legal.authoritativeText}
+              </p>
+            </div>
           )}
           <div className="space-y-10">{children}</div>
         </div>

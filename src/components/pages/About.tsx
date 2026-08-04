@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useTranslation } from '../../i18n/LocaleProvider';
 import { Target, Eye, Award, Globe } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { ORGANISATION, MOROCCO_RELATIONSHIP_TEXT } from '../../data/organisation';
 
 export function About() {
+  const t = useTranslation();
   const pillars = [
     {
       title: 'Economic Diplomacy',
@@ -33,14 +35,13 @@ export function About() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="max-w-4xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              About Us
+              {t.about.eyebrow}
             </div>
             <h1 className="text-5xl lg:text-6xl font-bold mb-8 text-white tracking-tight">
-              About CDD Pays-Bas
+              {t.about.title}
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              An international platform connecting decision-makers and fostering 
-              collaboration between Europe, Morocco, and Africa.
+              {t.about.subtitle}
             </p>
           </div>
         </div>
@@ -59,17 +60,17 @@ export function About() {
       <section className="py-12 bg-blue-50 border-b border-blue-100">
         <div className="max-w-[900px] mx-auto px-6 lg:px-12">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-blue-800 mb-3">
-            Our relationship to CDD Morocco
+            {t.about.moroccoHeading}
           </h2>
           <p className="text-lg text-gray-800 leading-relaxed">
             {ORGANISATION.moroccoRelationship
               ? MOROCCO_RELATIONSHIP_TEXT[ORGANISATION.moroccoRelationship]
-              : 'CDD Pays-Bas works in close partnership with Club des Dirigeants (CDD), founded in Morocco, around a shared mission of connecting business leaders across both markets.'}
+              : t.about.moroccoDefault}
           </p>
           <p className="mt-3 text-sm text-gray-700">
-            Our statutory details and governance documents are published on our{' '}
+            {t.about.transparencyLine}{' '}
             <Link to="/transparency" className="text-blue-700 underline hover:text-blue-900 font-medium">
-              transparency page
+              {t.about.transparencyLink}
             </Link>
             .
           </p>
