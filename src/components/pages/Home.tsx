@@ -1,20 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { ArrowRight, Globe, Users, Target, TrendingUp, Lightbulb, HandshakeIcon, Sparkles } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { BrandedImage } from '../BrandedImage';
 import { FOCUS_AREAS } from '../../data/focusAreas';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { pick } from '../../i18n/localised';
 
 export function Home() {
+  const t = useTranslation();
+  const { locale } = useLocale();
   // Shared with the Focus Areas page so the two can never disagree again.
   const focusAreas = FOCUS_AREAS;
 
-  const values = [
-    { title: 'Leadership', description: 'Empowering decision-makers to drive meaningful change' },
-    { title: 'Sustainability', description: 'Promoting inclusive and sustainable economic growth' },
-    { title: 'Collaboration', description: 'Building bridges between sectors and geographies' },
-    { title: 'Impact', description: 'Creating measurable value for communities and economies' },
-  ];
+  const values = t.home.values;
 
   return (
     <div>
@@ -33,17 +32,17 @@ export function Home() {
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200/50 shadow-lg mb-8">
               <Sparkles className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-gray-700">International Business Leadership Platform</span>
+              <span className="text-sm font-medium text-gray-700">{t.home.badge}</span>
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight tracking-tight">
-              Connecting Leaders,<br />
-              <span className="gradient-text">Building the Future</span>
+              {t.home.heroLine1}
+              <br />
+              <span className="gradient-text">{t.home.heroLine2}</span>
             </h1>
             
             <p className="text-xl lg:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl">
-              CDD Pays-Bas is an international platform for business leaders, investors, 
-              and decision-makers driving cross-border collaboration and sustainable development.
+              {t.home.heroText}
             </p>
             
             {/*
@@ -56,14 +55,14 @@ export function Home() {
                 to="/contact"
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium group"
               >
-                Get Involved
+                {t.home.getInvolved}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/events"
                 className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-2xl hover:bg-gray-50 border-2 border-gray-200 transition-all duration-300 font-medium shadow-sm hover:shadow-md"
               >
-                Upcoming Events
+                {t.home.upcomingEvents}
               </Link>
             </div>
           </div>
@@ -75,15 +74,13 @@ export function Home() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Our Vision
+              {t.home.visionEyebrow}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-              A Strategic Bridge Between Two Markets
+              {t.home.visionTitle}
             </h2>
             <p className="text-xl text-gray-600 leading-relaxed">
-              To serve as a strategic bridge connecting European, Moroccan, and African ecosystems,
-              fostering economic diplomacy, innovation, and sustainable growth through purposeful 
-              collaboration between business leaders, public institutions, and international partners.
+              {t.home.visionText}
             </p>
           </div>
         </div>
@@ -94,13 +91,13 @@ export function Home() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              What We Do
+              {t.home.whatWeDo}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-              Strategic Focus Areas
+              {t.home.focusTitle}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We drive impact across key sectors shaping the future of international business
+              {t.home.focusText}
             </p>
           </div>
 
@@ -114,8 +111,8 @@ export function Home() {
                 <div className="w-14 h-14 gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
                   <area.icon className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{area.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{area.summary}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{pick(area.title, locale)}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{pick(area.summary, locale)}</p>
               </Link>
             ))}
           </div>
@@ -125,7 +122,7 @@ export function Home() {
               to="/focus-areas"
               className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group"
             >
-              Explore All Focus Areas
+              {t.home.exploreAll}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -138,34 +135,23 @@ export function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-                Our Impact
+                {t.home.impactEyebrow}
               </div>
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-                Driving Cross-Border Impact
+                {t.home.impactTitle}
               </h2>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                CDD Pays-Bas brings together business leaders, investors, public institutions, 
-                and international experts to create meaningful partnerships that transcend borders.
+                {t.home.impactText}
               </p>
               <ul className="space-y-5">
-                <li className="flex items-start group">
-                  <div className="w-8 h-8 gradient-primary rounded-xl flex items-center justify-center mr-4 flex-shrink-0 mt-0.5 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <span className="text-gray-700 leading-relaxed">Economic diplomacy and strategic representation</span>
-                </li>
-                <li className="flex items-start group">
-                  <div className="w-8 h-8 gradient-primary rounded-xl flex items-center justify-center mr-4 flex-shrink-0 mt-0.5 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <span className="text-gray-700 leading-relaxed">High-level business delegations and networking</span>
-                </li>
-                <li className="flex items-start group">
-                  <div className="w-8 h-8 gradient-primary rounded-xl flex items-center justify-center mr-4 flex-shrink-0 mt-0.5 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                  <span className="text-gray-700 leading-relaxed">Knowledge sharing and executive education</span>
-                </li>
+                {t.home.impactPoints.map((point) => (
+                  <li key={point} className="flex items-start group">
+                    <div className="w-8 h-8 gradient-primary rounded-xl flex items-center justify-center mr-4 flex-shrink-0 mt-0.5 shadow-md shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <span className="text-gray-700 leading-relaxed">{point}</span>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="relative h-[500px] lg:h-[600px]">
@@ -173,8 +159,8 @@ export function Home() {
               {/* Was a generic stock handshake, reused identically on Partnerships. */}
               <BrandedImage
                 label="CDD Pays-Bas"
-                title="Connecting leaders across two markets"
-                caption="Replace with CDD's own event photography — see src/assets/photos/README.md"
+                title={t.home.imageCaption}
+
                 className="relative"
               />
             </div>
@@ -189,13 +175,13 @@ export function Home() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Core Values
+              {t.home.valuesEyebrow}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
-              Our Core Values
+              {t.home.valuesTitle}
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Principles that guide our mission and shape our impact
+              {t.home.valuesText}
             </p>
           </div>
 
@@ -217,17 +203,16 @@ export function Home() {
       <section className="py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-            Join Our Network
+            {t.home.ctaTitle}
           </h2>
           <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-            Connect with decision-makers, explore strategic partnerships, and be part of 
-            initiatives shaping the future of cross-border collaboration.
+            {t.home.ctaText}
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg group"
           >
-            Get in Touch
+            {t.common.getInTouch}
             <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

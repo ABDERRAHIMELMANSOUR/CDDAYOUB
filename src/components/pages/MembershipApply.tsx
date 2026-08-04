@@ -178,8 +178,8 @@ export function MembershipApply() {
               >
                 <option value="">No preference</option>
                 {COMMISSIONS.map((commission) => (
-                  <option key={commission.slug} value={commission.title}>
-                    {commission.title}
+                  <option key={commission.slug} value={pick(commission.title, locale)}>
+                    {pick(commission.title, locale)}
                   </option>
                 ))}
               </select>

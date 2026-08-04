@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { pick } from '../../i18n/localised';
 import { ArrowRight, Users } from 'lucide-react';
 import { COMMISSIONS, COMMISSION_GOVERNANCE } from '../../data/commissions';
 import { DELIVERY_METHOD, POSITIONING_LINE } from '../../data/focusAreas';
@@ -13,6 +15,8 @@ import { advisorsInGroup } from '../../data/advisors';
  * giving up institutional weight.
  */
 export function FocusAreas() {
+  const t = useTranslation();
+  const { locale } = useLocale();
   return (
     <div>
       {/* Hero */}
@@ -22,17 +26,16 @@ export function FocusAreas() {
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Focus Areas
+              {t.nav.focusAreas}
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              Where our work happens
+              {t.focusAreas.title}
             </h1>
             {/* The mechanism, stated in the first line (Part D0). */}
             <p className="text-xl text-gray-200 leading-relaxed">
-              CDD Pays-Bas organises its work through four standing commissions, each chaired by a
-              senior advisor and open to all members. {POSITIONING_LINE}
+              {t.focusAreas.mechanism} {pick(POSITIONING_LINE, locale)}
             </p>
-            <p className="mt-4 text-base text-gray-300">{DELIVERY_METHOD}</p>
+            <p className="mt-4 text-base text-gray-300">{pick(DELIVERY_METHOD, locale)}</p>
           </div>
         </div>
       </section>
@@ -56,40 +59,44 @@ export function FocusAreas() {
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-widest text-blue-700 font-semibold">
-                        Commission {commission.number}
+                        {t.commissions.commission} {commission.number}
                       </p>
                       <h2 className="text-xl font-bold text-gray-900 leading-tight">
-                        {commission.title}
+                        {pick(commission.title, locale)}
                       </h2>
                     </div>
                   </div>
 
-                  <p className="text-gray-700 leading-relaxed flex-grow">{commission.mandate}</p>
+                  <p className="text-gray-700 leading-relaxed flex-grow">
+                    {pick(commission.mandate, locale)}
+                  </p>
 
                   {/* Standing facts — what makes each a body rather than a theme. */}
                   <dl className="mt-6 pt-5 border-t border-gray-100 space-y-2 text-sm">
                     <div className="flex gap-2">
-                      <dt className="font-semibold text-gray-900">Chair:</dt>
+                      <dt className="font-semibold text-gray-900">{t.commissions.chair}:</dt>
                       <dd className="text-gray-700">
-                        {commission.chair ?? <span className="italic">To be appointed</span>}
+                        {commission.chair ?? (
+                          <span className="italic">{t.commissions.toBeAppointed}</span>
+                        )}
                       </dd>
                     </div>
                     <div className="flex gap-2">
-                      <dt className="font-semibold text-gray-900">Cadence:</dt>
-                      <dd className="text-gray-700">{commission.cadence}</dd>
+                      <dt className="font-semibold text-gray-900">{t.commissions.cadence}:</dt>
+                      <dd className="text-gray-700">{pick(commission.cadence, locale)}</dd>
                     </div>
                     {count > 0 && (
                       <div className="flex items-center gap-2 text-gray-700">
                         <Users className="h-4 w-4 text-blue-700" aria-hidden="true" />
                         <span>
-                          {count} senior advisor{count === 1 ? '' : 's'}
+                          {count} {count === 1 ? t.commissions.advisor : t.commissions.advisors}
                         </span>
                       </div>
                     )}
                   </dl>
 
                   <span className="mt-6 inline-flex items-center text-blue-700 font-semibold group-hover:text-blue-900">
-                    View commission
+                    {t.commissions.viewCommission}
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </Link>
@@ -104,16 +111,15 @@ export function FocusAreas() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mb-10">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              How the commissions work
+              {t.focusAreas.howTheyWork}
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              A commission that exists only as a page is a focus area with a better name. These
-              rules are published so members and partners can hold us to them.
+              {t.focusAreas.rulesIntro}
             </p>
           </div>
 
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {COMMISSION_GOVERNANCE.map((rule, i) => (
+            {pick(COMMISSION_GOVERNANCE, locale).map((rule, i) => (
               <li
                 key={rule}
                 className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm flex items-start gap-4"
@@ -131,16 +137,15 @@ export function FocusAreas() {
       {/* CTA */}
       <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Take part in a commission</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.focusAreas.takePart}</h2>
           <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Commissions are open to all CDD members. Tell us which one fits your work and we will
-            bring you into the next session.
+            {t.focusAreas.takePartText}
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg group"
           >
-            Get in touch
+            {t.common.getInTouch}
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
