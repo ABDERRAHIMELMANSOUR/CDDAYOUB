@@ -1,8 +1,11 @@
 import { Building2, Users, Globe2, Briefcase, Heart, Network } from 'lucide-react';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useTranslation } from '../../i18n/LocaleProvider';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { BrandedImage } from '../BrandedImage';
 
 export function Partnerships() {
+  const t = useTranslation();
   const partnerCategories = [
     {
       icon: Building2,
@@ -42,24 +45,7 @@ export function Partnerships() {
     },
   ];
 
-  const benefits = [
-    {
-      title: 'Access to Networks',
-      description: 'Connect with decision-makers, investors, and experts across Europe, Morocco, and Africa',
-    },
-    {
-      title: 'Visibility & Branding',
-      description: 'Showcase your organization through our events, publications, and platforms',
-    },
-    {
-      title: 'Strategic Opportunities',
-      description: 'Participate in high-level delegations, projects, and collaborative initiatives',
-    },
-    {
-      title: 'Knowledge Exchange',
-      description: 'Access insights, research, and expertise relevant to your sector and geography',
-    },
-  ];
+  const benefits = t.partnerships.benefits;
 
   return (
     <div>

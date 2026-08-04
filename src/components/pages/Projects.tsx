@@ -1,6 +1,9 @@
 import { Briefcase, Rocket } from 'lucide-react';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useTranslation } from '../../i18n/LocaleProvider';
 
 export function Projects() {
+  const t = useTranslation();
   return (
     <div>
       {/* Hero */}
@@ -11,14 +14,13 @@ export function Projects() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="max-w-4xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Projects
+              {t.projects.eyebrow}
             </div>
             <h1 className="text-5xl lg:text-6xl font-bold mb-8 text-white tracking-tight">
-              Strategic Projects & Initiatives
+              {t.projects.title}
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              CDD Pays-Bas develops high-impact projects that connect stakeholders and create 
-              sustainable value across Europe, Morocco, and Africa.
+              {t.projects.subtitle}
             </p>
           </div>
         </div>
@@ -40,12 +42,12 @@ export function Projects() {
 
             {/* Coming Soon Badge */}
             <div className="inline-block px-5 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-8 tracking-wide uppercase">
-              Coming Soon
+              {t.projects.comingSoon}
             </div>
 
             {/* Title */}
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-              Strategic Projects in Development
+              {t.projects.title}
             </h2>
 
             {/* Description */}
@@ -61,9 +63,9 @@ export function Projects() {
                 <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Briefcase className="h-6 w-6 text-blue-600" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">Strategic Focus</h3>
+                <h3 className="font-bold text-gray-900 mb-2">{t.projects.pillars[0].title}</h3>
                 <p className="text-sm text-gray-600">
-                  High-impact initiatives aligned with key sectors and regional priorities
+                  {t.projects.pillars[0].description}
                 </p>
               </div>
               <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg">
@@ -72,9 +74,9 @@ export function Projects() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">Multi-Stakeholder</h3>
+                <h3 className="font-bold text-gray-900 mb-2">{t.projects.pillars[1].title}</h3>
                 <p className="text-sm text-gray-600">
-                  Bringing together public, private, and institutional partners
+                  {t.projects.pillars[1].description}
                 </p>
               </div>
               <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg">
@@ -83,9 +85,9 @@ export function Projects() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">Measurable Impact</h3>
+                <h3 className="font-bold text-gray-900 mb-2">{t.projects.pillars[2].title}</h3>
                 <p className="text-sm text-gray-600">
-                  Clear objectives and outcomes that create lasting value
+                  {t.projects.pillars[2].description}
                 </p>
               </div>
             </div>
@@ -93,13 +95,13 @@ export function Projects() {
             {/* CTA */}
             <div className="pt-8 border-t border-gray-200">
               <p className="text-lg text-gray-600 mb-6">
-                Interested in collaborating on future projects?
+                {t.projects.ctaText}
               </p>
               <a
                 href="/contact"
                 className="inline-block px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg"
               >
-                Get in Touch
+                {t.common.getInTouch}
               </a>
             </div>
           </div>
@@ -112,20 +114,19 @@ export function Projects() {
         
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
           <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-            Our Focus
+            {t.nav.focusAreas}
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
-            Sectors & Opportunities
+            {t.projects.ctaTitle}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Our upcoming projects will address key sectors including energy transition, infrastructure, 
-            innovation, real estate, finance, and economic development.
+            {t.projects.comingSoonText}
           </p>
           <a
             href="/focus-areas"
             className="inline-block px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl hover:bg-white/20 transition-all duration-300 font-medium"
           >
-            Explore Focus Areas
+            {t.nav.allFocusAreas}
           </a>
         </div>
       </section>
