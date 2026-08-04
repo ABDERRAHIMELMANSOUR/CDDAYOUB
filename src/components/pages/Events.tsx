@@ -216,12 +216,14 @@ function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
       <div className="h-44">
         <BrandedImage
           label={pick(EVENT_TYPE_LABELS[event.type], locale)}
-          title={event.title}
+          title={pick(event.title, locale)}
           className="rounded-none"
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-gray-900 leading-tight">{event.title}</h3>
+        <h3 className="text-xl font-bold text-gray-900 leading-tight">
+          {pick(event.title, locale)}
+        </h3>
         <dl className="mt-3 space-y-1.5 text-sm text-gray-700">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4 text-blue-700" aria-hidden="true" />
@@ -246,7 +248,7 @@ function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
             </div>
           )}
         </dl>
-        <p className="mt-4 text-gray-700 leading-relaxed flex-grow">{event.summary}</p>
+        <p className="mt-4 text-gray-700 leading-relaxed flex-grow">{pick(event.summary, locale)}</p>
         <CommissionTags groups={event.commissions} />
         <button
           type="button"
@@ -273,9 +275,9 @@ function PastEventCard({ event }: { event: CDDEvent }) {
         <span className="text-sm text-gray-700">{formatEventDate(event.date, locale)}</span>
         <span className="text-sm text-gray-700">· {event.location}</span>
       </div>
-      <h3 className="text-2xl font-bold text-gray-900">{event.title}</h3>
+      <h3 className="text-2xl font-bold text-gray-900">{pick(event.title, locale)}</h3>
       <p className="mt-3 text-gray-700 leading-relaxed max-w-3xl">
-        {event.recap ?? event.summary}
+        {pick(event.recap ?? event.summary, locale)}
       </p>
       <CommissionTags groups={event.commissions} />
       {event.photos && event.photos.length > 0 && (
@@ -284,7 +286,7 @@ function PastEventCard({ event }: { event: CDDEvent }) {
             <img
               key={photo}
               src={photo}
-              alt={`${event.title}`}
+              alt={pick(event.title, locale)}
               loading="lazy"
               className="rounded-xl object-cover w-full h-28"
             />
@@ -315,7 +317,7 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
       >
         <div className="flex items-start justify-between gap-4 mb-5">
           <h2 id="rsvp-title" className="text-2xl font-bold text-gray-900">
-            {done ? t.events.rsvpDone : `${t.events.rsvpTitle} — ${event.title}`}
+            {done ? t.events.rsvpDone : `${t.events.rsvpTitle} — ${pick(event.title, locale)}`}
           </h2>
           <button
             type="button"

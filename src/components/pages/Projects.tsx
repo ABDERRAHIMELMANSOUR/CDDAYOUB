@@ -52,9 +52,7 @@ export function Projects() {
 
             {/* Description */}
             <p className="text-xl text-gray-600 leading-relaxed mb-12">
-              Our strategic projects will be announced soon. Stay tuned for upcoming initiatives 
-              and partnerships that will drive cross-border collaboration, sustainable development, 
-              and economic growth.
+              {t.projects.announcement}
             </p>
 
             {/* Feature Cards */}

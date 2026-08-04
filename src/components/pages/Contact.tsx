@@ -45,33 +45,24 @@ export function Contact() {
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Location',
-      details: ['The Netherlands', t.contact.location],
+      title: t.contact.labelLocation,
+      details: [t.contact.country, t.contact.location],
     },
     {
       icon: Mail,
-      title: 'Email',
+      title: t.contact.labelEmail,
       details: ['contact@cddpaysbas.nl'],
     },
     {
       icon: Phone,
-      title: 'Phone',
+      title: t.contact.labelPhone,
       details: ['+31 6 40766802'],
     },
     {
       icon: Linkedin,
-      title: 'LinkedIn',
+      title: t.contact.labelLinkedin,
       details: ['Club des Dirigeants – CDD PAYS-BAS'],
     },
-  ];
-
-  const collaborationAreas = [
-    'Partnership Opportunities',
-    'Investment & Project Financing',
-    'Business Delegation Participation',
-    'Event Collaboration',
-    'Advisory & Expert Contribution',
-    'General Inquiry',
   ];
 
   return (
@@ -81,12 +72,9 @@ export function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-              Contact & Collaboration
+              {t.contact.heroTitle}
             </h1>
-            <p className="text-xl text-blue-100">
-              Connect with CDD Pays-Bas to explore partnerships, join our network, 
-              or participate in cross-border initiatives.
-            </p>
+            <p className="text-xl text-blue-100">{t.contact.heroSubtitle}</p>
           </div>
         </div>
       </section>
@@ -98,10 +86,7 @@ export function Contact() {
             {/* Contact Information */}
             <div className="lg:col-span-1">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.getInTouch}</h2>
-              <p className="text-gray-600 mb-8">
-                We welcome inquiries from business leaders, investors, institutions, 
-                and organizations interested in cross-border collaboration.
-              </p>
+              <p className="text-gray-600 mb-8">{t.contact.introText}</p>
 
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
@@ -121,8 +106,8 @@ export function Contact() {
 
               <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-100">
                 <h3 className="font-semibold text-gray-900 mb-2">{t.contact.officeHours}</h3>
-                <p className="text-sm text-gray-600">Monday - Friday</p>
-                <p className="text-sm text-gray-600">9:00 AM - 6:00 PM CET</p>
+                <p className="text-sm text-gray-600">{t.contact.weekdays}</p>
+                <p className="text-sm text-gray-600">{t.contact.hours}</p>
               </div>
             </div>
 
@@ -137,16 +122,14 @@ export function Contact() {
                       <Send className="h-8 w-8 text-green-600" />
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{t.contact.sent}</h3>
-                    <p className="text-gray-600">
-                      Thank you for contacting CDD Pays-Bas. We'll get back to you within 24-48 hours.
-                    </p>
+                    <p className="text-gray-600">{t.contact.sentText}</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name *
+                          {t.contact.name} *
                         </label>
                         <input
                           type="text"
@@ -156,13 +139,13 @@ export function Contact() {
                           value={formData.name}
                           onChange={handleChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Your name"
+                          placeholder={t.contact.namePlaceholder}
                         />
                       </div>
 
                       <div>
                         <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-2">
-                          Organization
+                          {t.contact.organisation}
                         </label>
                         <input
                           type="text"
@@ -171,7 +154,7 @@ export function Contact() {
                           value={formData.organization}
                           onChange={handleChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="Company or institution"
+                          placeholder={t.contact.orgPlaceholder}
                         />
                       </div>
                     </div>
@@ -179,7 +162,7 @@ export function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Email Address *
+                          {t.contact.email} *
                         </label>
                         <input
                           type="email"
@@ -189,13 +172,13 @@ export function Contact() {
                           value={formData.email}
                           onChange={handleChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="your.email@example.com"
+                          placeholder={t.contact.emailPlaceholder}
                         />
                       </div>
 
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                          Phone Number
+                          {t.contact.phone}
                         </label>
                         <input
                           type="tel"
@@ -204,14 +187,14 @@ export function Contact() {
                           value={formData.phone}
                           onChange={handleChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          placeholder="+31 XX XXX XXXX"
+                          placeholder={t.contact.phonePlaceholder}
                         />
                       </div>
                     </div>
 
                     <div>
                       <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
-                        Area of Interest *
+                        {t.contact.areaOfInterest} *
                       </label>
                       <select
                         id="interest"
@@ -222,7 +205,7 @@ export function Contact() {
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       >
                         <option value="">{t.contact.selectOption}</option>
-                        {collaborationAreas.map((area, index) => (
+                        {t.contact.interests.map((area, index) => (
                           <option key={index} value={area}>
                             {area}
                           </option>
@@ -232,7 +215,7 @@ export function Contact() {
 
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        Subject *
+                        {t.contact.subject} *
                       </label>
                       <input
                         type="text"
@@ -242,13 +225,13 @@ export function Contact() {
                         value={formData.subject}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Brief subject line"
+                        placeholder={t.contact.subjectPlaceholder}
                       />
                     </div>
 
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
+                        {t.contact.message} *
                       </label>
                       <textarea
                         id="message"
@@ -258,7 +241,7 @@ export function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="Tell us about your inquiry or collaboration interest..."
+                        placeholder={t.contact.messagePlaceholder}
                       />
                     </div>
 
@@ -267,7 +250,7 @@ export function Contact() {
                       className="w-full md:w-auto px-8 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors flex items-center justify-center"
                     >
                       <Send className="h-5 w-5 mr-2" />
-                      Send Message
+                      {t.contact.submit}
                     </button>
                   </form>
                 )}
@@ -283,7 +266,7 @@ export function Contact() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.contact.whoShouldContact}</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              CDD Pays-Bas welcomes engagement from diverse stakeholders
+              {t.contact.whoShouldContactSubtitle}
             </p>
           </div>
 
@@ -305,19 +288,15 @@ export function Contact() {
       <section className="py-12 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
-            <h3 className="font-semibold text-gray-900 mb-2">Privacy &amp; Data Protection</h3>
-            <p className="text-sm text-gray-700">
-              Your information will be handled in accordance with European data protection regulations.
-              We will only use your contact details to respond to your inquiry and may add you to our
-              professional network mailing list if you express interest. You can unsubscribe at any time.
-            </p>
+            <h3 className="font-semibold text-gray-900 mb-2">{t.contact.privacyTitle}</h3>
+            <p className="text-sm text-gray-700">{t.contact.privacyText}</p>
             {/* A paragraph is not a privacy statement — this links to the real one. */}
             <p className="text-sm text-gray-700 mt-3">
-              Read our{' '}
+              {t.contact.privacyLinkIntro}{' '}
               <Link to="/privacy" className="text-blue-700 underline hover:text-blue-900 font-medium">
-                privacy statement
+                {t.contact.privacyLinkText}
               </Link>{' '}
-              for full details on what we collect, why, how long we keep it, and your rights.
+              {t.contact.privacyLinkOutro}
             </p>
           </div>
         </div>

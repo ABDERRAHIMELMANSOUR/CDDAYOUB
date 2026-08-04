@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useTranslation } from '../../i18n/LocaleProvider';
 import { Linkedin, Mail, Award, Globe2, Users, TrendingUp } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { BrandedImage } from '../BrandedImage';
@@ -14,45 +15,26 @@ export function Leadership() {
    * The remaining seats are confirmed with the treasurer before publishing
    * (ticket 10); only verified officers are listed here.
    */
+  const t = useTranslation();
+
   const boardMembers = [
     {
       name: 'Nouraddine Gribi',
-      role: 'President',
-      bio: 'Leads CDD Pays-Bas with a strategic vision focused on strengthening economic bridges between Morocco and the Netherlands. Drives partnerships, governance, and sustainable impact initiatives.',
       photo: presidentPhoto,
       linkedin: 'https://www.linkedin.com/in/nouraddine-gribi-4a639435/',
     },
     {
       name: 'Ahmed Rahmouni',
-      role: 'Treasurer',
-      bio: 'International business professional with strong financial and commercial expertise. Supports CDD Pays-Bas with strategic financial oversight and cross-border business insight.',
       photo: treasurerPhoto,
       linkedin: 'https://www.linkedin.com/in/ahmed-rahmouni-prfile/',
     },
-  ];
+  ].map((member) => ({ ...member, ...t.leadership.boardBios[member.name] }));
 
-  const leadershipHighlights = [
-    {
-      icon: Award,
-      title: 'Leadership & Governance',
-      description: 'Driving strategic vision and organizational excellence',
-    },
-    {
-      icon: Globe2,
-      title: 'Cross-Border Cooperation',
-      description: 'Netherlands ↔ Morocco partnerships and collaboration',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Entrepreneurship & Ecosystem Building',
-      description: 'Supporting entrepreneurs and fostering innovation',
-    },
-    {
-      icon: Users,
-      title: 'Institutional Credibility',
-      description: 'Building trusted international partnerships',
-    },
-  ];
+  const HIGHLIGHT_ICONS = [Award, Globe2, TrendingUp, Users];
+  const leadershipHighlights = t.leadership.highlights.map((highlight, i) => ({
+    icon: HIGHLIGHT_ICONS[i] ?? Award,
+    ...highlight,
+  }));
 
   return (
     <div>
@@ -64,15 +46,12 @@ export function Leadership() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="max-w-4xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Leadership
+              {t.leadership.eyebrow}
             </div>
             <h1 className="text-5xl lg:text-6xl font-bold mb-8 text-white tracking-tight">
-              Leadership & Governance
+              {t.leadership.title}
             </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Our team brings together decades of expertise in international business, 
-              economic diplomacy, and strategic leadership across Europe, Morocco, and Africa.
-            </p>
+            <p className="text-xl text-gray-300 leading-relaxed">{t.leadership.subtitle}</p>
           </div>
         </div>
       </section>
@@ -82,10 +61,10 @@ export function Leadership() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              President
+              {t.leadership.president}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Mr. Nouraddine Gribi</h2>
-            <p className="text-xl text-blue-600 font-semibold">President – CDD Pays-Bas</p>
+            <p className="text-xl text-blue-600 font-semibold">{t.leadership.presidentRole}</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-16">
@@ -105,10 +84,10 @@ export function Leadership() {
             <div className="space-y-8">
               <div className="prose prose-lg">
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  Nouraddine Gribi is the President of CDD Pays-Bas and a strategic leader dedicated to strengthening economic and institutional ties between Morocco and the Netherlands. With extensive experience in business development, governance, and international partnerships, he drives high-impact collaborations between public and private stakeholders.
+                  {t.leadership.presidentBio1}
                 </p>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  He actively promotes entrepreneurship, inclusion, and sustainable growth within the Moroccan-Dutch ecosystem. Through his leadership, CDD Pays-Bas continues to build bridges, create opportunities, and deliver measurable value for its members and partners.
+                  {t.leadership.presidentBio2}
                 </p>
               </div>
 
@@ -118,7 +97,7 @@ export function Leadership() {
                   className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 font-medium"
                 >
                   <Mail className="h-5 w-5 mr-2" />
-                  Contact
+                  {t.leadership.contactLabel}
                 </a>
                 <a
                   href="https://www.linkedin.com/in/nouraddine-gribi-4a639435/"
@@ -152,10 +131,10 @@ export function Leadership() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Founder
+              {t.leadership.founder}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Mr. Driss DRIF</h2>
-            <p className="text-xl text-blue-600 font-semibold">Founder & President – CDD</p>
+            <p className="text-xl text-blue-600 font-semibold">{t.leadership.founderRole}</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-16">
@@ -174,16 +153,8 @@ export function Leadership() {
 
             <div className="space-y-8">
               <div className="prose prose-lg">
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  Driss DRIF is the Founder and President of CDD (Club des Dirigeants), an organization established 
-                  with the vision of connecting leaders, fostering strategic dialogue, and building strong bridges 
-                  between Morocco and international ecosystems.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-lg">
-                  Under his leadership, CDD has become a growing network of decision-makers and advisors across sectors, 
-                  driving impactful collaborations between public and private stakeholders. His initiative laid the 
-                  foundation for CDD Pays-Bas, which continues this legacy in the Netherlands.
-                </p>
+                <p className="text-gray-700 leading-relaxed text-lg">{t.leadership.founderBio1}</p>
+                <p className="text-gray-700 leading-relaxed text-lg">{t.leadership.founderBio2}</p>
               </div>
 
               <div className="flex flex-wrap gap-3">
@@ -205,14 +176,13 @@ export function Leadership() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-12">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Leadership Continuity
+              {t.leadership.continuityEyebrow}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-              A Shared Vision
+              {t.leadership.continuityTitle}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              United by a commitment to connecting leaders, fostering collaboration, and building 
-              bridges between the Netherlands, Morocco, and Africa.
+              {t.leadership.continuitySubtitle}
             </p>
           </div>
 
@@ -226,20 +196,16 @@ export function Leadership() {
               belongs here.
             */}
             <BrandedImage
-              label="From vision to reality"
-              title="CDD and CDD Pays-Bas"
+              label={t.leadership.fromVisionTitle}
+              title={t.leadership.visionCaption}
               caption="Replace with a photograph of Nouraddine Gribi and Driss DRIF."
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 p-12">
               <div className="max-w-4xl mx-auto text-center text-white">
-                <p className="text-2xl font-semibold mb-4">
-                  From Vision to Reality
-                </p>
+                <p className="text-2xl font-semibold mb-4">{t.leadership.fromVisionTitle}</p>
                 <p className="text-lg text-gray-200 leading-relaxed">
-                  Driss DRIF founded CDD with a vision of connecting leaders and fostering strategic dialogue. 
-                  Nouraddine Gribi continues this legacy as President of CDD Pays-Bas, strengthening ties between 
-                  the Netherlands, Morocco, and Africa through impactful partnerships and sustainable development.
+                  {t.leadership.fromVisionText}
                 </p>
               </div>
             </div>
@@ -255,8 +221,8 @@ export function Leadership() {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-2xl"></div>
             {/* Was a generic stock boardroom photo. */}
             <BrandedImage
-              label="Our team"
-              title="Experienced leadership"
+              label={t.leadership.teamEyebrow}
+              title={t.leadership.teamCaption}
               caption="Replace with a photograph from a CDD Pays-Bas board or member gathering."
               className="relative"
             />
@@ -264,13 +230,12 @@ export function Leadership() {
 
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Our Team
+              {t.leadership.teamEyebrow}
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">Experienced Leadership</h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              CDD Pays-Bas is guided by a distinguished board and advisory team with proven track records 
-              in international business, public policy, and strategic development.
-            </p>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+              {t.leadership.teamTitle}
+            </h2>
+            <p className="text-xl text-gray-600 leading-relaxed">{t.leadership.teamText}</p>
           </div>
         </div>
       </section>
@@ -280,36 +245,33 @@ export function Leadership() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Governance
+              {t.leadership.boardEyebrow}
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-              The Board
+              {t.leadership.boardTitle}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              CDD Pays-Bas is governed by its statutory board, distinct from the Advisory
-              Council of senior experts who advise the organisation.
+              {t.leadership.boardIntro}
             </p>
           </div>
 
           {/* Statutory facts — the details an institutional partner checks first. */}
           <div className="max-w-4xl mx-auto mb-16 grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="rounded-2xl border border-gray-200 p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Remuneration</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Board members serve unpaid. Expenses incurred on behalf of the organisation are
-                reimbursed against receipt.
-              </p>
+              <h3 className="font-semibold text-gray-900 mb-2">{t.leadership.remuneration}</h3>
+              <p className="text-gray-700 leading-relaxed">{t.leadership.remunerationText}</p>
             </div>
             <div className="rounded-2xl border border-gray-200 p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">Statutory details</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                {t.leadership.statutoryDetails}
+              </h3>
               <p className="text-gray-700 leading-relaxed">
-                Legal form, KvK and RSIN, together with our statutes, policy plan, annual report and
-                financial summary, are published on our{' '}
+                {t.leadership.statutoryText}{' '}
                 <Link
                   to="/transparency"
                   className="text-blue-700 underline hover:text-blue-900 font-medium"
                 >
-                  transparency page
+                  {t.leadership.transparencyLink}
                 </Link>
                 .
               </p>
@@ -356,33 +318,18 @@ export function Leadership() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Governance
+              {t.leadership.governanceEyebrow}
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">Governance Principles</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+              {t.leadership.governanceTitle}
+            </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              CDD Pays-Bas operates with transparency, accountability, and strategic focus
+              {t.leadership.governanceText}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: 'Transparency',
-                description: 'Open communication and clear decision-making processes',
-              },
-              {
-                title: 'Accountability',
-                description: 'Responsible stewardship and measurable outcomes',
-              },
-              {
-                title: 'Inclusion',
-                description: 'Diverse perspectives and equitable representation',
-              },
-              {
-                title: 'Excellence',
-                description: 'High standards in all our activities and partnerships',
-              },
-            ].map((principle, index) => (
+            {t.leadership.principles.map((principle, index) => (
               <div key={index} className="text-center group">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6 border border-white/10 group-hover:scale-110 transition-transform duration-300">
                   <span className="text-3xl font-bold text-blue-400">{index + 1}</span>
@@ -399,18 +346,15 @@ export function Leadership() {
       <section className="py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-            Interested in Contributing?
+            {t.leadership.ctaTitle}
           </h2>
-          <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-            CDD Pays-Bas welcomes senior experts and advisors who share our commitment to 
-            cross-border collaboration and sustainable development.
-          </p>
-          <a
-            href="/contact"
+          <p className="text-xl text-gray-600 mb-12 leading-relaxed">{t.leadership.ctaText}</p>
+          <Link
+            to="/contact"
             className="inline-block px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg"
           >
-            Contact Us
-          </a>
+            {t.leadership.ctaButton}
+          </Link>
         </div>
       </section>
     </div>

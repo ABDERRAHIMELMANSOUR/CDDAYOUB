@@ -65,17 +65,17 @@ export function Advisors() {
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              Advisory Council
+              {t.advisorsPage.eyebrow}
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
               {t.nav.advisoryCouncil}
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed">
-              {ADVISORS.length} senior advisors across {COMMISSIONS.length} commissions, bringing
-              domain expertise to the work CDD Pays-Bas convenes. Our statutory board is presented
-              separately on the{' '}
+              {ADVISORS.length}{' '}
+              {t.advisorsPage.introBefore.replace('{commissions}', String(COMMISSIONS.length))}{' '}
+              {t.advisorsPage.introAfter}{' '}
               <Link to="/leadership" className="underline hover:text-white">
-                Leadership page
+                {t.advisorsPage.leadershipLink}
               </Link>
               .
             </p>
@@ -141,16 +141,15 @@ export function Advisors() {
       {/* Join CTA */}
       <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Join the Advisory Council</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.advisorsPage.joinTitle}</h2>
           <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-            CDD Pays-Bas welcomes senior experts who share our commitment to building durable ties
-            between the Netherlands and Morocco.
+            {t.advisorsPage.joinText}
           </p>
           <Link
             to="/contact"
             className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg"
           >
-            Get in touch
+            {t.common.getInTouch}
           </Link>
         </div>
       </section>
@@ -184,6 +183,7 @@ function FilterButton({
 }
 
 function AdvisorCard({ advisor }: { advisor: Advisor }) {
+  const { locale } = useLocale();
   return (
     <div className="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
       <div className="p-8">
@@ -205,9 +205,9 @@ function AdvisorCard({ advisor }: { advisor: Advisor }) {
           {advisor.name}
         </h3>
         <p className="text-sm text-blue-700 font-medium mb-4 text-center leading-snug">
-          {advisor.role}
+          {pick(advisor.role, locale)}
         </p>
-        <p className="text-sm text-gray-700 leading-relaxed text-center">{advisor.bio}</p>
+        <p className="text-sm text-gray-700 leading-relaxed text-center">{pick(advisor.bio, locale)}</p>
 
         {advisor.linkedin && (
           <div className="mt-6 flex justify-center">
