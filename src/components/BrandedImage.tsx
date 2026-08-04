@@ -37,7 +37,12 @@ export function BrandedImage({
   title?: string;
   /** Supporting line at the bottom of the placeholder. */
   caption?: string;
-  icon?: React.ComponentType<{ className?: string; 'aria-hidden'?: boolean }>;
+  /**
+   * Icon component, typically from lucide-react. Typed against React's own
+   * SVG props so lucide's `aria-hidden?: Booleanish` is accepted — a stricter
+   * hand-written shape rejects every lucide icon.
+   */
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   className?: string;
   variant?: 'deep' | 'light';
 }) {
