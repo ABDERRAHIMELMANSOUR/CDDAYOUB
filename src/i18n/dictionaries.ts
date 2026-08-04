@@ -172,6 +172,107 @@ export interface Dictionary {
     governanceTrust: string;
     opportunity: string;
   };
+  about: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    moroccoHeading: string;
+    moroccoDefault: string;
+    transparencyLine: string;
+    transparencyLink: string;
+    whoWeAre: string;
+    ourMission: string;
+    ourVision: string;
+    whatWeDo: string;
+    whatWeDoItems: { title: string; description: string }[];
+    whoWeServe: string;
+    stakeholders: string;
+    serveItems: string[];
+    whyTitle: string;
+    whyItems: { title: string; description: string }[];
+  };
+  leadership: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    president: string;
+    founder: string;
+    boardEyebrow: string;
+    boardTitle: string;
+    boardIntro: string;
+    remuneration: string;
+    remunerationText: string;
+    statutoryDetails: string;
+    statutoryText: string;
+    transparencyLink: string;
+    governanceEyebrow: string;
+    governanceTitle: string;
+    governanceText: string;
+    principles: { title: string; description: string }[];
+    teamEyebrow: string;
+    teamTitle: string;
+    teamText: string;
+    visionCaption: string;
+    teamCaption: string;
+  };
+  contact: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    getInTouch: string;
+    sendMessage: string;
+    sent: string;
+    sentText: string;
+    name: string;
+    email: string;
+    organisation: string;
+    subject: string;
+    message: string;
+    areaOfInterest: string;
+    selectOption: string;
+    submit: string;
+    namePlaceholder: string;
+    orgPlaceholder: string;
+    subjectPlaceholder: string;
+    officeHours: string;
+    weekdays: string;
+    location: string;
+    whoShouldContact: string;
+    interests: string[];
+    audiences: { title: string; description: string }[];
+    privacyTitle: string;
+    privacyText: string;
+    privacyLinkIntro: string;
+    privacyLinkText: string;
+  };
+  partnerships: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    caption: string;
+    typesTitle: string;
+    types: { title: string; description: string }[];
+    benefitsTitle: string;
+    benefits: { title: string; description: string }[];
+    ctaTitle: string;
+    ctaText: string;
+    ctaButton: string;
+  };
+  projects: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    comingSoon: string;
+    comingSoonText: string;
+    pillars: { title: string; description: string }[];
+    ctaTitle: string;
+    ctaText: string;
+  };
+  legal: {
+    authoritativeTitle: string;
+    authoritativeText: string;
+    lastUpdated: string;
+  };
   insights: {
     title: string;
     subtitle: string;
@@ -377,6 +478,173 @@ const en: Dictionary = {
     relatedInsights: 'Related insights',
     governanceTrust: 'Governance & trust',
     opportunity: 'The Netherlands–Morocco opportunity',
+  },
+  about: {
+    eyebrow: 'About Us',
+    title: 'About CDD Pays-Bas',
+    subtitle:
+      'An international platform connecting decision-makers and fostering collaboration between Europe, Morocco, and Africa.',
+    moroccoHeading: 'Our relationship to CDD Morocco',
+    moroccoDefault:
+      'CDD Pays-Bas works in close partnership with Club des Dirigeants (CDD), founded in Morocco, around a shared mission of connecting business leaders across both markets.',
+    transparencyLine: 'Our statutory details and governance documents are published on our',
+    transparencyLink: 'transparency page',
+    whoWeAre: 'Who We Are',
+    ourMission: 'Our Mission',
+    ourVision: 'Our Vision',
+    whatWeDo: 'What We Do',
+    whatWeDoItems: [
+      { title: 'Economic Diplomacy', description: 'Representing and advocating for business interests across Europe, Morocco, and Africa' },
+      { title: 'Strategic Partnerships', description: 'Facilitating high-value connections between corporations, investors, and institutions' },
+      { title: 'Knowledge Exchange', description: 'Organizing thought leadership events, roundtables, and executive programs' },
+      { title: 'Project Development', description: 'Supporting cross-border initiatives in energy, infrastructure, and innovation' },
+    ],
+    whoWeServe: 'Who We Serve',
+    stakeholders: 'Our Stakeholders',
+    serveItems: [
+      'Business Leaders & CEOs',
+      'Investors & Project Developers',
+      'Public Institutions & Policymakers',
+      'Entrepreneurs & Innovators',
+      'Senior Advisors & Experts',
+      'Knowledge & Research Partners',
+      'Diaspora Networks',
+      'International Organizations',
+    ],
+    whyTitle: 'Why CDD Pays-Bas',
+    whyItems: [
+      { title: 'Cross-Border Network', description: 'Access to a vetted ecosystem spanning Europe, Morocco, and Africa with institutional reach' },
+      { title: 'Credibility & Trust', description: 'A governance-led organisation with named advisors and published statutes' },
+      { title: 'Impact-Oriented', description: 'Focused on measurable outcomes rather than visibility alone' },
+    ],
+  },
+  leadership: {
+    eyebrow: 'Leadership',
+    title: 'Leadership & Governance',
+    subtitle:
+      'Experienced leaders guiding CDD Pays-Bas with a commitment to transparency, accountability and measurable impact.',
+    president: 'President',
+    founder: 'Founder',
+    boardEyebrow: 'Governance',
+    boardTitle: 'The Board',
+    boardIntro:
+      'CDD Pays-Bas is governed by its statutory board, distinct from the Advisory Council of senior experts who advise the organisation.',
+    remuneration: 'Remuneration',
+    remunerationText:
+      'Board members serve unpaid. Expenses incurred on behalf of the organisation are reimbursed against receipt.',
+    statutoryDetails: 'Statutory details',
+    statutoryText:
+      'Legal form, KvK and RSIN, together with our statutes, policy plan, annual report and financial summary, are published on our',
+    transparencyLink: 'transparency page',
+    governanceEyebrow: 'Governance',
+    governanceTitle: 'Governance Principles',
+    governanceText: 'CDD Pays-Bas operates with transparency, accountability, and strategic focus',
+    principles: [
+      { title: 'Transparency', description: 'Open communication and clear decision-making processes' },
+      { title: 'Accountability', description: 'Responsible stewardship and measurable outcomes' },
+      { title: 'Inclusion', description: 'Diverse perspectives and equitable representation' },
+      { title: 'Excellence', description: 'High standards in all our activities and partnerships' },
+    ],
+    teamEyebrow: 'Our Team',
+    teamTitle: 'Experienced Leadership',
+    teamText:
+      'CDD Pays-Bas is guided by a distinguished board and advisory team with proven track records in international business, public policy, and strategic development.',
+    visionCaption: 'From vision to reality',
+    teamCaption: 'Experienced leadership',
+  },
+  contact: {
+    eyebrow: 'Contact',
+    title: 'Get in Touch',
+    subtitle:
+      'Whether you are exploring partnership, membership or a specific project, we would like to hear from you.',
+    getInTouch: 'Get in Touch',
+    sendMessage: 'Send Us a Message',
+    sent: 'Message Sent!',
+    sentText: 'Thank you for reaching out. We will respond as soon as possible.',
+    name: 'Name',
+    email: 'Email',
+    organisation: 'Organization',
+    subject: 'Subject',
+    message: 'Message',
+    areaOfInterest: 'Area of Interest',
+    selectOption: 'Select an option',
+    submit: 'Send Message',
+    namePlaceholder: 'Your name',
+    orgPlaceholder: 'Company or institution',
+    subjectPlaceholder: 'Brief subject line',
+    officeHours: 'Office Hours',
+    weekdays: 'Monday - Friday',
+    location: 'Rotterdam & Amsterdam',
+    whoShouldContact: 'Who Should Contact Us?',
+    interests: [
+      'General Inquiry',
+      'Partnership Opportunities',
+      'Investment & Project Financing',
+      'Business Delegation Participation',
+      'Advisory & Expert Contribution',
+      'Event Collaboration',
+      'Media & Press',
+    ],
+    audiences: [
+      { title: 'Business Leaders & CEOs', description: 'Explore strategic partnerships and cross-border opportunities' },
+      { title: 'Investors', description: 'Access vetted projects and investment opportunities' },
+      { title: 'Project Developers', description: 'Present projects to our network of partners and investors' },
+      { title: 'Government & Institutions', description: 'Collaborate on economic diplomacy and policy initiatives' },
+      { title: 'Knowledge Partners', description: 'Share expertise and participate in advisory capacity' },
+      { title: 'Media & Press', description: 'Request interviews, information, or event coverage' },
+    ],
+    privacyTitle: 'Privacy & Data Protection',
+    privacyText:
+      'Your information will be handled in accordance with European data protection regulations. We will only use your contact details to respond to your inquiry and may add you to our professional network mailing list if you express interest. You can unsubscribe at any time.',
+    privacyLinkIntro: 'Read our',
+    privacyLinkText: 'privacy statement',
+  },
+  partnerships: {
+    eyebrow: 'Partnerships',
+    title: 'Partner With Us',
+    subtitle:
+      'CDD Pays-Bas builds durable relationships with organisations that share our commitment to cross-border collaboration.',
+    caption: 'Building durable institutional relationships',
+    typesTitle: 'Partnership Types',
+    types: [
+      { title: 'Corporate Partners', description: 'Leading corporations and multinationals committed to cross-border growth and innovation' },
+      { title: 'Investment Partners', description: 'Private equity firms, family offices, and institutional investors driving strategic investments' },
+      { title: 'Institutional Partners', description: 'Government agencies, diplomatic missions, and international organizations' },
+      { title: 'Knowledge Partners', description: 'Universities, research institutes and think tanks contributing expertise' },
+      { title: 'Diaspora Networks', description: 'Community organizations, alumni groups and professional associations' },
+      { title: 'Business Associations', description: 'Business clubs, chambers of commerce, and sector-specific organizations' },
+    ],
+    benefitsTitle: 'What Partnership Offers',
+    benefits: [
+      { title: 'Access to Networks', description: 'Connect with decision-makers, investors, and experts across Europe, Morocco, and Africa' },
+      { title: 'Knowledge Exchange', description: 'Access insights, research, and expertise relevant to your sector and geography' },
+      { title: 'Joint Initiatives', description: 'Participate in high-level delegations, projects, and collaborative initiatives' },
+    ],
+    ctaTitle: 'Become a Partner',
+    ctaText:
+      'Tell us about your organisation and what you would like to build with CDD Pays-Bas.',
+    ctaButton: 'Partner With Us',
+  },
+  projects: {
+    eyebrow: 'Projects',
+    title: 'Strategic Projects',
+    subtitle: 'Cross-border initiatives developed with our members and partners.',
+    comingSoon: 'Coming Soon',
+    comingSoonText:
+      'Our first strategic projects are in development. They will be published here, tagged to the commission that leads them.',
+    pillars: [
+      { title: 'Strategic Focus', description: 'Projects aligned with the four commissions and both national agendas' },
+      { title: 'Multi-Stakeholder', description: 'Built with business, public institutions and knowledge partners together' },
+      { title: 'Measurable Impact', description: 'Defined outcomes, reported to the board and to members' },
+    ],
+    ctaTitle: 'Propose a Project',
+    ctaText: 'If you are developing a cross-border initiative, we would like to hear about it.',
+  },
+  legal: {
+    authoritativeTitle: 'Authoritative version',
+    authoritativeText:
+      'This document is provided in English, Dutch and French for convenience. In the event of any discrepancy between versions, the English text prevails as the authoritative legal reference.',
+    lastUpdated: 'Last updated',
   },
   insights: {
     title: 'News, spotlights & briefings',
@@ -585,6 +853,172 @@ const nl: Dictionary = {
     relatedInsights: 'Gerelateerde inzichten',
     governanceTrust: 'Governance & vertrouwen',
     opportunity: 'De kans tussen Nederland en Marokko',
+  },
+  about: {
+    eyebrow: 'Over ons',
+    title: 'Over CDD Pays-Bas',
+    subtitle:
+      'Een internationaal platform dat besluitvormers verbindt en samenwerking bevordert tussen Europa, Marokko en Afrika.',
+    moroccoHeading: 'Onze relatie met CDD Marokko',
+    moroccoDefault:
+      'CDD Pays-Bas werkt nauw samen met Club des Dirigeants (CDD), opgericht in Marokko, rond een gedeelde missie om bestuurders in beide markten te verbinden.',
+    transparencyLine: 'Onze statutaire gegevens en governancedocumenten zijn gepubliceerd op onze',
+    transparencyLink: 'transparantiepagina',
+    whoWeAre: 'Wie wij zijn',
+    ourMission: 'Onze missie',
+    ourVision: 'Onze visie',
+    whatWeDo: 'Wat wij doen',
+    whatWeDoItems: [
+      { title: 'Economische diplomatie', description: 'Zakelijke belangen vertegenwoordigen en behartigen in Europa, Marokko en Afrika' },
+      { title: 'Strategische partnerschappen', description: 'Waardevolle verbindingen faciliteren tussen bedrijven, investeerders en instellingen' },
+      { title: 'Kennisuitwisseling', description: 'Organiseren van thought leadership-evenementen, rondetafelgesprekken en executive programma\'s' },
+      { title: 'Projectontwikkeling', description: 'Ondersteunen van grensoverschrijdende initiatieven in energie, infrastructuur en innovatie' },
+    ],
+    whoWeServe: 'Voor wie wij werken',
+    stakeholders: 'Onze stakeholders',
+    serveItems: [
+      'Bestuurders & CEO\'s',
+      'Investeerders & projectontwikkelaars',
+      'Publieke instellingen & beleidsmakers',
+      'Ondernemers & innovators',
+      'Senior adviseurs & experts',
+      'Kennis- & onderzoekspartners',
+      'Diasporanetwerken',
+      'Internationale organisaties',
+    ],
+    whyTitle: 'Waarom CDD Pays-Bas',
+    whyItems: [
+      { title: 'Grensoverschrijdend netwerk', description: 'Toegang tot een gescreend ecosysteem in Europa, Marokko en Afrika met institutioneel bereik' },
+      { title: 'Geloofwaardigheid & vertrouwen', description: 'Een governance-gedreven organisatie met bij naam genoemde adviseurs en gepubliceerde statuten' },
+      { title: 'Impactgericht', description: 'Gericht op meetbare resultaten in plaats van louter zichtbaarheid' },
+    ],
+  },
+  leadership: {
+    eyebrow: 'Leiderschap',
+    title: 'Leiderschap & governance',
+    subtitle:
+      'Ervaren bestuurders die CDD Pays-Bas leiden met toewijding aan transparantie, verantwoording en meetbare impact.',
+    president: 'Voorzitter',
+    founder: 'Oprichter',
+    boardEyebrow: 'Governance',
+    boardTitle: 'Het bestuur',
+    boardIntro:
+      'CDD Pays-Bas wordt bestuurd door het statutaire bestuur, dat losstaat van de Raad van Adviseurs met senior experts die de organisatie adviseren.',
+    remuneration: 'Vergoeding',
+    remunerationText:
+      'Bestuursleden zijn onbezoldigd. Kosten die namens de organisatie worden gemaakt, worden op declaratiebasis vergoed.',
+    statutoryDetails: 'Statutaire gegevens',
+    statutoryText:
+      'Rechtsvorm, KvK en RSIN, samen met onze statuten, beleidsplan, jaarverslag en financiële verantwoording, zijn gepubliceerd op onze',
+    transparencyLink: 'transparantiepagina',
+    governanceEyebrow: 'Governance',
+    governanceTitle: 'Governanceprincipes',
+    governanceText: 'CDD Pays-Bas werkt transparant, verantwoordelijk en met strategische focus',
+    principles: [
+      { title: 'Transparantie', description: 'Open communicatie en heldere besluitvormingsprocessen' },
+      { title: 'Verantwoording', description: 'Verantwoord beheer en meetbare resultaten' },
+      { title: 'Inclusie', description: 'Diverse perspectieven en evenwichtige vertegenwoordiging' },
+      { title: 'Excellentie', description: 'Hoge standaarden in al onze activiteiten en partnerschappen' },
+    ],
+    teamEyebrow: 'Ons team',
+    teamTitle: 'Ervaren leiderschap',
+    teamText:
+      'CDD Pays-Bas wordt geleid door een vooraanstaand bestuur en adviesteam met bewezen staat van dienst in internationaal ondernemen, publiek beleid en strategische ontwikkeling.',
+    visionCaption: 'Van visie naar werkelijkheid',
+    teamCaption: 'Ervaren leiderschap',
+  },
+  contact: {
+    eyebrow: 'Contact',
+    title: 'Neem contact op',
+    subtitle:
+      'Of u nu een partnerschap, een lidmaatschap of een concreet project verkent — wij horen graag van u.',
+    getInTouch: 'Neem contact op',
+    sendMessage: 'Stuur ons een bericht',
+    sent: 'Bericht verzonden!',
+    sentText: 'Dank voor uw bericht. Wij reageren zo spoedig mogelijk.',
+    name: 'Naam',
+    email: 'E-mailadres',
+    organisation: 'Organisatie',
+    subject: 'Onderwerp',
+    message: 'Bericht',
+    areaOfInterest: 'Interessegebied',
+    selectOption: 'Maak een keuze',
+    submit: 'Bericht versturen',
+    namePlaceholder: 'Uw naam',
+    orgPlaceholder: 'Bedrijf of instelling',
+    subjectPlaceholder: 'Korte omschrijving',
+    officeHours: 'Openingstijden',
+    weekdays: 'Maandag - vrijdag',
+    location: 'Rotterdam & Amsterdam',
+    whoShouldContact: 'Wie kan contact opnemen?',
+    interests: [
+      'Algemene vraag',
+      'Partnerschapsmogelijkheden',
+      'Investering & projectfinanciering',
+      'Deelname aan handelsmissie',
+      'Advies & expertbijdrage',
+      'Samenwerking bij evenementen',
+      'Media & pers',
+    ],
+    audiences: [
+      { title: 'Bestuurders & CEO\'s', description: 'Verken strategische partnerschappen en grensoverschrijdende kansen' },
+      { title: 'Investeerders', description: 'Krijg toegang tot gescreende projecten en investeringsmogelijkheden' },
+      { title: 'Projectontwikkelaars', description: 'Presenteer projecten aan ons netwerk van partners en investeerders' },
+      { title: 'Overheid & instellingen', description: 'Werk samen aan economische diplomatie en beleidsinitiatieven' },
+      { title: 'Kennispartners', description: 'Deel expertise en neem deel in een adviserende rol' },
+      { title: 'Media & pers', description: 'Vraag interviews, informatie of verslaglegging van evenementen aan' },
+    ],
+    privacyTitle: 'Privacy & gegevensbescherming',
+    privacyText:
+      'Uw gegevens worden verwerkt conform de Europese regelgeving voor gegevensbescherming. Wij gebruiken uw contactgegevens uitsluitend om op uw vraag te reageren en kunnen u bij interesse toevoegen aan onze mailinglijst. U kunt zich op elk moment afmelden.',
+    privacyLinkIntro: 'Lees onze',
+    privacyLinkText: 'privacyverklaring',
+  },
+  partnerships: {
+    eyebrow: 'Partnerschappen',
+    title: 'Word onze partner',
+    subtitle:
+      'CDD Pays-Bas bouwt duurzame relaties met organisaties die onze inzet voor grensoverschrijdende samenwerking delen.',
+    caption: 'Duurzame institutionele relaties opbouwen',
+    typesTitle: 'Soorten partnerschap',
+    types: [
+      { title: 'Corporate partners', description: 'Toonaangevende bedrijven en multinationals die zich inzetten voor grensoverschrijdende groei en innovatie' },
+      { title: 'Investeringspartners', description: 'Participatiemaatschappijen, family offices en institutionele investeerders achter strategische investeringen' },
+      { title: 'Institutionele partners', description: 'Overheidsinstanties, diplomatieke posten en internationale organisaties' },
+      { title: 'Kennispartners', description: 'Universiteiten, onderzoeksinstituten en denktanks die expertise inbrengen' },
+      { title: 'Diasporanetwerken', description: 'Gemeenschapsorganisaties, alumniverenigingen en beroepsverenigingen' },
+      { title: 'Brancheorganisaties', description: 'Businessclubs, kamers van koophandel en sectororganisaties' },
+    ],
+    benefitsTitle: 'Wat een partnerschap oplevert',
+    benefits: [
+      { title: 'Toegang tot netwerken', description: 'Kom in contact met besluitvormers, investeerders en experts in Europa, Marokko en Afrika' },
+      { title: 'Kennisuitwisseling', description: 'Krijg toegang tot inzichten, onderzoek en expertise die relevant zijn voor uw sector en regio' },
+      { title: 'Gezamenlijke initiatieven', description: 'Neem deel aan hoogwaardige missies, projecten en gezamenlijke initiatieven' },
+    ],
+    ctaTitle: 'Word partner',
+    ctaText: 'Vertel ons over uw organisatie en wat u samen met CDD Pays-Bas wilt opbouwen.',
+    ctaButton: 'Word onze partner',
+  },
+  projects: {
+    eyebrow: 'Projecten',
+    title: 'Strategische projecten',
+    subtitle: 'Grensoverschrijdende initiatieven ontwikkeld met onze leden en partners.',
+    comingSoon: 'Binnenkort',
+    comingSoonText:
+      'Onze eerste strategische projecten zijn in ontwikkeling. Zij worden hier gepubliceerd, gekoppeld aan de commissie die ze leidt.',
+    pillars: [
+      { title: 'Strategische focus', description: 'Projecten die aansluiten bij de vier commissies en de agenda van beide landen' },
+      { title: 'Meerdere partijen', description: 'Opgebouwd met bedrijfsleven, publieke instellingen en kennispartners samen' },
+      { title: 'Meetbare impact', description: 'Vastgestelde resultaten, gerapporteerd aan het bestuur en aan de leden' },
+    ],
+    ctaTitle: 'Dien een project in',
+    ctaText: 'Ontwikkelt u een grensoverschrijdend initiatief? Wij horen er graag over.',
+  },
+  legal: {
+    authoritativeTitle: 'Authentieke versie',
+    authoritativeText:
+      'Dit document wordt voor het gemak in het Engels, Nederlands en Frans aangeboden. Bij verschillen tussen de versies prevaleert de Engelse tekst als authentieke juridische referentie.',
+    lastUpdated: 'Laatst bijgewerkt',
   },
   insights: {
     title: 'Nieuws, portretten & briefings',
@@ -795,6 +1229,172 @@ const fr: Dictionary = {
     relatedInsights: 'Analyses associées',
     governanceTrust: 'Gouvernance & confiance',
     opportunity: "L'opportunité Pays-Bas–Maroc",
+  },
+  about: {
+    eyebrow: 'À propos',
+    title: 'À propos de CDD Pays-Bas',
+    subtitle:
+      "Une plateforme internationale qui relie les décideurs et favorise la collaboration entre l'Europe, le Maroc et l'Afrique.",
+    moroccoHeading: 'Notre relation avec CDD Maroc',
+    moroccoDefault:
+      'CDD Pays-Bas travaille en étroit partenariat avec le Club des Dirigeants (CDD), fondé au Maroc, autour d’une mission commune : relier les dirigeants des deux marchés.',
+    transparencyLine: 'Nos données statutaires et documents de gouvernance sont publiés sur notre',
+    transparencyLink: 'page de transparence',
+    whoWeAre: 'Qui nous sommes',
+    ourMission: 'Notre mission',
+    ourVision: 'Notre vision',
+    whatWeDo: 'Ce que nous faisons',
+    whatWeDoItems: [
+      { title: 'Diplomatie économique', description: "Représenter et défendre les intérêts économiques en Europe, au Maroc et en Afrique" },
+      { title: 'Partenariats stratégiques', description: 'Faciliter des mises en relation à forte valeur entre entreprises, investisseurs et institutions' },
+      { title: 'Échange de connaissances', description: "Organiser des événements de référence, des tables rondes et des programmes pour dirigeants" },
+      { title: 'Développement de projets', description: "Soutenir des initiatives transfrontalières dans l'énergie, les infrastructures et l'innovation" },
+    ],
+    whoWeServe: 'À qui nous nous adressons',
+    stakeholders: 'Nos parties prenantes',
+    serveItems: [
+      'Dirigeants & PDG',
+      'Investisseurs & porteurs de projets',
+      'Institutions publiques & décideurs politiques',
+      'Entrepreneurs & innovateurs',
+      'Conseillers seniors & experts',
+      'Partenaires de savoir & de recherche',
+      'Réseaux de la diaspora',
+      'Organisations internationales',
+    ],
+    whyTitle: 'Pourquoi CDD Pays-Bas',
+    whyItems: [
+      { title: 'Réseau transfrontalier', description: "Accès à un écosystème sélectionné couvrant l'Europe, le Maroc et l'Afrique, avec une portée institutionnelle" },
+      { title: 'Crédibilité & confiance', description: 'Une organisation guidée par sa gouvernance, avec des conseillers nommés et des statuts publiés' },
+      { title: 'Orientée impact', description: 'Centrée sur des résultats mesurables plutôt que sur la seule visibilité' },
+    ],
+  },
+  leadership: {
+    eyebrow: 'Direction',
+    title: 'Direction & gouvernance',
+    subtitle:
+      'Des dirigeants expérimentés qui guident CDD Pays-Bas avec un engagement de transparence, de responsabilité et d’impact mesurable.',
+    president: 'Président',
+    founder: 'Fondateur',
+    boardEyebrow: 'Gouvernance',
+    boardTitle: 'Le conseil',
+    boardIntro:
+      'CDD Pays-Bas est dirigé par son conseil statutaire, distinct du Conseil consultatif composé d’experts seniors qui conseillent l’organisation.',
+    remuneration: 'Rémunération',
+    remunerationText:
+      "Les membres du conseil exercent bénévolement. Les frais engagés pour le compte de l'organisation sont remboursés sur justificatif.",
+    statutoryDetails: 'Données statutaires',
+    statutoryText:
+      'La forme juridique, le KvK et le RSIN, ainsi que nos statuts, plan de politique, rapport annuel et compte rendu financier, sont publiés sur notre',
+    transparencyLink: 'page de transparence',
+    governanceEyebrow: 'Gouvernance',
+    governanceTitle: 'Principes de gouvernance',
+    governanceText: 'CDD Pays-Bas agit avec transparence, responsabilité et une orientation stratégique',
+    principles: [
+      { title: 'Transparence', description: 'Une communication ouverte et des processus de décision clairs' },
+      { title: 'Responsabilité', description: 'Une gestion responsable et des résultats mesurables' },
+      { title: 'Inclusion', description: 'Des perspectives diverses et une représentation équitable' },
+      { title: 'Excellence', description: 'Des standards élevés dans toutes nos activités et partenariats' },
+    ],
+    teamEyebrow: 'Notre équipe',
+    teamTitle: 'Une direction expérimentée',
+    teamText:
+      "CDD Pays-Bas est guidé par un conseil et une équipe consultative reconnus, aux parcours éprouvés dans les affaires internationales, les politiques publiques et le développement stratégique.",
+    visionCaption: 'De la vision à la réalité',
+    teamCaption: 'Une direction expérimentée',
+  },
+  contact: {
+    eyebrow: 'Contact',
+    title: 'Nous contacter',
+    subtitle:
+      "Que vous exploriez un partenariat, une adhésion ou un projet précis, nous serions heureux d'avoir de vos nouvelles.",
+    getInTouch: 'Nous contacter',
+    sendMessage: 'Envoyez-nous un message',
+    sent: 'Message envoyé !',
+    sentText: 'Merci de nous avoir écrit. Nous vous répondrons dans les meilleurs délais.',
+    name: 'Nom',
+    email: 'E-mail',
+    organisation: 'Organisation',
+    subject: 'Objet',
+    message: 'Message',
+    areaOfInterest: "Domaine d'intérêt",
+    selectOption: 'Sélectionnez une option',
+    submit: 'Envoyer le message',
+    namePlaceholder: 'Votre nom',
+    orgPlaceholder: 'Entreprise ou institution',
+    subjectPlaceholder: 'Objet en quelques mots',
+    officeHours: "Heures d'ouverture",
+    weekdays: 'Lundi - vendredi',
+    location: 'Rotterdam & Amsterdam',
+    whoShouldContact: 'Qui peut nous contacter ?',
+    interests: [
+      'Demande générale',
+      'Opportunités de partenariat',
+      'Investissement & financement de projets',
+      "Participation à une délégation d'affaires",
+      'Conseil & contribution d’expert',
+      'Collaboration événementielle',
+      'Médias & presse',
+    ],
+    audiences: [
+      { title: 'Dirigeants & PDG', description: 'Explorez des partenariats stratégiques et des opportunités transfrontalières' },
+      { title: 'Investisseurs', description: 'Accédez à des projets sélectionnés et à des opportunités d’investissement' },
+      { title: 'Porteurs de projets', description: 'Présentez vos projets à notre réseau de partenaires et d’investisseurs' },
+      { title: 'Institutions publiques', description: 'Collaborez sur la diplomatie économique et les initiatives de politique publique' },
+      { title: 'Partenaires de savoir', description: 'Partagez votre expertise et intervenez à titre consultatif' },
+      { title: 'Médias & presse', description: 'Demandez des interviews, des informations ou une couverture d’événement' },
+    ],
+    privacyTitle: 'Confidentialité & protection des données',
+    privacyText:
+      "Vos informations sont traitées conformément à la réglementation européenne sur la protection des données. Nous n'utilisons vos coordonnées que pour répondre à votre demande et pouvons vous ajouter à notre liste de diffusion si vous en manifestez l'intérêt. Vous pouvez vous désinscrire à tout moment.",
+    privacyLinkIntro: 'Consultez notre',
+    privacyLinkText: 'déclaration de confidentialité',
+  },
+  partnerships: {
+    eyebrow: 'Partenariats',
+    title: 'Devenez partenaire',
+    subtitle:
+      'CDD Pays-Bas construit des relations durables avec les organisations qui partagent notre engagement pour la collaboration transfrontalière.',
+    caption: 'Construire des relations institutionnelles durables',
+    typesTitle: 'Types de partenariat',
+    types: [
+      { title: 'Partenaires entreprises', description: 'Grandes entreprises et multinationales engagées dans la croissance transfrontalière et l’innovation' },
+      { title: "Partenaires d'investissement", description: 'Fonds de capital-investissement, family offices et investisseurs institutionnels porteurs d’investissements stratégiques' },
+      { title: 'Partenaires institutionnels', description: 'Agences publiques, missions diplomatiques et organisations internationales' },
+      { title: 'Partenaires de savoir', description: 'Universités, instituts de recherche et think tanks apportant leur expertise' },
+      { title: 'Réseaux de la diaspora', description: 'Organisations communautaires, associations d’anciens élèves et associations professionnelles' },
+      { title: 'Organisations professionnelles', description: 'Clubs d’affaires, chambres de commerce et organisations sectorielles' },
+    ],
+    benefitsTitle: 'Ce qu’apporte un partenariat',
+    benefits: [
+      { title: 'Accès aux réseaux', description: "Échangez avec des décideurs, investisseurs et experts en Europe, au Maroc et en Afrique" },
+      { title: 'Échange de connaissances', description: 'Accédez à des analyses, recherches et expertises pertinentes pour votre secteur et votre zone' },
+      { title: 'Initiatives conjointes', description: 'Participez à des délégations de haut niveau, des projets et des initiatives collaboratives' },
+    ],
+    ctaTitle: 'Devenir partenaire',
+    ctaText: 'Parlez-nous de votre organisation et de ce que vous souhaitez bâtir avec CDD Pays-Bas.',
+    ctaButton: 'Devenez partenaire',
+  },
+  projects: {
+    eyebrow: 'Projets',
+    title: 'Projets stratégiques',
+    subtitle: 'Des initiatives transfrontalières développées avec nos membres et partenaires.',
+    comingSoon: 'Prochainement',
+    comingSoonText:
+      'Nos premiers projets stratégiques sont en cours de développement. Ils seront publiés ici, rattachés à la commission qui les pilote.',
+    pillars: [
+      { title: 'Orientation stratégique', description: 'Des projets alignés sur les quatre commissions et sur les agendas des deux pays' },
+      { title: 'Multi-acteurs', description: 'Construits avec les entreprises, les institutions publiques et les partenaires de savoir' },
+      { title: 'Impact mesurable', description: 'Des résultats définis, rapportés au conseil et aux membres' },
+    ],
+    ctaTitle: 'Proposer un projet',
+    ctaText: 'Si vous développez une initiative transfrontalière, nous serions heureux d’en entendre parler.',
+  },
+  legal: {
+    authoritativeTitle: 'Version faisant foi',
+    authoritativeText:
+      "Ce document est fourni en anglais, néerlandais et français à titre de commodité. En cas de divergence entre les versions, le texte anglais prévaut comme référence juridique faisant foi.",
+    lastUpdated: 'Dernière mise à jour',
   },
   insights: {
     title: 'Actualités, portraits & briefings',
