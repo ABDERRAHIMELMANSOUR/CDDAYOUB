@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { Home } from './components/pages/Home';
@@ -17,17 +17,21 @@ import { MembershipApply } from './components/pages/MembershipApply';
 import { Insights, InsightArticle } from './components/pages/Insights';
 import { LocaleProvider } from './i18n/LocaleProvider';
 import { LOCALES } from './i18n/config';
-import { SkipLink } from './i18n/LocaleLink';
+import { SkipLink, LocaleNavigate } from './i18n/LocaleLink';
 import { initAnalytics } from './lib/analytics';
 import { Privacy } from './components/pages/legal/Privacy';
 import { Cookies } from './components/pages/legal/Cookies';
 import { Accessibility } from './components/pages/legal/Accessibility';
 import { Transparency } from './components/pages/legal/Transparency';
 
-/** Preserves the slug when redirecting an old /focus-areas/:slug URL. */
+/**
+ * Preserves BOTH the slug and the locale when redirecting an old
+ * /focus-areas/:slug URL. A plain <Navigate to="/commissions/..."> is absolute
+ * and would drop a Dutch or French visitor onto the English page.
+ */
 function LegacyCommissionRedirect() {
   const { slug } = useParams();
-  return <Navigate to={`/commissions/${slug ?? ''}`} replace />;
+  return <LocaleNavigate to={`/commissions/${slug ?? ''}`} />;
 }
 
 /** Every route, mounted once at the root and once under each locale prefix. */
@@ -45,7 +49,7 @@ function AppRoutes() {
         Commissions in August 2026; these redirects keep existing links, search
         results and anything already printed on a card from 404ing.
       */}
-      <Route path="/focus-areas" element={<Navigate to="/commissions" replace />} />
+      <Route path="/focus-areas" element={<LocaleNavigate to="/commissions" />} />
       <Route path="/focus-areas/:slug" element={<LegacyCommissionRedirect />} />
       <Route path="/partnerships" element={<Partnerships />} />
       <Route path="/projects" element={<Projects />} />

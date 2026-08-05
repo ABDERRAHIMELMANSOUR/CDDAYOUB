@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
-import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useParams } from 'react-router-dom';
+import { LocaleLink as Link, LocaleNavigate } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
 import {
@@ -101,7 +101,7 @@ export function InsightArticle() {
   const { locale } = useLocale();
   const { slug } = useParams<{ slug: string }>();
   const insight = slug ? getInsight(slug) : undefined;
-  if (!insight) return <Navigate to="/insights" replace />;
+  if (!insight) return <LocaleNavigate to="/insights" />;
 
   return (
     <div>
