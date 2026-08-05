@@ -369,24 +369,6 @@ const en: Dictionary = {
     closeMenu: 'Close menu',
     skipToContent: 'Skip to main content',
     whoWeAre: 'Who We Are',
-    whoWeAreP1Lead: 'CDD Pays-Bas',
-    whoWeAreP1:
-      '(Club des Dirigeants – Netherlands) is an international business and leadership platform that serves as a strategic bridge between European, Moroccan, and African ecosystems.',
-    whoWeAreP2Before: 'We bring together',
-    whoWeAreP2Emphasis:
-      'business leaders, investors, senior experts, public institutions, and international organizations',
-    whoWeAreP2After: 'to foster economic diplomacy, innovation, and sustainable development.',
-    whoWeAreP3:
-      'Our network includes CEOs, entrepreneurs, project developers, policymakers, diaspora leaders, and knowledge partners committed to creating cross-border impact in sectors such as energy transition, infrastructure, technology, finance, real estate, and education.',
-    missionText:
-      'To empower business leaders and decision-makers by creating strategic connections, facilitating cross-border collaboration, and promoting sustainable and inclusive economic development across Europe, Morocco, and Africa through purposeful dialogue, knowledge sharing, and actionable partnerships.',
-    visionText:
-      'To be the premier international platform connecting European, Moroccan, and African business ecosystems, recognized for driving impactful collaborations in strategic sectors such as energy transition, innovation, infrastructure, and finance, while championing leadership, governance, and sustainable growth.',
-    whatWeDoSubtitle:
-      'CDD Pays-Bas acts as a convener, facilitator, and strategic partner across four core pillars',
-    whoWeServeSubtitle:
-      'Our platform connects diverse stakeholders committed to cross-border impact',
-    whyEyebrow: 'Why Choose Us',
     governanceBoard: 'Governance & Board',
     advisoryCouncil: 'Advisory Council',
     partnerships: 'Partnerships',
@@ -575,6 +557,24 @@ const en: Dictionary = {
     transparencyLine: 'Our statutory details and governance documents are published on our',
     transparencyLink: 'transparency page',
     whoWeAre: 'Who We Are',
+    whoWeAreP1Lead: 'CDD Pays-Bas',
+    whoWeAreP1:
+      '(Club des Dirigeants – Netherlands) is an international business and leadership platform that serves as a strategic bridge between European, Moroccan, and African ecosystems.',
+    whoWeAreP2Before: 'We bring together',
+    whoWeAreP2Emphasis:
+      'business leaders, investors, senior experts, public institutions, and international organizations',
+    whoWeAreP2After: 'to foster economic diplomacy, innovation, and sustainable development.',
+    whoWeAreP3:
+      'Our network includes CEOs, entrepreneurs, project developers, policymakers, diaspora leaders, and knowledge partners committed to creating cross-border impact in sectors such as energy transition, infrastructure, technology, finance, real estate, and education.',
+    missionText:
+      'To empower business leaders and decision-makers by creating strategic connections, facilitating cross-border collaboration, and promoting sustainable and inclusive economic development across Europe, Morocco, and Africa through purposeful dialogue, knowledge sharing, and actionable partnerships.',
+    visionText:
+      'To be the premier international platform connecting European, Moroccan, and African business ecosystems, recognized for driving impactful collaborations in strategic sectors such as energy transition, innovation, infrastructure, and finance, while championing leadership, governance, and sustainable growth.',
+    whatWeDoSubtitle:
+      'CDD Pays-Bas acts as a convener, facilitator, and strategic partner across four core pillars',
+    whoWeServeSubtitle:
+      'Our platform connects diverse stakeholders committed to cross-border impact',
+    whyEyebrow: 'Why Choose Us',
     ourMission: 'Our Mission',
     ourVision: 'Our Vision',
     whatWeDo: 'What We Do',
@@ -871,25 +871,6 @@ const nl: Dictionary = {
     closeMenu: 'Menu sluiten',
     skipToContent: 'Naar hoofdinhoud',
     whoWeAre: 'Wie wij zijn',
-    whoWeAreP1Lead: 'CDD Pays-Bas',
-    whoWeAreP1:
-      '(Club des Dirigeants – Nederland) is een internationaal platform voor ondernemerschap en leiderschap dat fungeert als strategische brug tussen het Europese, Marokkaanse en Afrikaanse ecosysteem.',
-    whoWeAreP2Before: 'Wij brengen',
-    whoWeAreP2Emphasis:
-      'ondernemers en bestuurders, investeerders, ervaren experts, publieke instellingen en internationale organisaties',
-    whoWeAreP2After:
-      'bijeen om economische diplomatie, innovatie en duurzame ontwikkeling te bevorderen.',
-    whoWeAreP3:
-      'Ons netwerk omvat CEO’s, ondernemers, projectontwikkelaars, beleidsmakers, diasporaleiders en kennispartners die zich inzetten voor grensoverschrijdende impact in sectoren als energietransitie, infrastructuur, technologie, financiën, vastgoed en onderwijs.',
-    missionText:
-      'Ondernemers en besluitvormers versterken door strategische verbindingen te leggen, grensoverschrijdende samenwerking te faciliteren en duurzame, inclusieve economische ontwikkeling te bevorderen in Europa, Marokko en Afrika — via gerichte dialoog, kennisdeling en werkbare partnerschappen.',
-    visionText:
-      'Hét internationale platform zijn dat de Europese, Marokkaanse en Afrikaanse zakelijke ecosystemen verbindt, erkend om samenwerkingen met impact in strategische sectoren als energietransitie, innovatie, infrastructuur en financiën, met leiderschap, goed bestuur en duurzame groei als leidraad.',
-    whatWeDoSubtitle:
-      'CDD Pays-Bas treedt op als verbinder, facilitator en strategisch partner langs vier kernpijlers',
-    whoWeServeSubtitle:
-      'Ons platform verbindt uiteenlopende partijen die zich inzetten voor grensoverschrijdende impact',
-    whyEyebrow: 'Waarom voor ons kiezen',
     governanceBoard: 'Bestuur & governance',
     advisoryCouncil: 'Raad van adviseurs',
     partnerships: 'Partnerschappen',
@@ -1080,6 +1061,25 @@ const nl: Dictionary = {
     transparencyLine: 'Onze statutaire gegevens en governancedocumenten zijn gepubliceerd op onze',
     transparencyLink: 'transparantiepagina',
     whoWeAre: 'Wie wij zijn',
+    whoWeAreP1Lead: 'CDD Pays-Bas',
+    whoWeAreP1:
+      '(Club des Dirigeants – Nederland) is een internationaal platform voor ondernemerschap en leiderschap dat fungeert als strategische brug tussen het Europese, Marokkaanse en Afrikaanse ecosysteem.',
+    whoWeAreP2Before: 'Wij brengen',
+    whoWeAreP2Emphasis:
+      'ondernemers en bestuurders, investeerders, ervaren experts, publieke instellingen en internationale organisaties',
+    whoWeAreP2After:
+      'bijeen om economische diplomatie, innovatie en duurzame ontwikkeling te bevorderen.',
+    whoWeAreP3:
+      'Ons netwerk omvat CEO’s, ondernemers, projectontwikkelaars, beleidsmakers, diasporaleiders en kennispartners die zich inzetten voor grensoverschrijdende impact in sectoren als energietransitie, infrastructuur, technologie, financiën, vastgoed en onderwijs.',
+    missionText:
+      'Ondernemers en besluitvormers versterken door strategische verbindingen te leggen, grensoverschrijdende samenwerking te faciliteren en duurzame, inclusieve economische ontwikkeling te bevorderen in Europa, Marokko en Afrika — via gerichte dialoog, kennisdeling en werkbare partnerschappen.',
+    visionText:
+      'Hét internationale platform zijn dat de Europese, Marokkaanse en Afrikaanse zakelijke ecosystemen verbindt, erkend om samenwerkingen met impact in strategische sectoren als energietransitie, innovatie, infrastructuur en financiën, met leiderschap, goed bestuur en duurzame groei als leidraad.',
+    whatWeDoSubtitle:
+      'CDD Pays-Bas treedt op als verbinder, facilitator en strategisch partner langs vier kernpijlers',
+    whoWeServeSubtitle:
+      'Ons platform verbindt uiteenlopende partijen die zich inzetten voor grensoverschrijdende impact',
+    whyEyebrow: 'Waarom voor ons kiezen',
     ourMission: 'Onze missie',
     ourVision: 'Onze visie',
     whatWeDo: 'Wat wij doen',

@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"],
+  // Everything below is dead code from the original Figma export: App.tsx
+  // routes only src/components/pages/*, and nothing reachable imports these.
+  // The ui/ kit additionally carries version-suffixed import specifiers
+  // ("lucide-react@0.487.0") that resolve nowhere. Delete them and this
+  // exclude list can go with them.
+  "exclude": [
+    "src/components/ui",
+    "src/components/HomePage.tsx",
+    "src/components/Hero.tsx",
+    "src/components/AboutPage.tsx",
+    "src/components/ContactPage.tsx",
+    "src/components/TechnologyPage.tsx",
+    "src/components/SolutionsPage.tsx",
+    "src/components/ResourcesPage.tsx",
+    "src/components/BlogPreview.tsx",
+    "src/components/ProductCards.tsx",
+    "src/components/TestimonialCarousel.tsx"
+  ]
+}
