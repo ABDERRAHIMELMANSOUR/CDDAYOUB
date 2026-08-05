@@ -111,6 +111,10 @@ export interface Dictionary {
     readyText: string;
   };
   events: {
+    placesLeft: string;
+    full: string;
+    addToCalendar: string;
+    rsvpPending: string;
     title: string;
     subtitle: string;
     upcoming: string;
@@ -282,6 +286,7 @@ export interface Dictionary {
     joinText: string;
   };
   contact: {
+    sendFailed: string;
     eyebrow: string;
     title: string;
     subtitle: string;
@@ -369,6 +374,11 @@ export interface Dictionary {
     lastUpdated: string;
   };
   insights: {
+    linkedinTitle: string;
+    linkedinIntro: string;
+    linkedinFollow: string;
+    linkedinView: string;
+    linkedinEmpty: string;
     title: string;
     subtitle: string;
     news: string;
@@ -497,6 +507,11 @@ const en: Dictionary = {
       'The application takes a couple of minutes. We review every application and come back to you personally.',
   },
   events: {
+    placesLeft: 'places left',
+    full: 'Fully booked',
+    addToCalendar: 'Add to calendar',
+    rsvpPending:
+      'We could not reach our registration system just now, so we have not been able to record this automatically. Please email contact@cddpaysbas.nl and we will register you by hand.',
     title: 'Events & Gatherings',
     subtitle:
       'Roundtables, delegations, forums and community gatherings — convened by the commissions and open to members.',
@@ -745,6 +760,8 @@ const en: Dictionary = {
       'CDD Pays-Bas welcomes senior experts who share our commitment to building durable ties between the Netherlands and Morocco.',
   },
   contact: {
+    sendFailed:
+      'We could not reach our system just now, so this may not have been recorded. Please email contact@cddpaysbas.nl so your message reaches us.',
     eyebrow: 'Contact',
     title: 'Get in Touch',
     subtitle:
@@ -902,6 +919,12 @@ const en: Dictionary = {
     lastUpdated: 'Last updated',
   },
   insights: {
+    linkedinTitle: 'From our LinkedIn',
+    linkedinIntro: 'The latest posts from the CDD Pays-Bas company page.',
+    linkedinFollow: 'Follow us on LinkedIn',
+    linkedinView: 'View on LinkedIn',
+    linkedinEmpty:
+      'Our latest updates are posted on LinkedIn. Follow the page to see them as they go out.',
     title: 'News, spotlights & briefings',
     subtitle: 'What the network is doing, who is in it, and what is changing in both markets.',
     news: 'News',
@@ -1033,6 +1056,11 @@ const nl: Dictionary = {
       'De aanmelding kost een paar minuten. Wij beoordelen elke aanmelding en nemen persoonlijk contact met u op.',
   },
   events: {
+    placesLeft: 'plaatsen beschikbaar',
+    full: 'Volgeboekt',
+    addToCalendar: 'Aan agenda toevoegen',
+    rsvpPending:
+      'Wij konden ons aanmeldsysteem zojuist niet bereiken, waardoor uw aanmelding niet automatisch is vastgelegd. Mail ons op contact@cddpaysbas.nl, dan schrijven wij u handmatig in.',
     title: 'Evenementen & bijeenkomsten',
     subtitle:
       'Rondetafelgesprekken, handelsmissies, fora en netwerkbijeenkomsten — georganiseerd door de commissies en open voor leden.',
@@ -1284,6 +1312,8 @@ const nl: Dictionary = {
       'CDD Pays-Bas verwelkomt ervaren experts die onze inzet delen voor duurzame banden tussen Nederland en Marokko.',
   },
   contact: {
+    sendFailed:
+      'Wij konden ons systeem zojuist niet bereiken, waardoor uw bericht mogelijk niet is vastgelegd. Mail ons op contact@cddpaysbas.nl, dan komt uw bericht zeker aan.',
     eyebrow: 'Contact',
     title: 'Neem contact op',
     subtitle:
@@ -1441,6 +1471,12 @@ const nl: Dictionary = {
     lastUpdated: 'Laatst bijgewerkt',
   },
   insights: {
+    linkedinTitle: 'Van onze LinkedIn',
+    linkedinIntro: 'De nieuwste berichten van de bedrijfspagina van CDD Pays-Bas.',
+    linkedinFollow: 'Volg ons op LinkedIn',
+    linkedinView: 'Bekijken op LinkedIn',
+    linkedinEmpty:
+      'Onze meest recente updates plaatsen wij op LinkedIn. Volg de pagina om ze direct te zien.',
     title: 'Nieuws, portretten & briefings',
     subtitle:
       'Wat het netwerk doet, wie erbij betrokken is en wat er verandert in beide markten.',
@@ -1573,6 +1609,11 @@ const fr: Dictionary = {
       'La demande prend quelques minutes. Nous examinons chaque candidature et vous répondons personnellement.',
   },
   events: {
+    placesLeft: 'places restantes',
+    full: 'Complet',
+    addToCalendar: "Ajouter à l'agenda",
+    rsvpPending:
+      "Nous n'avons pas pu joindre notre système d'inscription à l'instant ; votre inscription n'a donc pas été enregistrée automatiquement. Écrivez-nous à contact@cddpaysbas.nl et nous vous inscrirons manuellement.",
     title: 'Événements & rencontres',
     subtitle:
       'Tables rondes, délégations, forums et rencontres du réseau — organisés par les commissions et ouverts aux membres.',
@@ -1824,6 +1865,8 @@ const fr: Dictionary = {
       "CDD Pays-Bas accueille les experts confirmés qui partagent son engagement à bâtir des liens durables entre les Pays-Bas et le Maroc.",
   },
   contact: {
+    sendFailed:
+      "Nous n'avons pas pu joindre notre système à l'instant ; votre message n'a peut-être pas été enregistré. Écrivez-nous à contact@cddpaysbas.nl pour qu'il nous parvienne à coup sûr.",
     eyebrow: 'Contact',
     title: 'Nous contacter',
     subtitle:
@@ -1981,6 +2024,12 @@ const fr: Dictionary = {
     lastUpdated: 'Dernière mise à jour',
   },
   insights: {
+    linkedinTitle: 'Depuis notre LinkedIn',
+    linkedinIntro: 'Les dernières publications de la page CDD Pays-Bas.',
+    linkedinFollow: 'Suivez-nous sur LinkedIn',
+    linkedinView: 'Voir sur LinkedIn',
+    linkedinEmpty:
+      'Nos dernières actualités sont publiées sur LinkedIn. Suivez la page pour les découvrir dès leur parution.',
     title: 'Actualités, portraits & briefings',
     subtitle:
       'Ce que fait le réseau, qui le compose et ce qui évolue sur les deux marchés.',

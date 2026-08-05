@@ -55,6 +55,12 @@ export interface CDDEvent {
   description?: Localised<string>;
   /** Capacity, if limited. */
   capacity?: number;
+  /**
+   * Places already taken. Maintained by hand until a backend holds the
+   * register — see `placesLeft`. Absent means "not tracked", which renders as
+   * a plain capacity figure rather than a misleading "N places left".
+   */
+  registered?: number;
   /** Whether members and non-members pay differently. */
   memberPrice?: string;
   guestPrice?: string;
@@ -122,6 +128,25 @@ export function eventsForCommission(group: AdvisorGroup): CDDEvent[] {
   return EVENTS.filter((e) => e.commissions.includes(group)).sort(
     (a, b) => +new Date(b.date) - +new Date(a.date)
   );
+}
+
+/**
+ * Places still available, or null when capacity is not being tracked.
+ *
+ * Returns 0 rather than a negative number if an event is over-subscribed, so
+ * the UI can say "full" without special-casing.
+ */
+export function placesLeft(event: CDDEvent): number | null {
+  if (event.capacity === undefined) return null;
+  if (event.registered === undefined) return null;
+  return Math.max(0, event.capacity - event.registered);
+}
+
+/** True when registration is open AND there is room. */
+export function canRegister(event: CDDEvent): boolean {
+  if (!event.registrationOpen) return false;
+  const left = placesLeft(event);
+  return left === null || left > 0;
 }
 
 export function getEvent(slug: string): CDDEvent | undefined {

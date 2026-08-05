@@ -13,6 +13,7 @@ import {
   type InsightCategory,
 } from '../../data/insights';
 import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
+import { LinkedInFeed } from '../LinkedInFeed';
 
 /**
  * Insights (ticket 20).
@@ -87,6 +88,9 @@ export function Insights() {
           )}
         </div>
       </section>
+
+      {/* Posts from the CDD LinkedIn page — see src/lib/linkedin.ts. */}
+      <LinkedInFeed />
     </div>
   );
 }

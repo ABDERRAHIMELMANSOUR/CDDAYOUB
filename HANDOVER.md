@@ -71,13 +71,21 @@ will break it.
 
 ## 3. Vercel environment variables
 
-Set under *Project → Settings → Environment Variables*. **None are required** —
-the site runs correctly with all of them unset.
+Set under *Project → Settings → Environment Variables*.
 
 | Variable | Required | Effect when set |
 |---|---|---|
+| `VITE_CRM_WEBHOOK_URL` | **Yes, before launch** | Where Contact, membership application and event registration submissions are POSTed. **Until it is set, nothing submitted through any form on the site is recorded anywhere.** |
 | `VITE_PLAUSIBLE_DOMAIN` | No | Enables cookieless analytics. Use `cddpaysbas.nl`. |
 | `VITE_PLAUSIBLE_HOST` | No | Only for a self-hosted Plausible/Matomo instance. Defaults to `https://plausible.io`. |
+| `VITE_LINKEDIN_FEED_URL` | No | JSON feed of LinkedIn posts for the Insights page. Unset shows a link to the LinkedIn page instead. |
+
+**`VITE_CRM_WEBHOOK_URL` must be an ingest-only endpoint.** The URL ships in the
+public bundle, so it must not carry an API key and must not be able to read,
+export or delete records — only create them. Expect spam on a public endpoint
+and filter it in the CRM; the site's honeypot stops naive bots, not determined
+ones. If the CRM requires authentication, add `api/crm.ts` as a Vercel function
+holding the key server-side and point this variable at it.
 
 Variables must start with `VITE_` to reach the browser bundle. **Never put a
 secret in a `VITE_` variable** — everything with that prefix is compiled into
@@ -313,3 +321,52 @@ Stated plainly so nothing is a surprise later.
 ---
 
 *Prepared as ticket 25 of the Website Audit & Restructure Blueprint v3.0.*
+
+
+---
+
+## 12. Decisions taken after the blueprint (August 2026)
+
+Three things on this site now differ from the v3 blueprint, on the board's
+instruction. Recorded here so nobody later reads the blueprint and files a bug.
+
+| Item | Blueprint said | Site does | Why |
+|---|---|---|---|
+| Membership | Five tiers, €150–€5,000+ per year (Part E4) | **One membership, €25/month** | Board decision (Nouraddine Gribi). One price, no tier anxiety, nothing to work out before joining. |
+| Navigation label | Keep "Focus Areas" in the nav, "Commissions" in the body (Part D0) | **"Commissions" everywhere**, including the URL | Board decision. `/focus-areas` redirects to `/commissions`, so old links still work. |
+| Honorary membership | Listed as a tier | **Not in the pricing model at all** | It is a board recognition, not a product. Holders appear on the Advisory Council page. |
+
+### Still outstanding for the board
+
+| # | Item | Consequence while open |
+|---|---|---|
+| 1 | Set `VITE_CRM_WEBHOOK_URL` | Every form submission is lost. This is the single most urgent item. |
+| 2 | Supply legal form, KvK, RSIN, registered address | Footer legal bar and Transparency page stay incomplete; institutional partners notice. |
+| 3 | Appoint the four commission chairs | Every commission page reads "Chair: to be appointed by the board". |
+| 4 | Publish an upcoming event | Registration, capacity and `.ics` all work but are unreachable — the only event on the site is in the past, so the Events page shows an archive and nothing to register for. |
+| 5 | Photographs for Badr Ikken and Turgut Torunogullari | Their cards show initials rather than a portrait. |
+| 6 | Confirm advisor translations | The NL/FR advisor biographies are in-house translations of copy describing named professionals; each advisor should confirm their own. |
+| 7 | Decide on LinkedIn sync | Needs LinkedIn Partner Program approval before it can be automated (§ below). |
+| 8 | Live payment | `src/lib/payments.ts` documents the one serverless function required. Membership is a monthly subscription, not a one-off charge. |
+
+### LinkedIn sync — what is actually possible
+
+The Insights page has a LinkedIn section wired and ready, but it cannot fetch
+posts by itself, and it is worth being clear why:
+
+- **There is no public feed.** LinkedIn company pages expose no RSS and no
+  unauthenticated endpoint. The old RSS feeds were withdrawn years ago.
+- **The API is gated.** Reading an organisation's posts requires the Community
+  Management API, which needs LinkedIn Partner Program approval and a verified
+  company page, then OAuth 2.0. Access tokens are secrets and this is a static
+  site — a token in the bundle is a published credential.
+- **Scraping is not an option.** Blocked by CORS, breaches LinkedIn's terms, and
+  the markup changes without notice. Third-party feed widgets work by holding
+  CDD's credentials on their infrastructure and seeing every visitor — a
+  data-protection decision for the board, not a developer.
+
+So the site reads a JSON feed from a URL CDD controls (`VITE_LINKEDIN_FEED_URL`),
+produced server-side where a token can live safely. Either a scheduled Vercel
+function calling the official API once approved, or — workable today — a small
+JSON file the secretariat maintains by hand in `/public`. Until one exists, the
+section shows a link to the LinkedIn page rather than invented posts.

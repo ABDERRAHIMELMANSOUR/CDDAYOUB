@@ -2,19 +2,24 @@ import { useMemo, useState } from 'react';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
-import { Calendar, MapPin, Clock, Users, X, Check } from 'lucide-react';
+import { Calendar, CalendarPlus, MapPin, Clock, Users, X, Check, AlertCircle } from 'lucide-react';
 import {
   EVENTS,
   EVENT_TYPE_LABELS,
   upcomingEvents,
   pastEvents,
   formatEventDate,
+  placesLeft,
+  canRegister,
   type CDDEvent,
   type EventType,
 } from '../../data/events';
 import { COMMISSIONS } from '../../data/commissions';
 import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
 import { BrandedImage } from '../BrandedImage';
+import { HoneypotField } from '../HoneypotField';
+import { downloadIcs } from '../../lib/calendar';
+import { submitToCrm, isLikelyBot } from '../../lib/crm';
 
 /**
  * Events (ticket 19).
@@ -211,6 +216,8 @@ function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
 function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
   const tt = useTranslation();
   const { locale } = useLocale();
+  const left = placesLeft(event);
+  const open = canRegister(event);
   return (
     <article className="flex flex-col rounded-3xl border border-gray-100 shadow-lg overflow-hidden bg-white">
       <div className="h-44">
@@ -239,25 +246,43 @@ function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
             <MapPin className="h-4 w-4 text-blue-700" aria-hidden="true" />
             <dd>{event.location}</dd>
           </div>
-          {event.capacity && (
+          {event.capacity !== undefined && (
             <div className="flex items-center gap-2">
               <Users className="h-4 w-4 text-blue-700" aria-hidden="true" />
               <dd>
-                {event.capacity} {tt.events.places}
+                {left === null
+                  ? `${event.capacity} ${tt.events.places}`
+                  : left === 0
+                    ? tt.events.full
+                    : `${left} ${tt.events.placesLeft}`}
               </dd>
             </div>
           )}
         </dl>
         <p className="mt-4 text-gray-700 leading-relaxed flex-grow">{pick(event.summary, locale)}</p>
         <CommissionTags groups={event.commissions} />
-        <button
-          type="button"
-          onClick={onRsvp}
-          disabled={!event.registrationOpen}
-          className="mt-6 px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {event.registrationOpen ? tt.events.register : tt.events.registrationSoon}
-        </button>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={onRsvp}
+            disabled={!open}
+            className="px-6 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {left === 0
+              ? tt.events.full
+              : event.registrationOpen
+                ? tt.events.register
+                : tt.events.registrationSoon}
+          </button>
+          <button
+            type="button"
+            onClick={() => downloadIcs(event, locale)}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold border border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors"
+          >
+            <CalendarPlus className="h-4 w-4" aria-hidden="true" />
+            {tt.events.addToCalendar}
+          </button>
+        </div>
       </div>
     </article>
   );
@@ -299,6 +324,8 @@ function PastEventCard({ event }: { event: CDDEvent }) {
 
 /** RSVP modal (ticket 19). Records the registration; see note in the body. */
 function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void }) {
+  const [pending, setPending] = useState(false);
+  const [degraded, setDegraded] = useState(false);
   const t = useTranslation();
   const { locale } = useLocale();
   const [done, setDone] = useState(false);
@@ -334,9 +361,21 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
             <div className="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-5">
               <Check className="h-7 w-7 text-blue-700" aria-hidden="true" />
             </div>
-            <p className="text-gray-700 leading-relaxed">
-              {t.events.rsvpThanks}
-            </p>
+            <p className="text-gray-700 leading-relaxed">{t.events.rsvpThanks}</p>
+            {degraded && (
+              <p className="mt-4 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-left text-sm text-amber-900">
+                <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                {t.events.rsvpPending}
+              </p>
+            )}
+            <button
+              type="button"
+              onClick={() => downloadIcs(event, locale)}
+              className="mt-6 mr-3 inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-blue-600 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
+            >
+              <CalendarPlus className="h-4 w-4" aria-hidden="true" />
+              {t.events.addToCalendar}
+            </button>
             <button
               type="button"
               onClick={onClose}
@@ -347,12 +386,38 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
           </div>
         ) : (
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
+              const form = new FormData(e.currentTarget);
+              // Silently accept and drop bot submissions: telling a bot it was
+              // detected only helps whoever wrote it.
+              if (isLikelyBot(form)) {
+                setDone(true);
+                return;
+              }
+              setPending(true);
+              const result = await submitToCrm({
+                form: 'event-registration',
+                locale,
+                sourcePath: window.location.pathname,
+                fields: {
+                  eventSlug: event.slug,
+                  eventTitle: pick(event.title, 'en'),
+                  eventDate: event.date,
+                  name: String(form.get('name') || ''),
+                  email: String(form.get('email') || ''),
+                  organisation: String(form.get('organisation') || ''),
+                },
+              });
+              setPending(false);
+              // 'not-configured' is expected until the board sets the webhook
+              // up; only a real failure warrants telling the visitor to email.
+              setDegraded(result.status === 'error');
               setDone(true);
             }}
             className="space-y-5"
           >
+            <HoneypotField />
             <div className="rounded-xl bg-gray-50 border border-gray-200 p-4 text-sm text-gray-700">
               <p className="flex items-center gap-2 font-medium text-gray-900">
                 <Calendar className="h-4 w-4 text-blue-700" aria-hidden="true" />
@@ -424,9 +489,10 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
 
             <button
               type="submit"
-              className="w-full px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg transition-all"
+              disabled={pending}
+              className="w-full px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg transition-all disabled:opacity-60"
             >
-              {t.events.confirmRegistration}
+              {pending ? t.common.loading : t.events.confirmRegistration}
             </button>
           </form>
         )}

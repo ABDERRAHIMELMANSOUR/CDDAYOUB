@@ -2,9 +2,16 @@ import { useState } from 'react';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Check, AlertCircle, Loader2 } from 'lucide-react';
-import { MEMBERSHIP, formatMembershipPrice, pick } from '../../data/membership';
+import {
+  MEMBERSHIP,
+  MEMBERSHIP_PRICE_EUR,
+  formatMembershipPrice,
+  pick,
+} from '../../data/membership';
 import { COMMISSIONS } from '../../data/commissions';
 import { paymentProvider, PAYMENT_METHODS, type Applicant } from '../../lib/payments';
+import { submitToCrm, isLikelyBot } from '../../lib/crm';
+import { HoneypotField } from '../HoneypotField';
 
 /**
  * Membership application (tickets 17 & 18).
@@ -32,6 +39,13 @@ export function MembershipApply() {
     setError('');
 
     const form = new FormData(event.currentTarget);
+    if (isLikelyBot(form)) {
+      // Accept silently — a bot learns nothing, and a real applicant can never
+      // land here because the field is hidden from screen and assistive tech.
+      setReference('');
+      setStatus('done');
+      return;
+    }
     const applicant: Applicant = {
       name: String(form.get('name') || '').trim(),
       email: String(form.get('email') || '').trim(),
@@ -40,6 +54,25 @@ export function MembershipApply() {
       commission: String(form.get('commission') || '').trim() || undefined,
       message: String(form.get('message') || '').trim() || undefined,
     };
+
+    // The CRM is the board's pipeline view, so every application is recorded
+    // there regardless of how payment is eventually taken. A CRM failure must
+    // not block the application: the payment step is what the applicant came
+    // for, and a lost CRM row is recoverable from the payment provider.
+    await submitToCrm({
+      form: 'membership-application',
+      locale,
+      sourcePath: window.location.pathname,
+      fields: {
+        name: applicant.name,
+        email: applicant.email,
+        organisation: applicant.organisation,
+        role: applicant.role,
+        commission: applicant.commission,
+        message: applicant.message,
+        monthlyDuesEur: MEMBERSHIP_PRICE_EUR,
+      },
+    });
 
     const result = await paymentProvider.createCheckout({ applicant });
 
@@ -106,6 +139,7 @@ export function MembershipApply() {
             <legend className="text-2xl font-bold text-gray-900 mb-5">
               {t.membership.yourDetails}
             </legend>
+            <HoneypotField />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <Field
                 label={t.membership.fullName}
