@@ -40,7 +40,7 @@ export const PRIMARY_NAV: NavItem[] = [
   },
   {
     name: 'Focus Areas',
-    path: '/focus-areas',
+    path: '/commissions',
     // Children are generated from the commissions at render time.
   },
   {
@@ -48,7 +48,7 @@ export const PRIMARY_NAV: NavItem[] = [
     path: '/membership',
     children: [
       { name: 'Why Join', path: '/membership' },
-      { name: 'Tiers & Dues', path: '/membership#tiers' },
+      { name: 'Membership & Dues', path: '/membership#tiers' },
       { name: 'Our Members', path: '/membership#members' },
       { name: 'Apply', path: '/membership/apply' },
     ],

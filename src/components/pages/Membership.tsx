@@ -1,13 +1,7 @@
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Check, ArrowRight, Users } from 'lucide-react';
-import {
-  MEMBERSHIP_TIERS,
-  WHY_JOIN,
-  formatPrice,
-  pick,
-  PRICING_PUBLISHED,
-} from '../../data/membership';
+import { MEMBERSHIP, WHY_JOIN, formatMembershipPrice, pick } from '../../data/membership';
 import { ADVISORS } from '../../data/advisors';
 import { COMMISSIONS } from '../../data/commissions';
 import { PAYMENT_METHODS } from '../../lib/payments';
@@ -22,11 +16,7 @@ import { PAYMENT_METHODS } from '../../lib/payments';
 export function Membership() {
   const t = useTranslation();
   const { locale } = useLocale();
-  const priceLabels = {
-    perYear: t.membership.perYear,
-    byInvitation: t.membership.byInvitation,
-    contactForDues: t.membership.contactForDues,
-  };
+  const price = formatMembershipPrice(locale, t.membership.perMonth);
   return (
     <div>
       {/* Hero */}
@@ -86,65 +76,51 @@ export function Membership() {
         </div>
       </section>
 
-      {/* Tiers */}
+      {/* Membership & dues — one type, one price (board decision, August 2026) */}
       <section id="tiers" className="py-16 lg:py-24 bg-gray-50 scroll-mt-28">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.membership.tiers}</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            {t.membership.duesTitle}
+          </h2>
           <p className="text-lg text-gray-700 max-w-3xl mb-12 leading-relaxed">
-            {PRICING_PUBLISHED ? t.membership.duesIntro : t.membership.duesIntroPrivate}
+            {t.membership.duesSingleIntro}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 items-start">
-            {MEMBERSHIP_TIERS.filter((t) => t.id !== 'honorary').map((tier) => (
-              <div
-                key={tier.id}
-                className={`relative flex flex-col h-full rounded-3xl bg-white p-8 transition-all duration-300 ${
-                  tier.featured
-                    ? 'border-2 border-blue-600 shadow-2xl'
-                    : 'border border-gray-200 shadow-lg hover:shadow-xl'
-                }`}
-              >
-                {tier.featured && (
-                  <span className="absolute -top-3 left-8 px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xs font-bold uppercase tracking-wide">
-                    {t.membership.mostChosen}
-                  </span>
-                )}
+          <div className="max-w-3xl rounded-3xl bg-white border-2 border-blue-600 shadow-2xl p-8 lg:p-10">
+            <h3 className="text-2xl font-bold text-gray-900">{pick(MEMBERSHIP.name, locale)}</h3>
+            <p className="text-sm text-gray-600 mt-1">{pick(MEMBERSHIP.audience, locale)}</p>
 
-                <h3 className="text-2xl font-bold text-gray-900">{pick(tier.name, locale)}</h3>
-                <p className="text-sm text-gray-600 mt-1">{pick(tier.audience, locale)}</p>
+            <p className="mt-6 text-4xl font-bold text-blue-700">{price}</p>
+            <p className="mt-2 text-sm text-gray-600">{t.membership.cancelAnytime}</p>
+            <p className="mt-5 text-lg text-gray-800 leading-relaxed">
+              {pick(MEMBERSHIP.headline, locale)}
+            </p>
 
-                <p className="mt-5 text-2xl font-bold text-blue-700">
-                  {formatPrice(tier, locale, priceLabels)}
-                </p>
-                <p className="mt-3 text-gray-800 leading-relaxed">{pick(tier.headline, locale)}</p>
+            <h4 className="mt-8 text-sm font-semibold uppercase tracking-wide text-gray-700">
+              {t.membership.whatsIncluded}
+            </h4>
+            <ul className="mt-4 space-y-3">
+              {pick(MEMBERSHIP.benefits, locale).map((benefit) => (
+                <li key={benefit} className="flex items-start gap-3">
+                  <Check className="h-5 w-5 text-blue-700 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <span className="text-gray-700 leading-relaxed">{benefit}</span>
+                </li>
+              ))}
+            </ul>
 
-                <ul className="mt-6 space-y-3 flex-grow">
-                  {pick(tier.benefits, locale).map((benefit) => (
-                    <li key={benefit} className="flex items-start gap-3">
-                      <Check
-                        className="h-5 w-5 text-blue-700 flex-shrink-0 mt-0.5"
-                        aria-hidden="true"
-                      />
-                      <span className="text-sm text-gray-700 leading-relaxed">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to={`/membership/apply?tier=${tier.id}`}
-                  className={`mt-8 inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
-                    tier.featured
-                      ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:shadow-lg hover:shadow-blue-500/30'
-                      : 'border border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white'
-                  }`}
-                >
-                  {t.nav.apply}
-                </Link>
-              </div>
-            ))}
+            <Link
+              to="/membership/apply"
+              className="mt-9 inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-200"
+            >
+              {t.nav.apply}
+            </Link>
           </div>
 
-          {/* Honorary, presented separately since it is not purchasable. */}
+          {/*
+            Honorary membership is a board recognition, not a product — no
+            price, not applicable for. Kept visibly separate from the dues
+            block so it never reads as a tier someone could choose.
+          */}
           <div className="mt-10 rounded-3xl border border-dashed border-gray-300 bg-white p-8 max-w-3xl">
             <h3 className="text-xl font-bold text-gray-900">{t.membership.honoraryTitle}</h3>
             <p className="mt-2 text-gray-700 leading-relaxed">{t.membership.honoraryText}</p>

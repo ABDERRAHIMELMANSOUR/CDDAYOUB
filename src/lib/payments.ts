@@ -12,11 +12,11 @@
  *   - Anything placed in this bundle is served to every visitor. Shipping a
  *     secret key here would publish it — a live financial credential, readable
  *     with "view source".
- *   - Amounts must be decided server-side. A client that says "charge €150"
+ *   - Amounts must be decided server-side. A client that says "charge €25"
  *     can be edited by the payer to say "charge €1".
  *
- * So this module ships the parts that are genuinely safe client-side: the tier
- * selection, the applicant details, validation, and the handoff. It calls a
+ * So this module ships the parts that are genuinely safe client-side: the
+ * applicant details, validation, and the handoff. It calls a
  * checkout endpoint that DOES NOT EXIST YET, and until it does, the flow runs
  * against `mockProvider` and tells the applicant plainly that CDD will follow
  * up to arrange payment. Nothing here pretends to take money.
@@ -32,8 +32,10 @@
  *    `api/checkout.ts` is enough — no separate backend required.
  *
  *    It must:
- *      a. Accept { tierId, applicant } — NOT an amount.
- *      b. Look the price up server-side from its own copy of the tier table.
+ *      a. Accept { applicant } — NOT an amount and NOT an interval.
+ *      b. Use its own copy of the price: €25 per month, recurring. Membership
+ *         is a SUBSCRIPTION, so create a Mollie customer + subscription (or a
+ *         Stripe subscription), not a one-off payment.
  *      c. Create the payment with the provider using the secret key from an
  *         environment variable (MOLLIE_API_KEY / STRIPE_SECRET_KEY), never a
  *         bundled constant.
@@ -44,15 +46,16 @@
  *    for "paid" — the browser redirect can be forged or simply never happen if
  *    the payer closes the tab.
  *
- * 4. For SEPA renewals, collect a mandate through the provider's flow. Do not
- *    store IBANs yourself; there is no reason to hold that data.
+ * 4. For monthly SEPA renewals, collect a mandate through the provider's flow.
+ *    Do not store IBANs yourself; there is no reason to hold that data. Note
+ *    that iDEAL is a single-payment method: the standard Dutch pattern is a
+ *    first iDEAL payment that establishes the SEPA mandate, with subsequent
+ *    months collected by direct debit.
  *
  * 5. Update the privacy statement: payment data introduces a processor, which
  *    the AVG requires be disclosed.
  * ─────────────────────────────────────────────────────────────────────────────
  */
-
-import type { TierId } from '../data/membership';
 
 export interface Applicant {
   name: string;
@@ -65,7 +68,6 @@ export interface Applicant {
 }
 
 export interface CheckoutRequest {
-  tierId: TierId;
   applicant: Applicant;
 }
 
@@ -84,7 +86,7 @@ export interface PaymentProvider {
 /** Payment methods CDD intends to accept, shown on the review step. */
 export const PAYMENT_METHODS = [
   { id: 'ideal', label: 'iDEAL', note: 'Standard for Dutch members' },
-  { id: 'sepa', label: 'SEPA Direct Debit', note: 'Used for annual renewals' },
+  { id: 'sepa', label: 'SEPA Direct Debit', note: 'Used for monthly renewals' },
   { id: 'card', label: 'Card', note: 'For international members' },
 ] as const;
 
@@ -92,19 +94,19 @@ export const PAYMENT_METHODS = [
  * The provider used until a backend exists.
  *
  * Records the application and returns a reference. CDD follows up to arrange
- * payment — which is exactly what happens today, only now with the tier,
- * commission interest and applicant details already captured.
+ * payment — which is exactly what happens today, only now with the commission
+ * interest and applicant details already captured.
  */
 export const mockProvider: PaymentProvider = {
   id: 'manual',
   isLive: false,
-  async createCheckout({ tierId, applicant }: CheckoutRequest): Promise<CheckoutResult> {
-    const reference = `CDD-${tierId.toUpperCase().slice(0, 3)}-${Date.now().toString(36).toUpperCase()}`;
+  async createCheckout({ applicant }: CheckoutRequest): Promise<CheckoutResult> {
+    const reference = `CDD-${Date.now().toString(36).toUpperCase()}`;
     // Deliberately not persisted: there is nowhere to persist it to yet, and
     // inventing a storage location would hide the fact that a backend is needed.
     if (import.meta.env.DEV) {
       // eslint-disable-next-line no-console
-      console.info('[membership] application captured', { reference, tierId, applicant });
+      console.info('[membership] application captured', { reference, applicant });
     }
     return { status: 'manual', reference };
   },
@@ -122,7 +124,8 @@ export const serverProvider: PaymentProvider = {
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // No amount is sent — the server looks the price up itself.
+        // No amount or interval is sent — the server owns the price
+        // (MEMBERSHIP_PRICE_EUR, monthly) so a tampered client cannot set it.
         body: JSON.stringify(request),
       });
       if (!response.ok) {

@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
-import { useTranslation } from '../../i18n/LocaleProvider';
-import { Mail, MapPin, Linkedin, Send, Phone, Building } from 'lucide-react';
+import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
+import { Mail, MapPin, Linkedin, Send, Phone, Building, AlertCircle } from 'lucide-react';
+import { submitToCrm, isLikelyBot } from '../../lib/crm';
+import { HoneypotField } from '../HoneypotField';
 
 export function Contact() {
   const t = useTranslation();
+  const { locale } = useLocale();
   const [formData, setFormData] = useState({
     name: '',
     organization: '',
@@ -16,13 +19,39 @@ export function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [degraded, setDegraded] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  /**
+   * Posts the enquiry to the CRM (blueprint ticket: route submissions into the
+   * CRM rather than a mailbox, so the pipeline is visible to the board).
+   *
+   * Until VITE_CRM_WEBHOOK_URL is configured this reports `not-configured`,
+   * which is treated as a normal send — the board is told plainly in the
+   * handover that enquiries are not being captured until they set it. A hard
+   * failure is surfaced to the visitor with an email fallback, because an
+   * enquiry that silently vanishes is worse than no form at all.
+   */
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    if (isLikelyBot(form)) {
+      setSubmitted(true);
+      return;
+    }
+    setPending(true);
+    const result = await submitToCrm({
+      form: 'contact',
+      locale,
+      sourcePath: window.location.pathname,
+      fields: { ...formData },
+    });
+    setPending(false);
+    setDegraded(result.status === 'error');
     setSubmitted(true);
-    // In a real application, this would send the form data to a backend
     setTimeout(() => {
       setSubmitted(false);
+      setDegraded(false);
       setFormData({
         name: '',
         organization: '',
@@ -32,7 +61,7 @@ export function Contact() {
         message: '',
         interest: '',
       });
-    }, 3000);
+    }, 8000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -123,9 +152,16 @@ export function Contact() {
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{t.contact.sent}</h3>
                     <p className="text-gray-600">{t.contact.sentText}</p>
+                    {degraded && (
+                      <p className="mt-4 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-left text-sm text-amber-900">
+                        <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        {t.contact.sendFailed}
+                      </p>
+                    )}
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    <HoneypotField />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -247,10 +283,11 @@ export function Contact() {
 
                     <button
                       type="submit"
-                      className="w-full md:w-auto px-8 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors flex items-center justify-center"
+                      disabled={pending}
+                      className="w-full md:w-auto px-8 py-3 bg-blue-900 text-white rounded-lg hover:bg-blue-800 transition-colors flex items-center justify-center disabled:opacity-60"
                     >
                       <Send className="h-5 w-5 mr-2" />
-                      {t.contact.submit}
+                      {pending ? t.common.loading : t.contact.submit}
                     </button>
                   </form>
                 )}

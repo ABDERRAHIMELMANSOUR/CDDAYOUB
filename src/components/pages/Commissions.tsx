@@ -3,18 +3,23 @@ import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
 import { ArrowRight, Users } from 'lucide-react';
 import { COMMISSIONS, COMMISSION_GOVERNANCE } from '../../data/commissions';
-import { DELIVERY_METHOD, POSITIONING_LINE } from '../../data/focusAreas';
+import { DELIVERY_METHOD, POSITIONING_LINE } from '../../data/commissionDomains';
 import { advisorsInGroup } from '../../data/advisors';
 
 /**
- * Focus Areas landing page.
+ * Commissions landing page.
  *
- * Part D0: the nav keeps the accessible word ("Focus Areas") because it works
- * for a first-time visitor who knows nothing about CDD's governance, while the
- * page body uses the governance word ("commissions"). Discoverability without
- * giving up institutional weight.
+ * Part D0 argued for governance language over strategy language: "we focus on
+ * energy" invites nothing, while "the Energy & Water Commission, chaired by X,
+ * meets quarterly and is open to all members" invites participation.
+ *
+ * The blueprint suggested keeping "Focus Areas" as the nav label for
+ * discoverability. The board (August 2026) chose "Commissions" everywhere —
+ * nav, URL and body — so the site speaks with one register. The landing page
+ * still opens by explaining the mechanism, which is what makes the governance
+ * word land for a first-time visitor.
  */
-export function FocusAreas() {
+export function Commissions() {
   const t = useTranslation();
   const { locale } = useLocale();
   return (
@@ -26,14 +31,14 @@ export function FocusAreas() {
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl">
             <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.nav.focusAreas}
+              {t.nav.commissions}
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              {t.focusAreas.title}
+              {t.commissionsIndex.title}
             </h1>
             {/* The mechanism, stated in the first line (Part D0). */}
             <p className="text-xl text-gray-200 leading-relaxed">
-              {t.focusAreas.mechanism} {pick(POSITIONING_LINE, locale)}
+              {t.commissionsIndex.mechanism} {pick(POSITIONING_LINE, locale)}
             </p>
             <p className="mt-4 text-base text-gray-300">{pick(DELIVERY_METHOD, locale)}</p>
           </div>
@@ -50,7 +55,7 @@ export function FocusAreas() {
               return (
                 <Link
                   key={commission.slug}
-                  to={`/focus-areas/${commission.slug}`}
+                  to={`/commissions/${commission.slug}`}
                   className="group flex flex-col bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl hover:border-blue-200 transition-all duration-300 p-8"
                 >
                   <div className="flex items-center gap-4 mb-5">
@@ -111,10 +116,10 @@ export function FocusAreas() {
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mb-10">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              {t.focusAreas.howTheyWork}
+              {t.commissionsIndex.howTheyWork}
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              {t.focusAreas.rulesIntro}
+              {t.commissionsIndex.rulesIntro}
             </p>
           </div>
 
@@ -137,9 +142,9 @@ export function FocusAreas() {
       {/* CTA */}
       <section className="py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.focusAreas.takePart}</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.commissionsIndex.takePart}</h2>
           <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-            {t.focusAreas.takePartText}
+            {t.commissionsIndex.takePartText}
           </p>
           <Link
             to="/contact"

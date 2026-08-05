@@ -59,7 +59,8 @@ export interface Advisor {
    */
   role: Localised<string>;
   bio: Localised<string>;
-  photo: string;
+  /** Portrait. Null until the advisor supplies one — the UI renders initials. */
+  photo: string | null;
   linkedin: string;
   group: AdvisorGroup;
 }
@@ -490,6 +491,47 @@ export const ADVISORS: Advisor[] = [
     photo: photo23,
     linkedin: 'https://www.linkedin.com/in/youssef-boulal-6a6929170/',
     group: 'industry-trade-logistics',
+  },
+  {
+    name: 'Badr Ikken',
+    /*
+     * Added on Nouraddine Gribi's instruction (August 2026). Role reflects the
+     * titles supplied by the board verbatim; no biography is asserted beyond
+     * them. Photograph and a fuller biography to be supplied by the advisor.
+     */
+    role: {
+      en: 'Senior Advisor & Partner — Executive President and Managing Partner, GI3; Chairman, AHK Maroc Steering Committee',
+      nl: 'Senior adviseur & partner — uitvoerend voorzitter en managing partner, GI3; voorzitter van het stuurcomité van AHK Maroc',
+      fr: "Conseiller senior & partenaire — président exécutif et managing partner, GI3 ; président du comité de pilotage de l'AHK Maroc",
+    },
+    bio: {
+      en: 'Executive President and Managing Partner of GI3, and Chairman of the Steering Committee of AHK Maroc, the German-Moroccan Chamber of Commerce and Industry.',
+      nl: 'Uitvoerend voorzitter en managing partner van GI3 en voorzitter van het stuurcomité van AHK Maroc, de Duits-Marokkaanse Kamer van Koophandel en Industrie.',
+      fr: "Président exécutif et managing partner de GI3, et président du comité de pilotage de l'AHK Maroc, la Chambre de commerce et d'industrie germano-marocaine.",
+    },
+    photo: null,
+    linkedin: '',
+    group: 'energy-water-transition',
+  },
+  {
+    name: 'Turgut Torunogullari',
+    /*
+     * Honorary member, added on Nouraddine Gribi's instruction (August 2026).
+     * Company affiliation as supplied by the board; photograph to follow.
+     */
+    role: {
+      en: 'Honorary Member — Edelstaal',
+      nl: 'Erelid — Edelstaal',
+      fr: "Membre d'honneur — Edelstaal",
+    },
+    bio: {
+      en: 'Honorary Member of CDD Pays-Bas, recognised by the board for his contribution to the network. Edelstaal.',
+      nl: 'Erelid van CDD Pays-Bas, door het bestuur erkend voor zijn bijdrage aan het netwerk. Edelstaal.',
+      fr: "Membre d'honneur de CDD Pays-Bas, reconnu par le conseil pour sa contribution au réseau. Edelstaal.",
+    },
+    photo: null,
+    linkedin: '',
+    group: 'honorary',
   },
 ];
 

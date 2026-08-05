@@ -2,26 +2,31 @@ import { Globe, Lightbulb, Ship, GraduationCap, type LucideIcon } from 'lucide-r
 import type { Localised } from '../i18n/localised';
 
 /**
- * Canonical focus areas — the SINGLE source of truth.
+ * The four commission domains — the SINGLE source of truth.
  *
- * Previously the homepage listed four areas and the Focus Areas page listed six,
- * and they did not agree. Both pages now read from this file, so they cannot
- * drift apart again.
+ * Previously the homepage listed four "focus areas" and the Focus Areas page
+ * listed six, and they did not agree. Both pages now read from this file, so
+ * they cannot drift apart again.
  *
  * The set is consolidated to the four standing commissions. Two former entries
  * were removed as categories because they are not sectors:
- *   - Public-Private Partnerships → a delivery method, stated on every area
- *   - Cross-Border Collaboration  → the organisation's whole mission, not one area
+ *   - Public-Private Partnerships → a delivery method, stated on every page
+ *   - Cross-Border Collaboration  → the organisation's whole mission, not one domain
  * Their substance is preserved below in `DELIVERY_METHOD` and `POSITIONING_LINE`.
+ *
+ * This file holds the DOMAIN of each commission — number, title, summary,
+ * topics. The governance layer that turns a domain into a standing body —
+ * chair, mandate, cadence, priorities — lives in commissions.ts, which composes
+ * the two.
  */
-export interface FocusArea {
+export interface CommissionDomain {
   /** Commission number, used for the `Commission n — Domain` convention. */
   number: number;
   /** Short title used in navigation, tiles and headings. */
   title: Localised<string>;
   /** One-line summary for homepage tiles. */
   summary: Localised<string>;
-  /** Fuller mandate for the Focus Areas page. */
+  /** Fuller mandate for the commissions landing page. */
   description: Localised<string>;
   /** Concrete areas of work, absorbed from the previous six-area structure. */
   topics: Localised<string[]>;
@@ -29,7 +34,7 @@ export interface FocusArea {
   slug: string;
 }
 
-/** Applies to every area — PPP is a method, not a domain of its own. */
+/** Applies to every commission — PPP is a method, not a domain of its own. */
 export const DELIVERY_METHOD: Localised<string> = {
   en: 'Delivered through public-private partnerships between business, government and knowledge institutions.',
   nl: 'Gerealiseerd via publiek-private samenwerking tussen bedrijfsleven, overheid en kennisinstellingen.',
@@ -43,7 +48,7 @@ export const POSITIONING_LINE: Localised<string> = {
   fr: 'Relie les écosystèmes européens, marocains et africains.',
 };
 
-export const FOCUS_AREAS: FocusArea[] = [
+export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 1,
     slug: 'energy-water-transition',

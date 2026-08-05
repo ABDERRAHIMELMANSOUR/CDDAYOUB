@@ -11,6 +11,7 @@ import {
   type AdvisorGroup,
 } from '../../data/advisors';
 import { COMMISSIONS } from '../../data/commissions';
+import { AdvisorAvatar } from '../AdvisorAvatar';
 
 /**
  * Advisory Council (ticket 16).
@@ -116,7 +117,7 @@ export function Advisors() {
                   </h2>
                   {COMMISSION_GROUPS.has(section.group) && (
                     <Link
-                      to={`/focus-areas/${section.group}`}
+                      to={`/commissions/${section.group}`}
                       className="text-sm font-semibold text-blue-700 hover:text-blue-900 underline"
                     >
                       View commission →
@@ -191,12 +192,7 @@ function AdvisorCard({ advisor }: { advisor: Advisor }) {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
             <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
-              <img
-                src={advisor.photo}
-                alt={advisor.name}
-                loading="lazy"
-                className="w-full h-full object-cover"
-              />
+              <AdvisorAvatar name={advisor.name} photo={advisor.photo} />
             </div>
           </div>
         </div>

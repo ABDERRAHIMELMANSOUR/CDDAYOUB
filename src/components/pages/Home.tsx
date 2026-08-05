@@ -3,15 +3,15 @@ import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { ArrowRight, Globe, Users, Target, TrendingUp, Lightbulb, HandshakeIcon, Sparkles } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { BrandedImage } from '../BrandedImage';
-import { FOCUS_AREAS } from '../../data/focusAreas';
+import { COMMISSION_DOMAINS } from '../../data/commissionDomains';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
 
 export function Home() {
   const t = useTranslation();
   const { locale } = useLocale();
-  // Shared with the Focus Areas page so the two can never disagree again.
-  const focusAreas = FOCUS_AREAS;
+  // Shared with the Commissions page so the two can never disagree again.
+  const commissions = COMMISSION_DOMAINS;
 
   const values = t.home.values;
 
@@ -86,7 +86,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* Focus Areas */}
+      {/* Commissions */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
@@ -102,10 +102,10 @@ export function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {focusAreas.map((area) => (
+            {commissions.map((area) => (
               <Link
                 key={area.slug}
-                to="/focus-areas"
+                to="/commissions"
                 className="group bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="w-14 h-14 gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/20">
@@ -119,7 +119,7 @@ export function Home() {
 
           <div className="text-center mt-12">
             <Link
-              to="/focus-areas"
+              to="/commissions"
               className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group"
             >
               {t.home.exploreAll}

@@ -13,6 +13,7 @@ import {
   type InsightCategory,
 } from '../../data/insights';
 import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
+import { LinkedInFeed } from '../LinkedInFeed';
 
 /**
  * Insights (ticket 20).
@@ -87,6 +88,9 @@ export function Insights() {
           )}
         </div>
       </section>
+
+      {/* Posts from the CDD LinkedIn page — see src/lib/linkedin.ts. */}
+      <LinkedInFeed />
     </div>
   );
 }
@@ -180,7 +184,7 @@ function CommissionTags({ groups }: { groups: AdvisorGroup[] }) {
       {groups.map((group) => (
         <Link
           key={group}
-          to={`/focus-areas/${group}`}
+          to={`/commissions/${group}`}
           className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-blue-50 text-blue-800 hover:bg-blue-100"
         >
           {pick(GROUP_LABELS[group], locale)}

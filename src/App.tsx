@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { Home } from './components/pages/Home';
 import { About } from './components/pages/About';
 import { Leadership } from './components/pages/Leadership';
 import { Advisors } from './components/pages/Advisors';
-import { FocusAreas } from './components/pages/FocusAreas';
+import { Commissions } from './components/pages/Commissions';
 import { CommissionPage } from './components/pages/CommissionPage';
 import { Partnerships } from './components/pages/Partnerships';
 import { Projects } from './components/pages/Projects';
@@ -24,6 +24,12 @@ import { Cookies } from './components/pages/legal/Cookies';
 import { Accessibility } from './components/pages/legal/Accessibility';
 import { Transparency } from './components/pages/legal/Transparency';
 
+/** Preserves the slug when redirecting an old /focus-areas/:slug URL. */
+function LegacyCommissionRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/commissions/${slug ?? ''}`} replace />;
+}
+
 /** Every route, mounted once at the root and once under each locale prefix. */
 function AppRoutes() {
   return (
@@ -32,8 +38,15 @@ function AppRoutes() {
       <Route path="/about" element={<About />} />
       <Route path="/leadership" element={<Leadership />} />
       <Route path="/advisors" element={<Advisors />} />
-      <Route path="/focus-areas" element={<FocusAreas />} />
-      <Route path="/focus-areas/:slug" element={<CommissionPage />} />
+      <Route path="/commissions" element={<Commissions />} />
+      <Route path="/commissions/:slug" element={<CommissionPage />} />
+      {/*
+        The site shipped these pages at /focus-areas. The board renamed them to
+        Commissions in August 2026; these redirects keep existing links, search
+        results and anything already printed on a card from 404ing.
+      */}
+      <Route path="/focus-areas" element={<Navigate to="/commissions" replace />} />
+      <Route path="/focus-areas/:slug" element={<LegacyCommissionRedirect />} />
       <Route path="/partnerships" element={<Partnerships />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/events" element={<Events />} />
