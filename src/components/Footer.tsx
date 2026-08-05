@@ -77,10 +77,10 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <Link
-                  to="/focus-areas"
+                  to="/commissions"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  {t.nav.focusAreas}
+                  {t.nav.commissions}
                 </Link>
               </li>
               <li>

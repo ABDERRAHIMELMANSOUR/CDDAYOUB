@@ -1,16 +1,20 @@
-import { FOCUS_AREAS, type FocusArea } from './focusAreas';
+import { COMMISSION_DOMAINS, type CommissionDomain } from './commissionDomains';
 import type { AdvisorGroup } from './advisors';
 import type { Localised } from '../i18n/localised';
 
 /**
  * The four standing commissions.
  *
- * Part D0 of the blueprint: "Focus Areas" stays as the navigation label because
- * it is plain and discoverable, but the bodies themselves are commissions —
- * governance language, with a chair, a mandate, a cadence and an obligation to
- * report to the board. A page that says "we focus on energy" invites nothing;
- * a page that says "the Energy & Water Commission, chaired by X, meets
- * quarterly and is open to all members" invites participation.
+ * Part D0 of the blueprint makes the case for governance language over strategy
+ * language: a page that says "we focus on energy" invites nothing, while a page
+ * that says "the Energy & Water Commission, chaired by X, meets quarterly and
+ * is open to all members" invites participation.
+ *
+ * The blueprint proposed keeping "Focus Areas" as the NAVIGATION label for
+ * discoverability while the bodies were called commissions in the page body.
+ * The board (August 2026) chose to use "Commissions" consistently, including in
+ * the navigation and the URL, so the two registers no longer diverge anywhere
+ * on the site. Old /focus-areas URLs redirect; see App.tsx.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * ACTION REQUIRED — chairs are a board appointment, not a developer decision.
@@ -21,7 +25,7 @@ import type { Localised } from '../i18n/localised';
  * appointed" rather than naming someone who has not agreed.
  * ─────────────────────────────────────────────────────────────────────────────
  */
-export interface Commission extends FocusArea {
+export interface Commission extends CommissionDomain {
   /** Commission slug doubles as the advisor group key. */
   group: AdvisorGroup;
   /** One-sentence mandate shown under the page header. */
@@ -68,7 +72,7 @@ export const COMMISSION_GOVERNANCE: Localised<string[]> = {
 };
 
 /** Extra detail per commission, merged with the shared focus-area records. */
-const DETAIL: Record<string, Omit<Commission, keyof FocusArea | 'group'>> = {
+const DETAIL: Record<string, Omit<Commission, keyof CommissionDomain | 'group'>> = {
   'energy-water-transition': {
     mandate: {
       en: 'To advance Dutch–Moroccan cooperation in renewable energy, hydrogen, storage and water, and to turn that cooperation into concrete projects.',
@@ -299,7 +303,7 @@ const DETAIL: Record<string, Omit<Commission, keyof FocusArea | 'group'>> = {
   },
 };
 
-export const COMMISSIONS: Commission[] = FOCUS_AREAS.map((area) => ({
+export const COMMISSIONS: Commission[] = COMMISSION_DOMAINS.map((area) => ({
   ...area,
   group: area.slug as AdvisorGroup,
   ...DETAIL[area.slug],

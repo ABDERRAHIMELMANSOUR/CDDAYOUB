@@ -14,7 +14,7 @@ import { SMART_PLATFORM, buildLoginUrl, isPlatformLive } from '../lib/smartPlatf
 /**
  * Primary navigation — six items with grouped dropdowns (ticket 14).
  *
- * Focus Areas builds its children from the commission list, so adding or
+ * Commissions builds its children from the commission list, so adding or
  * retiring a commission updates the menu automatically.
  */
 export function Navigation() {
@@ -29,7 +29,7 @@ export function Navigation() {
 
   const NAV_LABELS: Record<string, string> = {
     '/about': t.nav.about,
-    '/focus-areas': t.nav.focusAreas,
+    '/commissions': t.nav.commissions,
     '/membership': t.nav.membership,
     '/events': t.nav.events,
     '/insights': t.nav.insights,
@@ -54,14 +54,14 @@ export function Navigation() {
       children: item.children?.map((c) => ({ ...c, name: CHILD_LABELS[c.path] ?? c.name })),
     }))
     .map((item) =>
-    item.path === '/focus-areas'
+    item.path === '/commissions'
       ? {
           ...item,
           children: [
-            { name: t.nav.allFocusAreas, path: '/focus-areas' },
+            { name: t.nav.allCommissions, path: '/commissions' },
             ...COMMISSIONS.map((c) => ({
               name: pick(c.title, locale),
-              path: `/focus-areas/${c.slug}`,
+              path: `/commissions/${c.slug}`,
             })),
           ],
         }

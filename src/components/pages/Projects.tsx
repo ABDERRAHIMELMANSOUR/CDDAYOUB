@@ -106,13 +106,13 @@ export function Projects() {
         </div>
       </section>
 
-      {/* Focus Areas Preview */}
+      {/* Commissions preview */}
       <section className="py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
         
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
           <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-            {t.nav.focusAreas}
+            {t.nav.commissions}
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
             {t.projects.ctaTitle}
@@ -121,10 +121,10 @@ export function Projects() {
             {t.projects.comingSoonText}
           </p>
           <a
-            href="/focus-areas"
+            href="/commissions"
             className="inline-block px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl hover:bg-white/20 transition-all duration-300 font-medium"
           >
-            {t.nav.allFocusAreas}
+            {t.nav.allCommissions}
           </a>
         </div>
       </section>

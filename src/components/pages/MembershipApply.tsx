@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Check, AlertCircle, Loader2 } from 'lucide-react';
-import { MEMBERSHIP_TIERS, getTier, formatPrice, pick, type TierId } from '../../data/membership';
+import { MEMBERSHIP, formatMembershipPrice, pick } from '../../data/membership';
 import { COMMISSIONS } from '../../data/commissions';
 import { paymentProvider, PAYMENT_METHODS, type Applicant } from '../../lib/payments';
 
@@ -22,22 +21,10 @@ import { paymentProvider, PAYMENT_METHODS, type Applicant } from '../../lib/paym
 export function MembershipApply() {
   const t = useTranslation();
   const { locale } = useLocale();
-  const priceLabels = {
-    perYear: t.membership.perYear,
-    byInvitation: t.membership.byInvitation,
-    contactForDues: t.membership.contactForDues,
-  };
-  const [params] = useSearchParams();
-  const initialTier = (params.get('tier') as TierId) || 'individual';
-
-  const [tierId, setTierId] = useState<TierId>(
-    getTier(initialTier)?.applicable ? initialTier : 'individual'
-  );
+  const price = formatMembershipPrice(locale, t.membership.perMonth);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const [reference, setReference] = useState<string>('');
   const [error, setError] = useState<string>('');
-
-  const tier = getTier(tierId);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,7 +41,7 @@ export function MembershipApply() {
       message: String(form.get('message') || '').trim() || undefined,
     };
 
-    const result = await paymentProvider.createCheckout({ tierId, applicant });
+    const result = await paymentProvider.createCheckout({ applicant });
 
     if (result.status === 'redirect') {
       window.location.href = result.checkoutUrl;
@@ -76,21 +63,18 @@ export function MembershipApply() {
           <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-6">
             <Check className="h-8 w-8 text-blue-700" aria-hidden="true" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Application received</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            {t.membership.receivedTitle}
+          </h1>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Thank you. Your application for{' '}
-            <strong>{tier ? pick(tier.name, locale) : ''}</strong> membership has been recorded
-            under reference <strong>{reference}</strong>.
+            {t.membership.receivedText} <strong>{reference}</strong>.
           </p>
-          <p className="mt-4 text-gray-700 leading-relaxed">
-            A member of the board reviews every application personally. We will be in touch shortly
-            to confirm your membership and arrange payment.
-          </p>
+          <p className="mt-4 text-gray-700 leading-relaxed">{t.membership.receivedFollowUp}</p>
           <Link
             to="/"
             className="inline-block mt-8 px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg transition-all"
           >
-            Back to home
+            {t.membership.backHome}
           </Link>
         </div>
       </div>
@@ -106,69 +90,56 @@ export function MembershipApply() {
             to="/membership"
             className="inline-flex items-center text-sm text-blue-200 hover:text-white transition-colors mb-5"
           >
-            ← Membership
+            ← {t.membership.applyBackLink}
           </Link>
           <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Apply for membership
+            {t.membership.applyTitle}
           </h1>
-          <p className="mt-4 text-xl text-gray-200 leading-relaxed">
-            Three required fields. We review every application and respond personally.
-          </p>
+          <p className="mt-4 text-xl text-gray-200 leading-relaxed">{t.membership.applyIntro}</p>
         </div>
       </section>
 
       <section className="py-12 lg:py-16 bg-white">
         <form onSubmit={handleSubmit} className="max-w-[900px] mx-auto px-6 lg:px-12">
-          {/* Tier selection */}
-          <fieldset className="mb-10">
-            <legend className="text-2xl font-bold text-gray-900 mb-5">Choose your tier</legend>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {MEMBERSHIP_TIERS.filter((t) => t.applicable).map((option) => (
-                <label
-                  key={option.id}
-                  className={`flex cursor-pointer gap-4 rounded-2xl border-2 p-5 transition-all ${
-                    tierId === option.id
-                      ? 'border-blue-600 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="tier"
-                    value={option.id}
-                    checked={tierId === option.id}
-                    onChange={() => setTierId(option.id)}
-                    className="mt-1 h-4 w-4 text-blue-600"
-                  />
-                  <span>
-                    <span className="block font-bold text-gray-900">
-                      {pick(option.name, locale)}
-                    </span>
-                    <span className="block text-sm text-gray-600 mt-0.5">
-                      {pick(option.audience, locale)}
-                    </span>
-                    <span className="block text-sm font-semibold text-blue-700 mt-1">
-                      {formatPrice(option, locale, priceLabels)}
-                    </span>
-                  </span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
           {/* Applicant details */}
           <fieldset className="mb-10">
-            <legend className="text-2xl font-bold text-gray-900 mb-5">Your details</legend>
+            <legend className="text-2xl font-bold text-gray-900 mb-5">
+              {t.membership.yourDetails}
+            </legend>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Field label="Full name" name="name" required autoComplete="name" />
-              <Field label="Email" name="email" type="email" required autoComplete="email" />
-              <Field label="Organisation" name="organisation" autoComplete="organization" />
-              <Field label="Role" name="role" autoComplete="organization-title" />
+              <Field
+                label={t.membership.fullName}
+                optionalLabel={t.membership.optional}
+                name="name"
+                required
+                autoComplete="name"
+              />
+              <Field
+                label={t.membership.emailLabel}
+                optionalLabel={t.membership.optional}
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+              />
+              <Field
+                label={t.membership.organisationLabel}
+                optionalLabel={t.membership.optional}
+                name="organisation"
+                autoComplete="organization"
+              />
+              <Field
+                label={t.membership.roleLabel}
+                optionalLabel={t.membership.optional}
+                name="role"
+                autoComplete="organization-title"
+              />
             </div>
 
             <div className="mt-6">
               <label htmlFor="commission" className="block text-sm font-semibold text-gray-900 mb-2">
-                Which commission interests you? <span className="font-normal text-gray-600">(optional)</span>
+                {t.membership.commissionLabel}{' '}
+                <span className="font-normal text-gray-600">{t.membership.optional}</span>
               </label>
               <select
                 id="commission"
@@ -176,7 +147,7 @@ export function MembershipApply() {
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 defaultValue=""
               >
-                <option value="">No preference</option>
+                <option value="">{t.membership.commissionNone}</option>
                 {COMMISSIONS.map((commission) => (
                   <option key={commission.slug} value={pick(commission.title, locale)}>
                     {pick(commission.title, locale)}
@@ -187,8 +158,8 @@ export function MembershipApply() {
 
             <div className="mt-6">
               <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-                Anything you would like us to know?{' '}
-                <span className="font-normal text-gray-600">(optional)</span>
+                {t.membership.messageLabel}{' '}
+                <span className="font-normal text-gray-600">{t.membership.optional}</span>
               </label>
               <textarea
                 id="message"
@@ -202,24 +173,19 @@ export function MembershipApply() {
           {/* Review */}
           <div className="rounded-2xl bg-gray-50 border border-gray-200 p-6 mb-8">
             <h2 className="font-bold text-gray-900 mb-2">
-              {tier ? pick(tier.name, locale) : ''} — {tier ? formatPrice(tier, locale, priceLabels) : ''}
+              {pick(MEMBERSHIP.name, locale)} — {price}
             </h2>
             {!paymentProvider.isLive ? (
-              <p className="text-gray-700 leading-relaxed">
-                Submitting records your application. CDD Pays-Bas will confirm your membership and
-                arrange payment with you directly — online payment is being set up and no payment
-                is taken now.
-              </p>
+              <p className="text-gray-700 leading-relaxed">{t.membership.reviewManual}</p>
             ) : (
               <p className="text-gray-700 leading-relaxed">
-                You will be taken to our payment provider to complete your membership. We accept{' '}
-                {PAYMENT_METHODS.map((m) => m.label).join(', ')}.
+                {t.membership.reviewLive} {PAYMENT_METHODS.map((m) => m.label).join(', ')}.
               </p>
             )}
             <p className="mt-3 text-sm text-gray-700">
-              Your details are handled in line with our{' '}
+              {t.membership.privacyLine}{' '}
               <Link to="/privacy" className="text-blue-700 underline hover:text-blue-900">
-                privacy statement
+                {t.membership.privacyLink}
               </Link>
               .
             </p>
@@ -238,7 +204,7 @@ export function MembershipApply() {
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold text-lg hover:shadow-2xl hover:shadow-blue-500/30 transition-all disabled:opacity-60"
           >
             {status === 'submitting' && <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />}
-            {status === 'submitting' ? 'Submitting…' : 'Submit application'}
+            {status === 'submitting' ? t.membership.submitting : t.membership.submit}
           </button>
         </form>
       </section>
@@ -248,12 +214,14 @@ export function MembershipApply() {
 
 function Field({
   label,
+  optionalLabel,
   name,
   type = 'text',
   required = false,
   autoComplete,
 }: {
   label: string;
+  optionalLabel: string;
   name: string;
   type?: string;
   required?: boolean;
@@ -266,7 +234,7 @@ function Field({
         {required ? (
           <span className="text-red-700">*</span>
         ) : (
-          <span className="font-normal text-gray-600">(optional)</span>
+          <span className="font-normal text-gray-600">{optionalLabel}</span>
         )}
       </label>
       <input

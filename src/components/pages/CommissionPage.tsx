@@ -5,10 +5,11 @@ import { pick } from '../../i18n/localised';
 import { Linkedin, CalendarClock, Users, ShieldCheck, ArrowRight } from 'lucide-react';
 import { getCommission } from '../../data/commissions';
 import { advisorsInGroup } from '../../data/advisors';
-import { DELIVERY_METHOD } from '../../data/focusAreas';
+import { DELIVERY_METHOD } from '../../data/commissionDomains';
 import { eventsForCommission, formatEventDate } from '../../data/events';
 import { insightsForCommission, formatInsightDate } from '../../data/insights';
 import { BrandedImage } from '../BrandedImage';
+import { AdvisorAvatar } from '../AdvisorAvatar';
 
 /**
  * Commission page template (Part D4) — one shared structure for all four.
@@ -25,7 +26,7 @@ export function CommissionPage() {
   const commission = slug ? getCommission(slug) : undefined;
 
   // Unknown slug falls back to the landing page rather than a dead end.
-  if (!commission) return <Navigate to="/focus-areas" replace />;
+  if (!commission) return <Navigate to="/commissions" replace />;
 
   const advisors = advisorsInGroup(commission.group);
   const relatedEvents = eventsForCommission(commission.group);
@@ -41,10 +42,10 @@ export function CommissionPage() {
 
         <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
           <Link
-            to="/focus-areas"
+            to="/commissions"
             className="inline-flex items-center text-sm text-blue-200 hover:text-white transition-colors mb-6"
           >
-            ← {t.nav.allFocusAreas}
+            ← {t.nav.allCommissions}
           </Link>
           <div className="flex items-start gap-5">
             <div className="hidden sm:flex w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm items-center justify-center flex-shrink-0">
@@ -157,12 +158,7 @@ export function CommissionPage() {
                 >
                   <div className="mb-5 flex justify-center">
                     <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                      <img
-                        src={advisor.photo}
-                        alt={advisor.name}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
+                      <AdvisorAvatar name={advisor.name} photo={advisor.photo} />
                     </div>
                   </div>
                   <h3 className="font-bold text-gray-900 leading-tight">{advisor.name}</h3>
