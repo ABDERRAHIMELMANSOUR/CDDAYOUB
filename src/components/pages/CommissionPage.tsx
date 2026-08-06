@@ -1,5 +1,5 @@
-import { useParams, Navigate } from 'react-router-dom';
-import { LocaleLink as Link } from '../../i18n/LocaleLink';
+import { useParams } from 'react-router-dom';
+import { LocaleLink as Link, LocaleNavigate } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
 import { Linkedin, CalendarClock, Users, ShieldCheck, ArrowRight } from 'lucide-react';
@@ -26,7 +26,7 @@ export function CommissionPage() {
   const commission = slug ? getCommission(slug) : undefined;
 
   // Unknown slug falls back to the landing page rather than a dead end.
-  if (!commission) return <Navigate to="/commissions" replace />;
+  if (!commission) return <LocaleNavigate to="/commissions" />;
 
   const advisors = advisorsInGroup(commission.group);
   const relatedEvents = eventsForCommission(commission.group);
