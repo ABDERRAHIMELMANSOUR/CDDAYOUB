@@ -90,15 +90,21 @@ export function Commissions() {
                       <dt className="font-semibold text-gray-900">{t.commissions.cadence}:</dt>
                       <dd className="text-gray-700">{pick(commission.cadence, locale)}</dd>
                     </div>
-                    {count > 0 && (
-                      <div className="flex items-center gap-2 text-gray-700">
-                        <Users className="h-4 w-4 text-blue-700" aria-hidden="true" />
-                        <span>
-                          {count} {count === 1 ? t.commissions.advisor : t.commissions.advisors}
-                        </span>
-                      </div>
-                    )}
                   </dl>
+                  {/*
+                    The advisor count sits OUTSIDE the <dl>. A <dl> may only
+                    contain <dt>/<dd> groups (optionally wrapped in a <div>);
+                    a bare icon-and-span row inside one is a WCAG structure
+                    violation, flagged by axe as `definition-list`.
+                  */}
+                  {count > 0 && (
+                    <p className="mt-2 flex items-center gap-2 text-sm text-gray-700">
+                      <Users className="h-4 w-4 text-blue-700" aria-hidden="true" />
+                      <span>
+                        {count} {count === 1 ? t.commissions.advisor : t.commissions.advisors}
+                      </span>
+                    </p>
+                  )}
 
                   <span className="mt-6 inline-flex items-center text-blue-700 font-semibold group-hover:text-blue-900">
                     {t.commissions.viewCommission}
