@@ -145,15 +145,27 @@ export interface Dictionary {
     confirmRegistration: string;
   };
   home: {
+    becomeMember: string;
+    proofAdvisors: string;
+    proofCommissions: string;
+    proofEvents: string;
+    proofMarkets: string;
+    spotlightEyebrow: string;
+    spotlightTitle: string;
+    spotlightAll: string;
+    insightsEyebrow: string;
+    insightsTitle: string;
+    insightsText: string;
+    insightsAll: string;
+    joinBandTitle: string;
+    joinBandText: string;
+    joinBandPrimary: string;
+    joinBandSecondary: string;
     badge: string;
     heroLine1: string;
     heroLine2: string;
     heroText: string;
-    getInvolved: string;
     upcomingEvents: string;
-    visionEyebrow: string;
-    visionTitle: string;
-    visionText: string;
     whatWeDo: string;
     focusTitle: string;
     focusText: string;
@@ -167,8 +179,6 @@ export interface Dictionary {
     valuesTitle: string;
     valuesText: string;
     values: { title: string; description: string }[];
-    ctaTitle: string;
-    ctaText: string;
   };
   commissionsIndex: {
     title: string;
@@ -205,6 +215,7 @@ export interface Dictionary {
     opportunity: string;
   };
   about: {
+    imageCaption: string;
     eyebrow: string;
     title: string;
     subtitle: string;
@@ -544,17 +555,29 @@ const en: Dictionary = {
     confirmRegistration: 'Confirm registration',
   },
   home: {
+    becomeMember: 'Become a member',
+    proofAdvisors: 'senior advisors',
+    proofCommissions: 'standing commissions',
+    proofEvents: 'events held',
+    proofMarkets: 'markets connected',
+    spotlightEyebrow: 'Advisory Council',
+    spotlightTitle: 'Who you get access to',
+    spotlightAll: 'Meet the Advisory Council',
+    insightsEyebrow: 'Insights',
+    insightsTitle: 'Latest from CDD Pays-Bas',
+    insightsText: 'News, member and advisor spotlights, and briefings on both markets.',
+    insightsAll: 'All insights',
+    joinBandTitle: 'Join CDD Pays-Bas',
+    joinBandText:
+      'One membership, €25 per month: every event, a seat in any commission, and direct access to our senior advisors across the Netherlands and Morocco.',
+    joinBandPrimary: 'Become a member',
+    joinBandSecondary: 'What membership includes',
     badge: 'International Business Leadership Platform',
     heroLine1: 'Connecting Leaders,',
     heroLine2: 'Building the Future',
     heroText:
       'CDD Pays-Bas is an international platform for business leaders, investors, and decision-makers driving cross-border collaboration and sustainable development.',
-    getInvolved: 'Get Involved',
     upcomingEvents: 'Upcoming Events',
-    visionEyebrow: 'Our Vision',
-    visionTitle: 'A Strategic Bridge Between Two Markets',
-    visionText:
-      'To serve as a strategic bridge connecting European, Moroccan, and African ecosystems, fostering economic diplomacy, innovation, and sustainable growth through purposeful collaboration between business leaders, public institutions, and international partners.',
     whatWeDo: 'What We Do',
     focusTitle: 'Our Four Commissions',
     focusText: 'We drive impact across key sectors shaping the future of international business',
@@ -578,9 +601,6 @@ const en: Dictionary = {
       { title: 'Collaboration', description: 'Building bridges between sectors and geographies' },
       { title: 'Impact', description: 'Creating measurable value for communities and economies' },
     ],
-    ctaTitle: 'Join Our Network',
-    ctaText:
-      'Connect with decision-makers, explore strategic partnerships, and be part of initiatives shaping the future of cross-border collaboration.',
   },
   commissionsIndex: {
     title: 'Where our work happens',
@@ -621,6 +641,8 @@ const en: Dictionary = {
     opportunity: 'The Netherlands–Morocco opportunity',
   },
   about: {
+    imageCaption:
+      'Replace with photography from a CDD Pays-Bas gathering or delegation.',
     eyebrow: 'About Us',
     title: 'About CDD Pays-Bas',
     subtitle:
@@ -1093,17 +1115,29 @@ const nl: Dictionary = {
     confirmRegistration: 'Aanmelding bevestigen',
   },
   home: {
+    becomeMember: 'Word lid',
+    proofAdvisors: 'senior adviseurs',
+    proofCommissions: 'vaste commissies',
+    proofEvents: 'gehouden evenementen',
+    proofMarkets: 'verbonden markten',
+    spotlightEyebrow: 'Raad van advies',
+    spotlightTitle: 'Tot wie u toegang krijgt',
+    spotlightAll: 'Maak kennis met de raad van advies',
+    insightsEyebrow: 'Insights',
+    insightsTitle: 'Het laatste van CDD Pays-Bas',
+    insightsText: 'Nieuws, portretten van leden en adviseurs, en briefings over beide markten.',
+    insightsAll: 'Alle insights',
+    joinBandTitle: 'Word lid van CDD Pays-Bas',
+    joinBandText:
+      'Eén lidmaatschap, € 25 per maand: alle evenementen, een zetel in elke commissie en directe toegang tot onze senior adviseurs in Nederland en Marokko.',
+    joinBandPrimary: 'Word lid',
+    joinBandSecondary: 'Wat het lidmaatschap omvat',
     badge: 'Internationaal platform voor zakelijk leiderschap',
     heroLine1: 'Leiders verbinden,',
     heroLine2: 'de toekomst bouwen',
     heroText:
       'CDD Pays-Bas is een internationaal platform voor bestuurders, investeerders en besluitvormers die grensoverschrijdende samenwerking en duurzame ontwikkeling stimuleren.',
-    getInvolved: 'Doe mee',
     upcomingEvents: 'Aankomende evenementen',
-    visionEyebrow: 'Onze visie',
-    visionTitle: 'Een strategische brug tussen twee markten',
-    visionText:
-      'Fungeren als strategische brug tussen Europese, Marokkaanse en Afrikaanse ecosystemen, en economische diplomatie, innovatie en duurzame groei bevorderen door doelgerichte samenwerking tussen bestuurders, publieke instellingen en internationale partners.',
     whatWeDo: 'Wat wij doen',
     focusTitle: 'Onze vier commissies',
     focusText:
@@ -1128,9 +1162,6 @@ const nl: Dictionary = {
       { title: 'Samenwerking', description: 'Bruggen bouwen tussen sectoren en regio\'s' },
       { title: 'Impact', description: 'Meetbare waarde creëren voor gemeenschappen en economieën' },
     ],
-    ctaTitle: 'Sluit u aan bij ons netwerk',
-    ctaText:
-      'Kom in contact met besluitvormers, verken strategische partnerschappen en maak deel uit van initiatieven die de toekomst van grensoverschrijdende samenwerking vormgeven.',
   },
   commissionsIndex: {
     title: 'Waar ons werk gebeurt',
@@ -1172,6 +1203,8 @@ const nl: Dictionary = {
     opportunity: 'De kans tussen Nederland en Marokko',
   },
   about: {
+    imageCaption:
+      'Vervang door fotografie van een bijeenkomst of missie van CDD Pays-Bas.',
     eyebrow: 'Over ons',
     title: 'Over CDD Pays-Bas',
     subtitle:
@@ -1646,17 +1679,30 @@ const fr: Dictionary = {
     confirmRegistration: "Confirmer l'inscription",
   },
   home: {
+    becomeMember: 'Devenir membre',
+    proofAdvisors: 'conseillers seniors',
+    proofCommissions: 'commissions permanentes',
+    proofEvents: 'événements organisés',
+    proofMarkets: 'marchés reliés',
+    spotlightEyebrow: 'Conseil consultatif',
+    spotlightTitle: 'Les personnes auxquelles vous accédez',
+    spotlightAll: 'Découvrir le conseil consultatif',
+    insightsEyebrow: 'Insights',
+    insightsTitle: 'Les dernières actualités de CDD Pays-Bas',
+    insightsText:
+      'Actualités, portraits de membres et de conseillers, et briefings sur les deux marchés.',
+    insightsAll: 'Tous les insights',
+    joinBandTitle: 'Rejoignez CDD Pays-Bas',
+    joinBandText:
+      "Une seule adhésion, 25 € par mois : tous les événements, un siège dans la commission de votre choix et un accès direct à nos conseillers seniors aux Pays-Bas et au Maroc.",
+    joinBandPrimary: 'Devenir membre',
+    joinBandSecondary: "Ce que comprend l'adhésion",
     badge: 'Plateforme internationale de leadership économique',
     heroLine1: 'Relier les dirigeants,',
     heroLine2: "construire l'avenir",
     heroText:
       'CDD Pays-Bas est une plateforme internationale réunissant dirigeants, investisseurs et décideurs qui font avancer la collaboration transfrontalière et le développement durable.',
-    getInvolved: 'Participer',
     upcomingEvents: 'Événements à venir',
-    visionEyebrow: 'Notre vision',
-    visionTitle: 'Un pont stratégique entre deux marchés',
-    visionText:
-      "Servir de pont stratégique entre les écosystèmes européens, marocains et africains, en favorisant la diplomatie économique, l'innovation et une croissance durable par une collaboration réfléchie entre dirigeants, institutions publiques et partenaires internationaux.",
     whatWeDo: 'Ce que nous faisons',
     focusTitle: 'Nos quatre commissions',
     focusText:
@@ -1681,9 +1727,6 @@ const fr: Dictionary = {
       { title: 'Collaboration', description: 'Bâtir des ponts entre secteurs et territoires' },
       { title: 'Impact', description: 'Créer une valeur mesurable pour les communautés et les économies' },
     ],
-    ctaTitle: 'Rejoignez notre réseau',
-    ctaText:
-      "Échangez avec des décideurs, explorez des partenariats stratégiques et prenez part aux initiatives qui façonnent l'avenir de la collaboration transfrontalière.",
   },
   commissionsIndex: {
     title: 'Là où se fait notre travail',
@@ -1725,6 +1768,8 @@ const fr: Dictionary = {
     opportunity: "L'opportunité Pays-Bas–Maroc",
   },
   about: {
+    imageCaption:
+      "À remplacer par une photographie d'une rencontre ou d'une mission de CDD Pays-Bas.",
     eyebrow: 'À propos',
     title: 'À propos de CDD Pays-Bas',
     subtitle:

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Check, AlertCircle, Loader2 } from 'lucide-react';
@@ -11,6 +12,7 @@ import {
 import { COMMISSIONS } from '../../data/commissions';
 import { paymentProvider, PAYMENT_METHODS, type Applicant } from '../../lib/payments';
 import { submitToCrm, isLikelyBot } from '../../lib/crm';
+import { trackEvent, GOALS } from '../../lib/analytics';
 import { HoneypotField } from '../HoneypotField';
 
 /**
@@ -29,9 +31,23 @@ export function MembershipApply() {
   const t = useTranslation();
   const { locale } = useLocale();
   const price = formatMembershipPrice(locale, t.membership.perMonth);
+  const [params] = useSearchParams();
+  // Preselected when arriving from a commission page's "join" CTA. Matched
+  // against the rendered option values, so an unknown value simply falls back
+  // to "no preference" rather than injecting arbitrary text into the form.
+  const requested = params.get('commission') ?? '';
+  const preselected = COMMISSIONS.some((c) => pick(c.title, locale) === requested)
+    ? requested
+    : '';
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const [reference, setReference] = useState<string>('');
   const [error, setError] = useState<string>('');
+
+  // Fires once on arrival. Paired with the submitted goal below, this is what
+  // makes the blueprint's "application form completion rate" measurable.
+  useEffect(() => {
+    trackEvent(GOALS.membershipApplicationStarted);
+  }, []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -72,6 +88,10 @@ export function MembershipApply() {
         message: applicant.message,
         monthlyDuesEur: MEMBERSHIP_PRICE_EUR,
       },
+    });
+
+    trackEvent(GOALS.membershipApplicationSubmitted, {
+      commission: applicant.commission || 'none',
     });
 
     const result = await paymentProvider.createCheckout({ applicant });
@@ -179,7 +199,7 @@ export function MembershipApply() {
                 id="commission"
                 name="commission"
                 className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
-                defaultValue=""
+                defaultValue={preselected}
               >
                 <option value="">{t.membership.commissionNone}</option>
                 {COMMISSIONS.map((commission) => (

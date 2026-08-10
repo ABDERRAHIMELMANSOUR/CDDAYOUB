@@ -2,7 +2,7 @@ import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
 import { Target, Eye, Award, Globe } from 'lucide-react';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { BrandedImage } from '../BrandedImage';
 import { ORGANISATION, MOROCCO_RELATIONSHIP_TEXT } from '../../data/organisation';
 
 export function About() {
@@ -88,10 +88,18 @@ export function About() {
             </div>
             <div className="relative h-[500px] lg:h-[600px]">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-3xl blur-2xl"></div>
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1758195004300-7061d5138bae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBSb3R0ZXJkYW0lMjBza3lsaW5lfGVufDF8fHx8MTc2OTcyMTM2OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Modern Netherlands cityscape"
-                className="relative w-full h-full object-cover rounded-3xl shadow-2xl"
+              {/*
+                Was a stock Unsplash skyline of an unrelated city, loaded from a
+                third party on every visit — the last of the off-brand imagery
+                in ticket 21, and the only remaining external image request on
+                the site. Replaced with the branded placeholder until CDD's own
+                photography exists; pass `src` to BrandedImage and it takes over.
+              */}
+              <BrandedImage
+                label={t.about.eyebrow}
+                title={t.about.whoWeAre}
+                caption={t.about.imageCaption}
+                className="relative rounded-3xl shadow-2xl"
               />
             </div>
           </div>

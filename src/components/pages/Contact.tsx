@@ -3,6 +3,7 @@ import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Mail, MapPin, Linkedin, Send, Phone, Building, AlertCircle } from 'lucide-react';
 import { submitToCrm, isLikelyBot } from '../../lib/crm';
+import { trackEvent, GOALS } from '../../lib/analytics';
 import { HoneypotField } from '../HoneypotField';
 
 export function Contact() {
@@ -48,6 +49,7 @@ export function Contact() {
     });
     setPending(false);
     setDegraded(result.status === 'error');
+    trackEvent(GOALS.contactSubmitted, { interest: formData.interest || 'unspecified' });
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -230,12 +232,12 @@ export function Contact() {
 
                     <div>
                       <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
-                        {t.contact.areaOfInterest} *
+                        {t.contact.areaOfInterest}{' '}
+                        <span className="font-normal text-gray-500">{t.common.optional}</span>
                       </label>
                       <select
                         id="interest"
                         name="interest"
-                        required
                         value={formData.interest}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -251,13 +253,13 @@ export function Contact() {
 
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        {t.contact.subject} *
+                        {t.contact.subject}{' '}
+                        <span className="font-normal text-gray-500">{t.common.optional}</span>
                       </label>
                       <input
                         type="text"
                         id="subject"
                         name="subject"
-                        required
                         value={formData.subject}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
