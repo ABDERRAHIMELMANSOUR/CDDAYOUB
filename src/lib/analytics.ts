@@ -107,4 +107,6 @@ export const GOALS = {
   eventRegistration: 'Event: registration submitted',
   commissionInterest: 'Commission: join clicked',
   contactSubmitted: 'Contact: message sent',
+  calendarDownload: 'Event: calendar file downloaded',
+  heroMembershipCta: 'Home: hero membership CTA',
 } as const;

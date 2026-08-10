@@ -9,6 +9,7 @@ import {
   upcomingEvents,
   pastEvents,
   formatEventDate,
+  eventJsonLd,
   placesLeft,
   canRegister,
   type CDDEvent,
@@ -18,8 +19,10 @@ import { COMMISSIONS } from '../../data/commissions';
 import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
 import { BrandedImage } from '../BrandedImage';
 import { HoneypotField } from '../HoneypotField';
+import { StructuredData } from '../StructuredData';
 import { downloadIcs } from '../../lib/calendar';
 import { submitToCrm, isLikelyBot } from '../../lib/crm';
+import { trackEvent, GOALS } from '../../lib/analytics';
 
 /**
  * Events (ticket 19).
@@ -39,6 +42,26 @@ export function Events() {
   const [commissionFilter, setCommissionFilter] = useState<AdvisorGroup | 'all'>('all');
   const [rsvpFor, setRsvpFor] = useState<CDDEvent | null>(null);
 
+  /*
+   * schema.org/Event for every event on the page — the free distribution into
+   * Google's event surfaces the blueprint calls out. An ItemList wrapper is
+   * used rather than one script per event so the ordering is explicit.
+   */
+  const origin = typeof window === 'undefined' ? 'https://cddpaysbas.nl' : window.location.origin;
+  const eventsLd = useMemo(
+    () => ({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      itemListElement: EVENTS.map((event, index) => {
+        // @context belongs on the outer graph only; repeating it on each
+        // nested item is redundant and discouraged by schema.org.
+        const { '@context': _context, ...item } = eventJsonLd(event, origin, locale);
+        return { '@type': 'ListItem', position: index + 1, item };
+      }),
+    }),
+    [origin, locale]
+  );
+
   const matches = useMemo(
     () => (event: CDDEvent) =>
       (typeFilter === 'all' || event.type === typeFilter) &&
@@ -52,6 +75,7 @@ export function Events() {
 
   return (
     <div>
+      <StructuredData id="events-jsonld" data={eventsLd} />
       {/* Hero */}
       <section className="relative py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
@@ -276,7 +300,10 @@ function EventCard({ event, onRsvp }: { event: CDDEvent; onRsvp: () => void }) {
           </button>
           <button
             type="button"
-            onClick={() => downloadIcs(event, locale)}
+            onClick={() => {
+              trackEvent(GOALS.calendarDownload, { event: event.slug });
+              downloadIcs(event, locale);
+            }}
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold border border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors"
           >
             <CalendarPlus className="h-4 w-4" aria-hidden="true" />
@@ -370,7 +397,10 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
             )}
             <button
               type="button"
-              onClick={() => downloadIcs(event, locale)}
+              onClick={() => {
+                trackEvent(GOALS.calendarDownload, { event: event.slug });
+                downloadIcs(event, locale);
+              }}
               className="mt-6 mr-3 inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-blue-600 text-blue-700 font-semibold hover:bg-blue-50 transition-colors"
             >
               <CalendarPlus className="h-4 w-4" aria-hidden="true" />
@@ -413,6 +443,7 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
               // 'not-configured' is expected until the board sets the webhook
               // up; only a real failure warrants telling the visitor to email.
               setDegraded(result.status === 'error');
+              trackEvent(GOALS.eventRegistration, { event: event.slug });
               setDone(true);
             }}
             className="space-y-5"

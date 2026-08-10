@@ -9,6 +9,7 @@ import { DELIVERY_METHOD } from '../../data/commissionDomains';
 import { eventsForCommission, formatEventDate } from '../../data/events';
 import { insightsForCommission, formatInsightDate } from '../../data/insights';
 import { BrandedImage } from '../BrandedImage';
+import { trackEvent, GOALS } from '../../lib/analytics';
 import { AdvisorAvatar } from '../AdvisorAvatar';
 
 /**
@@ -283,8 +284,15 @@ export function CommissionPage() {
           <p className="text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
             {t.commissions.joinText}
           </p>
+          {/*
+            D5: "joining takes one click from the commission page". This goes to
+            the membership application with this commission preselected, rather
+            than to a general contact form where the visitor has to re-explain
+            which commission they meant.
+          */}
           <Link
-            to="/contact"
+            to={`/membership/apply?commission=${encodeURIComponent(pick(commission.title, locale))}`}
+            onClick={() => trackEvent(GOALS.commissionInterest, { commission: commission.slug })}
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg group"
           >
             {t.commissions.joinCommission}

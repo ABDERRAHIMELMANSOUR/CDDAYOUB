@@ -1,11 +1,16 @@
 import React from 'react';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
-import { ArrowRight, Globe, Users, Target, TrendingUp, Lightbulb, HandshakeIcon, Sparkles } from 'lucide-react';
-import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { ArrowRight, Users, Sparkles } from 'lucide-react';
 import { BrandedImage } from '../BrandedImage';
+import { AdvisorAvatar } from '../AdvisorAvatar';
 import { COMMISSION_DOMAINS } from '../../data/commissionDomains';
+import { COMMISSIONS } from '../../data/commissions';
+import { ADVISORS } from '../../data/advisors';
+import { EVENTS } from '../../data/events';
+import { sortedInsights, formatInsightDate, INSIGHT_CATEGORY_LABELS } from '../../data/insights';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
+import { trackEvent, GOALS } from '../../lib/analytics';
 
 export function Home() {
   const t = useTranslation();
@@ -14,6 +19,30 @@ export function Home() {
   const commissions = COMMISSION_DOMAINS;
 
   const values = t.home.values;
+
+  /*
+   * Proof bar figures. Every number is derived from the data files rather than
+   * typed in, so the bar cannot drift out of date the way a hard-coded "24
+   * advisors" would once a 25th is added. No member count appears: CDD has not
+   * published one, and an invented figure on the homepage is the fastest way to
+   * lose the credibility the rest of this page is trying to build.
+   */
+  const proof = [
+    { value: ADVISORS.length, label: t.home.proofAdvisors },
+    { value: COMMISSIONS.length, label: t.home.proofCommissions },
+    { value: EVENTS.length, label: t.home.proofEvents },
+    { value: 2, label: t.home.proofMarkets },
+  ];
+
+  /*
+   * Advisor spotlight. Rotates by day-of-year rather than at random, so the
+   * card is stable within a visit (no flicker between renders) but different
+   * tomorrow. Board officers are not in ADVISORS, so nobody is double-listed.
+   */
+  const dayOfYear = Math.floor(Date.now() / 86_400_000);
+  const spotlight = [0, 1, 2].map((i) => ADVISORS[(dayOfYear + i) % ADVISORS.length]);
+
+  const recentInsights = sortedInsights().slice(0, 3);
 
   return (
     <div>
@@ -52,10 +81,11 @@ export function Home() {
             */}
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/contact"
+                to="/membership"
+                onClick={() => trackEvent(GOALS.heroMembershipCta)}
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium group"
               >
-                {t.home.getInvolved}
+                {t.home.becomeMember}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
@@ -69,20 +99,27 @@ export function Home() {
         </div>
       </section>
 
-      {/* Vision Statement */}
-      <section className="py-24 lg:py-32 bg-white">
+      {/*
+        Proof bar. Replaces the Vision block, which duplicated About almost
+        word for word (audit finding A2.4) — Vision now lives on About only.
+      */}
+      <section className="py-14 bg-white border-y border-gray-100">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.home.visionEyebrow}
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-              {t.home.visionTitle}
-            </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              {t.home.visionText}
-            </p>
-          </div>
+          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            {proof.map((item) => (
+              <div key={item.label}>
+                <dt className="sr-only">{item.label}</dt>
+                <dd>
+                  <span className="block text-4xl lg:text-5xl font-bold gradient-text leading-none">
+                    {item.value}
+                  </span>
+                  <span className="mt-2 block text-sm font-medium uppercase tracking-wide text-gray-600">
+                    {item.label}
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
@@ -168,6 +205,98 @@ export function Home() {
         </div>
       </section>
 
+      {/* Advisor spotlight — the cheapest credibility content available. */}
+      <section className="py-20 lg:py-24 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+          <div className="text-center mb-14">
+            <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
+              {t.home.spotlightEyebrow}
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
+              {t.home.spotlightTitle}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {spotlight.map((advisor) => (
+              <Link
+                key={advisor.name}
+                to="/advisors"
+                className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-all duration-300 text-center"
+              >
+                <div className="w-24 h-24 mx-auto mb-5 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                  <AdvisorAvatar name={advisor.name} photo={advisor.photo} />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 leading-tight">{advisor.name}</h3>
+                <p className="mt-1 text-sm font-medium text-blue-700 leading-snug">
+                  {pick(advisor.role, locale)}
+                </p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link
+              to="/advisors"
+              className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group"
+            >
+              {t.home.spotlightAll}
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest insights — three most recent. */}
+      {recentInsights.length > 0 && (
+        <section className="py-20 lg:py-24 bg-gray-50">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <div className="text-center mb-14">
+              <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
+                {t.home.insightsEyebrow}
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+                {t.home.insightsTitle}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.home.insightsText}</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {recentInsights.map((insight) => (
+                <Link
+                  key={insight.slug}
+                  to={`/insights/${insight.slug}`}
+                  className="group flex flex-col bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-all duration-300"
+                >
+                  <span className="text-xs font-bold uppercase tracking-wide text-blue-700">
+                    {pick(INSIGHT_CATEGORY_LABELS[insight.category], locale)}
+                  </span>
+                  <h3 className="mt-3 text-xl font-bold text-gray-900 leading-tight">
+                    {pick(insight.title, locale)}
+                  </h3>
+                  <p className="mt-3 text-sm text-gray-600 leading-relaxed flex-grow">
+                    {pick(insight.summary, locale)}
+                  </p>
+                  <span className="mt-5 text-sm text-gray-500">
+                    {formatInsightDate(insight.date, locale)}
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <Link
+                to="/insights"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group"
+              >
+                {t.home.insightsAll}
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Core Values */}
       <section className="py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
@@ -199,22 +328,32 @@ export function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50">
+      {/*
+        Membership CTA band. Full-width and contrasting, per E1. Replaces a
+        generic "get in touch" block that sent the page's final action to a
+        contact form rather than to the thing the site exists to sell.
+      */}
+      <section className="py-20 lg:py-24 bg-gradient-to-r from-blue-700 to-cyan-600 text-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-            {t.home.ctaTitle}
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
+            {t.home.joinBandTitle}
           </h2>
-          <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-            {t.home.ctaText}
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium text-lg group"
-          >
-            {t.common.getInTouch}
-            <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <p className="text-xl text-blue-50 mb-10 leading-relaxed">{t.home.joinBandText}</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              to="/membership/apply"
+              className="inline-flex items-center px-10 py-5 bg-white text-blue-800 rounded-2xl hover:shadow-2xl transition-all duration-300 font-semibold text-lg group"
+            >
+              {t.home.joinBandPrimary}
+              <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link
+              to="/membership"
+              className="inline-flex items-center px-10 py-5 bg-blue-800/40 text-white border-2 border-white/40 rounded-2xl hover:bg-blue-800/60 transition-all duration-300 font-semibold text-lg"
+            >
+              {t.home.joinBandSecondary}
+            </Link>
+          </div>
         </div>
       </section>
     </div>
