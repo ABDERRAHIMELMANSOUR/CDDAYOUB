@@ -14,6 +14,7 @@ import {
 } from '../../data/insights';
 import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
 import { LinkedInFeed } from '../LinkedInFeed';
+import { PhotoOrPlaceholder } from '../PhotoOrPlaceholder';
 
 /**
  * Insights (ticket 20).
@@ -137,6 +138,35 @@ export function InsightArticle() {
               </p>
             ))}
           </div>
+
+          {insight.gallery && insight.gallery.length > 0 && (
+            <section className="mt-12 pt-8 border-t border-gray-200">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-gray-700 mb-5">
+                {t.insights.galleryTitle}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {insight.gallery.map((photo) => (
+                  <figure key={photo.src} className="m-0">
+                    <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
+                      <PhotoOrPlaceholder
+                        src={photo.src}
+                        alt={pick(photo.alt, locale)}
+                        label={t.insights.galleryTitle}
+                        title={pick(insight.title, locale)}
+                        variant="deep"
+                        className="rounded-2xl"
+                      />
+                    </div>
+                    {/* The alt text describes the image for someone who cannot
+                        see it; the caption repeats it for everyone else. */}
+                    <figcaption className="mt-2 text-sm text-gray-600 leading-relaxed">
+                      {pick(photo.alt, locale)}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
 
           {insight.commissions.length > 0 && (
             <div className="mt-12 pt-8 border-t border-gray-200">

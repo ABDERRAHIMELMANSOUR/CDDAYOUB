@@ -396,6 +396,7 @@ export interface Dictionary {
     lastUpdated: string;
   };
   insights: {
+    galleryTitle: string;
     linkedinTitle: string;
     linkedinIntro: string;
     linkedinFollow: string;
@@ -966,6 +967,7 @@ const en: Dictionary = {
     lastUpdated: 'Last updated',
   },
   insights: {
+    galleryTitle: 'Gallery',
     linkedinTitle: 'From our LinkedIn',
     linkedinIntro: 'The latest posts from the CDD Pays-Bas company page.',
     linkedinFollow: 'Follow us on LinkedIn',
@@ -1543,6 +1545,7 @@ const nl: Dictionary = {
     lastUpdated: 'Laatst bijgewerkt',
   },
   insights: {
+    galleryTitle: 'Fotogalerij',
     linkedinTitle: 'Van onze LinkedIn',
     linkedinIntro: 'De nieuwste berichten van de bedrijfspagina van CDD Pays-Bas.',
     linkedinFollow: 'Volg ons op LinkedIn',
@@ -2121,6 +2124,7 @@ const fr: Dictionary = {
     lastUpdated: 'Dernière mise à jour',
   },
   insights: {
+    galleryTitle: 'Galerie photo',
     linkedinTitle: 'Depuis notre LinkedIn',
     linkedinIntro: 'Les dernières publications de la page CDD Pays-Bas.',
     linkedinFollow: 'Suivez-nous sur LinkedIn',
