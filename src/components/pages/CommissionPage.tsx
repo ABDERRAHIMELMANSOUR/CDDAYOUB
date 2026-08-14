@@ -11,6 +11,7 @@ import { insightsForCommission, formatInsightDate } from '../../data/insights';
 import { BrandedImage } from '../BrandedImage';
 import { trackEvent, GOALS } from '../../lib/analytics';
 import { AdvisorAvatar } from '../AdvisorAvatar';
+import { PageHero } from '../PageHero';
 
 /**
  * Commission page template (Part D4) — one shared structure for all four.
@@ -38,35 +39,27 @@ export function CommissionPage() {
   return (
     <div>
       {/* Header */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-
-        <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
+      <PageHero
+        eyebrow={`${t.commissions.commission} ${commission.number}`}
+        title={
+          <span className="flex items-start gap-5">
+            <span className="hidden sm:flex w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm items-center justify-center flex-shrink-0">
+              <Icon className="h-8 w-8 text-cyan-200" aria-hidden="true" />
+            </span>
+            <span>{pick(commission.title, locale)}</span>
+          </span>
+        }
+        above={
           <Link
             to="/commissions"
-            className="inline-flex items-center text-sm text-blue-200 hover:text-white transition-colors mb-6"
+            className="inline-flex items-center text-sm text-blue-100 hover:text-white transition-colors mb-6"
           >
             ← {t.nav.allCommissions}
           </Link>
-          <div className="flex items-start gap-5">
-            <div className="hidden sm:flex w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm items-center justify-center flex-shrink-0">
-              <Icon className="h-8 w-8 text-cyan-200" />
-            </div>
-            <div>
-              <p className="text-sm uppercase tracking-widest text-cyan-200 font-semibold mb-2">
-                {t.commissions.commission} {commission.number}
-              </p>
-              <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
-                {pick(commission.title, locale)}
-              </h1>
-              <p className="mt-5 text-xl text-gray-200 leading-relaxed max-w-3xl">
-                {pick(commission.mandate, locale)}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        }
+      >
+        {pick(commission.mandate, locale)}
+      </PageHero>
 
       {/* Chair — the fact that turns a theme into a body, given its own card */}
       <section className="bg-white border-b border-gray-100">

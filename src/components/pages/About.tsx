@@ -4,6 +4,7 @@ import { pick } from '../../i18n/localised';
 import { Target, Eye, Award, Globe } from 'lucide-react';
 import { BrandedImage } from '../BrandedImage';
 import { ORGANISATION, MOROCCO_RELATIONSHIP_TEXT } from '../../data/organisation';
+import { PageHero } from '../PageHero';
 
 export function About() {
   const t = useTranslation();
@@ -13,24 +14,9 @@ export function About() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-        
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.about.eyebrow}
-            </div>
-            <h1 className="text-5xl lg:text-6xl font-bold mb-8 text-white tracking-tight">
-              {t.about.title}
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              {t.about.subtitle}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow={t.about.eyebrow} title={t.about.title}>
+        {t.about.subtitle}
+      </PageHero>
 
       {/*
         Our relationship to CDD Morocco, stated structurally.

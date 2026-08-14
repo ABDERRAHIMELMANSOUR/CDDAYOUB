@@ -2,6 +2,7 @@ import { Building2, Users, Globe2, Briefcase, Heart, Network } from 'lucide-reac
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useTranslation } from '../../i18n/LocaleProvider';
 import { BrandedImage } from '../BrandedImage';
+import { PageHero } from '../PageHero';
 
 export function Partnerships() {
   const t = useTranslation();
@@ -18,16 +19,9 @@ export function Partnerships() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-              {t.partnerships.heroTitle}
-            </h1>
-            <p className="text-xl text-blue-100">{t.partnerships.heroSubtitle}</p>
-          </div>
-        </div>
-      </section>
+      <PageHero variant="brand" title={t.partnerships.heroTitle}>
+        {t.partnerships.heroSubtitle}
+      </PageHero>
 
       {/* Ecosystem Overview */}
       <section className="py-16 bg-white">

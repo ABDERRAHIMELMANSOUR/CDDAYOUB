@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from '../../../i18n/LocaleProvider';
 import { useLocale } from '../../../i18n/LocaleProvider';
+import { PageHero } from '../../PageHero';
 
 /**
  * Shared shell for the legal / compliance pages (privacy, cookies,
@@ -24,17 +25,9 @@ export function LegalPage({
   const { locale } = useLocale();
   return (
     <div>
-      <section className="relative py-20 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-        <div className="relative max-w-[900px] mx-auto px-6 lg:px-12">
-          <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-            {eyebrow}
-          </div>
-          <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">{title}</h1>
-          {intro && <p className="mt-6 text-xl text-gray-200 leading-relaxed">{intro}</p>}
-        </div>
-      </section>
+      <PageHero size="compact" eyebrow={eyebrow} title={title}>
+        {intro}
+      </PageHero>
 
       <section className="py-16 lg:py-20 bg-white">
         <div className="max-w-[900px] mx-auto px-6 lg:px-12">

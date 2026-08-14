@@ -5,6 +5,7 @@ import { ArrowRight, Users } from 'lucide-react';
 import { COMMISSIONS, COMMISSION_GOVERNANCE } from '../../data/commissions';
 import { DELIVERY_METHOD, POSITIONING_LINE } from '../../data/commissionDomains';
 import { advisorsInGroup } from '../../data/advisors';
+import { PageHero } from '../PageHero';
 
 /**
  * Commissions landing page.
@@ -25,25 +26,13 @@ export function Commissions() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-        <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.nav.commissions}
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              {t.commissionsIndex.title}
-            </h1>
-            {/* The mechanism, stated in the first line (Part D0). */}
-            <p className="text-xl text-gray-200 leading-relaxed">
-              {t.commissionsIndex.mechanism} {pick(POSITIONING_LINE, locale)}
-            </p>
-            <p className="mt-4 text-base text-gray-300">{pick(DELIVERY_METHOD, locale)}</p>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow={t.nav.commissions} title={t.commissionsIndex.title}>
+        {/* The mechanism, stated in the first line (Part D0). */}
+        <p>
+          {t.commissionsIndex.mechanism} {pick(POSITIONING_LINE, locale)}
+        </p>
+        <p className="mt-4 text-base text-gray-300">{pick(DELIVERY_METHOD, locale)}</p>
+      </PageHero>
 
       {/* The four commissions */}
       <section className="py-16 lg:py-24 bg-white">

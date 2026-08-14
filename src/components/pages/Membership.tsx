@@ -12,6 +12,7 @@ import {
 import { ADVISORS } from '../../data/advisors';
 import { COMMISSIONS } from '../../data/commissions';
 import { PAYMENT_METHODS } from '../../lib/payments';
+import { PageHero } from '../PageHero';
 
 /**
  * Membership (ticket 17).
@@ -28,40 +29,11 @@ export function Membership() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-        <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.nav.membership}
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              {t.membership.title}
-            </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              {t.membership.subtitle
-                .replace('{advisors}', String(ADVISORS.length))
-                .replace('{commissions}', String(COMMISSIONS.length))}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/membership/apply"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 font-medium group"
-              >
-                {t.membership.applyCta}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <a
-                href="#tiers"
-                className="inline-flex items-center px-8 py-4 border border-white/40 text-white rounded-2xl hover:bg-white/10 transition-all duration-300 font-medium"
-              >
-                {t.membership.seeTiers}
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow={t.nav.membership} title={t.membership.title}>
+        {t.membership.subtitle
+          .replace('{advisors}', String(ADVISORS.length))
+          .replace('{commissions}', String(COMMISSIONS.length))}
+      </PageHero>
 
       {/* Why join */}
       <section className="py-16 lg:py-24 bg-white">
