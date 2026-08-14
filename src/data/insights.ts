@@ -63,6 +63,12 @@ export interface Insight {
   body: Localised<string[]>;
   /** Marks the piece for the homepage. */
   featured?: boolean;
+  /**
+   * Optional cover image (an import from src/assets, or a path under /public).
+   * Absent means the card falls back to the branded placeholder rather than a
+   * stock photograph — see BrandedImage and blueprint ticket 21.
+   */
+  image?: string;
 }
 
 /**

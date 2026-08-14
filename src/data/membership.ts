@@ -31,6 +31,17 @@ export type { Localised };
 /** Monthly dues in euros. */
 export const MEMBERSHIP_PRICE_EUR = 25;
 
+/**
+ * Annual rate, announced but not yet purchasable.
+ *
+ * €290 against €300 for twelve monthly payments — a month's discount for
+ * paying up front. Set `ANNUAL_PRICE_AVAILABLE` to true once the payment
+ * provider can actually take it; until then the site announces it as coming
+ * rather than offering a choice it cannot honour.
+ */
+export const MEMBERSHIP_ANNUAL_PRICE_EUR = 290;
+export const ANNUAL_PRICE_AVAILABLE = false;
+
 export interface Membership {
   name: Localised<string>;
   /** Who it is for. */
@@ -99,13 +110,21 @@ const PRICE_LOCALE: Record<Locale, string> = {
  * stays free of hard-coded English.
  */
 export function formatMembershipPrice(locale: Locale, perMonth: string): string {
-  const amount = new Intl.NumberFormat(PRICE_LOCALE[locale], {
+  return `${formatEuros(MEMBERSHIP_PRICE_EUR, locale)} ${perMonth}`;
+}
+
+/** The announced annual rate, e.g. "€290 per year" / "290 € par an". */
+export function formatAnnualPrice(locale: Locale, perYear: string): string {
+  return `${formatEuros(MEMBERSHIP_ANNUAL_PRICE_EUR, locale)} ${perYear}`;
+}
+
+function formatEuros(amount: number, locale: Locale): string {
+  return new Intl.NumberFormat(PRICE_LOCALE[locale], {
     style: 'currency',
     currency: 'EUR',
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(MEMBERSHIP_PRICE_EUR);
-  return `${amount} ${perMonth}`;
+  }).format(amount);
 }
 
 /** Why join — the outcomes, stated once and reused. */
