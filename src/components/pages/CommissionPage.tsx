@@ -3,7 +3,7 @@ import { LocaleLink as Link, LocaleNavigate } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
 import { Linkedin, CalendarClock, Users, ShieldCheck, ArrowRight } from 'lucide-react';
-import { getCommission } from '../../data/commissions';
+import { getCommission, getChair } from '../../data/commissions';
 import { advisorsInGroup } from '../../data/advisors';
 import { DELIVERY_METHOD } from '../../data/commissionDomains';
 import { eventsForCommission, formatEventDate } from '../../data/events';
@@ -28,6 +28,7 @@ export function CommissionPage() {
 
   // Unknown slug falls back to the landing page rather than a dead end.
   if (!commission) return <LocaleNavigate to="/commissions" />;
+  const chair = getChair(commission);
 
   const advisors = advisorsInGroup(commission.group);
   const relatedEvents = eventsForCommission(commission.group);
@@ -64,6 +65,62 @@ export function CommissionPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Chair — the fact that turns a theme into a body, given its own card */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-10">
+          {chair ? (
+            <div className="flex flex-col sm:flex-row items-center gap-6 rounded-3xl border-2 border-blue-600 bg-gradient-to-br from-blue-50 to-white p-6 sm:p-8 shadow-lg">
+              <div className="w-28 h-28 flex-shrink-0 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                <AdvisorAvatar name={chair.name} photo={chair.photo} />
+              </div>
+              <div className="text-center sm:text-left">
+                <p className="text-xs font-bold uppercase tracking-wide text-blue-700">
+                  {t.commissions.chairTitle}
+                </p>
+                <p className="mt-1 text-2xl font-bold text-gray-900">{chair.name}</p>
+                <p className="mt-1 text-blue-700 font-medium">{pick(chair.role, locale)}</p>
+                <div className="mt-3 flex flex-wrap justify-center sm:justify-start items-center gap-4">
+                  <Link
+                    to="/advisors"
+                    className="text-sm font-medium text-blue-700 underline hover:text-blue-900"
+                  >
+                    {t.commissions.chairProfile}
+                  </Link>
+                  {chair.linkedin && (
+                    <a
+                      href={chair.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-700 hover:text-blue-900"
+                    >
+                      <Linkedin className="h-4 w-4" aria-hidden="true" />
+                      LinkedIn
+                      <span className="sr-only"> — {chair.name}</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ) : (
+            /*
+             * No chair appointed. Rendered as an openly pending seat rather
+             * than hidden: D5 makes the chair the thing that distinguishes a
+             * commission from a focus area, so silence here would quietly
+             * undo the governance claim the page is making.
+             */
+            <div className="rounded-3xl border-2 border-dashed border-gray-300 bg-gray-50 p-6 sm:p-8">
+              <p className="text-xs font-bold uppercase tracking-wide text-gray-600">
+                {t.commissions.chairTitle}
+              </p>
+              <p className="mt-1 text-xl font-bold text-gray-800">{t.commissions.chairPending}</p>
+              <p className="mt-2 text-gray-700 leading-relaxed max-w-2xl">
+                {t.commissions.chairPendingText}
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

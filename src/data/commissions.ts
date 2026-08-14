@@ -1,5 +1,5 @@
 import { COMMISSION_DOMAINS, type CommissionDomain } from './commissionDomains';
-import type { AdvisorGroup } from './advisors';
+import { ADVISORS, type Advisor, type AdvisorGroup } from './advisors';
 import type { Localised } from '../i18n/localised';
 
 /**
@@ -30,8 +30,19 @@ export interface Commission extends CommissionDomain {
   group: AdvisorGroup;
   /** One-sentence mandate shown under the page header. */
   mandate: Localised<string>;
-  /** Name of the chair, drawn from the Advisory Council. Null until appointed. */
+  /**
+   * The chair, given as the EXACT `name` of a record in ADVISORS — D5 requires
+   * the chair to be drawn from the Advisory Council, and holding a reference
+   * rather than a free-text name means the chair card renders that advisor's
+   * real photograph, role and LinkedIn instead of duplicating them here.
+   *
+   * Null until the board appoints. `getChair()` returns null for an unknown
+   * name too, so a typo degrades to "to be appointed" rather than rendering a
+   * half-empty card for somebody who does not exist.
+   */
   chair: string | null;
+  /** Optional vice-chair, same contract as `chair` (D5 allows one). */
+  viceChair?: string | null;
   /** Year the commission was established. Null until the board confirms. */
   established: string | null;
   /** Meeting cadence, e.g. "Meets quarterly". */
@@ -308,6 +319,18 @@ export const COMMISSIONS: Commission[] = COMMISSION_DOMAINS.map((area) => ({
   group: area.slug as AdvisorGroup,
   ...DETAIL[area.slug],
 }));
+
+/**
+ * Resolves a commission's chair to the advisor record behind it.
+ *
+ * Returns null when no chair is appointed OR when the stored name does not
+ * match an advisor — the UI must not imply an appointment that has not been
+ * made, and it must not half-render a person who is not on the council.
+ */
+export function getChair(commission: Commission): Advisor | null {
+  if (!commission.chair) return null;
+  return ADVISORS.find((advisor) => advisor.name === commission.chair) ?? null;
+}
 
 export function getCommission(slug: string): Commission | undefined {
   return COMMISSIONS.find((c) => c.slug === slug);

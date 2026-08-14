@@ -56,6 +56,8 @@ export interface Dictionary {
     changeLanguage: string;
   };
   membership: {
+    annualComingSoon: string;
+    annualNote: string;
     title: string;
     subtitle: string;
     applyCta: string;
@@ -145,6 +147,14 @@ export interface Dictionary {
     confirmRegistration: string;
   };
   home: {
+    newsEyebrow: string;
+    newsTitle: string;
+    newsText: string;
+    newsCarouselLabel: string;
+    newsPrev: string;
+    newsNext: string;
+    newsRead: string;
+    newsOnLinkedIn: string;
     becomeMember: string;
     proofAdvisors: string;
     proofCommissions: string;
@@ -153,9 +163,6 @@ export interface Dictionary {
     spotlightEyebrow: string;
     spotlightTitle: string;
     spotlightAll: string;
-    insightsEyebrow: string;
-    insightsTitle: string;
-    insightsText: string;
     insightsAll: string;
     joinBandTitle: string;
     joinBandText: string;
@@ -189,6 +196,10 @@ export interface Dictionary {
     takePartText: string;
   };
   commissions: {
+    chairTitle: string;
+    chairPending: string;
+    chairPendingText: string;
+    chairProfile: string;
     commission: string;
     established: string;
     cadence: string;
@@ -453,6 +464,9 @@ const en: Dictionary = {
     changeLanguage: 'Change language',
   },
   membership: {
+    annualComingSoon: 'Coming soon',
+    annualNote:
+      'An annual rate is being prepared — one payment instead of twelve, at a saving on the monthly total. Monthly membership is available today and nothing changes for existing members when it launches.',
     title: 'Join the Club',
     subtitle:
       "CDD Pays-Bas is a members' club. Membership gives you access to {advisors} senior advisors, {commissions} working commissions, and a network that spans the Netherlands and Morocco.",
@@ -555,6 +569,15 @@ const en: Dictionary = {
     confirmRegistration: 'Confirm registration',
   },
   home: {
+    newsEyebrow: 'News & media',
+    newsTitle: 'What we have been working on',
+    newsText:
+      'Recent articles, briefings and posts from CDD Pays-Bas and our LinkedIn page.',
+    newsCarouselLabel: 'Recent news and media',
+    newsPrev: 'Previous items',
+    newsNext: 'Next items',
+    newsRead: 'Read',
+    newsOnLinkedIn: 'On LinkedIn',
     becomeMember: 'Become a member',
     proofAdvisors: 'senior advisors',
     proofCommissions: 'standing commissions',
@@ -563,9 +586,6 @@ const en: Dictionary = {
     spotlightEyebrow: 'Advisory Council',
     spotlightTitle: 'Who you get access to',
     spotlightAll: 'Meet the Advisory Council',
-    insightsEyebrow: 'Insights',
-    insightsTitle: 'Latest from CDD Pays-Bas',
-    insightsText: 'News, member and advisor spotlights, and briefings on both markets.',
     insightsAll: 'All insights',
     joinBandTitle: 'Join CDD Pays-Bas',
     joinBandText:
@@ -614,6 +634,11 @@ const en: Dictionary = {
       'Commissions are open to all CDD members. Tell us which one fits your work and we will bring you into the next session.',
   },
   commissions: {
+    chairTitle: 'Chair of this commission',
+    chairPending: 'Chair to be appointed',
+    chairPendingText:
+      'The board appoints each chair from the Advisory Council for a two-year term. This seat has not been filled yet, and we would rather say so than name someone who has not agreed.',
+    chairProfile: 'View profile',
     commission: 'Commission',
     established: 'Established',
     cadence: 'Cadence',
@@ -1010,6 +1035,9 @@ const nl: Dictionary = {
     changeLanguage: 'Taal wijzigen',
   },
   membership: {
+    annualComingSoon: 'Binnenkort',
+    annualNote:
+      'Er wordt een jaartarief voorbereid — één betaling in plaats van twaalf, met een korting op het maandtotaal. Het maandlidmaatschap is nu al beschikbaar en voor bestaande leden verandert er niets zodra het jaartarief ingaat.',
     title: 'Word lid van de club',
     subtitle:
       'CDD Pays-Bas is een ledenclub. Een lidmaatschap geeft u toegang tot {advisors} senior adviseurs, {commissions} werkende commissies en een netwerk dat Nederland en Marokko omspant.',
@@ -1115,6 +1143,15 @@ const nl: Dictionary = {
     confirmRegistration: 'Aanmelding bevestigen',
   },
   home: {
+    newsEyebrow: 'Nieuws & media',
+    newsTitle: 'Waar wij aan hebben gewerkt',
+    newsText:
+      'Recente artikelen, briefings en berichten van CDD Pays-Bas en onze LinkedIn-pagina.',
+    newsCarouselLabel: 'Recent nieuws en media',
+    newsPrev: 'Vorige items',
+    newsNext: 'Volgende items',
+    newsRead: 'Lezen',
+    newsOnLinkedIn: 'Op LinkedIn',
     becomeMember: 'Word lid',
     proofAdvisors: 'senior adviseurs',
     proofCommissions: 'vaste commissies',
@@ -1123,9 +1160,6 @@ const nl: Dictionary = {
     spotlightEyebrow: 'Raad van advies',
     spotlightTitle: 'Tot wie u toegang krijgt',
     spotlightAll: 'Maak kennis met de raad van advies',
-    insightsEyebrow: 'Insights',
-    insightsTitle: 'Het laatste van CDD Pays-Bas',
-    insightsText: 'Nieuws, portretten van leden en adviseurs, en briefings over beide markten.',
     insightsAll: 'Alle insights',
     joinBandTitle: 'Word lid van CDD Pays-Bas',
     joinBandText:
@@ -1175,6 +1209,11 @@ const nl: Dictionary = {
       'Commissies staan open voor alle CDD-leden. Laat ons weten welke aansluit bij uw werk en wij nemen u mee naar de volgende sessie.',
   },
   commissions: {
+    chairTitle: 'Voorzitter van deze commissie',
+    chairPending: 'Voorzitter nog te benoemen',
+    chairPendingText:
+      'Het bestuur benoemt elke voorzitter voor twee jaar uit de raad van advies. Deze zetel is nog niet ingevuld, en dat zeggen wij liever dan iemand te noemen die daar nog niet mee heeft ingestemd.',
+    chairProfile: 'Bekijk profiel',
     commission: 'Commissie',
     established: 'Opgericht',
     cadence: 'Vergaderfrequentie',
@@ -1574,6 +1613,9 @@ const fr: Dictionary = {
     changeLanguage: 'Changer de langue',
   },
   membership: {
+    annualComingSoon: 'Prochainement',
+    annualNote:
+      "Un tarif annuel est en préparation : un seul paiement au lieu de douze, avec une économie sur le total mensuel. L'adhésion mensuelle est déjà disponible et rien ne change pour les membres actuels lors de son lancement.",
     title: 'Rejoignez le Club',
     subtitle:
       "CDD Pays-Bas est un club de membres. L'adhésion vous donne accès à {advisors} conseillers seniors, {commissions} commissions actives et un réseau qui couvre les Pays-Bas et le Maroc.",
@@ -1679,6 +1721,15 @@ const fr: Dictionary = {
     confirmRegistration: "Confirmer l'inscription",
   },
   home: {
+    newsEyebrow: 'Actualités & médias',
+    newsTitle: 'Ce sur quoi nous avons travaillé',
+    newsText:
+      'Articles récents, briefings et publications de CDD Pays-Bas et de notre page LinkedIn.',
+    newsCarouselLabel: 'Actualités et médias récents',
+    newsPrev: 'Éléments précédents',
+    newsNext: 'Éléments suivants',
+    newsRead: 'Lire',
+    newsOnLinkedIn: 'Sur LinkedIn',
     becomeMember: 'Devenir membre',
     proofAdvisors: 'conseillers seniors',
     proofCommissions: 'commissions permanentes',
@@ -1687,10 +1738,6 @@ const fr: Dictionary = {
     spotlightEyebrow: 'Conseil consultatif',
     spotlightTitle: 'Les personnes auxquelles vous accédez',
     spotlightAll: 'Découvrir le conseil consultatif',
-    insightsEyebrow: 'Insights',
-    insightsTitle: 'Les dernières actualités de CDD Pays-Bas',
-    insightsText:
-      'Actualités, portraits de membres et de conseillers, et briefings sur les deux marchés.',
     insightsAll: 'Tous les insights',
     joinBandTitle: 'Rejoignez CDD Pays-Bas',
     joinBandText:
@@ -1740,6 +1787,11 @@ const fr: Dictionary = {
       'Les commissions sont ouvertes à tous les membres du CDD. Dites-nous laquelle correspond à votre activité et nous vous intégrerons à la prochaine session.',
   },
   commissions: {
+    chairTitle: 'Président de cette commission',
+    chairPending: 'Président à nommer',
+    chairPendingText:
+      "Le conseil nomme chaque président pour deux ans parmi les membres du conseil consultatif. Ce siège n'est pas encore pourvu, et nous préférons le dire plutôt que de citer une personne qui n'a pas donné son accord.",
+    chairProfile: 'Voir le profil',
     commission: 'Commission',
     established: 'Créée en',
     cadence: 'Fréquence',

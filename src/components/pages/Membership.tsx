@@ -1,7 +1,14 @@
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Check, ArrowRight, Users } from 'lucide-react';
-import { MEMBERSHIP, WHY_JOIN, formatMembershipPrice, pick } from '../../data/membership';
+import {
+  MEMBERSHIP,
+  WHY_JOIN,
+  ANNUAL_PRICE_AVAILABLE,
+  formatMembershipPrice,
+  formatAnnualPrice,
+  pick,
+} from '../../data/membership';
 import { ADVISORS } from '../../data/advisors';
 import { COMMISSIONS } from '../../data/commissions';
 import { PAYMENT_METHODS } from '../../lib/payments';
@@ -17,6 +24,7 @@ export function Membership() {
   const t = useTranslation();
   const { locale } = useLocale();
   const price = formatMembershipPrice(locale, t.membership.perMonth);
+  const annualPrice = formatAnnualPrice(locale, t.membership.perYear);
   return (
     <div>
       {/* Hero */}
@@ -92,6 +100,25 @@ export function Membership() {
 
             <p className="mt-6 text-4xl font-bold text-blue-700">{price}</p>
             <p className="mt-2 text-sm text-gray-600">{t.membership.cancelAnytime}</p>
+
+            {/*
+              Announced, not purchasable. Flip ANNUAL_PRICE_AVAILABLE once the
+              provider can take it and this becomes a second option rather than
+              a notice — until then it must not look like something to click.
+            */}
+            {!ANNUAL_PRICE_AVAILABLE && (
+              <div className="mt-5 rounded-2xl border border-blue-200 bg-blue-50 px-5 py-4">
+                <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="text-xs font-bold uppercase tracking-wide text-blue-700">
+                    {t.membership.annualComingSoon}
+                  </span>
+                  <span className="text-xl font-bold text-blue-900">{annualPrice}</span>
+                </p>
+                <p className="mt-2 text-sm text-blue-900/90 leading-relaxed">
+                  {t.membership.annualNote}
+                </p>
+              </div>
+            )}
             <p className="mt-5 text-lg text-gray-800 leading-relaxed">
               {pick(MEMBERSHIP.headline, locale)}
             </p>

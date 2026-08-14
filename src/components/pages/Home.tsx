@@ -3,11 +3,12 @@ import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { ArrowRight, Users, Sparkles } from 'lucide-react';
 import { BrandedImage } from '../BrandedImage';
 import { AdvisorAvatar } from '../AdvisorAvatar';
+import { ParticleNetwork } from '../ParticleNetwork';
+import { NewsCarousel } from '../NewsCarousel';
 import { COMMISSION_DOMAINS } from '../../data/commissionDomains';
 import { COMMISSIONS } from '../../data/commissions';
 import { ADVISORS } from '../../data/advisors';
 import { EVENTS } from '../../data/events';
-import { sortedInsights, formatInsightDate, INSIGHT_CATEGORY_LABELS } from '../../data/insights';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
 import { trackEvent, GOALS } from '../../lib/analytics';
@@ -42,7 +43,6 @@ export function Home() {
   const dayOfYear = Math.floor(Date.now() / 86_400_000);
   const spotlight = [0, 1, 2].map((i) => ADVISORS[(dayOfYear + i) % ADVISORS.length]);
 
-  const recentInsights = sortedInsights().slice(0, 3);
 
   return (
     <div>
@@ -55,6 +55,13 @@ export function Home() {
         {/* Floating accent elements */}
         <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 rounded-full blur-3xl"></div>
+
+        {/*
+          Sits above the near-opaque white gradient overlays and below the
+          content, so the constellation reads without washing out the H1.
+        */}
+        <ParticleNetwork variant="dark" />
+
         
         <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
           <div className="max-w-4xl">
@@ -247,55 +254,12 @@ export function Home() {
         </div>
       </section>
 
-      {/* Latest insights — three most recent. */}
-      {recentInsights.length > 0 && (
-        <section className="py-20 lg:py-24 bg-gray-50">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-            <div className="text-center mb-14">
-              <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-                {t.home.insightsEyebrow}
-              </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-                {t.home.insightsTitle}
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.home.insightsText}</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {recentInsights.map((insight) => (
-                <Link
-                  key={insight.slug}
-                  to={`/insights/${insight.slug}`}
-                  className="group flex flex-col bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-xl transition-all duration-300"
-                >
-                  <span className="text-xs font-bold uppercase tracking-wide text-blue-700">
-                    {pick(INSIGHT_CATEGORY_LABELS[insight.category], locale)}
-                  </span>
-                  <h3 className="mt-3 text-xl font-bold text-gray-900 leading-tight">
-                    {pick(insight.title, locale)}
-                  </h3>
-                  <p className="mt-3 text-sm text-gray-600 leading-relaxed flex-grow">
-                    {pick(insight.summary, locale)}
-                  </p>
-                  <span className="mt-5 text-sm text-gray-500">
-                    {formatInsightDate(insight.date, locale)}
-                  </span>
-                </Link>
-              ))}
-            </div>
-
-            <div className="text-center mt-10">
-              <Link
-                to="/insights"
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium group"
-              >
-                {t.home.insightsAll}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
+      {/*
+        News & media carousel. Replaces the static three-card insights grid:
+        same source, plus LinkedIn posts, and it scales as CDD publishes more
+        without pushing the rest of the page down.
+      */}
+      <NewsCarousel />
 
       {/* Core Values */}
       <section className="py-24 lg:py-32 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white relative overflow-hidden">
@@ -333,8 +297,9 @@ export function Home() {
         generic "get in touch" block that sent the page's final action to a
         contact form rather than to the thing the site exists to sell.
       */}
-      <section className="py-20 lg:py-24 bg-gradient-to-r from-blue-700 to-cyan-600 text-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+      <section className="relative overflow-hidden py-20 lg:py-24 bg-gradient-to-r from-blue-700 to-cyan-600 text-white">
+        <ParticleNetwork variant="light" />
+        <div className="relative max-w-4xl mx-auto px-6 lg:px-12 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
             {t.home.joinBandTitle}
           </h2>
