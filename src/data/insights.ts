@@ -69,6 +69,12 @@ export interface Insight {
    * stock photograph — see BrandedImage and blueprint ticket 21.
    */
   image?: string;
+  /**
+   * Photo gallery shown at the foot of the article. Paths under public/media/
+   * so the secretariat can add photography without a code change; a file that
+   * is not there yet renders the branded placeholder rather than a broken image.
+   */
+  gallery?: { src: string; alt: Localised<string> }[];
 }
 
 /**
@@ -118,35 +124,58 @@ export const INSIGHTS: Insight[] = [
   {
     slug: 'first-collective-iftar-recap',
     title: {
-      en: 'Recap: our first collective Iftar',
-      nl: 'Terugblik: onze eerste gezamenlijke iftar',
-      fr: 'Retour sur notre premier iftar collectif',
+      en: 'Moroccan and Turkish Entrepreneurs Meet at Club des Dirigeants – CDD PAYS-BAS Iftar in Rotterdam',
+      nl: 'Marokkaanse en Turkse ondernemers ontmoeten elkaar tijdens de iftar van Club des Dirigeants – CDD PAYS-BAS in Rotterdam',
+      fr: "Des entrepreneurs marocains et turcs se rencontrent à l'iftar du Club des Dirigeants – CDD PAYS-BAS à Rotterdam",
     },
     date: '2026-03-05',
     category: 'news',
     commissions: [],
     author: 'CDD Pays-Bas',
+    featured: true,
+    image: '/media/iftar-rotterdam-group.jpg',
     summary: {
-      en: 'The first gathering of the CDD Pays-Bas network brought members together in Rotterdam for an evening built around connection rather than agenda.',
-      nl: 'De eerste bijeenkomst van het CDD Pays-Bas-netwerk bracht leden samen in Rotterdam voor een avond die draaide om verbinding in plaats van agenda.',
-      fr: "Le premier rassemblement du réseau CDD Pays-Bas a réuni les membres à Rotterdam pour une soirée fondée sur la rencontre plutôt que sur un ordre du jour.",
+      en: 'Club des Dirigeants (CDD) Pays-Bas proudly hosted a collective Iftar in Rotterdam, bringing together Moroccan and Turkish entrepreneurs to strengthen unity and cross-border collaboration between Morocco, Türkiye, and the Netherlands.',
+      nl: 'Club des Dirigeants (CDD) Pays-Bas organiseerde met trots een gezamenlijke iftar in Rotterdam, waar Marokkaanse en Turkse ondernemers samenkwamen om de onderlinge verbondenheid en de grensoverschrijdende samenwerking tussen Marokko, Turkije en Nederland te versterken.',
+      fr: "Club des Dirigeants (CDD) Pays-Bas a eu la fierté d'organiser un iftar collectif à Rotterdam, réunissant des entrepreneurs marocains et turcs afin de renforcer l'unité et la collaboration transfrontalière entre le Maroc, la Türkiye et les Pays-Bas.",
     },
+    gallery: [
+      {
+        src: '/media/iftar-rotterdam-group.jpg',
+        alt: {
+          en: 'Guests of the CDD Pays-Bas collective Iftar in Rotterdam, gathered together for a group photograph.',
+          nl: 'Gasten van de gezamenlijke iftar van CDD Pays-Bas in Rotterdam, samen op de groepsfoto.',
+          fr: "Les invités de l'iftar collectif de CDD Pays-Bas à Rotterdam, réunis pour une photo de groupe.",
+        },
+      },
+      {
+        src: '/media/iftar-rotterdam-table.jpg',
+        alt: {
+          en: 'Guests seated along the dinner table at the CDD Pays-Bas Iftar in Rotterdam.',
+          nl: 'Gasten aan de gedekte tafel tijdens de iftar van CDD Pays-Bas in Rotterdam.',
+          fr: "Les invités attablés lors de l'iftar de CDD Pays-Bas à Rotterdam.",
+        },
+      },
+    ],
     body: {
       en: [
-        'In February, CDD Pays-Bas held its first collective Iftar in Rotterdam. It was the first time the network convened as a group, and it was designed deliberately as a human occasion rather than a business one.',
-        'Guests shared a meal, heard reflections on the role CDD Pays-Bas plays as a bridge between the Netherlands and Morocco, and spent the evening in conversation across sectors that rarely meet in the same room — energy, logistics, law, education and technology.',
+        'Club des Dirigeants (CDD) Pays-Bas proudly hosted a collective Iftar in Rotterdam, bringing together Moroccan and Turkish entrepreneurs to strengthen unity and cross-border collaboration between Morocco, Türkiye, and the Netherlands.',
+        'Under the leadership of President Nouraddine GRIBI and the vision of International President Driss DRIF, senior advisors and valued members gathered during Ramadan. We were particularly honored by the presence and support of Dünya Türk İş Konseyi (DTIK Netherlands board).',
+        'It was the first time the network convened as a group, and it was designed deliberately as a human occasion rather than a business one. Guests shared a meal and spent the evening in conversation across sectors that rarely meet in the same room — energy, logistics, law, education and technology.',
         'Several of those conversations have since turned into working discussions. That is the point of convening: relationships formed away from a transaction tend to be the ones that produce transactions later.',
         'The evening set the tone for how CDD Pays-Bas gathers — neutral, respectful, open and personal — and it is the model for the roundtables and briefings the commissions will run through the year.',
       ],
       nl: [
-        'In februari hield CDD Pays-Bas haar eerste gezamenlijke iftar in Rotterdam. Het was de eerste keer dat het netwerk als groep bijeenkwam, en de avond was bewust opgezet als een menselijke gelegenheid en niet als een zakelijke.',
-        'Gasten deelden een maaltijd, hoorden reflecties op de rol die CDD Pays-Bas speelt als brug tussen Nederland en Marokko, en brachten de avond in gesprek door met mensen uit sectoren die zelden in dezelfde ruimte zitten — energie, logistiek, recht, onderwijs en technologie.',
+        'Club des Dirigeants (CDD) Pays-Bas organiseerde met trots een gezamenlijke iftar in Rotterdam, waar Marokkaanse en Turkse ondernemers samenkwamen om de onderlinge verbondenheid en de grensoverschrijdende samenwerking tussen Marokko, Turkije en Nederland te versterken.',
+        'Onder leiding van voorzitter Nouraddine GRIBI en vanuit de visie van internationaal voorzitter Driss DRIF kwamen senior adviseurs en gewaardeerde leden bijeen tijdens de ramadan. Wij voelden ons in het bijzonder vereerd door de aanwezigheid en steun van Dünya Türk İş Konseyi (het bestuur van DTIK Nederland).',
+        'Het was de eerste keer dat het netwerk als groep bijeenkwam, en de avond was bewust opgezet als een menselijke gelegenheid en niet als een zakelijke. Gasten deelden een maaltijd en brachten de avond in gesprek door met mensen uit sectoren die zelden in dezelfde ruimte zitten — energie, logistiek, recht, onderwijs en technologie.',
         'Verschillende van die gesprekken zijn inmiddels uitgegroeid tot werkoverleggen. Dat is precies het doel van samenbrengen: relaties die los van een transactie ontstaan, zijn doorgaans de relaties die later transacties opleveren.',
         'De avond zette de toon voor hoe CDD Pays-Bas mensen samenbrengt — neutraal, respectvol, open en persoonlijk — en vormt het model voor de ronde tafels en briefings die de commissies dit jaar organiseren.',
       ],
       fr: [
-        "En février, CDD Pays-Bas a organisé son premier iftar collectif à Rotterdam. C'était la première fois que le réseau se réunissait en tant que groupe, et la soirée avait été délibérément conçue comme un moment humain plutôt que professionnel.",
-        "Les invités ont partagé un repas, entendu des réflexions sur le rôle de passerelle que joue CDD Pays-Bas entre les Pays-Bas et le Maroc, et passé la soirée à échanger entre secteurs qui se croisent rarement — énergie, logistique, droit, éducation et technologie.",
+        "Club des Dirigeants (CDD) Pays-Bas a eu la fierté d'organiser un iftar collectif à Rotterdam, réunissant des entrepreneurs marocains et turcs afin de renforcer l'unité et la collaboration transfrontalière entre le Maroc, la Türkiye et les Pays-Bas.",
+        "Sous la direction du président Nouraddine GRIBI et portée par la vision du président international Driss DRIF, cette rencontre a rassemblé des conseillers seniors et des membres estimés pendant le Ramadan. Nous avons été particulièrement honorés par la présence et le soutien du Dünya Türk İş Konseyi (le conseil DTIK Pays-Bas).",
+        "C'était la première fois que le réseau se réunissait en tant que groupe, et la soirée avait été délibérément conçue comme un moment humain plutôt que professionnel. Les invités ont partagé un repas et passé la soirée à échanger entre secteurs qui se croisent rarement — énergie, logistique, droit, éducation et technologie.",
         "Plusieurs de ces échanges se sont depuis transformés en discussions de travail. C'est tout l'intérêt de rassembler : les relations nouées en dehors d'une transaction sont souvent celles qui produisent des transactions par la suite.",
         "La soirée a donné le ton de la manière dont CDD Pays-Bas rassemble — de façon neutre, respectueuse, ouverte et personnelle — et sert de modèle aux tables rondes et briefings que les commissions animeront tout au long de l'année.",
       ],

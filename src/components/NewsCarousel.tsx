@@ -9,7 +9,9 @@ import {
   INSIGHT_CATEGORY_LABELS,
 } from '../data/insights';
 import { fetchLinkedInPosts, LINKEDIN_PAGE_URL } from '../lib/linkedin';
-import { BrandedImage } from './BrandedImage';
+import { PhotoOrPlaceholder } from './PhotoOrPlaceholder';
+import { FeaturedSlide } from './FeaturedSlide';
+import { FEATURED_STORY } from '../data/featuredStory';
 
 /**
  * News and media carousel.
@@ -59,6 +61,9 @@ export function NewsCarousel() {
   const [atEnd, setAtEnd] = useState(false);
   const [items, setItems] = useState<NewsItem[]>(() =>
     sortedInsights()
+      // The featured story leads the carousel as the wide master slide, so it
+      // must not also appear as a uniform card further along the same row.
+      .filter((insight) => insight.slug !== FEATURED_STORY?.slug)
       .slice(0, 6)
       .map((insight) => ({
         id: insight.slug,
@@ -133,7 +138,7 @@ export function NewsCarousel() {
     });
   }
 
-  if (items.length === 0) return null;
+  if (items.length === 0 && !FEATURED_STORY) return null;
 
   return (
     <section className="py-20 lg:py-24 bg-white">
@@ -183,6 +188,11 @@ export function NewsCarousel() {
           aria-label={t.home.newsCarouselLabel}
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-2 px-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 [scrollbar-width:thin]"
         >
+          {FEATURED_STORY && (
+            <li className="snap-start shrink-0 w-[92%] lg:w-full list-none">
+              <FeaturedSlide story={FEATURED_STORY} />
+            </li>
+          )}
           {items.map((item) => (
             <li
               key={item.id}
@@ -220,17 +230,20 @@ function NewsCard({ item, readLabel }: { item: NewsItem; readLabel: string }) {
   const body = (
     <>
       <div className="h-44 rounded-2xl overflow-hidden mb-5">
-        {item.image ? (
-          <img
-            src={item.image}
-            alt=""
-            loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        ) : (
-          /* No cover image supplied — branded placeholder rather than stock. */
-          <BrandedImage label={item.tag} title={item.title} variant="deep" className="rounded-2xl" />
-        )}
+        {/*
+          Cover images may point at public/media/ files the secretariat has not
+          uploaded yet, so this goes through the same fallback as the featured
+          slide: no photo, or a 404, renders the branded placeholder.
+        */}
+        <PhotoOrPlaceholder
+          src={item.image ?? null}
+          alt=""
+          label={item.tag}
+          title={item.title}
+          variant="deep"
+          className="rounded-2xl"
+          imgClassName="group-hover:scale-105 transition-transform duration-500"
+        />
       </div>
       <span className="text-xs font-bold uppercase tracking-wide text-blue-700">{item.tag}</span>
       <h3 className="mt-2 text-xl font-bold text-gray-900 leading-tight line-clamp-2">
