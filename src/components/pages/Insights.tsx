@@ -15,6 +15,7 @@ import {
 import { GROUP_LABELS, type AdvisorGroup } from '../../data/advisors';
 import { LinkedInFeed } from '../LinkedInFeed';
 import { PhotoOrPlaceholder } from '../PhotoOrPlaceholder';
+import { PageHero } from '../PageHero';
 
 /**
  * Insights (ticket 20).
@@ -32,23 +33,9 @@ export function Insights() {
 
   return (
     <div>
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-        <div className="relative max-w-[1200px] mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.nav.insights}
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              {t.insights.title}
-            </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              {t.insights.subtitle}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow={t.nav.insights} title={t.insights.title}>
+        {t.insights.subtitle}
+      </PageHero>
 
       {/* Category filter */}
       <section className="sticky top-24 z-30 bg-white/95 backdrop-blur border-b border-gray-100">
@@ -106,27 +93,24 @@ export function InsightArticle() {
 
   return (
     <div>
-      <section className="relative py-16 lg:py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="relative max-w-[820px] mx-auto px-6 lg:px-12">
+      <PageHero
+        size="compact"
+        eyebrow={pick(INSIGHT_CATEGORY_LABELS[insight.category], locale)}
+        title={pick(insight.title, locale)}
+        above={
           <Link
             to="/insights"
-            className="inline-flex items-center text-sm text-blue-200 hover:text-white transition-colors mb-5"
+            className="inline-flex items-center text-sm text-blue-100 hover:text-white transition-colors mb-5"
           >
             ← {t.insights.backToInsights}
           </Link>
-          <p className="text-sm font-semibold uppercase tracking-widest text-cyan-200">
-            {pick(INSIGHT_CATEGORY_LABELS[insight.category], locale)}
-          </p>
-          <h1 className="mt-3 text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
-            {pick(insight.title, locale)}
-          </h1>
-          <p className="mt-4 text-gray-300">
-            {formatInsightDate(insight.date, locale)}
-            {insight.author ? ` · ${insight.author}` : ''}
-          </p>
-        </div>
-      </section>
+        }
+      >
+        <p className="text-base text-gray-300">
+          {formatInsightDate(insight.date, locale)}
+          {insight.author ? ` · ${insight.author}` : ''}
+        </p>
+      </PageHero>
 
       <article className="py-14 lg:py-16 bg-white">
         <div className="max-w-[820px] mx-auto px-6 lg:px-12">

@@ -5,6 +5,7 @@ import { Mail, MapPin, Linkedin, Send, Phone, Building, AlertCircle } from 'luci
 import { submitToCrm, isLikelyBot } from '../../lib/crm';
 import { trackEvent, GOALS } from '../../lib/analytics';
 import { HoneypotField } from '../HoneypotField';
+import { PageHero } from '../PageHero';
 
 export function Contact() {
   const t = useTranslation();
@@ -99,16 +100,9 @@ export function Contact() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-              {t.contact.heroTitle}
-            </h1>
-            <p className="text-xl text-blue-100">{t.contact.heroSubtitle}</p>
-          </div>
-        </div>
-      </section>
+      <PageHero variant="brand" title={t.contact.heroTitle}>
+        {t.contact.heroSubtitle}
+      </PageHero>
 
       {/* Contact Form & Info */}
       <section className="py-16 bg-white">

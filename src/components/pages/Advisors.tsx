@@ -12,6 +12,7 @@ import {
 } from '../../data/advisors';
 import { COMMISSIONS } from '../../data/commissions';
 import { AdvisorAvatar } from '../AdvisorAvatar';
+import { PageHero } from '../PageHero';
 
 /**
  * Advisory Council (ticket 16).
@@ -58,31 +59,15 @@ export function Advisors() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.advisorsPage.eyebrow}
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              {t.nav.advisoryCouncil}
-            </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              {ADVISORS.length}{' '}
-              {t.advisorsPage.introBefore.replace('{commissions}', String(COMMISSIONS.length))}{' '}
-              {t.advisorsPage.introAfter}{' '}
-              <Link to="/leadership" className="underline hover:text-white">
-                {t.advisorsPage.leadershipLink}
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow={t.advisorsPage.eyebrow} title={t.nav.advisoryCouncil}>
+        {ADVISORS.length}{' '}
+        {t.advisorsPage.introBefore.replace('{commissions}', String(COMMISSIONS.length))}{' '}
+        {t.advisorsPage.introAfter}{' '}
+        <Link to="/leadership" className="underline hover:text-white">
+          {t.advisorsPage.leadershipLink}
+        </Link>
+        .
+      </PageHero>
 
       {/* Filter */}
       <section className="sticky top-24 z-30 bg-white/95 backdrop-blur border-b border-gray-100">

@@ -23,6 +23,7 @@ import { StructuredData } from '../StructuredData';
 import { downloadIcs } from '../../lib/calendar';
 import { submitToCrm, isLikelyBot } from '../../lib/crm';
 import { trackEvent, GOALS } from '../../lib/analytics';
+import { PageHero } from '../PageHero';
 
 /**
  * Events (ticket 19).
@@ -77,23 +78,9 @@ export function Events() {
     <div>
       <StructuredData id="events-jsonld" data={eventsLd} />
       {/* Hero */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-200 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.nav.events}
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              {t.events.title}
-            </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              {t.events.subtitle}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow={t.nav.events} title={t.events.title}>
+        {t.events.subtitle}
+      </PageHero>
 
       {/* Filters */}
       <section className="sticky top-24 z-30 bg-white/95 backdrop-blur border-b border-gray-100">

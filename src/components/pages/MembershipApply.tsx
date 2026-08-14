@@ -14,6 +14,7 @@ import { paymentProvider, PAYMENT_METHODS, type Applicant } from '../../lib/paym
 import { submitToCrm, isLikelyBot } from '../../lib/crm';
 import { trackEvent, GOALS } from '../../lib/analytics';
 import { HoneypotField } from '../HoneypotField';
+import { PageHero } from '../PageHero';
 
 /**
  * Membership application (tickets 17 & 18).
@@ -136,21 +137,20 @@ export function MembershipApply() {
 
   return (
     <div>
-      <section className="relative py-16 lg:py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="relative max-w-[900px] mx-auto px-6 lg:px-12">
+      <PageHero
+        size="compact"
+        title={t.membership.applyTitle}
+        above={
           <Link
             to="/membership"
-            className="inline-flex items-center text-sm text-blue-200 hover:text-white transition-colors mb-5"
+            className="inline-flex items-center text-sm text-blue-100 hover:text-white transition-colors mb-5"
           >
             ← {t.membership.applyBackLink}
           </Link>
-          <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            {t.membership.applyTitle}
-          </h1>
-          <p className="mt-4 text-xl text-gray-200 leading-relaxed">{t.membership.applyIntro}</p>
-        </div>
-      </section>
+        }
+      >
+        {t.membership.applyIntro}
+      </PageHero>
 
       <section className="py-12 lg:py-16 bg-white">
         <form onSubmit={handleSubmit} className="max-w-[900px] mx-auto px-6 lg:px-12">

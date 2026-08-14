@@ -7,6 +7,7 @@ import { BrandedImage } from '../BrandedImage';
 import presidentPhoto from '../../assets/NouraddineGRIBI.png';
 import founderPhoto from '../../assets/DrissDrif.png';
 import treasurerPhoto from '../../assets/Ahmed_Rahmouni.png';
+import { PageHero } from '../PageHero';
 
 export function Leadership() {
   /*
@@ -38,23 +39,9 @@ export function Leadership() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-        
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.leadership.eyebrow}
-            </div>
-            <h1 className="text-5xl lg:text-6xl font-bold mb-8 text-white tracking-tight">
-              {t.leadership.title}
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">{t.leadership.subtitle}</p>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow={t.leadership.eyebrow} title={t.leadership.title}>
+        {t.leadership.subtitle}
+      </PageHero>
 
       {/*
         Founder and President side by side.

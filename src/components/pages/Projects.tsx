@@ -1,30 +1,16 @@
 import { Briefcase, Rocket } from 'lucide-react';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useTranslation } from '../../i18n/LocaleProvider';
+import { PageHero } from '../PageHero';
 
 export function Projects() {
   const t = useTranslation();
   return (
     <div>
       {/* Hero */}
-      <section className="relative py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-cyan-600/10"></div>
-        
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="max-w-4xl">
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-300 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
-              {t.projects.eyebrow}
-            </div>
-            <h1 className="text-5xl lg:text-6xl font-bold mb-8 text-white tracking-tight">
-              {t.projects.title}
-            </h1>
-            <p className="text-xl text-gray-300 leading-relaxed">
-              {t.projects.subtitle}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero eyebrow={t.projects.eyebrow} title={t.projects.title}>
+        {t.projects.subtitle}
+      </PageHero>
 
       {/* Coming Soon Section */}
       <section className="py-32 lg:py-40 bg-gradient-to-b from-white to-gray-50">
