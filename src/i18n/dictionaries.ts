@@ -147,6 +147,13 @@ export interface Dictionary {
     confirmRegistration: string;
   };
   home: {
+    heroCarouselLabel: string;
+    heroPause: string;
+    heroPlay: string;
+    heroPrev: string;
+    heroNext: string;
+    heroSlideOf: string;
+    heroGoToSlide: string;
     newsEyebrow: string;
     newsTitle: string;
     newsText: string;
@@ -168,11 +175,6 @@ export interface Dictionary {
     joinBandText: string;
     joinBandPrimary: string;
     joinBandSecondary: string;
-    badge: string;
-    heroLine1: string;
-    heroLine2: string;
-    heroText: string;
-    upcomingEvents: string;
     whatWeDo: string;
     focusTitle: string;
     focusText: string;
@@ -570,6 +572,13 @@ const en: Dictionary = {
     confirmRegistration: 'Confirm registration',
   },
   home: {
+    heroCarouselLabel: 'Highlights from CDD Pays-Bas',
+    heroPause: 'Pause automatic slide rotation',
+    heroPlay: 'Resume automatic slide rotation',
+    heroPrev: 'Previous slide',
+    heroNext: 'Next slide',
+    heroSlideOf: 'Slide {n} of {total}',
+    heroGoToSlide: 'Show slide {n}',
     newsEyebrow: 'News & media',
     newsTitle: 'What we have been working on',
     newsText:
@@ -593,12 +602,6 @@ const en: Dictionary = {
       'One membership, €25 per month: every event, a seat in any commission, and direct access to our senior advisors across the Netherlands and Morocco.',
     joinBandPrimary: 'Become a member',
     joinBandSecondary: 'What membership includes',
-    badge: 'International Business Leadership Platform',
-    heroLine1: 'Connecting Leaders,',
-    heroLine2: 'Building the Future',
-    heroText:
-      'CDD Pays-Bas is an international platform for business leaders, investors, and decision-makers driving cross-border collaboration and sustainable development.',
-    upcomingEvents: 'Upcoming Events',
     whatWeDo: 'What We Do',
     focusTitle: 'Our Four Commissions',
     focusText: 'We drive impact across key sectors shaping the future of international business',
@@ -1145,6 +1148,13 @@ const nl: Dictionary = {
     confirmRegistration: 'Aanmelding bevestigen',
   },
   home: {
+    heroCarouselLabel: 'Uitgelicht bij CDD Pays-Bas',
+    heroPause: 'Automatisch wisselen van dia’s pauzeren',
+    heroPlay: 'Automatisch wisselen van dia’s hervatten',
+    heroPrev: 'Vorige dia',
+    heroNext: 'Volgende dia',
+    heroSlideOf: 'Dia {n} van {total}',
+    heroGoToSlide: 'Toon dia {n}',
     newsEyebrow: 'Nieuws & media',
     newsTitle: 'Waar wij aan hebben gewerkt',
     newsText:
@@ -1168,12 +1178,6 @@ const nl: Dictionary = {
       'Eén lidmaatschap, € 25 per maand: alle evenementen, een zetel in elke commissie en directe toegang tot onze senior adviseurs in Nederland en Marokko.',
     joinBandPrimary: 'Word lid',
     joinBandSecondary: 'Wat het lidmaatschap omvat',
-    badge: 'Internationaal platform voor zakelijk leiderschap',
-    heroLine1: 'Leiders verbinden,',
-    heroLine2: 'de toekomst bouwen',
-    heroText:
-      'CDD Pays-Bas is een internationaal platform voor bestuurders, investeerders en besluitvormers die grensoverschrijdende samenwerking en duurzame ontwikkeling stimuleren.',
-    upcomingEvents: 'Aankomende evenementen',
     whatWeDo: 'Wat wij doen',
     focusTitle: 'Onze vier commissies',
     focusText:
@@ -1724,6 +1728,13 @@ const fr: Dictionary = {
     confirmRegistration: "Confirmer l'inscription",
   },
   home: {
+    heroCarouselLabel: 'À la une chez CDD Pays-Bas',
+    heroPause: 'Mettre en pause le défilement automatique',
+    heroPlay: 'Reprendre le défilement automatique',
+    heroPrev: 'Diapositive précédente',
+    heroNext: 'Diapositive suivante',
+    heroSlideOf: 'Diapositive {n} sur {total}',
+    heroGoToSlide: 'Afficher la diapositive {n}',
     newsEyebrow: 'Actualités & médias',
     newsTitle: 'Ce sur quoi nous avons travaillé',
     newsText:
@@ -1747,12 +1758,6 @@ const fr: Dictionary = {
       "Une seule adhésion, 25 € par mois : tous les événements, un siège dans la commission de votre choix et un accès direct à nos conseillers seniors aux Pays-Bas et au Maroc.",
     joinBandPrimary: 'Devenir membre',
     joinBandSecondary: "Ce que comprend l'adhésion",
-    badge: 'Plateforme internationale de leadership économique',
-    heroLine1: 'Relier les dirigeants,',
-    heroLine2: "construire l'avenir",
-    heroText:
-      'CDD Pays-Bas est une plateforme internationale réunissant dirigeants, investisseurs et décideurs qui font avancer la collaboration transfrontalière et le développement durable.',
-    upcomingEvents: 'Événements à venir',
     whatWeDo: 'Ce que nous faisons',
     focusTitle: 'Nos quatre commissions',
     focusText:

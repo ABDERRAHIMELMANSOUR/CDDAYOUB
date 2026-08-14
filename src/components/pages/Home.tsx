@@ -1,8 +1,9 @@
 import React from 'react';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
-import { ArrowRight, Users, Sparkles } from 'lucide-react';
+import { ArrowRight, Users } from 'lucide-react';
 import { BrandedImage } from '../BrandedImage';
 import { AdvisorAvatar } from '../AdvisorAvatar';
+import { HeroSlider } from '../HeroSlider';
 import { ParticleNetwork } from '../ParticleNetwork';
 import { NewsCarousel } from '../NewsCarousel';
 import { COMMISSION_DOMAINS } from '../../data/commissionDomains';
@@ -46,65 +47,7 @@ export function Home() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Gradient mesh background */}
-        <div className="absolute inset-0 gradient-mesh"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-blue-50/30"></div>
-        
-        {/* Floating accent elements */}
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 rounded-full blur-3xl"></div>
-
-        {/*
-          Sits above the near-opaque white gradient overlays and below the
-          content, so the constellation reads without washing out the H1.
-        */}
-        <ParticleNetwork variant="dark" />
-
-        
-        <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
-          <div className="max-w-4xl">
-            {/* Badge */}
-            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200/50 shadow-lg mb-8">
-              <Sparkles className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-gray-700">{t.home.badge}</span>
-            </div>
-            
-            <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight tracking-tight">
-              {t.home.heroLine1}
-              <br />
-              <span className="gradient-text">{t.home.heroLine2}</span>
-            </h1>
-            
-            <p className="text-xl lg:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl">
-              {t.home.heroText}
-            </p>
-            
-            {/*
-              One primary CTA, one secondary. Three equal-weight buttons meant
-              none of them won; the Smart Platform link stays in the header as a
-              member entry point rather than competing with the hero's action.
-            */}
-            <div className="flex flex-wrap gap-4">
-              <Link
-                to="/membership"
-                onClick={() => trackEvent(GOALS.heroMembershipCta)}
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-2xl hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 font-medium group"
-              >
-                {t.home.becomeMember}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                to="/events"
-                className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-2xl hover:bg-gray-50 border-2 border-gray-200 transition-all duration-300 font-medium shadow-sm hover:shadow-md"
-              >
-                {t.home.upcomingEvents}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       {/*
         Proof bar. Replaces the Vision block, which duplicated About almost
