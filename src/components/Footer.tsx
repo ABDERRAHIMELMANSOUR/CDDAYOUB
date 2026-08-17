@@ -3,7 +3,6 @@ import { useTranslation } from '../i18n/LocaleProvider';
 import { Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import logo from 'figma:asset/b1faa4031595f1461db9b2a05d08177da0e5c2ec.png';
 import { ORGANISATION } from '../data/organisation';
-import { ParticleNetwork } from './ParticleNetwork';
 
 export function Footer() {
   const t = useTranslation();
@@ -20,18 +19,7 @@ export function Footer() {
 
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-gray-300 relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-cyan-600/5"
-      ></div>
-
-      {/*
-        The same constellation as the page heroes, closing the journey the way
-        it opened. It sits over the ground and under the content, and the
-        IntersectionObserver inside ParticleNetwork means it only animates
-        while the footer is actually on screen — which, for a footer, is rarely.
-      */}
-      <ParticleNetwork variant="light" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-cyan-600/5"></div>
 
       <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">

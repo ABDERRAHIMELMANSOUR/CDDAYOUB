@@ -11,7 +11,7 @@ import type { Localised } from '../i18n/localised';
  * the branded placeholder until the files are added, so the build stays green
  * and no visitor ever sees a broken-image icon. Drop the two JPEGs in with the
  * filenames below and the slide takes them up on the next deploy — no code
- * change. See public/media/README.md for size and consent guidance.
+ * change. See docs/photography.md for size and consent guidance.
  * ─────────────────────────────────────────────────────────────────────────────
  *
  * There is one featured story at a time. To change it, edit this file; to stop
@@ -39,8 +39,8 @@ export const FEATURED_STORY: FeaturedStory | null = {
   slug: 'first-collective-iftar-recap',
   date: '2026-03-05',
 
-  backgroundImage: '/media/iftar-rotterdam-group.jpg',
-  insetImage: '/media/iftar-rotterdam-table.jpg',
+  backgroundImage: '/media/cdd-iftar-rotterdam-group.jpg',
+  insetImage: '/media/cdd-iftar-rotterdam-table.jpg',
 
   eyebrow: {
     en: 'Featured',
