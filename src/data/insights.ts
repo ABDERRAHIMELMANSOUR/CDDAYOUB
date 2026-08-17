@@ -133,7 +133,7 @@ export const INSIGHTS: Insight[] = [
     commissions: [],
     author: 'CDD Pays-Bas',
     featured: true,
-    image: '/media/iftar-rotterdam-group.jpg',
+    image: '/media/cdd-iftar-rotterdam-group.jpg',
     summary: {
       en: 'Club des Dirigeants (CDD) Pays-Bas proudly hosted a collective Iftar in Rotterdam, bringing together Moroccan and Turkish entrepreneurs to strengthen unity and cross-border collaboration between Morocco, Türkiye, and the Netherlands.',
       nl: 'Club des Dirigeants (CDD) Pays-Bas organiseerde met trots een gezamenlijke iftar in Rotterdam, waar Marokkaanse en Turkse ondernemers samenkwamen om de onderlinge verbondenheid en de grensoverschrijdende samenwerking tussen Marokko, Turkije en Nederland te versterken.',
@@ -141,7 +141,7 @@ export const INSIGHTS: Insight[] = [
     },
     gallery: [
       {
-        src: '/media/iftar-rotterdam-group.jpg',
+        src: '/media/cdd-iftar-rotterdam-group.jpg',
         alt: {
           en: 'Guests of the CDD Pays-Bas collective Iftar in Rotterdam, gathered together for a group photograph.',
           nl: 'Gasten van de gezamenlijke iftar van CDD Pays-Bas in Rotterdam, samen op de groepsfoto.',
@@ -149,7 +149,7 @@ export const INSIGHTS: Insight[] = [
         },
       },
       {
-        src: '/media/iftar-rotterdam-table.jpg',
+        src: '/media/cdd-iftar-rotterdam-table.jpg',
         alt: {
           en: 'Guests seated along the dinner table at the CDD Pays-Bas Iftar in Rotterdam.',
           nl: 'Gasten aan de gedekte tafel tijdens de iftar van CDD Pays-Bas in Rotterdam.',

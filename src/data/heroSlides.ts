@@ -98,7 +98,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       label: { en: 'All insights', nl: 'Alle insights', fr: 'Tous les insights' },
       to: '/insights',
     },
-    image: '/media/hero-iftar-group.jpg',
+    image: '/media/cdd-iftar-rotterdam-group.jpg',
     imageAlt: {
       en: 'Guests of the CDD Pays-Bas collective Iftar in Rotterdam, gathered together for a group photograph.',
       nl: 'Gasten van de gezamenlijke iftar van CDD Pays-Bas in Rotterdam, samen op de groepsfoto.',
@@ -131,7 +131,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       label: { en: 'The commissions', nl: 'De commissies', fr: 'Les commissions' },
       to: '/commissions',
     },
-    image: '/media/hero-iftar-table.jpg',
+    image: '/media/cdd-iftar-rotterdam-table.jpg',
     imageAlt: {
       en: 'Guests seated along the dinner table at a CDD Pays-Bas gathering in Rotterdam.',
       nl: 'Gasten aan de gedekte tafel tijdens een bijeenkomst van CDD Pays-Bas in Rotterdam.',
