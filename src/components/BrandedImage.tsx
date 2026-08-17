@@ -66,31 +66,49 @@ export function BrandedImage({
     <div
       role="img"
       aria-label={alt ?? title ?? 'CDD Pays-Bas'}
-      className={`w-full h-full rounded-2xl shadow-lg bg-gradient-to-br ${palette} p-8 lg:p-10 flex flex-col justify-between overflow-hidden ${className}`}
+      className={`w-full h-full rounded-2xl shadow-lg bg-gradient-to-br ${palette} p-5 sm:p-6 lg:p-8 flex flex-col justify-between gap-3 overflow-hidden ${className}`}
     >
-      <div>
+      {/*
+        min-w-0 lets the flex child shrink below its content width, which is
+        what allows the clamps below to take effect at all — without it a long
+        unbroken string forces the box wider and the clamp never engages.
+      */}
+      <div className="min-w-0">
         {label && (
           <p
-            className={`text-sm uppercase tracking-widest font-semibold ${
+            className={`text-xs sm:text-sm uppercase tracking-widest font-semibold line-clamp-1 ${
               variant === 'deep' ? 'text-cyan-200' : 'text-blue-700'
             }`}
           >
             {label}
           </p>
         )}
-        {title && <p className="mt-3 text-2xl lg:text-3xl font-bold leading-tight">{title}</p>}
+        {/*
+          Clamped to two lines. Titles here are page headlines, and the longest
+          of them (the Iftar story, ~100 characters) previously ran 60px past
+          the bottom of a 4:3 box and was silently clipped mid-word. Two lines
+          fits every box this placeholder is used in, at every breakpoint.
+          `break-words` covers a single long token that cannot wrap.
+        */}
+        {title && (
+          <p className="mt-2 text-lg sm:text-xl lg:text-2xl font-bold leading-tight line-clamp-2 break-words">
+            {title}
+          </p>
+        )}
       </div>
 
       {Icon && (
         <Icon
-          className={`h-16 w-16 ${variant === 'deep' ? 'text-white/25' : 'text-blue-900/15'}`}
+          className={`h-10 w-10 sm:h-14 sm:w-14 flex-shrink-0 ${
+            variant === 'deep' ? 'text-white/25' : 'text-blue-900/15'
+          }`}
           aria-hidden={true}
         />
       )}
 
       {caption && (
         <p
-          className={`text-sm leading-relaxed ${
+          className={`text-xs sm:text-sm leading-relaxed line-clamp-2 break-words ${
             variant === 'deep' ? 'text-blue-100' : 'text-blue-800'
           }`}
         >

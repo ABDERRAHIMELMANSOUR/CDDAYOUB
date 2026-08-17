@@ -100,11 +100,16 @@ export function FeaturedSlide({ story }: { story: FeaturedStory }) {
         {story.insetImage && (
           <div className="hidden lg:block">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-white/25 shadow-2xl">
+              {/*
+                'deep', not 'light'. The inset sits inside a dark slide, so a
+                light placeholder reads as an empty white rectangle punched
+                into the artwork rather than as a photo yet to arrive.
+              */}
               <PhotoOrPlaceholder
                 src={story.insetImage}
                 alt={pick(story.insetAlt, locale)}
                 label={t.home.newsEyebrow}
-                variant="light"
+                variant="deep"
                 className="rounded-2xl"
               />
             </div>

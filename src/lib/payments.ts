@@ -12,7 +12,7 @@
  *   - Anything placed in this bundle is served to every visitor. Shipping a
  *     secret key here would publish it — a live financial credential, readable
  *     with "view source".
- *   - Amounts must be decided server-side. A client that says "charge €25"
+ *   - Amounts must be decided server-side. A client that says "charge €290"
  *     can be edited by the payer to say "charge €1".
  *
  * So this module ships the parts that are genuinely safe client-side: the
@@ -33,9 +33,10 @@
  *
  *    It must:
  *      a. Accept { applicant } — NOT an amount and NOT an interval.
- *      b. Use its own copy of the price: €25 per month, recurring. Membership
- *         is a SUBSCRIPTION, so create a Mollie customer + subscription (or a
- *         Stripe subscription), not a one-off payment.
+ *      b. Use its own copy of the price: €290 per year. Membership renews
+ *         annually, so create a Mollie customer + yearly subscription (or the
+ *         Stripe equivalent) rather than an unconnected one-off payment —
+ *         otherwise year two is a manual chase.
  *      c. Create the payment with the provider using the secret key from an
  *         environment variable (MOLLIE_API_KEY / STRIPE_SECRET_KEY), never a
  *         bundled constant.
@@ -46,11 +47,11 @@
  *    for "paid" — the browser redirect can be forged or simply never happen if
  *    the payer closes the tab.
  *
- * 4. For monthly SEPA renewals, collect a mandate through the provider's flow.
+ * 4. For annual SEPA renewals, collect a mandate through the provider's flow.
  *    Do not store IBANs yourself; there is no reason to hold that data. Note
  *    that iDEAL is a single-payment method: the standard Dutch pattern is a
  *    first iDEAL payment that establishes the SEPA mandate, with subsequent
- *    months collected by direct debit.
+ *    years collected by direct debit.
  *
  * 5. Update the privacy statement: payment data introduces a processor, which
  *    the AVG requires be disclosed.
@@ -86,7 +87,7 @@ export interface PaymentProvider {
 /** Payment methods CDD intends to accept, shown on the review step. */
 export const PAYMENT_METHODS = [
   { id: 'ideal', label: 'iDEAL', note: 'Standard for Dutch members' },
-  { id: 'sepa', label: 'SEPA Direct Debit', note: 'Used for monthly renewals' },
+  { id: 'sepa', label: 'SEPA Direct Debit', note: 'Used for annual renewals' },
   { id: 'card', label: 'Card', note: 'For international members' },
 ] as const;
 
@@ -125,7 +126,8 @@ export const serverProvider: PaymentProvider = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // No amount or interval is sent — the server owns the price
-        // (MEMBERSHIP_PRICE_EUR, monthly) so a tampered client cannot set it.
+        // (MEMBERSHIP_ANNUAL_PRICE_EUR, yearly) so a tampered client cannot
+        // set it.
         body: JSON.stringify(request),
       });
       if (!response.ok) {

@@ -5,7 +5,6 @@ import {
   MEMBERSHIP,
   WHY_JOIN,
   ANNUAL_PRICE_AVAILABLE,
-  formatMembershipPrice,
   formatAnnualPrice,
   pick,
 } from '../../data/membership';
@@ -24,7 +23,6 @@ import { PageHero } from '../PageHero';
 export function Membership() {
   const t = useTranslation();
   const { locale } = useLocale();
-  const price = formatMembershipPrice(locale, t.membership.perMonth);
   const annualPrice = formatAnnualPrice(locale, t.membership.perYear);
   return (
     <div>
@@ -70,26 +68,25 @@ export function Membership() {
             <h3 className="text-2xl font-bold text-gray-900">{pick(MEMBERSHIP.name, locale)}</h3>
             <p className="text-sm text-gray-600 mt-1">{pick(MEMBERSHIP.audience, locale)}</p>
 
-            <p className="mt-6 text-4xl font-bold text-blue-700">{price}</p>
-            <p className="mt-2 text-sm text-gray-600">{t.membership.cancelAnytime}</p>
-
             {/*
-              Announced, not purchasable. Flip ANNUAL_PRICE_AVAILABLE once the
-              provider can take it and this becomes a second option rather than
-              a notice — until then it must not look like something to click.
+              The annual rate is the ONLY rate — the monthly option was removed
+              on the board's instruction. It is announced rather than sold while
+              ANNUAL_PRICE_AVAILABLE is false, so the "coming soon" badge sits
+              with the figure rather than the figure standing alone and reading
+              as something that can be paid today.
             */}
+            <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-2">
+              <p className="text-4xl font-bold text-blue-700">{annualPrice}</p>
+              {!ANNUAL_PRICE_AVAILABLE && (
+                <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wide">
+                  {t.membership.annualComingSoon}
+                </span>
+              )}
+            </div>
             {!ANNUAL_PRICE_AVAILABLE && (
-              <div className="mt-5 rounded-2xl border border-blue-200 bg-blue-50 px-5 py-4">
-                <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="text-xs font-bold uppercase tracking-wide text-blue-700">
-                    {t.membership.annualComingSoon}
-                  </span>
-                  <span className="text-xl font-bold text-blue-900">{annualPrice}</span>
-                </p>
-                <p className="mt-2 text-sm text-blue-900/90 leading-relaxed">
-                  {t.membership.annualNote}
-                </p>
-              </div>
+              <p className="mt-3 text-sm text-gray-700 leading-relaxed max-w-xl">
+                {t.membership.annualNote}
+              </p>
             )}
             <p className="mt-5 text-lg text-gray-800 leading-relaxed">
               {pick(MEMBERSHIP.headline, locale)}

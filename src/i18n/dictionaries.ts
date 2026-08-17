@@ -69,7 +69,6 @@ export interface Dictionary {
     duesIntroPrivate: string;
     mostChosen: string;
     perYear: string;
-    perMonth: string;
     applyTitle: string;
     applyIntro: string;
     applyBackLink: string;
@@ -96,7 +95,6 @@ export interface Dictionary {
     duesTitle: string;
     duesSingleIntro: string;
     whatsIncluded: string;
-    cancelAnytime: string;
     byInvitation: string;
     contactForDues: string;
     honoraryTitle: string;
@@ -469,7 +467,7 @@ const en: Dictionary = {
   membership: {
     annualComingSoon: 'Coming soon',
     annualNote:
-      'An annual rate is being prepared — one payment instead of twelve, at a saving on the monthly total. Monthly membership is available today and nothing changes for existing members when it launches.',
+      'Membership opens shortly. Apply now and we will confirm your place and arrange payment as soon as it goes live — nothing is charged before then.',
     title: 'Join the Club',
     subtitle:
       "CDD Pays-Bas is a members' club. Membership gives you access to {advisors} senior advisors, {commissions} working commissions, and a network that spans the Netherlands and Morocco.",
@@ -484,7 +482,6 @@ const en: Dictionary = {
       'Membership runs for twelve months and is renewable. Contact us for current dues.',
     mostChosen: 'Most chosen',
     perYear: 'per year',
-    perMonth: 'per month',
     applyTitle: 'Apply for membership',
     applyIntro: 'Three required fields. We review every application and respond personally.',
     applyBackLink: 'Membership',
@@ -512,9 +509,8 @@ const en: Dictionary = {
     backHome: 'Back to home',
     duesTitle: 'Membership & dues',
     duesSingleIntro:
-      'One membership, one price. €25 per month gives full access to the network, the events and the commissions — there are no tiers to weigh up and nothing held back for a higher band.',
+      'One membership, one rate: €290 a year for full access to the network, the events and the commissions. There are no tiers to weigh up and nothing held back for a higher band.',
     whatsIncluded: "What's included",
-    cancelAnytime: 'Billed monthly. Cancel at any time.',
     byInvitation: 'By invitation',
     contactForDues: 'Contact us for current dues',
     honoraryTitle: 'Honorary membership',
@@ -599,7 +595,7 @@ const en: Dictionary = {
     insightsAll: 'All insights',
     joinBandTitle: 'Join CDD Pays-Bas',
     joinBandText:
-      'One membership, €25 per month: every event, a seat in any commission, and direct access to our senior advisors across the Netherlands and Morocco.',
+      'One membership, €290 a year: every event, a seat in any commission, and direct access to our senior advisors across the Netherlands and Morocco.',
     joinBandPrimary: 'Become a member',
     joinBandSecondary: 'What membership includes',
     whatWeDo: 'What We Do',
@@ -1042,7 +1038,7 @@ const nl: Dictionary = {
   membership: {
     annualComingSoon: 'Binnenkort',
     annualNote:
-      'Er wordt een jaartarief voorbereid — één betaling in plaats van twaalf, met een korting op het maandtotaal. Het maandlidmaatschap is nu al beschikbaar en voor bestaande leden verandert er niets zodra het jaartarief ingaat.',
+      'Het lidmaatschap opent binnenkort. Meld u nu aan; wij bevestigen uw plaats en regelen de betaling zodra dit live gaat — er wordt vooraf niets in rekening gebracht.',
     title: 'Word lid van de club',
     subtitle:
       'CDD Pays-Bas is een ledenclub. Een lidmaatschap geeft u toegang tot {advisors} senior adviseurs, {commissions} werkende commissies en een netwerk dat Nederland en Marokko omspant.',
@@ -1057,7 +1053,6 @@ const nl: Dictionary = {
       'Het lidmaatschap loopt twaalf maanden en is verlengbaar. Neem contact op voor de actuele contributie.',
     mostChosen: 'Meest gekozen',
     perYear: 'per jaar',
-    perMonth: 'per maand',
     applyTitle: 'Lidmaatschap aanvragen',
     applyIntro:
       'Drie verplichte velden. Wij beoordelen elke aanvraag en reageren persoonlijk.',
@@ -1088,9 +1083,8 @@ const nl: Dictionary = {
     backHome: 'Terug naar de startpagina',
     duesTitle: 'Lidmaatschap & contributie',
     duesSingleIntro:
-      'Eén lidmaatschap, één prijs. Voor € 25 per maand krijgt u volledige toegang tot het netwerk, de evenementen en de commissies — er zijn geen categorieën om af te wegen en er wordt niets achtergehouden voor een duurdere variant.',
+      'Eén lidmaatschap, één tarief: € 290 per jaar voor volledige toegang tot het netwerk, de evenementen en de commissies. Er zijn geen categorieën om af te wegen en er wordt niets achtergehouden voor een duurdere variant.',
     whatsIncluded: 'Wat is inbegrepen',
-    cancelAnytime: 'Maandelijkse facturering. Op elk moment opzegbaar.',
     byInvitation: 'Op uitnodiging',
     contactForDues: 'Neem contact op voor de actuele contributie',
     honoraryTitle: 'Erelidmaatschap',
@@ -1175,7 +1169,7 @@ const nl: Dictionary = {
     insightsAll: 'Alle insights',
     joinBandTitle: 'Word lid van CDD Pays-Bas',
     joinBandText:
-      'Eén lidmaatschap, € 25 per maand: alle evenementen, een zetel in elke commissie en directe toegang tot onze senior adviseurs in Nederland en Marokko.',
+      'Eén lidmaatschap, € 290 per jaar: alle evenementen, een zetel in elke commissie en directe toegang tot onze senior adviseurs in Nederland en Marokko.',
     joinBandPrimary: 'Word lid',
     joinBandSecondary: 'Wat het lidmaatschap omvat',
     whatWeDo: 'Wat wij doen',
@@ -1622,7 +1616,7 @@ const fr: Dictionary = {
   membership: {
     annualComingSoon: 'Prochainement',
     annualNote:
-      "Un tarif annuel est en préparation : un seul paiement au lieu de douze, avec une économie sur le total mensuel. L'adhésion mensuelle est déjà disponible et rien ne change pour les membres actuels lors de son lancement.",
+      "Les adhésions ouvrent prochainement. Déposez votre demande dès maintenant : nous confirmerons votre place et organiserons le paiement dès l'ouverture — rien n'est prélevé avant.",
     title: 'Rejoignez le Club',
     subtitle:
       "CDD Pays-Bas est un club de membres. L'adhésion vous donne accès à {advisors} conseillers seniors, {commissions} commissions actives et un réseau qui couvre les Pays-Bas et le Maroc.",
@@ -1638,7 +1632,6 @@ const fr: Dictionary = {
       "L'adhésion court sur douze mois et est renouvelable. Contactez-nous pour les cotisations en vigueur.",
     mostChosen: 'Le plus choisi',
     perYear: 'par an',
-    perMonth: 'par mois',
     applyTitle: 'Demander une adhésion',
     applyIntro:
       'Trois champs obligatoires. Nous examinons chaque demande et répondons personnellement.',
@@ -1668,9 +1661,8 @@ const fr: Dictionary = {
     backHome: "Retour à l'accueil",
     duesTitle: 'Adhésion & cotisation',
     duesSingleIntro:
-      "Une seule adhésion, un seul tarif. Pour 25 € par mois, vous accédez pleinement au réseau, aux événements et aux commissions — aucune catégorie à comparer, rien qui soit réservé à une formule supérieure.",
+      "Une seule adhésion, un seul tarif : 290 € par an pour un accès complet au réseau, aux événements et aux commissions. Aucune catégorie à comparer, rien qui soit réservé à une formule supérieure.",
     whatsIncluded: 'Ce qui est inclus',
-    cancelAnytime: 'Facturation mensuelle. Résiliable à tout moment.',
     byInvitation: 'Sur invitation',
     contactForDues: 'Contactez-nous pour les cotisations en vigueur',
     honoraryTitle: "Membre d'honneur",
@@ -1755,7 +1747,7 @@ const fr: Dictionary = {
     insightsAll: 'Tous les insights',
     joinBandTitle: 'Rejoignez CDD Pays-Bas',
     joinBandText:
-      "Une seule adhésion, 25 € par mois : tous les événements, un siège dans la commission de votre choix et un accès direct à nos conseillers seniors aux Pays-Bas et au Maroc.",
+      "Une seule adhésion, 290 € par an : tous les événements, un siège dans la commission de votre choix et un accès direct à nos conseillers seniors aux Pays-Bas et au Maroc.",
     joinBandPrimary: 'Devenir membre',
     joinBandSecondary: "Ce que comprend l'adhésion",
     whatWeDo: 'Ce que nous faisons',
