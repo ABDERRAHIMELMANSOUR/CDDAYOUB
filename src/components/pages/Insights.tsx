@@ -131,7 +131,7 @@ export function InsightArticle() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {insight.gallery.map((photo) => (
                   <figure key={photo.src} className="m-0">
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
+                    <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-900">
                       <PhotoOrPlaceholder
                         src={photo.src}
                         alt={pick(photo.alt, locale)}

@@ -8,12 +8,17 @@ export type { Localised };
  * Membership (ticket 17), fully localised.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * ONE MEMBERSHIP TYPE — €25 PER MONTH.
+ * ONE MEMBERSHIP TYPE — €290 PER YEAR, NOT YET OPEN.
  *
- * Set by Nouraddine Gribi (August 2026), replacing the five-tier model that
- * Part E4 of the blueprint proposed. The board's decision is deliberate and it
- * supersedes the blueprint on this point: one price, no negotiation, no tier
- * anxiety, and nothing for a prospective member to work out before joining.
+ * Set by Nouraddine Gribi, replacing first the five-tier model that Part E4 of
+ * the blueprint proposed and then the €25/month rate. One price, no
+ * negotiation, no tier anxiety, and nothing for a prospective member to work
+ * out before joining.
+ *
+ * `ANNUAL_PRICE_AVAILABLE` is false: the rate is announced but cannot yet be
+ * paid. Nothing on the site may present it as purchasable while that holds —
+ * the application form records interest and says so plainly. Flip the flag
+ * once the payment provider can take it.
  *
  * Honorary membership is not represented here. It is a board recognition
  * rather than a product — it has no price, cannot be applied for, and the
@@ -28,18 +33,10 @@ export type { Localised };
  * writes €1,234.50.
  */
 
-/** Monthly dues in euros. */
-export const MEMBERSHIP_PRICE_EUR = 25;
-
-/**
- * Annual rate, announced but not yet purchasable.
- *
- * €290 against €300 for twelve monthly payments — a month's discount for
- * paying up front. Set `ANNUAL_PRICE_AVAILABLE` to true once the payment
- * provider can actually take it; until then the site announces it as coming
- * rather than offering a choice it cannot honour.
- */
+/** Annual dues in euros. The only rate — there is no monthly option. */
 export const MEMBERSHIP_ANNUAL_PRICE_EUR = 290;
+
+/** True once the payment provider can actually collect the annual rate. */
 export const ANNUAL_PRICE_AVAILABLE = false;
 
 export interface Membership {
@@ -64,9 +61,9 @@ export const MEMBERSHIP: Membership = {
     fr: "Dirigeants d'entreprise, investisseurs, entrepreneurs et professionnels confirmés actifs entre les Pays-Bas et le Maroc",
   },
   headline: {
-    en: 'One membership, one price, full access to the network.',
-    nl: 'Eén lidmaatschap, één prijs, volledige toegang tot het netwerk.',
-    fr: "Une seule adhésion, un seul tarif, un accès complet au réseau.",
+    en: 'One membership, one annual rate, full access to the network.',
+    nl: 'Eén lidmaatschap, één jaartarief, volledige toegang tot het netwerk.',
+    fr: "Une seule adhésion, un seul tarif annuel, un accès complet au réseau.",
   },
   benefits: {
     en: [
@@ -104,16 +101,11 @@ const PRICE_LOCALE: Record<Locale, string> = {
 };
 
 /**
- * Formats the dues for display, e.g. "€25 per month".
+ * The annual rate, e.g. "€290 per year" / "290 € par an".
  *
- * `perMonth` carries the translated interval label from the dictionary, so this
+ * `perYear` carries the translated interval label from the dictionary, so this
  * stays free of hard-coded English.
  */
-export function formatMembershipPrice(locale: Locale, perMonth: string): string {
-  return `${formatEuros(MEMBERSHIP_PRICE_EUR, locale)} ${perMonth}`;
-}
-
-/** The announced annual rate, e.g. "€290 per year" / "290 € par an". */
 export function formatAnnualPrice(locale: Locale, perYear: string): string {
   return `${formatEuros(MEMBERSHIP_ANNUAL_PRICE_EUR, locale)} ${perYear}`;
 }

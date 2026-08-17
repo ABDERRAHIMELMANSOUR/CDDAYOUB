@@ -5,8 +5,8 @@ import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { Check, AlertCircle, Loader2 } from 'lucide-react';
 import {
   MEMBERSHIP,
-  MEMBERSHIP_PRICE_EUR,
-  formatMembershipPrice,
+  MEMBERSHIP_ANNUAL_PRICE_EUR,
+  formatAnnualPrice,
   pick,
 } from '../../data/membership';
 import { COMMISSIONS } from '../../data/commissions';
@@ -31,7 +31,7 @@ import { PageHero } from '../PageHero';
 export function MembershipApply() {
   const t = useTranslation();
   const { locale } = useLocale();
-  const price = formatMembershipPrice(locale, t.membership.perMonth);
+  const price = formatAnnualPrice(locale, t.membership.perYear);
   const [params] = useSearchParams();
   // Preselected when arriving from a commission page's "join" CTA. Matched
   // against the rendered option values, so an unknown value simply falls back
@@ -87,7 +87,7 @@ export function MembershipApply() {
         role: applicant.role,
         commission: applicant.commission,
         message: applicant.message,
-        monthlyDuesEur: MEMBERSHIP_PRICE_EUR,
+        annualDuesEur: MEMBERSHIP_ANNUAL_PRICE_EUR,
       },
     });
 
