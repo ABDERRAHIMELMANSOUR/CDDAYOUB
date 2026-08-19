@@ -104,9 +104,9 @@ export const TRANSPARENCY_DOCUMENTS: LegalDocument[] = [
     },
     href: null,
     description: {
-      en: 'The constitutional document setting out purpose, governance, membership and decision-making.',
-      nl: 'Het oprichtingsdocument waarin doel, bestuur, lidmaatschap en besluitvorming zijn vastgelegd.',
-      fr: "Le document constitutif qui définit l'objet, la gouvernance, l'adhésion et la prise de décision.",
+      en: 'The constitutional document setting out purpose, governance and decision-making.',
+      nl: 'Het oprichtingsdocument waarin doel, bestuur en besluitvorming zijn vastgelegd.',
+      fr: "Le document constitutif qui définit l'objet, la gouvernance et la prise de décision.",
     },
   },
   {

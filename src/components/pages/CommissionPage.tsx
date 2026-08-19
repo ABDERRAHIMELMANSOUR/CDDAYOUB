@@ -17,7 +17,7 @@ import { PageHero } from '../PageHero';
  * Commission page template (Part D4) — one shared structure for all four.
  *
  * The section that distinguishes a body from a theme is the standing line:
- * chair, established, cadence, open to all members. Four facts, one line. A
+ * chair, established, cadence, open to all participants. Four facts, one line. A
  * "focus area" cannot justify naming a chair or carrying a join action; a
  * commission can, and that is the whole point of the change.
  */

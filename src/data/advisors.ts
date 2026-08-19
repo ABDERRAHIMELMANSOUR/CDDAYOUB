@@ -102,7 +102,7 @@ export const GROUP_LABELS: Record<AdvisorGroup, Localised<string>> = {
     nl: 'Operatie & secretariaat',
     fr: 'Opérations & secrétariat',
   },
-  honorary: { en: 'Honorary Members', nl: 'Ereleden', fr: "Membres d'honneur" },
+  honorary: { en: 'Honorary Distinction', nl: 'Ere-deelnemers', fr: "Distinctions d'honneur" },
 };
 
 export const GROUP_DESCRIPTIONS: Partial<Record<AdvisorGroup, Localised<string>>> = {
@@ -143,14 +143,14 @@ export const ADVISORS: Advisor[] = [
   {
     name: 'Theo Hendriks',
     role: {
-      en: 'Honorary Member',
-      nl: 'Erelid',
-      fr: 'Membre d\'honneur',
+      en: 'Honorary Distinction',
+      nl: 'Ere-deelnemer',
+      fr: "Distinction d'honneur",
     },
     bio: {
-      en: 'Honorary member recognized for his long-standing contribution and commitment to the CDD network. Provides trusted guidance and historical insight to support the organization\\\'s mission.',
-      nl: 'Erelid, erkend voor zijn langdurige bijdrage en betrokkenheid bij het CDD-netwerk. Biedt vertrouwde begeleiding en historisch inzicht ter ondersteuning van de missie van de organisatie.',
-      fr: 'Membre d\'honneur, reconnu pour sa contribution et son engagement de longue date au sein du réseau CDD. Il apporte des conseils de confiance et une mémoire institutionnelle au service de la mission de l\'organisation.',
+      en: 'Recognised by the board for his long-standing contribution and commitment to the CDD network. Provides trusted guidance and historical insight to support the organization\\\'s mission.',
+      nl: 'Ere-deelnemer, erkend voor zijn langdurige bijdrage en betrokkenheid bij het CDD-netwerk. Biedt vertrouwde begeleiding en historisch inzicht ter ondersteuning van de missie van de organisatie.',
+      fr: 'Distingué par le conseil pour sa contribution et son engagement de longue date au sein du réseau CDD. Il apporte des conseils de confiance et une mémoire institutionnelle au service de la mission de l\'organisation.',
     },
     photo: photo2,
     linkedin: 'https://www.linkedin.com/in/theo-hendriks-10653943/',
@@ -516,18 +516,18 @@ export const ADVISORS: Advisor[] = [
   {
     name: 'Turgut Torunogullari',
     /*
-     * Honorary member, added on Nouraddine Gribi's instruction (August 2026).
+     * Honorary distinction, added on Nouraddine Gribi's instruction (August 2026).
      * Company affiliation as supplied by the board; photograph to follow.
      */
     role: {
-      en: 'Honorary Member — Edelstaal',
-      nl: 'Erelid — Edelstaal',
-      fr: "Membre d'honneur — Edelstaal",
+      en: 'Honorary Distinction — Edelstaal',
+      nl: 'Ere-deelnemer — Edelstaal',
+      fr: "Distinction d'honneur — Edelstaal",
     },
     bio: {
-      en: 'Honorary Member of CDD Pays-Bas, recognised by the board for his contribution to the network. Edelstaal.',
-      nl: 'Erelid van CDD Pays-Bas, door het bestuur erkend voor zijn bijdrage aan het netwerk. Edelstaal.',
-      fr: "Membre d'honneur de CDD Pays-Bas, reconnu par le conseil pour sa contribution au réseau. Edelstaal.",
+      en: 'Recognised by the board of CDD Pays-Bas for his contribution to the network. Edelstaal.',
+      nl: 'Ere-deelnemer van CDD Pays-Bas, door het bestuur erkend voor zijn bijdrage aan het netwerk. Edelstaal.',
+      fr: "Distingué par le conseil de CDD Pays-Bas pour sa contribution au réseau. Edelstaal.",
     },
     photo: null,
     linkedin: '',

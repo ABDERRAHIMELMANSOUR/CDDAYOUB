@@ -22,9 +22,9 @@ export type InsightCategory = 'news' | 'spotlight' | 'briefing';
 export const INSIGHT_CATEGORY_LABELS: Record<InsightCategory, Localised<string>> = {
   news: { en: 'News', nl: 'Nieuws', fr: 'Actualités' },
   spotlight: {
-    en: 'Member & Advisor Spotlight',
-    nl: 'Portret van leden & adviseurs',
-    fr: 'Portrait de membres & conseillers',
+    en: 'Supporter & Advisor Spotlight',
+    nl: 'Portret van deelnemers & adviseurs',
+    fr: 'Portrait de donateurs & conseillers',
   },
   briefing: { en: 'Market Briefing', nl: 'Marktbriefing', fr: 'Briefing marché' },
 };
@@ -103,13 +103,13 @@ export const INSIGHTS: Insight[] = [
     body: {
       en: [
         'CDD Pays-Bas is restructuring how it works. Where the organisation previously described focus areas — a strategy vocabulary that carries no governance meaning — it now organises its work through four standing commissions: Energy & Water Transition, Digital, AI & Infrastructure, Industry, Trade & Logistics, and Talent, Knowledge & Society.',
-        'The distinction matters. A focus area invites nothing. A commission has a chair appointed by the board for a two-year term, a published mandate, a meeting cadence, and an obligation to report. It is something a member can join and something the board can review.',
+        'The distinction matters. A focus area invites nothing. A commission has a chair appointed by the board for a two-year term, a published mandate, a meeting cadence, and an obligation to report. It is something a participant can join and something the board can review.',
         'Each commission commits to a minimum of two activities a year — a roundtable, briefing, mission segment or working paper — and publishes three current priorities, refreshed quarterly. The board reviews commission activity annually and may merge or sunset a commission that has gone dormant. That last rule is deliberate: it is the safeguard against announcing four commissions and running two.',
-        'Membership of a commission is open to any CDD member. The senior advisors already on the Advisory Council map onto the four bodies almost completely, which means the structure reflects expertise the club already has rather than expertise it hopes to recruit.',
+        'Taking part in a commission is open to any CDD participant. The senior advisors already on the Advisory Council map onto the four bodies almost completely, which means the structure reflects expertise the network already has rather than expertise it hopes to recruit.',
       ],
       nl: [
         'CDD Pays-Bas herstructureert haar werkwijze. Waar de organisatie eerder sprak van aandachtsgebieden — strategietaal zonder bestuurlijke betekenis — organiseert zij haar werk nu via vier vaste commissies: Energie- & watertransitie, Digitaal, AI & infrastructuur, Industrie, handel & logistiek, en Talent, kennis & samenleving.',
-        'Dat onderscheid doet ertoe. Een aandachtsgebied nodigt nergens toe uit. Een commissie heeft een door het bestuur voor twee jaar benoemde voorzitter, een gepubliceerd mandaat, een vergaderritme en een rapportageplicht. Het is iets waar een lid zich bij kan aansluiten en waar het bestuur op kan toetsen.',
+        'Dat onderscheid doet ertoe. Een aandachtsgebied nodigt nergens toe uit. Een commissie heeft een door het bestuur voor twee jaar benoemde voorzitter, een gepubliceerd mandaat, een vergaderritme en een rapportageplicht. Het is iets waar een deelnemer zich bij kan aansluiten en waar het bestuur op kan toetsen.',
         'Elke commissie verbindt zich aan minimaal twee activiteiten per jaar — een ronde tafel, briefing, missieonderdeel of werkdocument — en publiceert drie actuele prioriteiten, elk kwartaal geactualiseerd. Het bestuur beoordeelt de activiteit van de commissies jaarlijks en kan een stilgevallen commissie samenvoegen of beëindigen. Die laatste regel is bewust: zij is de waarborg tegen het aankondigen van vier commissies en het draaien van twee.',
         'Deelname aan een commissie staat open voor elk CDD-lid. De senior adviseurs die al in de raad van advies zitten, sluiten vrijwel volledig aan op de vier organen; de structuur weerspiegelt dus expertise die de club al heeft, niet expertise die zij hoopt te werven.',
       ],
@@ -117,7 +117,7 @@ export const INSIGHTS: Insight[] = [
         "CDD Pays-Bas réorganise son fonctionnement. Là où l'organisation parlait auparavant de domaines prioritaires — un vocabulaire de stratégie sans portée en matière de gouvernance — elle structure désormais ses travaux autour de quatre commissions permanentes : Transition énergétique & hydrique, Numérique, IA & infrastructures, Industrie, commerce & logistique, et Talents, savoirs & société.",
         "La distinction compte. Un domaine prioritaire n'invite à rien. Une commission a un président nommé par le conseil pour deux ans, un mandat publié, un rythme de réunion et une obligation de rendre compte. C'est quelque chose que l'on peut rejoindre et que le conseil peut évaluer.",
         "Chaque commission s'engage sur au moins deux activités par an — table ronde, briefing, volet de mission ou document de travail — et publie trois priorités du moment, actualisées chaque trimestre. Le conseil examine l'activité des commissions chaque année et peut fusionner ou clore une commission devenue inactive. Cette dernière règle est délibérée : elle protège contre l'annonce de quatre commissions pour n'en faire vivre que deux.",
-        "La participation à une commission est ouverte à tout membre du CDD. Les conseillers seniors déjà présents au conseil consultatif se rattachent presque intégralement aux quatre instances : la structure reflète donc une expertise que le club possède déjà, et non celle qu'il espère recruter.",
+        "La participation à une commission est ouverte à tout participant du CDD. Les conseillers seniors déjà présents au conseil consultatif se rattachent presque intégralement aux quatre instances : la structure reflète donc une expertise que le réseau possède déjà, et non celle qu'il espère recruter.",
       ],
     },
   },
@@ -160,21 +160,21 @@ export const INSIGHTS: Insight[] = [
     body: {
       en: [
         'Club des Dirigeants (CDD) Pays-Bas proudly hosted a collective Iftar in Rotterdam, bringing together Moroccan and Turkish entrepreneurs to strengthen unity and cross-border collaboration between Morocco, Türkiye, and the Netherlands.',
-        'Under the leadership of President Nouraddine GRIBI and the vision of International President Driss DRIF, senior advisors and valued members gathered during Ramadan. We were particularly honored by the presence and support of Dünya Türk İş Konseyi (DTIK Netherlands board).',
+        'Under the leadership of President Nouraddine GRIBI and the vision of International President Driss DRIF, senior advisors and valued guests gathered during Ramadan. We were particularly honored by the presence and support of Dünya Türk İş Konseyi (DTIK Netherlands board).',
         'It was the first time the network convened as a group, and it was designed deliberately as a human occasion rather than a business one. Guests shared a meal and spent the evening in conversation across sectors that rarely meet in the same room — energy, logistics, law, education and technology.',
         'Several of those conversations have since turned into working discussions. That is the point of convening: relationships formed away from a transaction tend to be the ones that produce transactions later.',
         'The evening set the tone for how CDD Pays-Bas gathers — neutral, respectful, open and personal — and it is the model for the roundtables and briefings the commissions will run through the year.',
       ],
       nl: [
         'Club des Dirigeants (CDD) Pays-Bas organiseerde met trots een gezamenlijke iftar in Rotterdam, waar Marokkaanse en Turkse ondernemers samenkwamen om de onderlinge verbondenheid en de grensoverschrijdende samenwerking tussen Marokko, Turkije en Nederland te versterken.',
-        'Onder leiding van voorzitter Nouraddine GRIBI en vanuit de visie van internationaal voorzitter Driss DRIF kwamen senior adviseurs en gewaardeerde leden bijeen tijdens de ramadan. Wij voelden ons in het bijzonder vereerd door de aanwezigheid en steun van Dünya Türk İş Konseyi (het bestuur van DTIK Nederland).',
+        'Onder leiding van voorzitter Nouraddine GRIBI en vanuit de visie van internationaal voorzitter Driss DRIF kwamen senior adviseurs en gewaardeerde deelnemers bijeen tijdens de ramadan. Wij voelden ons in het bijzonder vereerd door de aanwezigheid en steun van Dünya Türk İş Konseyi (het bestuur van DTIK Nederland).',
         'Het was de eerste keer dat het netwerk als groep bijeenkwam, en de avond was bewust opgezet als een menselijke gelegenheid en niet als een zakelijke. Gasten deelden een maaltijd en brachten de avond in gesprek door met mensen uit sectoren die zelden in dezelfde ruimte zitten — energie, logistiek, recht, onderwijs en technologie.',
         'Verschillende van die gesprekken zijn inmiddels uitgegroeid tot werkoverleggen. Dat is precies het doel van samenbrengen: relaties die los van een transactie ontstaan, zijn doorgaans de relaties die later transacties opleveren.',
         'De avond zette de toon voor hoe CDD Pays-Bas mensen samenbrengt — neutraal, respectvol, open en persoonlijk — en vormt het model voor de ronde tafels en briefings die de commissies dit jaar organiseren.',
       ],
       fr: [
         "Club des Dirigeants (CDD) Pays-Bas a eu la fierté d'organiser un iftar collectif à Rotterdam, réunissant des entrepreneurs marocains et turcs afin de renforcer l'unité et la collaboration transfrontalière entre le Maroc, la Türkiye et les Pays-Bas.",
-        "Sous la direction du président Nouraddine GRIBI et portée par la vision du président international Driss DRIF, cette rencontre a rassemblé des conseillers seniors et des membres estimés pendant le Ramadan. Nous avons été particulièrement honorés par la présence et le soutien du Dünya Türk İş Konseyi (le conseil DTIK Pays-Bas).",
+        "Sous la direction du président Nouraddine GRIBI et portée par la vision du président international Driss DRIF, cette rencontre a rassemblé des conseillers seniors et des invités de marque pendant le Ramadan. Nous avons été particulièrement honorés par la présence et le soutien du Dünya Türk İş Konseyi (le conseil DTIK Pays-Bas).",
         "C'était la première fois que le réseau se réunissait en tant que groupe, et la soirée avait été délibérément conçue comme un moment humain plutôt que professionnel. Les invités ont partagé un repas et passé la soirée à échanger entre secteurs qui se croisent rarement — énergie, logistique, droit, éducation et technologie.",
         "Plusieurs de ces échanges se sont depuis transformés en discussions de travail. C'est tout l'intérêt de rassembler : les relations nouées en dehors d'une transaction sont souvent celles qui produisent des transactions par la suite.",
         "La soirée a donné le ton de la manière dont CDD Pays-Bas rassemble — de façon neutre, respectueuse, ouverte et personnelle — et sert de modèle aux tables rondes et briefings que les commissions animeront tout au long de l'année.",

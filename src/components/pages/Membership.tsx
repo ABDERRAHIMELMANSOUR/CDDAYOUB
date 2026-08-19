@@ -60,9 +60,20 @@ export function Membership() {
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             {t.membership.duesTitle}
           </h2>
-          <p className="text-lg text-gray-700 max-w-3xl mb-12 leading-relaxed">
+          <p className="text-lg text-gray-700 max-w-3xl mb-8 leading-relaxed">
             {t.membership.duesSingleIntro}
           </p>
+
+          {/*
+            Statutory notice, placed ABOVE the price card rather than in small
+            print beneath it. A Dutch stichting has no members and no
+            membership; the annual contribution buys access, not a vote. That
+            distinction has to be read before the figure, not after it, so it
+            cannot be mistaken for a disclaimer bolted onto a purchase.
+          */}
+          <div className="max-w-3xl mb-12 rounded-2xl border-l-4 border-blue-600 bg-blue-50 p-6">
+            <p className="text-sm text-gray-800 leading-relaxed">{t.membership.legalNotice}</p>
+          </div>
 
           <div className="max-w-3xl rounded-3xl bg-white border-2 border-blue-600 shadow-2xl p-8 lg:p-10">
             <h3 className="text-2xl font-bold text-gray-900">{pick(MEMBERSHIP.name, locale)}</h3>

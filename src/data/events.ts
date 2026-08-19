@@ -61,10 +61,10 @@ export interface CDDEvent {
    * a plain capacity figure rather than a misleading "N places left".
    */
   registered?: number;
-  /** Whether members and non-members pay differently. */
+  /** Whether supporters and guests pay differently. */
   memberPrice?: string;
   guestPrice?: string;
-  /** Written after the event — the recap that turns an attendee into a member. */
+  /** Written after the event — the recap that turns an attendee into a supporter. */
   recap?: Localised<string>;
   /** Photo import paths, once CDD's own photography exists. */
   photos?: string[];
@@ -91,9 +91,9 @@ export const EVENTS: CDDEvent[] = [
     type: 'community',
     commissions: [],
     summary: {
-      en: 'The first collective gathering of the CDD Pays-Bas network — a warm, informal evening that brought members together beyond their professional roles.',
-      nl: 'De eerste gezamenlijke bijeenkomst van het CDD Pays-Bas-netwerk — een warme, informele avond die leden samenbracht voorbij hun professionele rol.',
-      fr: "Le premier rassemblement collectif du réseau CDD Pays-Bas — une soirée chaleureuse et informelle qui a réuni les membres au-delà de leurs fonctions professionnelles.",
+      en: 'The first collective gathering of the CDD Pays-Bas network — a warm, informal evening that brought participants together beyond their professional roles.',
+      nl: 'De eerste gezamenlijke bijeenkomst van het CDD Pays-Bas-netwerk — een warme, informele avond die deelnemers samenbracht voorbij hun professionele rol.',
+      fr: "Le premier rassemblement collectif du réseau CDD Pays-Bas — une soirée chaleureuse et informelle qui a réuni les participants au-delà de leurs fonctions professionnelles.",
     },
     description: {
       en: 'This first collective Iftar marked a symbolic moment for CDD Pays-Bas. Beyond professional roles, the evening centred on shared stories, cultural understanding and community building during the holy month of Ramadan.',

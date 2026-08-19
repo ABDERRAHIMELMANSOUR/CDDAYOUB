@@ -236,6 +236,15 @@ export function MembershipApply() {
                 {t.membership.reviewLive} {PAYMENT_METHODS.map((m) => m.label).join(', ')}.
               </p>
             )}
+            {/*
+              The same statutory notice as the access page. Someone can reach
+              this form straight from a commission page without ever seeing
+              that page, so the "this is a contribution, not a membership"
+              point has to be made again at the point of commitment.
+            */}
+            <p className="mt-4 border-t border-gray-200 pt-4 text-sm text-gray-700 leading-relaxed">
+              {t.membership.legalNotice}
+            </p>
             <p className="mt-3 text-sm text-gray-700">
               {t.membership.privacyLine}{' '}
               <Link to="/privacy" className="text-blue-700 underline hover:text-blue-900">

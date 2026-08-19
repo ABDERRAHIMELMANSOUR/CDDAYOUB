@@ -86,9 +86,9 @@ export interface PaymentProvider {
 
 /** Payment methods CDD intends to accept, shown on the review step. */
 export const PAYMENT_METHODS = [
-  { id: 'ideal', label: 'iDEAL', note: 'Standard for Dutch members' },
+  { id: 'ideal', label: 'iDEAL', note: 'Standard for Dutch supporters' },
   { id: 'sepa', label: 'SEPA Direct Debit', note: 'Used for annual renewals' },
-  { id: 'card', label: 'Card', note: 'For international members' },
+  { id: 'card', label: 'Card', note: 'For international supporters' },
 ] as const;
 
 /**
