@@ -76,7 +76,7 @@ export const MEMBERSHIP: Membership = {
       'Priority at events: earlier access to registration and reserved places at events with limited capacity',
     ],
     nl: [
-      'Toegang tot het CDD Pays-Bas platform (ledendirectory, sectoroverzicht, netwerk)',
+      'Toegang tot het CDD Pays-Bas platform (deelnemersdirectory, sectoroverzicht, netwerk)',
       'Nieuwsbrief en updates over lopende initiatieven',
       'Voorrang op evenementen: eerdere toegang tot inschrijving en gereserveerde plekken bij events met beperkte capaciteit',
     ],
@@ -165,7 +165,7 @@ export const WHY_JOIN: WhyJoinItem[] = [
     },
     text: {
       en: 'Your company profile in the participant directory and speaking opportunities at CDD events, in front of decision-makers from both markets.',
-      nl: 'Uw bedrijfsprofiel in de ledendirectory en spreekmogelijkheden bij CDD-evenementen, voor besluitvormers uit beide markten.',
+      nl: 'Uw bedrijfsprofiel in de deelnemersdirectory en spreekmogelijkheden bij CDD-evenementen, voor besluitvormers uit beide markten.',
       fr: "Le profil de votre entreprise dans l'annuaire des participants et des opportunités de prise de parole lors des événements du CDD, devant des décideurs des deux marchés.",
     },
   },
