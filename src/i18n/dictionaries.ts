@@ -729,10 +729,10 @@ const en: Dictionary = {
     title: 'Leadership & Governance',
     subtitle:
       'Experienced leaders guiding CDD Pays-Bas with a commitment to transparency, accountability and measurable impact.',
-    president: 'President',
-    presidentRole: 'President – CDD Pays-Bas',
+    president: 'Founder & President',
+    presidentRole: 'Founder & President – CDD Pays-Bas',
     presidentBio1:
-      'Nouraddine Gribi is the President of CDD Pays-Bas and a strategic leader dedicated to strengthening economic and institutional ties between Morocco and the Netherlands. With extensive experience in business development, governance, and international partnerships, he drives high-impact collaborations between public and private stakeholders.',
+      'Nouraddine Gribi is the Founder and President of CDD Pays-Bas and a strategic leader dedicated to strengthening economic and institutional ties between Morocco and the Netherlands. With extensive experience in business development, governance, and international partnerships, he drives high-impact collaborations between public and private stakeholders.',
     presidentBio2:
       'He actively promotes entrepreneurship, inclusion, and sustainable growth within the Moroccan-Dutch ecosystem. Through his leadership, CDD Pays-Bas continues to build bridges, create opportunities, and deliver measurable value for its members and partners.',
     contactLabel: 'Contact',
@@ -753,10 +753,10 @@ const en: Dictionary = {
       'United by a commitment to connecting leaders, fostering collaboration, and building bridges between the Netherlands, Morocco, and Africa.',
     fromVisionTitle: 'From Vision to Reality',
     fromVisionText:
-      'Driss DRIF founded CDD with a vision of connecting leaders and fostering strategic dialogue. Nouraddine Gribi continues this legacy as President of CDD Pays-Bas, strengthening ties between the Netherlands, Morocco, and Africa through impactful partnerships and sustainable development.',
+      'Driss DRIF founded CDD with a vision of connecting leaders and fostering strategic dialogue. Nouraddine Gribi continues this legacy as Founder and President of CDD Pays-Bas, strengthening ties between the Netherlands, Morocco, and Africa through impactful partnerships and sustainable development.',
     boardBios: {
       'Nouraddine Gribi': {
-        role: 'President',
+        role: 'Founder & President',
         bio: 'Leads CDD Pays-Bas with a strategic vision focused on strengthening economic bridges between Morocco and the Netherlands. Drives partnerships, governance, and sustainable impact initiatives.',
       },
       'Ahmed Rahmouni': {
@@ -1306,10 +1306,10 @@ const nl: Dictionary = {
     title: 'Leiderschap & governance',
     subtitle:
       'Ervaren bestuurders die CDD Pays-Bas leiden met toewijding aan transparantie, verantwoording en meetbare impact.',
-    president: 'Voorzitter',
-    presidentRole: 'Voorzitter – CDD Pays-Bas',
+    president: 'Oprichter & Voorzitter',
+    presidentRole: 'Oprichter & Voorzitter – CDD Pays-Bas',
     presidentBio1:
-      'Nouraddine Gribi is voorzitter van CDD Pays-Bas en een strategisch leider die zich inzet voor sterkere economische en institutionele banden tussen Marokko en Nederland. Met ruime ervaring in bedrijfsontwikkeling, governance en internationale partnerschappen brengt hij samenwerkingen met grote impact tot stand tussen publieke en private partijen.',
+      'Nouraddine Gribi is oprichter en voorzitter van CDD Pays-Bas en een strategisch leider die zich inzet voor sterkere economische en institutionele banden tussen Marokko en Nederland. Met ruime ervaring in bedrijfsontwikkeling, governance en internationale partnerschappen brengt hij samenwerkingen met grote impact tot stand tussen publieke en private partijen.',
     presidentBio2:
       'Hij zet zich actief in voor ondernemerschap, inclusie en duurzame groei binnen het Marokkaans-Nederlandse ecosysteem. Onder zijn leiding blijft CDD Pays-Bas bruggen slaan, kansen creëren en meetbare waarde leveren voor leden en partners.',
     contactLabel: 'Contact',
@@ -1330,10 +1330,10 @@ const nl: Dictionary = {
       'Verenigd in de inzet om leiders te verbinden, samenwerking te bevorderen en bruggen te bouwen tussen Nederland, Marokko en Afrika.',
     fromVisionTitle: 'Van visie naar werkelijkheid',
     fromVisionText:
-      'Driss DRIF richtte CDD op vanuit de visie om leiders te verbinden en strategische dialoog te bevorderen. Nouraddine Gribi zet deze lijn voort als voorzitter van CDD Pays-Bas en versterkt de banden tussen Nederland, Marokko en Afrika via partnerschappen met impact en duurzame ontwikkeling.',
+      'Driss DRIF richtte CDD op vanuit de visie om leiders te verbinden en strategische dialoog te bevorderen. Nouraddine Gribi zet deze lijn voort als oprichter en voorzitter van CDD Pays-Bas en versterkt de banden tussen Nederland, Marokko en Afrika via partnerschappen met impact en duurzame ontwikkeling.',
     boardBios: {
       'Nouraddine Gribi': {
-        role: 'Voorzitter',
+        role: 'Oprichter & Voorzitter',
         bio: 'Leidt CDD Pays-Bas vanuit een strategische visie gericht op sterkere economische bruggen tussen Marokko en Nederland. Stuurt op partnerschappen, governance en initiatieven met duurzame impact.',
       },
       'Ahmed Rahmouni': {
@@ -1884,10 +1884,10 @@ const fr: Dictionary = {
     title: 'Direction & gouvernance',
     subtitle:
       'Des dirigeants expérimentés qui guident CDD Pays-Bas avec un engagement de transparence, de responsabilité et d’impact mesurable.',
-    president: 'Président',
-    presidentRole: 'Président – CDD Pays-Bas',
+    president: 'Fondateur & Président',
+    presidentRole: 'Fondateur & Président – CDD Pays-Bas',
     presidentBio1:
-      "Nouraddine Gribi est le président de CDD Pays-Bas, dirigeant stratégique engagé à renforcer les liens économiques et institutionnels entre le Maroc et les Pays-Bas. Fort d'une longue expérience du développement des affaires, de la gouvernance et des partenariats internationaux, il impulse des collaborations à fort impact entre acteurs publics et privés.",
+      "Nouraddine Gribi est le fondateur et président de CDD Pays-Bas, dirigeant stratégique engagé à renforcer les liens économiques et institutionnels entre le Maroc et les Pays-Bas. Fort d'une longue expérience du développement des affaires, de la gouvernance et des partenariats internationaux, il impulse des collaborations à fort impact entre acteurs publics et privés.",
     presidentBio2:
       "Il promeut activement l'entrepreneuriat, l'inclusion et une croissance durable au sein de l'écosystème maroco-néerlandais. Sous sa direction, CDD Pays-Bas continue de bâtir des ponts, de créer des opportunités et d'apporter une valeur mesurable à ses membres et partenaires.",
     contactLabel: 'Contact',
@@ -1908,10 +1908,10 @@ const fr: Dictionary = {
       'Unis par la volonté de relier les dirigeants, de favoriser la collaboration et de bâtir des ponts entre les Pays-Bas, le Maroc et l’Afrique.',
     fromVisionTitle: 'De la vision à la réalité',
     fromVisionText:
-      "Driss DRIF a fondé le CDD avec l'ambition de relier les dirigeants et de nourrir le dialogue stratégique. Nouraddine Gribi poursuit cet héritage comme président de CDD Pays-Bas, en renforçant les liens entre les Pays-Bas, le Maroc et l'Afrique par des partenariats à fort impact et un développement durable.",
+      "Driss DRIF a fondé le CDD avec l'ambition de relier les dirigeants et de nourrir le dialogue stratégique. Nouraddine Gribi poursuit cet héritage comme fondateur et président de CDD Pays-Bas, en renforçant les liens entre les Pays-Bas, le Maroc et l'Afrique par des partenariats à fort impact et un développement durable.",
     boardBios: {
       'Nouraddine Gribi': {
-        role: 'Président',
+        role: 'Fondateur & Président',
         bio: 'Dirige CDD Pays-Bas avec une vision stratégique centrée sur le renforcement des ponts économiques entre le Maroc et les Pays-Bas. Pilote les partenariats, la gouvernance et les initiatives à impact durable.',
       },
       'Ahmed Rahmouni': {
