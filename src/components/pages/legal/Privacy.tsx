@@ -61,9 +61,9 @@ const COPY: Record<string, Localised<string>> = {
   },
   collectContactLabel: { en: 'Contact details', nl: 'Contactgegevens', fr: 'Coordonnées' },
   collectContactText: {
-    en: 'your name, email address and, if you provide them, your organisation and role. We use these solely to respond to your enquiry and, where relevant, to continue the conversation about membership, partnership or events.',
-    nl: 'uw naam, e-mailadres en, indien u die opgeeft, uw organisatie en functie. Wij gebruiken deze uitsluitend om op uw vraag te reageren en, waar relevant, om het gesprek over lidmaatschap, partnerschap of evenementen voort te zetten.',
-    fr: "votre nom, votre adresse e-mail et, si vous les indiquez, votre organisation et votre fonction. Nous les utilisons uniquement pour répondre à votre demande et, le cas échéant, poursuivre l'échange sur l'adhésion, un partenariat ou des événements.",
+    en: 'your name, email address and, if you provide them, your organisation and role. We use these solely to respond to your enquiry and, where relevant, to continue the conversation about supporter access, partnership or events.',
+    nl: 'uw naam, e-mailadres en, indien u die opgeeft, uw organisatie en functie. Wij gebruiken deze uitsluitend om op uw vraag te reageren en, waar relevant, om het gesprek over donateurschap, partnerschap of evenementen voort te zetten.',
+    fr: "votre nom, votre adresse e-mail et, si vous les indiquez, votre organisation et votre fonction. Nous les utilisons uniquement pour répondre à votre demande et, le cas échéant, poursuivre l'échange sur l'accès donateur, un partenariat ou des événements.",
   },
   collectMessageLabel: {
     en: 'The content of your message',
@@ -83,9 +83,9 @@ const COPY: Record<string, Localised<string>> = {
 
   basisTitle: { en: 'Legal basis', nl: 'Rechtsgrondslag', fr: 'Base légale' },
   basisText: {
-    en: 'We process contact data on the basis of your consent when you choose to contact us, and on the basis of our legitimate interest in maintaining the professional network the organisation exists to run. Where processing is necessary to prepare or perform an agreement — a membership or partnership — the basis is the performance of a contract.',
-    nl: 'Wij verwerken contactgegevens op grond van uw toestemming wanneer u ervoor kiest contact met ons op te nemen, en op grond van ons gerechtvaardigd belang bij het onderhouden van het professionele netwerk waarvoor de organisatie bestaat. Waar verwerking noodzakelijk is om een overeenkomst voor te bereiden of uit te voeren — een lidmaatschap of partnerschap — is de grondslag de uitvoering van een overeenkomst.',
-    fr: "Nous traitons les données de contact sur la base de votre consentement lorsque vous choisissez de nous contacter, et sur la base de notre intérêt légitime à entretenir le réseau professionnel qui constitue la raison d'être de l'organisation. Lorsque le traitement est nécessaire à la préparation ou à l'exécution d'un contrat — adhésion ou partenariat —, la base est l'exécution du contrat.",
+    en: 'We process contact data on the basis of your consent when you choose to contact us, and on the basis of our legitimate interest in maintaining the professional network the organisation exists to run. Where processing is necessary to prepare or perform an agreement — supporter access or a partnership — the basis is the performance of a contract.',
+    nl: 'Wij verwerken contactgegevens op grond van uw toestemming wanneer u ervoor kiest contact met ons op te nemen, en op grond van ons gerechtvaardigd belang bij het onderhouden van het professionele netwerk waarvoor de organisatie bestaat. Waar verwerking noodzakelijk is om een overeenkomst voor te bereiden of uit te voeren — een donateurschap of partnerschap — is de grondslag de uitvoering van een overeenkomst.',
+    fr: "Nous traitons les données de contact sur la base de votre consentement lorsque vous choisissez de nous contacter, et sur la base de notre intérêt légitime à entretenir le réseau professionnel qui constitue la raison d'être de l'organisation. Lorsque le traitement est nécessaire à la préparation ou à l'exécution d'un contrat — accès donateur ou partenariat —, la base est l'exécution du contrat.",
   },
 
   retentionTitle: {

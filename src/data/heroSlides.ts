@@ -53,12 +53,12 @@ export const HERO_SLIDES: HeroSlide[] = [
       fr: { line1: 'Relier les dirigeants,', line2: "construire l'avenir" },
     },
     lead: {
-      en: 'A members club for business leaders working across the Netherlands and Morocco — organised into four standing commissions, and open to anyone ready to do the work.',
-      nl: 'Een ledenclub voor ondernemers en bestuurders die werken tussen Nederland en Marokko — georganiseerd in vier vaste commissies en open voor iedereen die de handen uit de mouwen wil steken.',
-      fr: "Un club de membres pour les dirigeants actifs entre les Pays-Bas et le Maroc — organisé en quatre commissions permanentes et ouvert à celles et ceux prêts à s'engager.",
+      en: 'A network for business leaders working across the Netherlands and Morocco — organised into four standing commissions, and open to anyone ready to do the work.',
+      nl: 'Een netwerk voor ondernemers en bestuurders die werken tussen Nederland en Marokko — georganiseerd in vier vaste commissies en open voor iedereen die de handen uit de mouwen wil steken.',
+      fr: "Un réseau pour les dirigeants actifs entre les Pays-Bas et le Maroc — organisé en quatre commissions permanentes et ouvert à celles et ceux prêts à s'engager.",
     },
     primaryCta: {
-      label: { en: 'Become a member', nl: 'Word lid', fr: 'Devenir membre' },
+      label: { en: 'Join as Supporter', nl: 'Donateur worden', fr: 'Devenir donateur' },
       to: '/membership',
     },
     secondaryCta: {

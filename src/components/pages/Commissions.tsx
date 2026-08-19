@@ -12,7 +12,7 @@ import { PageHero } from '../PageHero';
  *
  * Part D0 argued for governance language over strategy language: "we focus on
  * energy" invites nothing, while "the Energy & Water Commission, chaired by X,
- * meets quarterly and is open to all members" invites participation.
+ * meets quarterly and is open to all participants" invites participation.
  *
  * The blueprint suggested keeping "Focus Areas" as the nav label for
  * discoverability. The board (August 2026) chose "Commissions" everywhere —

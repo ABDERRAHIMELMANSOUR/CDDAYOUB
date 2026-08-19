@@ -44,12 +44,12 @@ export const PRIMARY_NAV: NavItem[] = [
     // Children are generated from the commissions at render time.
   },
   {
-    name: 'Membership',
+    name: 'Annual Access',
     path: '/membership',
     children: [
       { name: 'Why Join', path: '/membership' },
-      { name: 'Membership & Dues', path: '/membership#tiers' },
-      { name: 'Our Members', path: '/membership#members' },
+      { name: 'Annual Access & Contribution', path: '/membership#tiers' },
+      { name: 'Our Supporters', path: '/membership#members' },
       { name: 'Apply', path: '/membership/apply' },
     ],
   },

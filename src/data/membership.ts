@@ -8,7 +8,7 @@ export type { Localised };
  * Membership (ticket 17), fully localised.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * ONE MEMBERSHIP TYPE — €290 PER YEAR, NOT YET OPEN.
+ * ONE SUPPORTER CONTRIBUTION — €290 PER YEAR, NOT YET OPEN.
  *
  * Set by Nouraddine Gribi, replacing first the five-tier model that Part E4 of
  * the blueprint proposed and then the €25/month rate. One price, no
@@ -54,41 +54,36 @@ export interface Membership {
 }
 
 export const MEMBERSHIP: Membership = {
-  name: { en: 'CDD Membership', nl: 'CDD-lidmaatschap', fr: 'Adhésion CDD' },
+  name: {
+    en: 'Supporter access',
+    nl: 'Donateurschap',
+    fr: 'Accès donateur',
+  },
   audience: {
     en: 'Business leaders, investors, entrepreneurs and senior professionals working across the Netherlands and Morocco',
     nl: 'Ondernemers en bestuurders, investeerders en ervaren professionals die werken tussen Nederland en Marokko',
     fr: "Dirigeants d'entreprise, investisseurs, entrepreneurs et professionnels confirmés actifs entre les Pays-Bas et le Maroc",
   },
   headline: {
-    en: 'One membership, one annual rate, full access to the network.',
-    nl: 'Eén lidmaatschap, één jaartarief, volledige toegang tot het netwerk.',
-    fr: "Une seule adhésion, un seul tarif annuel, un accès complet au réseau.",
+    en: 'Access to the network, the platform and the programme of CDD Pays-Bas.',
+    nl: 'Toegang tot het netwerk, het platform en het programma van CDD Pays-Bas.',
+    fr: "L'accès au réseau, à la plateforme et au programme de CDD Pays-Bas.",
   },
   benefits: {
     en: [
-      'Access to all CDD Pays-Bas events, including roundtables, briefings and community gatherings',
-      'A seat in any of the four commissions — each commits to at least two activities a year, so participation means real work',
-      'Direct access to our senior advisors across energy and water, digital and AI, industry and logistics, and talent and society',
-      'Quarterly briefings on regulation, tenders and sector openings in both markets',
-      'Your profile in the member directory, visible to the full network in the Netherlands and Morocco',
-      'Priority notice of business delegations and missions',
+      'Access to the CDD Pays-Bas platform (participant directory, sector overview, network)',
+      'Newsletter and updates on current initiatives',
+      'Priority at events: earlier access to registration and reserved places at events with limited capacity',
     ],
     nl: [
-      'Toegang tot alle evenementen van CDD Pays-Bas, waaronder rondetafelgesprekken, briefings en netwerkbijeenkomsten',
-      'Een zetel in een van de vier commissies — elke commissie verbindt zich aan minimaal twee activiteiten per jaar, dus deelname betekent echt werk',
-      'Directe toegang tot onze senior adviseurs op het gebied van energie en water, digitaal en AI, industrie en logistiek, en talent en samenleving',
-      'Driemaandelijkse briefings over regelgeving, aanbestedingen en sectorkansen in beide markten',
-      'Uw profiel in de ledengids, zichtbaar voor het hele netwerk in Nederland en Marokko',
-      'Voorrang bij aankondigingen van handelsmissies en delegaties',
+      'Toegang tot het CDD Pays-Bas platform (ledendirectory, sectoroverzicht, netwerk)',
+      'Nieuwsbrief en updates over lopende initiatieven',
+      'Voorrang op evenementen: eerdere toegang tot inschrijving en gereserveerde plekken bij events met beperkte capaciteit',
     ],
     fr: [
-      'Accès à tous les événements du CDD Pays-Bas : tables rondes, briefings et rencontres du réseau',
-      "Un siège dans l'une des quatre commissions — chacune s'engage à mener au moins deux activités par an : participer signifie donc un vrai travail",
-      'Un accès direct à nos conseillers seniors en énergie et eau, numérique et IA, industrie et logistique, talents et société',
-      "Des briefings trimestriels sur la réglementation, les appels d'offres et les ouvertures sectorielles sur les deux marchés",
-      "Votre profil dans l'annuaire des membres, visible par tout le réseau aux Pays-Bas et au Maroc",
-      'Information prioritaire sur les délégations et missions économiques',
+      'Accès à la plateforme CDD Pays-Bas (annuaire des participants, panorama sectoriel, réseau)',
+      'Newsletter et actualités sur les initiatives en cours',
+      "Priorité lors des événements : accès anticipé aux inscriptions et places réservées lors des événements à capacité limitée",
     ],
   },
 };
@@ -133,9 +128,9 @@ export const WHY_JOIN: WhyJoinItem[] = [
       fr: 'Accès à 23 conseillers seniors',
     },
     text: {
-      en: 'Direct access to advisors across energy and water, digital and AI, industry and logistics, and talent and society — plus the full member network in the Netherlands and Morocco.',
-      nl: 'Directe toegang tot adviseurs op het gebied van energie en water, digitaal en AI, industrie en logistiek, en talent en samenleving — plus het volledige ledennetwerk in Nederland en Marokko.',
-      fr: "Un accès direct à des conseillers en énergie et eau, numérique et IA, industrie et logistique, talents et société — ainsi qu'à l'ensemble du réseau de membres aux Pays-Bas et au Maroc.",
+      en: 'Direct access to advisors across energy and water, digital and AI, industry and logistics, and talent and society — plus the full supporter network in the Netherlands and Morocco.',
+      nl: 'Directe toegang tot adviseurs op het gebied van energie en water, digitaal en AI, industrie en logistiek, en talent en samenleving — plus het volledige deelnemersnetwerk in Nederland en Marokko.',
+      fr: "Un accès direct à des conseillers en énergie et eau, numérique et IA, industrie et logistique, talents et société — ainsi qu'à l'ensemble du réseau de donateurs aux Pays-Bas et au Maroc.",
     },
   },
   {
@@ -157,9 +152,9 @@ export const WHY_JOIN: WhyJoinItem[] = [
       fr: 'Un siège dans une commission',
     },
     text: {
-      en: 'Commissions are open to all members. Each commits to at least two activities a year, so participation means real work, not a mailing list.',
-      nl: 'Commissies staan open voor alle leden. Elke commissie verbindt zich aan minimaal twee activiteiten per jaar, dus deelname betekent echt werk en geen mailinglijst.',
-      fr: "Les commissions sont ouvertes à tous les membres. Chacune s'engage à mener au moins deux activités par an : participer signifie donc un vrai travail, pas une simple liste de diffusion.",
+      en: 'Commissions are open to all participants. Each commits to at least two activities a year, so participation means real work, not a mailing list.',
+      nl: 'Commissies staan open voor alle deelnemers. Elke commissie verbindt zich aan minimaal twee activiteiten per jaar, dus deelname betekent echt werk en geen mailinglijst.',
+      fr: "Les commissions sont ouvertes à tous les participants. Chacune s'engage à mener au moins deux activités par an : participer signifie donc un vrai travail, pas une simple liste de diffusion.",
     },
   },
   {
@@ -169,9 +164,9 @@ export const WHY_JOIN: WhyJoinItem[] = [
       fr: 'Une visibilité là où elle compte',
     },
     text: {
-      en: 'Your company profile in the member directory and speaking opportunities at CDD events, in front of decision-makers from both markets.',
-      nl: 'Uw bedrijfsprofiel in de ledengids en spreekmogelijkheden bij CDD-evenementen, voor besluitvormers uit beide markten.',
-      fr: "Le profil de votre entreprise dans l'annuaire des membres et des opportunités de prise de parole lors des événements du CDD, devant des décideurs des deux marchés.",
+      en: 'Your company profile in the participant directory and speaking opportunities at CDD events, in front of decision-makers from both markets.',
+      nl: 'Uw bedrijfsprofiel in de ledendirectory en spreekmogelijkheden bij CDD-evenementen, voor besluitvormers uit beide markten.',
+      fr: "Le profil de votre entreprise dans l'annuaire des participants et des opportunités de prise de parole lors des événements du CDD, devant des décideurs des deux marchés.",
     },
   },
 ];

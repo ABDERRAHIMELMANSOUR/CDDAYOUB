@@ -8,7 +8,7 @@ import type { Localised } from '../i18n/localised';
  * Part D0 of the blueprint makes the case for governance language over strategy
  * language: a page that says "we focus on energy" invites nothing, while a page
  * that says "the Energy & Water Commission, chaired by X, meets quarterly and
- * is open to all members" invites participation.
+ * is open to all participants" invites participation.
  *
  * The blueprint proposed keeping "Focus Areas" as the NAVIGATION label for
  * discoverability while the bodies were called commissions in the page body.
@@ -63,21 +63,21 @@ export const COMMISSION_GOVERNANCE: Localised<string[]> = {
   'Each commission has a chair appointed by the board for a two-year term, drawn from the Advisory Council, with an optional vice-chair.',
   'Each commits to a minimum of two activities per year — a roundtable, briefing, mission segment, or working paper.',
   'Each publishes three current priorities, refreshed quarterly.',
-  'Membership is open to any CDD member; joining takes one click from the commission page.',
+  'Taking part is open to any CDD participant; joining takes one click from the commission page.',
   'The board reviews commission activity annually and may merge or sunset a dormant commission.',
   ],
   nl: [
     'Elke commissie heeft een voorzitter die door het bestuur voor twee jaar wordt benoemd, afkomstig uit de Raad van Adviseurs, met een optionele vicevoorzitter.',
     'Elke commissie verbindt zich aan minimaal twee activiteiten per jaar — een rondetafelgesprek, briefing, missieonderdeel of werkdocument.',
     'Elke commissie publiceert drie actuele prioriteiten, elk kwartaal geactualiseerd.',
-    'Het lidmaatschap staat open voor elk CDD-lid; deelnemen kan met één klik vanaf de commissiepagina.',
+    'Deelname staat open voor elke CDD-deelnemer; aanmelden kan met één klik vanaf de commissiepagina.',
     'Het bestuur beoordeelt de activiteit van de commissies jaarlijks en kan een inactieve commissie samenvoegen of beëindigen.',
   ],
   fr: [
     "Chaque commission a un président nommé par le conseil pour un mandat de deux ans, issu du Conseil consultatif, avec un vice-président facultatif.",
     "Chacune s'engage à mener au minimum deux activités par an — table ronde, briefing, volet de mission ou document de travail.",
     'Chacune publie trois priorités actuelles, actualisées chaque trimestre.',
-    "L'adhésion est ouverte à tout membre du CDD ; rejoindre une commission se fait en un clic depuis sa page.",
+    "La participation est ouverte à tout participant du CDD ; rejoindre une commission se fait en un clic depuis sa page.",
     'Le conseil évalue chaque année les activités des commissions et peut fusionner ou clôturer une commission inactive.',
   ],
 };
@@ -120,17 +120,17 @@ const DETAIL: Record<string, Omit<Commission, keyof CommissionDomain | 'group'>>
     },
     priorities: {
       en: [
-        'Map the Dutch–Moroccan green hydrogen value chain and identify where CDD members already sit within it.',
+        'Map the Dutch–Moroccan green hydrogen value chain and identify where CDD participants already sit within it.',
         'Convene a first roundtable on water technology transfer, the area with the clearest mutual need.',
         'Recruit a water specialist to the Advisory Council — the one obvious gap on an otherwise deep bench.',
       ],
       nl: [
-        'De Nederlands–Marokkaanse waardeketen voor groene waterstof in kaart brengen en vaststellen waar CDD-leden zich daarin al bevinden.',
+        'De Nederlands–Marokkaanse waardeketen voor groene waterstof in kaart brengen en vaststellen waar CDD-deelnemers zich daarin al bevinden.',
         'Een eerste rondetafelgesprek organiseren over overdracht van watertechnologie, het gebied met de duidelijkste wederzijdse behoefte.',
         'Een waterspecialist werven voor de Raad van Adviseurs — de enige duidelijke lacune in een verder sterk bezette groep.',
       ],
       fr: [
-        "Cartographier la chaîne de valeur néerlando-marocaine de l'hydrogène vert et identifier où les membres du CDD s'y positionnent déjà.",
+        "Cartographier la chaîne de valeur néerlando-marocaine de l'hydrogène vert et identifier où les participants du CDD s'y positionnent déjà.",
         "Organiser une première table ronde sur le transfert de technologies de l'eau, le domaine où le besoin mutuel est le plus net.",
         "Recruter un spécialiste de l'eau au Conseil consultatif — la seule lacune évidente dans un ensemble par ailleurs solide.",
       ],
@@ -177,17 +177,17 @@ const DETAIL: Record<string, Omit<Commission, keyof CommissionDomain | 'group'>>
     },
     priorities: {
       en: [
-        'Publish a short briefing on EU AI Act obligations for members operating across both markets.',
+        'Publish a short briefing on EU AI Act obligations for participants operating across both markets.',
         'Convene Dutch and Moroccan participants around one concrete digital-twin or smart-city use case.',
         'Recruit a cybersecurity and data-governance advisor — the highest-value single addition to the council.',
       ],
       nl: [
-        'Een korte briefing publiceren over verplichtingen uit de EU AI-verordening voor leden die in beide markten actief zijn.',
+        'Een korte briefing publiceren over verplichtingen uit de EU AI-verordening voor deelnemers die in beide markten actief zijn.',
         'Nederlandse en Marokkaanse deelnemers samenbrengen rond één concrete toepassing van digital twins of slimme steden.',
         'Een adviseur cybersecurity en datagovernance werven — de waardevolste enkele aanvulling op de raad.',
       ],
       fr: [
-        "Publier un briefing court sur les obligations du règlement européen sur l'IA pour les membres actifs sur les deux marchés.",
+        "Publier un briefing court sur les obligations du règlement européen sur l'IA pour les participants actifs sur les deux marchés.",
         "Réunir des participants néerlandais et marocains autour d'un cas d'usage concret de jumeau numérique ou de ville intelligente.",
         'Recruter un conseiller en cybersécurité et gouvernance des données — l’ajout le plus précieux au conseil.',
       ],
@@ -234,25 +234,25 @@ const DETAIL: Record<string, Omit<Commission, keyof CommissionDomain | 'group'>>
     },
     priorities: {
       en: [
-        'Document the Rotterdam–Tanger Med corridor as a member-facing map of who does what, and where the gaps are.',
+        'Document the Rotterdam–Tanger Med corridor as a participant-facing map of who does what, and where the gaps are.',
         'Run a first briefing on market-access and standards requirements for agri-food exporters.',
-        'Identify two manufacturing or logistics projects where CDD members can realistically partner.',
+        'Identify two manufacturing or logistics projects where CDD participants can realistically partner.',
       ],
       nl: [
-        'De corridor Rotterdam–Tanger Med vastleggen als een ledenoverzicht van wie wat doet en waar de lacunes zitten.',
+        'De corridor Rotterdam–Tanger Med vastleggen als een overzicht van wie wat doet en waar de lacunes zitten.',
         'Een eerste briefing organiseren over markttoegang en normeisen voor agrifood-exporteurs.',
-        'Twee productie- of logistieke projecten identificeren waarin CDD-leden realistisch kunnen samenwerken.',
+        'Twee productie- of logistieke projecten identificeren waarin CDD-deelnemers realistisch kunnen samenwerken.',
       ],
       fr: [
-        'Documenter le corridor Rotterdam–Tanger Med sous forme de cartographie destinée aux membres : qui fait quoi, et où sont les manques.',
+        'Documenter le corridor Rotterdam–Tanger Med sous forme de cartographie destinée aux participants : qui fait quoi, et où sont les manques.',
         "Organiser un premier briefing sur l'accès au marché et les exigences normatives pour les exportateurs agroalimentaires.",
-        'Identifier deux projets industriels ou logistiques où les membres du CDD peuvent réellement collaborer.',
+        'Identifier deux projets industriels ou logistiques où les participants du CDD peuvent réellement collaborer.',
       ],
     },
     governanceNote: {
-      en: 'Trade and logistics work touches customs regimes, product standards and increasingly supply-chain due diligence obligations under EU law. The commission frames its work so that members can act on opportunities without falling foul of them.',
-      nl: 'Werk op het gebied van handel en logistiek raakt aan douaneregimes, productnormen en in toenemende mate aan zorgplichtverplichtingen voor toeleveringsketens onder Europees recht. De commissie kadert haar werk zo dat leden kansen kunnen benutten zonder daarmee in de knel te komen.',
-      fr: "Le travail commercial et logistique touche aux régimes douaniers, aux normes produits et, de plus en plus, aux obligations de vigilance sur les chaînes d'approvisionnement en droit européen. La commission encadre son travail pour que les membres puissent saisir les opportunités sans s'y exposer.",
+      en: 'Trade and logistics work touches customs regimes, product standards and increasingly supply-chain due diligence obligations under EU law. The commission frames its work so that participants can act on opportunities without falling foul of them.',
+      nl: 'Werk op het gebied van handel en logistiek raakt aan douaneregimes, productnormen en in toenemende mate aan zorgplichtverplichtingen voor toeleveringsketens onder Europees recht. De commissie kadert haar werk zo dat deelnemers kansen kunnen benutten zonder daarmee in de knel te komen.',
+      fr: "Le travail commercial et logistique touche aux régimes douaniers, aux normes produits et, de plus en plus, aux obligations de vigilance sur les chaînes d'approvisionnement en droit européen. La commission encadre son travail pour que les participants puissent saisir les opportunités sans s'y exposer.",
     },
   },
   'talent-knowledge-society': {
