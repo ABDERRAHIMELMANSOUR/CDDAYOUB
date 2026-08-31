@@ -32,6 +32,25 @@ export interface CommissionDomain {
   topics: Localised<string[]>;
   icon: LucideIcon;
   slug: string;
+  /**
+   * Background photograph for the commission's page header, as a path under
+   * public/media/.
+   *
+   * ───────────────────────────────────────────────────────────────────────
+   * THESE FILES ARE NOT IN THE REPOSITORY YET.
+   *
+   * The paths are committed ahead of the photographs on purpose. PageHero's
+   * backdrop hides itself if the file 404s, so each header renders exactly
+   * the gradient it does today until a JPEG is dropped in at the filename
+   * below — then it appears on the next deploy with no code change.
+   *
+   * No stock photography has been chosen here. A licensed image of somebody
+   * else's wind farm is a claim about work CDD has not done, and the licence
+   * terms are a decision for the secretariat rather than a build step. See
+   * docs/photography.md for sizing and sourcing guidance.
+   * ───────────────────────────────────────────────────────────────────────
+   */
+  heroImage: string | null;
 }
 
 /** Applies to every commission — PPP is a method, not a domain of its own. */
@@ -52,6 +71,7 @@ export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 1,
     slug: 'energy-water-transition',
+    heroImage: '/media/commission-energy-water.jpg',
     icon: Globe,
     title: {
       en: 'Energy & Water Transition',
@@ -95,6 +115,7 @@ export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 2,
     slug: 'digital-ai-infrastructure',
+    heroImage: '/media/commission-digital-ai.jpg',
     icon: Lightbulb,
     title: {
       en: 'Digital, AI & Infrastructure',
@@ -138,6 +159,7 @@ export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 3,
     slug: 'industry-trade-logistics',
+    heroImage: '/media/commission-industry-logistics.jpg',
     icon: Ship,
     title: {
       en: 'Industry, Trade & Logistics',
@@ -181,6 +203,7 @@ export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 4,
     slug: 'talent-knowledge-society',
+    heroImage: '/media/commission-talent-society.jpg',
     icon: GraduationCap,
     title: {
       en: 'Talent, Knowledge & Society',

@@ -38,6 +38,12 @@ export const EVENT_TYPE_LABELS: Record<EventType, Localised<string>> = {
   },
 };
 
+export interface EventPhoto {
+  /** Path under public/media/. */
+  src: string;
+  alt: Localised<string>;
+}
+
 export interface CDDEvent {
   slug: string;
   title: Localised<string>;
@@ -66,8 +72,17 @@ export interface CDDEvent {
   guestPrice?: string;
   /** Written after the event — the recap that turns an attendee into a supporter. */
   recap?: Localised<string>;
-  /** Photo import paths, once CDD's own photography exists. */
-  photos?: string[];
+  /**
+   * Photographs from the event, each with its own alt text.
+   *
+   * Per-photo alt rather than one string reused across the grid: a screen
+   * reader announcing the same event title four times tells the listener
+   * nothing about what any individual picture shows.
+   *
+   * Paths point at public/media/. A file that has not been uploaded yet is
+   * dropped from the grid rather than rendering broken — see EventPhoto.
+   */
+  photos?: EventPhoto[];
   /** Open for registration. */
   registrationOpen: boolean;
 }
@@ -105,6 +120,29 @@ export const EVENTS: CDDEvent[] = [
       nl: 'Onze eerste gezamenlijke iftar bracht het netwerk samen in Rotterdam voor een avond die draaide om verbinding in plaats van agenda. Gasten deelden een maaltijd, hoorden reflecties op de rol van CDD als brug tussen Nederland en Marokko, en gingen naar huis met contacten die inmiddels zijn uitgegroeid tot werkgesprekken. Het zette de toon voor hoe CDD Pays-Bas mensen samenbrengt: neutraal, respectvol, open en persoonlijk.',
       fr: "Notre premier iftar collectif a réuni le réseau à Rotterdam pour une soirée fondée sur la rencontre plutôt que sur un ordre du jour. Les invités ont partagé un repas, entendu des réflexions sur le rôle du CDD comme passerelle entre les Pays-Bas et le Maroc, et sont repartis avec des relations devenues depuis de véritables échanges de travail. Cela a donné le ton de la manière dont CDD Pays-Bas rassemble : neutre, respectueuse, ouverte et personnelle.",
     },
+    /*
+     * The same two files the homepage hero and the featured story point at, so
+     * one upload lights up all three places. They are not in the repository
+     * yet; the grid renders nothing until they are dropped in.
+     */
+    photos: [
+      {
+        src: '/media/cdd-iftar-rotterdam-group.jpg',
+        alt: {
+          en: 'Guests of the CDD Pays-Bas collective Iftar in Rotterdam, gathered along the table for a group photograph.',
+          nl: 'Gasten van de gezamenlijke iftar van CDD Pays-Bas in Rotterdam, samen aan tafel op de groepsfoto.',
+          fr: "Les invités de l'iftar collectif de CDD Pays-Bas à Rotterdam, réunis autour de la table pour une photo de groupe.",
+        },
+      },
+      {
+        src: '/media/cdd-iftar-rotterdam-table.jpg',
+        alt: {
+          en: 'The dining room during the CDD Pays-Bas Iftar in Rotterdam, with guests seated at several tables over the meal.',
+          nl: 'De eetzaal tijdens de iftar van CDD Pays-Bas in Rotterdam, met gasten aan meerdere tafels tijdens de maaltijd.',
+          fr: "La salle pendant l'iftar de CDD Pays-Bas à Rotterdam, les invités attablés au fil du repas.",
+        },
+      },
+    ],
     registrationOpen: false,
   },
 ];
