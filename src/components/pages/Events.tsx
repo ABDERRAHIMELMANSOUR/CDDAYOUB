@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { LocaleLink as Link } from '../../i18n/LocaleLink';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
+import type { Locale } from '../../i18n/config';
 import { Calendar, CalendarPlus, MapPin, Clock, Users, X, Check, AlertCircle } from 'lucide-react';
 import {
   EVENTS,
@@ -13,6 +14,7 @@ import {
   placesLeft,
   canRegister,
   type CDDEvent,
+  type EventPhoto,
   type EventType,
 } from '../../data/events';
 import { COMMISSIONS } from '../../data/commissions';
@@ -113,44 +115,35 @@ export function Events() {
         </div>
       </section>
 
-      {/* Upcoming */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t.events.upcoming}</h2>
-          {upcoming.length === 0 ? (
-            <div className="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center">
-              <p className="text-lg text-gray-800 font-medium">
-                {filtersActive ? t.events.noMatch : t.events.noUpcoming}
-              </p>
-              <p className="mt-2 text-gray-700">
-                {filtersActive ? t.events.noMatchNote : t.events.noUpcomingNote}
-              </p>
-              <Link
-                to="/contact"
-                className="inline-block mt-6 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:shadow-lg transition-all"
-              >
-                {t.events.getNotified}
-              </Link>
-            </div>
-          ) : (
+      {/*
+        Upcoming events.
+
+        Rendered ONLY when there is something upcoming. The empty state —
+        heading, "our next event is being finalised", and a "get notified"
+        button — was removed on the board's instruction: with nothing on the
+        calendar it made the page open on an apology.
+
+        Note this is a conditional, not a deletion. The section still exists
+        and reappears the moment an event with a future date is added to
+        events.ts, which a deletion would have quietly prevented forever.
+      */}
+      {upcoming.length > 0 && (
+        <section className="py-16 lg:py-20 bg-white">
+          <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">{t.events.upcoming}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {upcoming.map((event) => (
                 <EventCard key={event.slug} event={event} onRsvp={() => setRsvpFor(event)} />
               ))}
             </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* Past */}
       <section className="py-16 lg:py-20 bg-gray-50">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div className="flex flex-wrap items-baseline justify-between gap-3 mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">{t.events.past}</h2>
-            <p className="text-sm text-gray-700">
-              {t.events.recapNote}
-            </p>
-          </div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t.events.past}</h2>
           {past.length === 0 ? (
             <p className="text-gray-700">{t.events.noPastMatch}</p>
           ) : (
@@ -320,15 +313,9 @@ function PastEventCard({ event }: { event: CDDEvent }) {
       </p>
       <CommissionTags groups={event.commissions} />
       {event.photos && event.photos.length > 0 && (
-        <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {event.photos.map((photo) => (
-            <img
-              key={photo}
-              src={photo}
-              alt={pick(event.title, locale)}
-              loading="lazy"
-              className="rounded-xl object-cover w-full h-28"
-            />
+            <EventPhotoTile key={photo.src} photo={photo} locale={locale} />
           ))}
         </div>
       )}
@@ -516,5 +503,29 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
         )}
       </div>
     </div>
+  );
+}
+
+/**
+ * One photograph from a past event.
+ *
+ * Self-hiding, for the same reason as the commission hero backdrops: the
+ * paths are committed before the files are, and a broken-image icon on a
+ * recap reads as neglect. `hidden` rather than an early return keeps the
+ * grid's column count stable while the image is still loading.
+ */
+function EventPhotoTile({ photo, locale }: { photo: EventPhoto; locale: Locale }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
+
+  return (
+    <img
+      src={photo.src}
+      alt={pick(photo.alt, locale)}
+      loading="lazy"
+      decoding="async"
+      onError={() => setFailed(true)}
+      className="rounded-2xl object-cover w-full h-56 sm:h-64 bg-gray-100"
+    />
   );
 }

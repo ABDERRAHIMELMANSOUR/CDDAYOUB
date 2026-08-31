@@ -39,6 +39,7 @@ export function CommissionPage() {
     <div>
       {/* Header */}
       <PageHero
+        image={commission.heroImage}
         eyebrow={`${t.commissions.commission} ${commission.number}`}
         title={
           <span className="flex items-start gap-5">

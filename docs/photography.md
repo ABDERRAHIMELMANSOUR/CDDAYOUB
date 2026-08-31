@@ -46,3 +46,44 @@ instead. Nothing breaks and no broken-image icon appears.
 Hero slides are configured in `src/data/heroSlides.ts` and the featured news
 slide in `src/data/featuredStory.ts`. Both take a path string, so a new event
 photo is a file here plus one line there.
+
+## Commission page headers
+
+Each commission page can carry its own background photograph behind the header.
+Drop a file at the path below and it appears on the next deploy — no code
+change. Until then the header renders the gradient and particle field it has
+today, so an absent file is invisible rather than broken.
+
+| Commission | File |
+|---|---|
+| Energy & Water Transition | `public/media/commission-energy-water.jpg` |
+| Digital, AI & Infrastructure | `public/media/commission-digital-ai.jpg` |
+| Industry, Trade & Logistics | `public/media/commission-industry-logistics.jpg` |
+| Talent, Knowledge & Society | `public/media/commission-talent-society.jpg` |
+
+Suggested subjects: solar or wind installations and water infrastructure;
+a data centre or network operations floor; a container terminal or port; a
+working session or classroom.
+
+The header dims whatever you supply to roughly the same slate the copy was
+measured against, so a bright photograph cannot break the contrast — measured
+at 15.4:1 worst case with a near-white test image, against the 4.5:1 WCAG asks.
+That means you can pick for composition rather than for darkness.
+
+These are decorative: they sit under a scrim and repeat nothing the heading
+does not already say, so they are rendered with an empty `alt` and hidden from
+screen readers. Do not use one to convey information.
+
+## Event photographs
+
+Past events show a photo grid on `/events`. Photographs and their alt text are
+configured per event in `src/data/events.ts` under `photos`. The first Iftar is
+already wired to the two files below — the same ones the homepage hero and the
+featured story use, so one upload lights up all three places:
+
+- `public/media/cdd-iftar-rotterdam-group.jpg`
+- `public/media/cdd-iftar-rotterdam-table.jpg`
+
+Each photo carries its own alt text in all three languages. Write it as what
+the picture shows, not as the event name — a screen reader announcing the same
+title four times tells the listener nothing.
