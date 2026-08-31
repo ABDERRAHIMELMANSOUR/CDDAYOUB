@@ -65,6 +65,19 @@ Suggested subjects: solar or wind installations and water infrastructure;
 a data centre or network operations floor; a container terminal or port; a
 working session or classroom.
 
+Until a file exists at those paths, each header falls back to a stock URL
+configured in `src/data/commissionDomains.ts`, and then to the plain gradient
+if that fails too. Uploading CDD's own photograph needs no code change — the
+local file always wins.
+
+**The stock URLs have not been checked in a browser.** The build environment
+blocks images.unsplash.com, so nobody has confirmed that each one resolves or
+that the photograph it returns shows what its comment claims. Open the four
+commission pages after a deploy and look. A dead URL costs nothing — the
+header falls back to the gradient — but a live URL pointing at the wrong
+subject puts an unrelated picture under a commission's name, and only a person
+can catch that.
+
 The header dims whatever you supply to roughly the same slate the copy was
 measured against, so a bright photograph cannot break the contrast — measured
 at 15.4:1 worst case with a near-white test image, against the 4.5:1 WCAG asks.
@@ -87,3 +100,7 @@ featured story use, so one upload lights up all three places:
 Each photo carries its own alt text in all three languages. Write it as what
 the picture shows, not as the event name — a screen reader announcing the same
 title four times tells the listener nothing.
+
+A photograph that has not been uploaded renders a branded panel reading
+"Photograph to follow" rather than vanishing, so the gallery keeps its shape
+and reads as awaiting content rather than missing it.

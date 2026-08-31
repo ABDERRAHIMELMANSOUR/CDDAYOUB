@@ -39,7 +39,7 @@ export function CommissionPage() {
     <div>
       {/* Header */}
       <PageHero
-        image={commission.heroImage}
+        image={[commission.heroImage.own, commission.heroImage.stock]}
         eyebrow={`${t.commissions.commission} ${commission.number}`}
         title={
           <span className="flex items-start gap-5">

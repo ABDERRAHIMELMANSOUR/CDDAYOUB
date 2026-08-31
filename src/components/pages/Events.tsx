@@ -315,7 +315,13 @@ function PastEventCard({ event }: { event: CDDEvent }) {
       {event.photos && event.photos.length > 0 && (
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {event.photos.map((photo) => (
-            <EventPhotoTile key={photo.src} photo={photo} locale={locale} />
+            <EventPhotoTile
+              key={photo.src}
+              photo={photo}
+              locale={locale}
+              eventTitle={pick(event.title, locale)}
+              pendingLabel={t.events.photoPending}
+            />
           ))}
         </div>
       )}
@@ -514,9 +520,35 @@ function RsvpModal({ event, onClose }: { event: CDDEvent; onClose: () => void })
  * recap reads as neglect. `hidden` rather than an early return keeps the
  * grid's column count stable while the image is still loading.
  */
-function EventPhotoTile({ photo, locale }: { photo: EventPhoto; locale: Locale }) {
+function EventPhotoTile({
+  photo,
+  locale,
+  eventTitle,
+  pendingLabel,
+}: {
+  photo: EventPhoto;
+  locale: Locale;
+  eventTitle: string;
+  pendingLabel: string;
+}) {
   const [failed, setFailed] = useState(false);
-  if (failed) return null;
+
+  /*
+   * Missing photograph → the branded panel, not a hole in the grid.
+   *
+   * Hiding the tile was the previous behaviour and it was the wrong call for a
+   * recap: a two-photo gallery silently collapsing to one, then to none, makes
+   * the page look like it is missing content rather than awaiting it. The
+   * panel keeps the layout intact and says plainly that a photograph is
+   * coming, which is the true state of things.
+   */
+  if (failed) {
+    return (
+      <div className="h-56 sm:h-64 rounded-2xl overflow-hidden">
+        <BrandedImage label={pendingLabel} title={eventTitle} variant="deep" />
+      </div>
+    );
+  }
 
   return (
     <img

@@ -32,26 +32,51 @@ export interface CommissionDomain {
   topics: Localised<string[]>;
   icon: LucideIcon;
   slug: string;
-  /**
-   * Background photograph for the commission's page header, as a path under
-   * public/media/.
-   *
-   * ───────────────────────────────────────────────────────────────────────
-   * THESE FILES ARE NOT IN THE REPOSITORY YET.
-   *
-   * The paths are committed ahead of the photographs on purpose. PageHero's
-   * backdrop hides itself if the file 404s, so each header renders exactly
-   * the gradient it does today until a JPEG is dropped in at the filename
-   * below — then it appears on the next deploy with no code change.
-   *
-   * No stock photography has been chosen here. A licensed image of somebody
-   * else's wind farm is a claim about work CDD has not done, and the licence
-   * terms are a decision for the secretariat rather than a build step. See
-   * docs/photography.md for sizing and sourcing guidance.
-   * ───────────────────────────────────────────────────────────────────────
-   */
-  heroImage: string | null;
+  /** Background photograph for the commission's page header. */
+  heroImage: CommissionHeroImage;
 }
+
+/**
+ * A commission header's background photograph, in order of preference.
+ *
+ * Two sources, tried in order, then a styled fallback:
+ *
+ *   1. `own`   — CDD's own photograph under public/media/. Wins whenever the
+ *                file exists, so uploading one silently retires the stock
+ *                image with no code change.
+ *   2. `stock` — a licensed stock URL, used until then.
+ *   3. neither loads → the gradient and particle field the headers had
+ *                before, which is a finished-looking header in its own right.
+ *
+ * ─────────────────────────────────────────────────────────────────────────
+ * THE STOCK URLS HAVE NOT BEEN VERIFIED FROM A BROWSER.
+ *
+ * They were added on the board's instruction to use Unsplash. The build
+ * environment blocks images.unsplash.com, so nobody has yet confirmed that
+ * each URL resolves or that the photograph it returns shows what the comment
+ * beside it claims. Open the four commission pages after the first deploy
+ * and look. A URL that 404s costs nothing — the header falls back — but a URL
+ * that resolves to the WRONG photograph is a picture of something unrelated
+ * sitting under a commission's name, and only a person can catch that.
+ *
+ * Replacing one is a single line below. Prefer CDD's own photography as soon
+ * as it exists: `own` takes precedence automatically.
+ * ─────────────────────────────────────────────────────────────────────────
+ */
+export interface CommissionHeroImage {
+  /** Path under public/media/. Null if no in-house photograph is planned. */
+  own: string | null;
+  /** Stock URL used until `own` exists. Null to skip straight to the gradient. */
+  stock: string | null;
+}
+
+/**
+ * Unsplash delivers a resized image from these parameters, so the browser is
+ * not handed a 6000px original for a header strip. 2000px wide covers a 2×
+ * laptop display; q=70 is indistinguishable from q=90 behind an 85% scrim.
+ */
+const UNSPLASH = (id: string) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=2000&q=70`;
 
 /** Applies to every commission — PPP is a method, not a domain of its own. */
 export const DELIVERY_METHOD: Localised<string> = {
@@ -71,7 +96,11 @@ export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 1,
     slug: 'energy-water-transition',
-    heroImage: '/media/commission-energy-water.jpg',
+    heroImage: {
+      own: '/media/commission-energy-water.jpg',
+      // Intended: solar array. UNVERIFIED — see CommissionHeroImage.
+      stock: UNSPLASH('photo-1509391366360-2e959784a276'),
+    },
     icon: Globe,
     title: {
       en: 'Energy & Water Transition',
@@ -115,7 +144,11 @@ export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 2,
     slug: 'digital-ai-infrastructure',
-    heroImage: '/media/commission-digital-ai.jpg',
+    heroImage: {
+      own: '/media/commission-digital-ai.jpg',
+      // Intended: server room / data centre. UNVERIFIED — see CommissionHeroImage.
+      stock: UNSPLASH('photo-1558494949-ef010cbdcc31'),
+    },
     icon: Lightbulb,
     title: {
       en: 'Digital, AI & Infrastructure',
@@ -159,7 +192,11 @@ export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 3,
     slug: 'industry-trade-logistics',
-    heroImage: '/media/commission-industry-logistics.jpg',
+    heroImage: {
+      own: '/media/commission-industry-logistics.jpg',
+      // Intended: container port. UNVERIFIED — see CommissionHeroImage.
+      stock: UNSPLASH('photo-1578575437130-527eed3abbec'),
+    },
     icon: Ship,
     title: {
       en: 'Industry, Trade & Logistics',
@@ -203,7 +240,11 @@ export const COMMISSION_DOMAINS: CommissionDomain[] = [
   {
     number: 4,
     slug: 'talent-knowledge-society',
-    heroImage: '/media/commission-talent-society.jpg',
+    heroImage: {
+      own: '/media/commission-talent-society.jpg',
+      // Intended: people working together around a table. UNVERIFIED — see CommissionHeroImage.
+      stock: UNSPLASH('photo-1522071820081-009f0129c71c'),
+    },
     icon: GraduationCap,
     title: {
       en: 'Talent, Knowledge & Society',
