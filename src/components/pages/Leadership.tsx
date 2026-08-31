@@ -115,7 +115,6 @@ export function Leadership() {
             <BrandedImage
               label={t.leadership.fromVisionTitle}
               title={t.leadership.visionCaption}
-              caption="Replace with a photograph of Nouraddine Gribi and Driss DRIF."
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 p-12">
@@ -140,7 +139,6 @@ export function Leadership() {
             <BrandedImage
               label={t.leadership.teamEyebrow}
               title={t.leadership.teamCaption}
-              caption="Replace with a photograph from a CDD Pays-Bas board or member gathering."
               className="relative"
             />
           </div>

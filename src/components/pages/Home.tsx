@@ -7,9 +7,7 @@ import { HeroSlider } from '../HeroSlider';
 import { ParticleNetwork } from '../ParticleNetwork';
 import { NewsCarousel } from '../NewsCarousel';
 import { COMMISSION_DOMAINS } from '../../data/commissionDomains';
-import { COMMISSIONS } from '../../data/commissions';
 import { ADVISORS } from '../../data/advisors';
-import { EVENTS } from '../../data/events';
 import { useLocale, useTranslation } from '../../i18n/LocaleProvider';
 import { pick } from '../../i18n/localised';
 import { trackEvent, GOALS } from '../../lib/analytics';
@@ -23,20 +21,6 @@ export function Home() {
   const values = t.home.values;
 
   /*
-   * Proof bar figures. Every number is derived from the data files rather than
-   * typed in, so the bar cannot drift out of date the way a hard-coded "24
-   * advisors" would once a 25th is added. No member count appears: CDD has not
-   * published one, and an invented figure on the homepage is the fastest way to
-   * lose the credibility the rest of this page is trying to build.
-   */
-  const proof = [
-    { value: ADVISORS.length, label: t.home.proofAdvisors },
-    { value: COMMISSIONS.length, label: t.home.proofCommissions },
-    { value: EVENTS.length, label: t.home.proofEvents },
-    { value: 2, label: t.home.proofMarkets },
-  ];
-
-  /*
    * Advisor spotlight. Rotates by day-of-year rather than at random, so the
    * card is stable within a visit (no flicker between renders) but different
    * tomorrow. Board officers are not in ADVISORS, so nobody is double-listed.
@@ -44,34 +28,9 @@ export function Home() {
   const dayOfYear = Math.floor(Date.now() / 86_400_000);
   const spotlight = [0, 1, 2].map((i) => ADVISORS[(dayOfYear + i) % ADVISORS.length]);
 
-
   return (
     <div>
       <HeroSlider />
-
-      {/*
-        Proof bar. Replaces the Vision block, which duplicated About almost
-        word for word (audit finding A2.4) — Vision now lives on About only.
-      */}
-      <section className="py-14 bg-white border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {proof.map((item) => (
-              <div key={item.label}>
-                <dt className="sr-only">{item.label}</dt>
-                <dd>
-                  <span className="block text-4xl lg:text-5xl font-bold gradient-text leading-none">
-                    {item.value}
-                  </span>
-                  <span className="mt-2 block text-sm font-medium uppercase tracking-wide text-gray-600">
-                    {item.label}
-                  </span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
 
       {/* Commissions */}
       <section className="py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-white">

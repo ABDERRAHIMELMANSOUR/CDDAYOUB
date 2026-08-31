@@ -83,7 +83,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     },
     lead: {
       en: 'Our collective Iftar brought entrepreneurs from both communities together to strengthen cross-border collaboration between Morocco, Türkiye and the Netherlands.',
-      nl: 'Onze gezamenlijke iftar bracht ondernemers uit beide gemeenschappen samen om de grensoverschrijdende samenwerking tussen Marokko, Turkije en Nederland te versterken.',
+      nl: 'Onze gezamenlijke iftar bracht ondernemers uit beide gemeenschappen samen om de internationale samenwerking tussen Marokko, Turkije en Nederland te versterken.',
       fr: "Notre iftar collectif a réuni des entrepreneurs des deux communautés afin de renforcer la collaboration transfrontalière entre le Maroc, la Türkiye et les Pays-Bas.",
     },
     primaryCta: {

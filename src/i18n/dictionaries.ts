@@ -478,7 +478,7 @@ const en: Dictionary = {
       'Annual access opens shortly. Register now and we will confirm your place and arrange payment as soon as it goes live — nothing is charged before then.',
     title: 'Join as Supporter',
     subtitle:
-      'CDD Pays-Bas is a foundation with a supporter network. Annual access gives you {advisors} senior advisors, {commissions} working commissions, and a network that spans the Netherlands and Morocco.',
+      'CDD Pays-Bas is a foundation with a supporter network. Annual access gives you our senior advisors, our working commissions, and a network that spans the Netherlands and Morocco.',
     applyCta: 'Register access',
     seeTiers: 'See the annual contribution',
     whyJoin: 'Why join',
@@ -517,9 +517,9 @@ const en: Dictionary = {
     backHome: 'Back to home',
     duesTitle: 'Supporter access — €290 per year',
     duesSingleIntro:
-      'Access to the network, the platform and the programme of CDD Pays-Bas. One rate: €290 a year. There are no tiers to weigh up and nothing held back for a higher band.',
+      'Access to the network, the platform and the programme of CDD Pays-Bas. One rate: €290 a year.',
     legalNotice:
-      'Stichting CDD Pays-Bas has no statutory membership. The supporter access below gives you the platform and priority at events, as a voluntary contribution to the network. This is a supporter contribution, not a statutory membership — CDD Pays-Bas is a foundation and has no members with voting rights. The contribution confers no say over board decisions.',
+      'Stichting CDD Pays-Bas has no statutory membership and no members with voting rights. Supporter access gives you the platform and priority at events, as a voluntary contribution to the network. The contribution confers no say over board decisions.',
     whatsIncluded: "What's included",
     byInvitation: 'By invitation',
     contactForDues: 'Contact us for the current contribution',
@@ -605,7 +605,7 @@ const en: Dictionary = {
     insightsAll: 'All insights',
     joinBandTitle: 'Join CDD Pays-Bas',
     joinBandText:
-      'One annual contribution, €290 a year: every event, a seat in any commission, and direct access to our senior advisors across the Netherlands and Morocco.',
+      'One annual contribution of €290: access to every commission, direct contact with senior advisors in both the Netherlands and Morocco, and a discount on events.',
     joinBandPrimary: 'Join as Supporter',
     joinBandSecondary: 'What annual access includes',
     whatWeDo: 'What We Do',
@@ -731,7 +731,7 @@ const en: Dictionary = {
     whyItems: [
       { title: 'Cross-Border Network', description: 'Access to a vetted ecosystem spanning Europe, Morocco, and Africa with institutional reach' },
       { title: 'Credibility & Trust', description: 'A governance-led organisation with named advisors and published statutes' },
-      { title: 'Impact-Oriented', description: 'Focused on measurable outcomes rather than visibility alone' },
+      { title: 'Impact-Oriented', description: 'Focused on measurable outcomes and durable solutions' },
     ],
   },
   leadership: {
@@ -809,7 +809,7 @@ const en: Dictionary = {
   advisorsPage: {
     eyebrow: 'Advisory Council',
     introBefore:
-      'senior advisors across {commissions} commissions, bringing domain expertise to the work CDD Pays-Bas convenes.',
+      'Senior advisors across our commissions, bringing domain expertise to the work CDD Pays-Bas convenes.',
     introAfter: 'Our statutory board is presented separately on the',
     leadershipLink: 'Leadership page',
     joinTitle: 'Join the Advisory Council',
@@ -1051,7 +1051,7 @@ const nl: Dictionary = {
       'Het donateurschap opent binnenkort. Meld u nu aan; wij bevestigen uw plaats en regelen de betaling zodra dit live gaat — er wordt vooraf niets in rekening gebracht.',
     title: 'Donateur worden',
     subtitle:
-      'CDD Pays-Bas is een stichting met een deelnemersnetwerk. Het donateurschap geeft u toegang tot {advisors} senior adviseurs, {commissions} werkende commissies en een netwerk dat Nederland en Marokko omspant.',
+      'CDD Pays-Bas is een stichting met een deelnemersnetwerk. Het donateurschap geeft u toegang tot onze senior adviseurs, onze werkende commissies en een netwerk dat Nederland en Marokko omspant.',
     applyCta: 'Donateurschap aanvragen',
     seeTiers: 'Bekijk de jaarlijkse bijdrage',
     whyJoin: 'Waarom donateur worden',
@@ -1093,9 +1093,9 @@ const nl: Dictionary = {
     backHome: 'Terug naar de startpagina',
     duesTitle: 'Donateurschap — € 290 per jaar',
     duesSingleIntro:
-      'Toegang tot het netwerk, het platform en het programma van CDD Pays-Bas. Eén tarief: € 290 per jaar. Er zijn geen categorieën om af te wegen en er wordt niets achtergehouden voor een duurdere variant.',
+      'Toegang tot het netwerk, het platform en het programma van CDD Pays-Bas. Eén tarief: € 290 per jaar.',
     legalNotice:
-      'Stichting CDD Pays-Bas kent geen statutair lidmaatschap. Onderstaand donateurschap geeft toegang tot het platform en voorrang bij evenementen, als vrijwillige bijdrage aan het netwerk. Dit betreft een donateurschap, geen statutair lidmaatschap — CDD Pays-Bas is een stichting en kent geen leden met stemrecht. De bijdrage geeft geen zeggenschap over bestuursbesluiten.',
+      'Stichting CDD Pays-Bas kent geen statutair lidmaatschap en geen leden met stemrecht. Het donateurschap geeft toegang tot het platform en voorrang bij evenementen, als vrijwillige bijdrage aan het netwerk. De bijdrage geeft geen zeggenschap over bestuursbesluiten.',
     whatsIncluded: 'Wat is inbegrepen',
     byInvitation: 'Op uitnodiging',
     contactForDues: 'Neem contact op voor de actuele bijdrage',
@@ -1181,7 +1181,7 @@ const nl: Dictionary = {
     insightsAll: 'Alle insights',
     joinBandTitle: 'Word donateur van CDD Pays-Bas',
     joinBandText:
-      'Eén jaarlijkse bijdrage van € 290: alle evenementen, een zetel in elke commissie en directe toegang tot onze senior adviseurs in Nederland en Marokko.',
+      'Eén jaarlijkse bijdrage van € 290: toegang tot elke commissie, direct contact met senior adviseurs zowel in Nederland als in Marokko en korting op events.',
     joinBandPrimary: 'Donateur worden',
     joinBandSecondary: 'Wat het donateurschap omvat',
     whatWeDo: 'Wat wij doen',
@@ -1190,7 +1190,7 @@ const nl: Dictionary = {
       'Wij creëren impact in sleutelsectoren die de toekomst van internationaal ondernemen vormgeven',
     exploreAll: 'Bekijk alle commissies',
     impactEyebrow: 'Onze impact',
-    impactTitle: 'Grensoverschrijdende impact realiseren',
+    impactTitle: 'Betekenisvolle impact realiseren',
     impactText:
       'CDD Pays-Bas brengt bestuurders, investeerders, publieke instellingen en internationale experts samen om betekenisvolle partnerschappen te vormen die grenzen overstijgen.',
     impactPoints: [
@@ -1275,15 +1275,15 @@ const nl: Dictionary = {
     whoWeAreP2After:
       'bijeen om economische diplomatie, innovatie en duurzame ontwikkeling te bevorderen.',
     whoWeAreP3:
-      'Ons netwerk omvat CEO’s, ondernemers, projectontwikkelaars, beleidsmakers, diasporaleiders en kennispartners die zich inzetten voor grensoverschrijdende impact in sectoren als energietransitie, infrastructuur, technologie, financiën, vastgoed en onderwijs.',
+      'Ons netwerk omvat CEO’s, ondernemers, projectontwikkelaars, beleidsmakers, diasporaleiders en kennispartners die zich inzetten voor betekenisvolle impact in sectoren als energietransitie, infrastructuur, technologie, financiën, vastgoed en onderwijs.',
     missionText:
-      'Ondernemers en besluitvormers versterken door strategische verbindingen te leggen, grensoverschrijdende samenwerking te faciliteren en duurzame, inclusieve economische ontwikkeling te bevorderen in Europa, Marokko en Afrika — via gerichte dialoog, kennisdeling en werkbare partnerschappen.',
+      'Ondernemers en besluitvormers versterken door strategische verbindingen te leggen, internationale samenwerking te faciliteren en duurzame, inclusieve economische ontwikkeling te bevorderen in Europa, Marokko en Afrika — via gerichte dialoog, kennisdeling en werkbare partnerschappen.',
     visionText:
       'Hét internationale platform zijn dat de Europese, Marokkaanse en Afrikaanse zakelijke ecosystemen verbindt, erkend om samenwerkingen met impact in strategische sectoren als energietransitie, innovatie, infrastructuur en financiën, met leiderschap, goed bestuur en duurzame groei als leidraad.',
     whatWeDoSubtitle:
       'CDD Pays-Bas treedt op als verbinder, facilitator en strategisch partner langs vier kernpijlers',
     whoWeServeSubtitle:
-      'Ons platform verbindt uiteenlopende partijen die zich inzetten voor grensoverschrijdende impact',
+      'Ons platform verbindt uiteenlopende partijen die zich inzetten voor betekenisvolle impact',
     whyEyebrow: 'Waarom voor ons kiezen',
     ourMission: 'Onze missie',
     ourVision: 'Onze visie',
@@ -1292,7 +1292,7 @@ const nl: Dictionary = {
       { title: 'Economische diplomatie', description: 'Zakelijke belangen vertegenwoordigen en behartigen in Europa, Marokko en Afrika' },
       { title: 'Strategische partnerschappen', description: 'Waardevolle verbindingen faciliteren tussen bedrijven, investeerders en instellingen' },
       { title: 'Kennisuitwisseling', description: 'Organiseren van thought leadership-evenementen, rondetafelgesprekken en executive programma\'s' },
-      { title: 'Projectontwikkeling', description: 'Ondersteunen van grensoverschrijdende initiatieven in energie, infrastructuur en innovatie' },
+      { title: 'Projectontwikkeling', description: 'Ondersteunen van internationale initiatieven in energie, infrastructuur en innovatie' },
     ],
     whoWeServe: 'Voor wie wij werken',
     stakeholders: 'Onze stakeholders',
@@ -1308,9 +1308,9 @@ const nl: Dictionary = {
     ],
     whyTitle: 'Waarom CDD Pays-Bas',
     whyItems: [
-      { title: 'Grensoverschrijdend netwerk', description: 'Toegang tot een gescreend ecosysteem in Europa, Marokko en Afrika met institutioneel bereik' },
+      { title: 'Internationaal netwerk', description: 'Toegang tot een gescreend ecosysteem in Europa, Marokko en Afrika met institutioneel bereik' },
       { title: 'Geloofwaardigheid & vertrouwen', description: 'Een governance-gedreven organisatie met bij naam genoemde adviseurs en gepubliceerde statuten' },
-      { title: 'Impactgericht', description: 'Gericht op meetbare resultaten in plaats van louter zichtbaarheid' },
+      { title: 'Impactgericht', description: 'Gericht op meetbare resultaten en duurzame oplossingen' },
     ],
   },
   leadership: {
@@ -1327,7 +1327,7 @@ const nl: Dictionary = {
     contactLabel: 'Contact',
     highlights: [
       { title: 'Leiderschap & governance', description: 'Strategische visie en organisatorische kwaliteit aanjagen' },
-      { title: 'Grensoverschrijdende samenwerking', description: 'Partnerschappen en samenwerking Nederland ↔ Marokko' },
+      { title: 'Internationale samenwerking', description: 'Partnerschappen en samenwerking Nederland ↔ Marokko' },
       { title: 'Ondernemerschap & ecosysteemontwikkeling', description: 'Ondernemers ondersteunen en innovatie stimuleren' },
       { title: 'Institutionele geloofwaardigheid', description: 'Betrouwbare internationale partnerschappen opbouwen' },
     ],
@@ -1350,12 +1350,12 @@ const nl: Dictionary = {
       },
       'Ahmed Rahmouni': {
         role: 'Penningmeester',
-        bio: 'Internationaal zakelijk professional met sterke financiële en commerciële expertise. Ondersteunt CDD Pays-Bas met strategisch financieel toezicht en grensoverschrijdend zakelijk inzicht.',
+        bio: 'Internationaal zakelijk professional met sterke financiële en commerciële expertise. Ondersteunt CDD Pays-Bas met strategisch financieel toezicht en internationaal zakelijk inzicht.',
       },
     },
     ctaTitle: 'Wilt u bijdragen?',
     ctaText:
-      'CDD Pays-Bas verwelkomt ervaren experts en adviseurs die onze inzet voor grensoverschrijdende samenwerking en duurzame ontwikkeling delen.',
+      'CDD Pays-Bas verwelkomt ervaren experts en adviseurs die onze inzet voor internationale samenwerking en duurzame ontwikkeling delen.',
     ctaButton: 'Neem contact op',
     founder: 'Oprichter',
     boardEyebrow: 'Governance',
@@ -1388,7 +1388,7 @@ const nl: Dictionary = {
   advisorsPage: {
     eyebrow: 'Raad van advies',
     introBefore:
-      'ervaren adviseurs verdeeld over {commissions} commissies, die vakinhoudelijke expertise inbrengen in het werk dat CDD Pays-Bas samenbrengt.',
+      'Ervaren adviseurs verdeeld over onze commissies, die vakinhoudelijke expertise inbrengen in het werk dat CDD Pays-Bas samenbrengt.',
     introAfter: 'Ons statutair bestuur wordt apart gepresenteerd op de',
     leadershipLink: 'pagina Leiderschap',
     joinTitle: 'Sluit u aan bij de raad van advies',
@@ -1404,9 +1404,9 @@ const nl: Dictionary = {
       'Of u nu een partnerschap, een donateurschap of een concreet project verkent — wij horen graag van u.',
     heroTitle: 'Contact & samenwerking',
     heroSubtitle:
-      'Neem contact op met CDD Pays-Bas om partnerschappen te verkennen, u bij ons netwerk aan te sluiten of deel te nemen aan grensoverschrijdende initiatieven.',
+      'Neem contact op met CDD Pays-Bas om partnerschappen te verkennen, u bij ons netwerk aan te sluiten of deel te nemen aan internationale initiatieven.',
     introText:
-      'Wij verwelkomen vragen van ondernemers en bestuurders, investeerders, instellingen en organisaties met belangstelling voor grensoverschrijdende samenwerking.',
+      'Wij verwelkomen vragen van ondernemers en bestuurders, investeerders, instellingen en organisaties met belangstelling voor internationale samenwerking.',
     labelLocation: 'Locatie',
     labelEmail: 'E-mail',
     labelPhone: 'Telefoon',
@@ -1447,7 +1447,7 @@ const nl: Dictionary = {
       'Media & pers',
     ],
     audiences: [
-      { title: 'Bestuurders & CEO\'s', description: 'Verken strategische partnerschappen en grensoverschrijdende kansen' },
+      { title: 'Bestuurders & CEO\'s', description: 'Verken strategische partnerschappen en internationale kansen' },
       { title: 'Investeerders', description: 'Krijg toegang tot gescreende projecten en investeringsmogelijkheden' },
       { title: 'Projectontwikkelaars', description: 'Presenteer projecten aan ons netwerk van partners en investeerders' },
       { title: 'Overheid & instellingen', description: 'Werk samen aan economische diplomatie en beleidsinitiatieven' },
@@ -1467,11 +1467,11 @@ const nl: Dictionary = {
     eyebrow: 'Partnerschappen',
     title: 'Word onze partner',
     subtitle:
-      'CDD Pays-Bas bouwt duurzame relaties met organisaties die onze inzet voor grensoverschrijdende samenwerking delen.',
+      'CDD Pays-Bas bouwt duurzame relaties met organisaties die onze inzet voor internationale samenwerking delen.',
     caption: 'Duurzame institutionele relaties opbouwen',
     heroTitle: 'Partnerschappen & ecosysteem',
     heroSubtitle:
-      'CDD Pays-Bas brengt een divers ecosysteem van partners samen die zich inzetten voor grensoverschrijdende samenwerking, innovatie en duurzame ontwikkeling.',
+      'CDD Pays-Bas brengt een divers ecosysteem van partners samen die zich inzetten voor internationale samenwerking, innovatie en duurzame ontwikkeling.',
     ecosystemTitle: 'Een ecosysteem van vele belanghebbenden',
     ecosystemP1:
       'Ons partnernetwerk beslaat de publieke en private sector en verbindt organisaties die onze inzet voor economische diplomatie, strategische samenwerking en impact delen.',
@@ -1514,7 +1514,7 @@ const nl: Dictionary = {
     ],
     typesTitle: 'Soorten partnerschap',
     types: [
-      { title: 'Corporate partners', description: 'Toonaangevende bedrijven en multinationals die zich inzetten voor grensoverschrijdende groei en innovatie' },
+      { title: 'Corporate partners', description: 'Toonaangevende bedrijven en multinationals die zich inzetten voor internationale groei en innovatie' },
       { title: 'Investeringspartners', description: 'Participatiemaatschappijen, family offices en institutionele investeerders achter strategische investeringen' },
       { title: 'Institutionele partners', description: 'Overheidsinstanties, diplomatieke posten en internationale organisaties' },
       { title: 'Kennispartners', description: 'Universiteiten, onderzoeksinstituten en denktanks die expertise inbrengen' },
@@ -1534,10 +1534,10 @@ const nl: Dictionary = {
   projects: {
     eyebrow: 'Projecten',
     title: 'Strategische projecten',
-    subtitle: 'Grensoverschrijdende initiatieven ontwikkeld met onze deelnemers en partners.',
+    subtitle: 'Internationale initiatieven ontwikkeld met onze deelnemers en partners.',
     comingSoon: 'Binnenkort',
     announcement:
-      'Onze strategische projecten worden binnenkort aangekondigd. Houd deze pagina in de gaten voor komende initiatieven en partnerschappen die grensoverschrijdende samenwerking, duurzame ontwikkeling en economische groei aanjagen.',
+      'Onze strategische projecten worden binnenkort aangekondigd. Houd deze pagina in de gaten voor komende initiatieven en partnerschappen die internationale samenwerking, duurzame ontwikkeling en economische groei aanjagen.',
     comingSoonText:
       'Onze eerste strategische projecten zijn in ontwikkeling. Zij worden hier gepubliceerd, gekoppeld aan de commissie die ze leidt.',
     pillars: [
@@ -1546,7 +1546,7 @@ const nl: Dictionary = {
       { title: 'Meetbare impact', description: 'Vastgestelde resultaten, gerapporteerd aan het bestuur en aan de deelnemers' },
     ],
     ctaTitle: 'Dien een project in',
-    ctaText: 'Ontwikkelt u een grensoverschrijdend initiatief? Wij horen er graag over.',
+    ctaText: 'Ontwikkelt u een internationaal initiatief? Wij horen er graag over.',
   },
   legal: {
     authoritativeTitle: 'Authentieke versie',
@@ -1631,7 +1631,7 @@ const fr: Dictionary = {
       "L'accès donateur ouvre prochainement. Déposez votre demande dès maintenant : nous confirmerons votre place et organiserons le paiement dès l'ouverture — rien n'est prélevé avant.",
     title: 'Devenir donateur',
     subtitle:
-      "CDD Pays-Bas est une fondation dotée d'un réseau de donateurs. L'accès donateur vous ouvre {advisors} conseillers seniors, {commissions} commissions actives et un réseau qui couvre les Pays-Bas et le Maroc.",
+      "CDD Pays-Bas est une fondation dotée d'un réseau de donateurs. L'accès donateur vous ouvre nos conseillers seniors, nos commissions actives et un réseau qui couvre les Pays-Bas et le Maroc.",
     applyCta: "Demander l'accès donateur",
     seeTiers: 'Voir la contribution annuelle',
     whyJoin: 'Pourquoi devenir donateur',
@@ -1673,9 +1673,9 @@ const fr: Dictionary = {
     backHome: "Retour à l'accueil",
     duesTitle: 'Accès donateur — 290 € par an',
     duesSingleIntro:
-      "L'accès au réseau, à la plateforme et au programme de CDD Pays-Bas. Un seul tarif : 290 € par an. Aucune catégorie à comparer, rien qui soit réservé à une formule supérieure.",
+      "L'accès au réseau, à la plateforme et au programme de CDD Pays-Bas. Un seul tarif : 290 € par an.",
     legalNotice:
-      "Stichting CDD Pays-Bas ne connaît pas d'adhésion statutaire. L'accès donateur ci-dessous ouvre la plateforme et donne la priorité lors des événements, à titre de contribution volontaire au réseau. Il s'agit d'un statut de donateur et non d'une adhésion statutaire : CDD Pays-Bas est une fondation et n'a pas de membres disposant du droit de vote. La contribution ne confère aucun pouvoir de décision sur les délibérations du conseil.",
+      "Stichting CDD Pays-Bas ne connaît pas d'adhésion statutaire et n'a pas de membres disposant du droit de vote. L'accès donateur ouvre la plateforme et donne la priorité lors des événements, à titre de contribution volontaire au réseau. La contribution ne confère aucun pouvoir de décision sur les délibérations du conseil.",
     whatsIncluded: 'Ce qui est inclus',
     byInvitation: 'Sur invitation',
     contactForDues: 'Contactez-nous pour la contribution en vigueur',
@@ -1761,7 +1761,7 @@ const fr: Dictionary = {
     insightsAll: 'Tous les insights',
     joinBandTitle: 'Rejoignez CDD Pays-Bas',
     joinBandText:
-      "Une seule contribution annuelle de 290 € : tous les événements, un siège dans la commission de votre choix et un accès direct à nos conseillers seniors aux Pays-Bas et au Maroc.",
+      "Une contribution annuelle de 290 € : l'accès à chaque commission, un contact direct avec les conseillers seniors aux Pays-Bas comme au Maroc, et une réduction sur les événements.",
     joinBandPrimary: 'Devenir donateur',
     joinBandSecondary: "Ce que comprend l'accès donateur",
     whatWeDo: 'Ce que nous faisons',
@@ -1890,7 +1890,7 @@ const fr: Dictionary = {
     whyItems: [
       { title: 'Réseau transfrontalier', description: "Accès à un écosystème sélectionné couvrant l'Europe, le Maroc et l'Afrique, avec une portée institutionnelle" },
       { title: 'Crédibilité & confiance', description: 'Une organisation guidée par sa gouvernance, avec des conseillers nommés et des statuts publiés' },
-      { title: 'Orientée impact', description: 'Centrée sur des résultats mesurables plutôt que sur la seule visibilité' },
+      { title: 'Orientée impact', description: 'Centrée sur des résultats mesurables et des solutions durables' },
     ],
   },
   leadership: {
@@ -1968,7 +1968,7 @@ const fr: Dictionary = {
   advisorsPage: {
     eyebrow: 'Conseil consultatif',
     introBefore:
-      "conseillers expérimentés répartis sur {commissions} commissions, qui apportent leur expertise sectorielle aux travaux réunis par CDD Pays-Bas.",
+      "Des conseillers expérimentés répartis sur nos commissions, qui apportent leur expertise sectorielle aux travaux réunis par CDD Pays-Bas.",
     introAfter: 'Notre conseil statutaire est présenté séparément sur la',
     leadershipLink: 'page Leadership',
     joinTitle: 'Rejoignez le conseil consultatif',
