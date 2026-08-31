@@ -60,10 +60,16 @@ export function Advisors() {
   return (
     <div>
       <PageHero eyebrow={t.advisorsPage.eyebrow} title={t.nav.advisoryCouncil}>
-        {ADVISORS.length}{' '}
-        {t.advisorsPage.introBefore.replace('{commissions}', String(COMMISSIONS.length))}{' '}
+        {t.advisorsPage.introBefore}{' '}
         {t.advisorsPage.introAfter}{' '}
-        <Link to="/leadership" className="underline hover:text-white">
+        {/*
+          Underlined AND recoloured. On a dark hero an underline alone is easy
+          to miss, and this is the only route from the council to the board.
+        */}
+        <Link
+          to="/leadership"
+          className="font-semibold text-cyan-200 underline underline-offset-2 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
+        >
           {t.advisorsPage.leadershipLink}
         </Link>
         .

@@ -56,9 +56,13 @@ export function About() {
               <div className="inline-block px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
                 {t.about.whoWeAre}
               </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-                {t.about.whoWeAre}
-              </h2>
+              {/*
+                The eyebrow above already says this, so the heading was the
+                same words twice. It stays in the document outline as an
+                sr-only heading: removing it visually should not leave the
+                section unlabelled for anyone navigating by headings.
+              */}
+              <h2 className="sr-only">{t.about.whoWeAre}</h2>
               <div className="space-y-6 text-gray-600 leading-relaxed">
                 <p>
                   <span className="font-semibold text-gray-900">{t.about.whoWeAreP1Lead}</span>{' '}

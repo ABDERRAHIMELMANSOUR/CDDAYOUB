@@ -122,17 +122,17 @@ const DETAIL: Record<string, Omit<Commission, keyof CommissionDomain | 'group'>>
       en: [
         'Map the Dutch–Moroccan green hydrogen value chain and identify where CDD participants already sit within it.',
         'Convene a first roundtable on water technology transfer, the area with the clearest mutual need.',
-        'Recruit a water specialist to the Advisory Council — the one obvious gap on an otherwise deep bench.',
+        'Recruit a water specialist to the Advisory Council.',
       ],
       nl: [
         'De Nederlands–Marokkaanse waardeketen voor groene waterstof in kaart brengen en vaststellen waar CDD-deelnemers zich daarin al bevinden.',
         'Een eerste rondetafelgesprek organiseren over overdracht van watertechnologie, het gebied met de duidelijkste wederzijdse behoefte.',
-        'Een waterspecialist werven voor de Raad van Adviseurs — de enige duidelijke lacune in een verder sterk bezette groep.',
+        'Een waterspecialist werven voor de Raad van Adviseurs.',
       ],
       fr: [
         "Cartographier la chaîne de valeur néerlando-marocaine de l'hydrogène vert et identifier où les participants du CDD s'y positionnent déjà.",
         "Organiser une première table ronde sur le transfert de technologies de l'eau, le domaine où le besoin mutuel est le plus net.",
-        "Recruter un spécialiste de l'eau au Conseil consultatif — la seule lacune évidente dans un ensemble par ailleurs solide.",
+        "Recruter un spécialiste de l'eau au Conseil consultatif.",
       ],
     },
     governanceNote: {
@@ -163,7 +163,7 @@ const DETAIL: Record<string, Omit<Commission, keyof CommissionDomain | 'group'>>
         'Working papers on nearshore delivery models that survive procurement review',
       ],
       nl: [
-        'Briefings over de EU AI-verordening, NIS2 en wat deze betekenen voor grensoverschrijdende projecten',
+        'Briefings over de EU AI-verordening, NIS2 en wat deze betekenen voor internationale projecten',
         'Rondetafelgesprekken over digital twins, slimme steden en de ontwikkeling van datacenters',
         'Matchmaking tussen Nederlandse technologiebedrijven en Marokkaanse engineeringcapaciteit',
         'Werkdocumenten over nearshore-leveringsmodellen die een inkooptoets doorstaan',

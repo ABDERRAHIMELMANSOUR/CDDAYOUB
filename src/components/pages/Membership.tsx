@@ -8,8 +8,6 @@ import {
   formatAnnualPrice,
   pick,
 } from '../../data/membership';
-import { ADVISORS } from '../../data/advisors';
-import { COMMISSIONS } from '../../data/commissions';
 import { PAYMENT_METHODS } from '../../lib/payments';
 import { PageHero } from '../PageHero';
 
@@ -28,18 +26,12 @@ export function Membership() {
     <div>
       {/* Hero */}
       <PageHero eyebrow={t.nav.membership} title={t.membership.title}>
-        {t.membership.subtitle
-          .replace('{advisors}', String(ADVISORS.length))
-          .replace('{commissions}', String(COMMISSIONS.length))}
+        {t.membership.subtitle}
       </PageHero>
 
       {/* Why join */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.membership.whyJoin}</h2>
-          <p className="text-lg text-gray-700 max-w-3xl mb-12 leading-relaxed">
-            {t.membership.whyJoinIntro}
-          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {WHY_JOIN.map((item) => (
               <div
@@ -121,16 +113,6 @@ export function Membership() {
             >
               {t.nav.apply}
             </Link>
-          </div>
-
-          {/*
-            Honorary membership is a board recognition, not a product — no
-            price, not applicable for. Kept visibly separate from the dues
-            block so it never reads as a tier someone could choose.
-          */}
-          <div className="mt-10 rounded-3xl border border-dashed border-gray-300 bg-white p-8 max-w-3xl">
-            <h3 className="text-xl font-bold text-gray-900">{t.membership.honoraryTitle}</h3>
-            <p className="mt-2 text-gray-700 leading-relaxed">{t.membership.honoraryText}</p>
           </div>
 
           {/* Payment methods */}

@@ -152,9 +152,9 @@ export const WHY_JOIN: WhyJoinItem[] = [
       fr: 'Un siège dans une commission',
     },
     text: {
-      en: 'Commissions are open to all participants. Each commits to at least two activities a year, so participation means real work, not a mailing list.',
-      nl: 'Commissies staan open voor alle deelnemers. Elke commissie verbindt zich aan minimaal twee activiteiten per jaar, dus deelname betekent echt werk en geen mailinglijst.',
-      fr: "Les commissions sont ouvertes à tous les participants. Chacune s'engage à mener au moins deux activités par an : participer signifie donc un vrai travail, pas une simple liste de diffusion.",
+      en: 'Commissions are open to all participants. Each commits to at least two activities a year, so participation means real work.',
+      nl: 'Commissies staan open voor alle deelnemers. Elke commissie verbindt zich aan minimaal twee activiteiten per jaar, dus deelname betekent echt werk.',
+      fr: "Les commissions sont ouvertes à tous les participants. Chacune s'engage à mener au moins deux activités par an : participer signifie donc un vrai travail.",
     },
   },
   {

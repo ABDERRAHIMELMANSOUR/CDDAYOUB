@@ -213,7 +213,7 @@ export const ADVISORS: Advisor[] = [
     },
     bio: {
       en: 'Supports companies in expanding into international markets with structured growth strategies. Experienced in partnerships and cross-border operations.',
-      nl: 'Ondersteunt bedrijven bij hun uitbreiding naar internationale markten met gestructureerde groeistrategieën. Ervaren in partnerschappen en grensoverschrijdende activiteiten.',
+      nl: 'Ondersteunt bedrijven bij hun uitbreiding naar internationale markten met gestructureerde groeistrategieën. Ervaren in partnerschappen en internationale activiteiten.',
       fr: 'Elle accompagne les entreprises dans leur développement à l\'international à l\'aide de stratégies de croissance structurées. Expérimentée en partenariats et en opérations transfrontalières.',
     },
     photo: photo6,
@@ -389,7 +389,7 @@ export const ADVISORS: Advisor[] = [
     },
     bio: {
       en: 'Helps organizations leverage digitalisation, data, and AI to drive practical innovation and cross-border business growth.',
-      nl: 'Helpt organisaties digitalisering, data en AI in te zetten voor praktische innovatie en grensoverschrijdende bedrijfsgroei.',
+      nl: 'Helpt organisaties digitalisering, data en AI in te zetten voor praktische innovatie en internationale bedrijfsgroei.',
       fr: 'Il aide les organisations à mobiliser la numérisation, les données et l\'IA au service d\'une innovation concrète et d\'une croissance transfrontalière.',
     },
     photo: photo17,
@@ -421,7 +421,7 @@ export const ADVISORS: Advisor[] = [
     },
     bio: {
       en: 'Experienced public sector leader with strong expertise in governance and education. Brings strategic insight and institutional networks to strengthen cross-border impact.',
-      nl: 'Ervaren leider in de publieke sector met sterke expertise op het gebied van governance en onderwijs. Brengt strategisch inzicht en institutionele netwerken in om grensoverschrijdende impact te versterken.',
+      nl: 'Ervaren leider in de publieke sector met sterke expertise op het gebied van governance en onderwijs. Brengt strategisch inzicht en institutionele netwerken in om betekenisvolle impact te versterken.',
       fr: 'Dirigeant expérimenté du secteur public, doté d\'une solide expertise en gouvernance et en éducation. Il apporte une vision stratégique et des réseaux institutionnels pour renforcer l\'impact transfrontalier.',
     },
     photo: photo19,
@@ -453,7 +453,7 @@ export const ADVISORS: Advisor[] = [
     },
     bio: {
       en: 'International energy executive with 20+ years of experience and over 500 MW in renewable projects (hydro, geothermal, solar & wind). Strengthening cross-border energy and investment cooperation between the Netherlands, Turkey, and Morocco at CDD Pays-Bas.',
-      nl: 'Internationaal energiebestuurder met ruim 20 jaar ervaring en meer dan 500 MW aan hernieuwbare projecten (waterkracht, geothermie, zon en wind). Versterkt bij CDD Pays-Bas de grensoverschrijdende samenwerking op het gebied van energie en investeringen tussen Nederland, Turkije en Marokko.',
+      nl: 'Internationaal energiebestuurder met ruim 20 jaar ervaring en meer dan 500 MW aan hernieuwbare projecten (waterkracht, geothermie, zon en wind). Versterkt bij CDD Pays-Bas de internationale samenwerking op het gebied van energie en investeringen tussen Nederland, Turkije en Marokko.',
       fr: 'Dirigeant du secteur énergétique international, fort de plus de 20 ans d\'expérience et de plus de 500 MW de projets renouvelables (hydraulique, géothermie, solaire et éolien). Au sein de CDD Pays-Bas, il renforce la coopération énergétique et d\'investissement entre les Pays-Bas, la Turquie et le Maroc.',
     },
     photo: photo21,

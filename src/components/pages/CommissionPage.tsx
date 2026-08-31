@@ -5,7 +5,6 @@ import { pick } from '../../i18n/localised';
 import { Linkedin, CalendarClock, Users, ShieldCheck, ArrowRight } from 'lucide-react';
 import { getCommission, getChair } from '../../data/commissions';
 import { advisorsInGroup } from '../../data/advisors';
-import { DELIVERY_METHOD } from '../../data/commissionDomains';
 import { eventsForCommission, formatEventDate } from '../../data/events';
 import { insightsForCommission, formatInsightDate } from '../../data/insights';
 import { BrandedImage } from '../BrandedImage';
@@ -155,7 +154,6 @@ export function CommissionPage() {
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-5">{t.commissions.opportunity}</h2>
             <p className="text-lg text-gray-700 leading-relaxed">{pick(commission.opportunity, locale)}</p>
-            <p className="mt-5 text-base text-gray-700">{pick(DELIVERY_METHOD, locale)}</p>
           </div>
           <div className="h-72 lg:h-80">
             <BrandedImage

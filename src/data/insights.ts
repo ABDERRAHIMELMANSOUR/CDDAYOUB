@@ -136,7 +136,7 @@ export const INSIGHTS: Insight[] = [
     image: '/media/cdd-iftar-rotterdam-group.jpg',
     summary: {
       en: 'Club des Dirigeants (CDD) Pays-Bas proudly hosted a collective Iftar in Rotterdam, bringing together Moroccan and Turkish entrepreneurs to strengthen unity and cross-border collaboration between Morocco, Türkiye, and the Netherlands.',
-      nl: 'Club des Dirigeants (CDD) Pays-Bas organiseerde met trots een gezamenlijke iftar in Rotterdam, waar Marokkaanse en Turkse ondernemers samenkwamen om de onderlinge verbondenheid en de grensoverschrijdende samenwerking tussen Marokko, Turkije en Nederland te versterken.',
+      nl: 'Club des Dirigeants (CDD) Pays-Bas organiseerde met trots een gezamenlijke iftar in Rotterdam, waar Marokkaanse en Turkse ondernemers samenkwamen om de onderlinge verbondenheid en de internationale samenwerking tussen Marokko, Turkije en Nederland te versterken.',
       fr: "Club des Dirigeants (CDD) Pays-Bas a eu la fierté d'organiser un iftar collectif à Rotterdam, réunissant des entrepreneurs marocains et turcs afin de renforcer l'unité et la collaboration transfrontalière entre le Maroc, la Türkiye et les Pays-Bas.",
     },
     gallery: [
@@ -166,7 +166,7 @@ export const INSIGHTS: Insight[] = [
         'The evening set the tone for how CDD Pays-Bas gathers — neutral, respectful, open and personal — and it is the model for the roundtables and briefings the commissions will run through the year.',
       ],
       nl: [
-        'Club des Dirigeants (CDD) Pays-Bas organiseerde met trots een gezamenlijke iftar in Rotterdam, waar Marokkaanse en Turkse ondernemers samenkwamen om de onderlinge verbondenheid en de grensoverschrijdende samenwerking tussen Marokko, Turkije en Nederland te versterken.',
+        'Club des Dirigeants (CDD) Pays-Bas organiseerde met trots een gezamenlijke iftar in Rotterdam, waar Marokkaanse en Turkse ondernemers samenkwamen om de onderlinge verbondenheid en de internationale samenwerking tussen Marokko, Turkije en Nederland te versterken.',
         'Onder leiding van voorzitter Nouraddine GRIBI en vanuit de visie van internationaal voorzitter Driss DRIF kwamen senior adviseurs en gewaardeerde deelnemers bijeen tijdens de ramadan. Wij voelden ons in het bijzonder vereerd door de aanwezigheid en steun van Dünya Türk İş Konseyi (het bestuur van DTIK Nederland).',
         'Het was de eerste keer dat het netwerk als groep bijeenkwam, en de avond was bewust opgezet als een menselijke gelegenheid en niet als een zakelijke. Gasten deelden een maaltijd en brachten de avond in gesprek door met mensen uit sectoren die zelden in dezelfde ruimte zitten — energie, logistiek, recht, onderwijs en technologie.',
         'Verschillende van die gesprekken zijn inmiddels uitgegroeid tot werkoverleggen. Dat is precies het doel van samenbrengen: relaties die los van een transactie ontstaan, zijn doorgaans de relaties die later transacties opleveren.',
