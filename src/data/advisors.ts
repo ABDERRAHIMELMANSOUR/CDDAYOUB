@@ -415,9 +415,9 @@ export const ADVISORS: Advisor[] = [
   {
     name: 'Fouad El Haji',
     role: {
-      en: 'Senior Advisor Governance & Public Affairs',
-      nl: 'Senior adviseur governance & publieke zaken',
-      fr: 'Conseiller senior gouvernance & affaires publiques',
+      en: 'Senior Advisor Governance, Public Affairs & Societal Impact',
+      nl: 'Senior adviseur governance, publieke zaken & maatschappelijke impact',
+      fr: 'Conseiller senior gouvernance, affaires publiques & impact sociétal',
     },
     bio: {
       en: 'Experienced public sector leader with strong expertise in governance and education. Brings strategic insight and institutional networks to strengthen cross-border impact.',
@@ -447,9 +447,9 @@ export const ADVISORS: Advisor[] = [
   {
     name: 'Volkan Ozturk',
     role: {
-      en: 'Senior Advisor – Renewable Energy & Strategic Investments',
-      nl: 'Senior adviseur – hernieuwbare energie & strategische investeringen',
-      fr: 'Conseiller senior – énergies renouvelables & investissements stratégiques',
+      en: 'Senior Advisor Renewable Energy & Strategic Investments',
+      nl: 'Senior adviseur hernieuwbare energie & strategische investeringen',
+      fr: 'Conseiller senior énergies renouvelables & investissements stratégiques',
     },
     bio: {
       en: 'International energy executive with 20+ years of experience and over 500 MW in renewable projects (hydro, geothermal, solar & wind). Strengthening cross-border energy and investment cooperation between the Netherlands, Turkey, and Morocco at CDD Pays-Bas.',
@@ -457,7 +457,7 @@ export const ADVISORS: Advisor[] = [
       fr: 'Dirigeant du secteur énergétique international, fort de plus de 20 ans d\'expérience et de plus de 500 MW de projets renouvelables (hydraulique, géothermie, solaire et éolien). Au sein de CDD Pays-Bas, il renforce la coopération énergétique et d\'investissement entre les Pays-Bas, la Turquie et le Maroc.',
     },
     photo: photo21,
-    linkedin: 'https://www.linkedin.com/in/vozturknl?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    linkedin: 'https://www.linkedin.com/in/vozturknl/',
     group: 'energy-water-transition',
   },
   {
@@ -497,7 +497,7 @@ export const ADVISORS: Advisor[] = [
     /*
      * Added on Nouraddine Gribi's instruction (August 2026). Role reflects the
      * titles supplied by the board verbatim; no biography is asserted beyond
-     * them. Photograph and a fuller biography to be supplied by the advisor.
+     * them.
      */
     role: {
       en: 'Senior Advisor & Partner — Executive President and Managing Partner, GI3; Chairman, AHK Maroc Steering Committee',
@@ -509,15 +509,21 @@ export const ADVISORS: Advisor[] = [
       nl: 'Uitvoerend voorzitter en managing partner van GI3 en voorzitter van het stuurcomité van AHK Maroc, de Duits-Marokkaanse Kamer van Koophandel en Industrie.',
       fr: "Président exécutif et managing partner de GI3, et président du comité de pilotage de l'AHK Maroc, la Chambre de commerce et d'industrie germano-marocaine.",
     },
-    photo: null,
-    linkedin: '',
+    /*
+     * A public/media path rather than a src/assets import, because the file is
+     * uploaded to the repository directly rather than bundled. Until it lands,
+     * AdvisorAvatar falls back to his initials — see the onError there.
+     */
+    photo: '/media/badr-ikken.jpg',
+    // skipRedirect is a LinkedIn interstitial flag, not part of the address.
+    linkedin: 'https://www.linkedin.com/in/badrikken/',
     group: 'energy-water-transition',
   },
   {
     name: 'Turgut Torunogullari',
     /*
      * Honorary distinction, added on Nouraddine Gribi's instruction (August 2026).
-     * Company affiliation as supplied by the board; photograph to follow.
+     * Company affiliation as supplied by the board.
      */
     role: {
       en: 'Honorary Distinction — Edelstaal',
@@ -529,8 +535,12 @@ export const ADVISORS: Advisor[] = [
       nl: 'Ere-deelnemer van CDD Pays-Bas, door het bestuur erkend voor zijn bijdrage aan het netwerk. Edelstaal.',
       fr: "Distingué par le conseil de CDD Pays-Bas pour sa contribution au réseau. Edelstaal.",
     },
-    photo: null,
-    linkedin: '',
+    photo: '/media/turgut-torunogullari.jpg',
+    /*
+     * The surname carries a dotless i (ı, U+0131), which must stay
+     * percent-encoded in the path or the link 404s.
+     */
+    linkedin: 'https://www.linkedin.com/in/turgut-torunogullar%C4%B1-edelstaal-b75331117/',
     group: 'honorary',
   },
 ];

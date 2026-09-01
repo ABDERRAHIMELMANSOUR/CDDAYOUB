@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 /**
  * Advisor portrait, with an initials fallback.
  *
@@ -6,6 +8,12 @@
  * worse introduction to a named senior professional than their own initials
  * set in the brand palette. The fallback is deliberate, not a placeholder to
  * be replaced by "any picture": it should be replaced by *their* photograph.
+ *
+ * The fallback covers two cases, not one. A record with `photo: null` has no
+ * photograph on file. A record whose `photo` points at public/media/ has one
+ * on the way but perhaps not uploaded yet — those paths are committed ahead of
+ * the files so a portrait appears on the next deploy with no code change, and
+ * until then the <img> 404s. Both land on the initials.
  */
 export function AdvisorAvatar({
   name,
@@ -16,12 +24,15 @@ export function AdvisorAvatar({
   photo: string | null;
   className?: string;
 }) {
-  if (photo) {
+  const [failed, setFailed] = useState(false);
+
+  if (photo && !failed) {
     return (
       <img
         src={photo}
         alt={name}
         loading="lazy"
+        onError={() => setFailed(true)}
         className={`w-full h-full object-cover ${className}`}
       />
     );
