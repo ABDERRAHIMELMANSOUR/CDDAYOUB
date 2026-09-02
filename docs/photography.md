@@ -132,3 +132,22 @@ missing — the panel falls back to the gradient it shows today.
 Contrast does not depend on the photograph. The scrim holds white copy above
 13.9:1 measured with a deliberately near-white test image, against the 4.5:1
 WCAG asks, so these can be chosen for composition rather than for darkness.
+
+## Fetching the banner photographs
+
+`scripts/fetch-media.sh` downloads all nine at 2000px into `public/media/`
+under the exact filenames the code expects, and prints the dimensions and
+weight of each so a wrong or missing file is obvious:
+
+```
+bash scripts/fetch-media.sh
+```
+
+It cannot be run from Claude's build environment — every stock-photo CDN is
+blocked there at the egress proxy — so run it locally, then commit the files.
+
+The photo IDs in that script are unverified guesses at photographs matching
+each subject, for the same reason. A URL that 404s costs nothing: the script
+reports it and the site keeps its branded panel. A URL that resolves to the
+*wrong* photograph is the risk worth checking by eye, because nothing
+automated can catch it. Swapping one is a single ID on a single line.
