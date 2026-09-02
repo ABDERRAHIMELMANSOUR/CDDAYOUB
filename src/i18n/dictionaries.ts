@@ -1181,7 +1181,7 @@ const nl: Dictionary = {
     proofMarkets: 'verbonden markten',
     spotlightEyebrow: 'Raad van advies',
     spotlightTitle: 'Tot wie u toegang krijgt',
-    spotlightAll: 'Maak kennis met de raad van advies',
+    spotlightAll: 'Maak kennis met de Raad van Advies',
     insightsAll: 'Alle insights',
     joinBandTitle: 'Word donateur van CDD Pays-Bas',
     joinBandText:
@@ -1228,7 +1228,7 @@ const nl: Dictionary = {
     chairTitle: 'Voorzitter van deze commissie',
     chairPending: 'Voorzitter nog te benoemen',
     chairPendingText:
-      'Het bestuur benoemt elke voorzitter voor twee jaar uit de raad van advies. Deze zetel is nog niet ingevuld, en dat zeggen wij liever dan iemand te noemen die daar nog niet mee heeft ingestemd.',
+      'Het bestuur benoemt elke voorzitter voor twee jaar uit de Raad van Advies. Deze zetel is nog niet ingevuld, en dat zeggen wij liever dan iemand te noemen die daar nog niet mee heeft ingestemd.',
     chairProfile: 'Bekijk profiel',
     commission: 'Commissie',
     established: 'Opgericht',
@@ -1395,7 +1395,7 @@ const nl: Dictionary = {
       'Ervaren adviseurs verdeeld over onze commissies, die vakinhoudelijke expertise inbrengen in het werk dat CDD Pays-Bas samenbrengt.',
     introAfter: 'Ons statutair bestuur wordt apart gepresenteerd op de',
     leadershipLink: 'pagina Leiderschap',
-    joinTitle: 'Sluit u aan bij de raad van advies',
+    joinTitle: 'Sluit u aan bij de Raad van Advies',
     joinText:
       'CDD Pays-Bas verwelkomt ervaren experts die onze inzet delen voor duurzame banden tussen Nederland en Marokko.',
   },

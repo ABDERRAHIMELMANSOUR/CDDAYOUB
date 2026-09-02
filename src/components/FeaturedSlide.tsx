@@ -99,7 +99,13 @@ export function FeaturedSlide({ story }: { story: FeaturedStory }) {
         */}
         {story.insetImage && (
           <div className="hidden lg:block">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-white/25 shadow-2xl">
+            {/*
+              Same reasoning as the article gallery: this is a group
+              photograph, so it is fitted rather than cropped. The background
+              photo above still uses cover — it is a backdrop under a scrim,
+              where cropping is the point.
+            */}
+            <div className="aspect-[16/10] rounded-2xl overflow-hidden ring-1 ring-white/25 shadow-2xl bg-slate-950">
               {/*
                 'deep', not 'light'. The inset sits inside a dark slide, so a
                 light placeholder reads as an empty white rectangle punched
@@ -110,6 +116,7 @@ export function FeaturedSlide({ story }: { story: FeaturedStory }) {
                 alt={pick(story.insetAlt, locale)}
                 label={t.home.newsEyebrow}
                 variant="deep"
+                fit="contain"
                 className="rounded-2xl"
               />
             </div>

@@ -131,13 +131,20 @@ export function InsightArticle() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {insight.gallery.map((photo) => (
                   <figure key={photo.src} className="m-0">
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-900">
+                    {/*
+                      16/10 and object-contain, not 4/3 and cover. These are
+                      group photographs: a 1.85:1 or 2.38:1 frame squeezed into
+                      a 4:3 box lost both its edges, and the edges are where
+                      the people at the ends of the table are standing.
+                    */}
+                    <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-gray-900">
                       <PhotoOrPlaceholder
                         src={photo.src}
                         alt={pick(photo.alt, locale)}
                         label={t.insights.galleryTitle}
                         title={pick(insight.title, locale)}
                         variant="deep"
+                        fit="contain"
                         className="rounded-2xl"
                       />
                     </div>

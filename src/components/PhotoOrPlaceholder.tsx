@@ -23,6 +23,7 @@ export function PhotoOrPlaceholder({
   className = '',
   imgClassName = '',
   variant = 'deep',
+  fit = 'cover',
 }: {
   src: string | null;
   alt: string;
@@ -33,6 +34,14 @@ export function PhotoOrPlaceholder({
   className?: string;
   imgClassName?: string;
   variant?: 'deep' | 'light';
+  /**
+   * 'cover' fills the box and crops the overflow — right for a backdrop that
+   * sits under a scrim. 'contain' fits the whole frame and mats the rest —
+   * right for a group photograph, where the people at the left and right
+   * edges are the first thing a crop removes and the last thing you want to
+   * lose. Give the container a background when using 'contain'.
+   */
+  fit?: 'cover' | 'contain';
 }) {
   const [failed, setFailed] = useState(false);
 
@@ -62,7 +71,7 @@ export function PhotoOrPlaceholder({
       alt={alt}
       loading="lazy"
       onError={() => setFailed(true)}
-      className={`w-full h-full object-cover ${imgClassName} ${className}`}
+      className={`w-full h-full ${fit === 'contain' ? 'object-contain' : 'object-cover'} ${imgClassName} ${className}`}
     />
   );
 }

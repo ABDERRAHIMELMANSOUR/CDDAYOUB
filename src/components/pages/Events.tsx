@@ -544,20 +544,35 @@ function EventPhotoTile({
    */
   if (failed) {
     return (
-      <div className="h-56 sm:h-64 rounded-2xl overflow-hidden">
+      <div className="aspect-[16/10] rounded-2xl overflow-hidden">
         <BrandedImage label={pendingLabel} title={eventTitle} variant="deep" />
       </div>
     );
   }
 
+  /*
+   * object-CONTAIN, not cover.
+   *
+   * These are group photographs, and the people at the far left and right
+   * edges are the ones a crop removes first — which is exactly who a recap
+   * photo exists to show. `object-cover` in a fixed-height box was cutting
+   * them off: the group shot is 1.85:1 and the table shot 2.38:1, while the
+   * tile was nearer 3:1, so both lost their edges.
+   *
+   * Contain fits the whole frame and mats the remainder. The 16/10 box is a
+   * compromise between the two ratios, and the slate ground makes the matting
+   * read as deliberate rather than as a gap. Nobody gets cropped out.
+   */
   return (
-    <img
-      src={photo.src}
-      alt={pick(photo.alt, locale)}
-      loading="lazy"
-      decoding="async"
-      onError={() => setFailed(true)}
-      className="rounded-2xl object-cover w-full h-56 sm:h-64 bg-gray-100"
-    />
+    <div className="aspect-[16/10] rounded-2xl overflow-hidden bg-slate-900">
+      <img
+        src={photo.src}
+        alt={pick(photo.alt, locale)}
+        loading="lazy"
+        decoding="async"
+        onError={() => setFailed(true)}
+        className="w-full h-full object-contain"
+      />
+    </div>
   );
 }

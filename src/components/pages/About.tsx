@@ -57,12 +57,15 @@ export function About() {
                 {t.about.whoWeAre}
               </div>
               {/*
-                The eyebrow above already says this, so the heading was the
-                same words twice. It stays in the document outline as an
-                sr-only heading: removing it visually should not leave the
-                section unlabelled for anyone navigating by headings.
+                The heading is the organisation's name, not a translation of
+                the eyebrow above it — "Wie wij zijn / CDD PAYS-BAS" reads as a
+                label and then its subject, where the previous "Wie wij zijn /
+                Wie wij zijn" was the same words twice. Not localised: it is a
+                proper noun and identical in all three languages.
               */}
-              <h2 className="sr-only">{t.about.whoWeAre}</h2>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+                CDD PAYS-BAS
+              </h2>
               <div className="space-y-6 text-gray-600 leading-relaxed">
                 <p>
                   <span className="font-semibold text-gray-900">{t.about.whoWeAreP1Lead}</span>{' '}
