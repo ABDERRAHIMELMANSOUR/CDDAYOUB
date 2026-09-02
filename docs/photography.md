@@ -151,3 +151,27 @@ each subject, for the same reason. A URL that 404s costs nothing: the script
 reports it and the site keeps its branded panel. A URL that resolves to the
 *wrong* photograph is the risk worth checking by eye, because nothing
 automated can catch it. Swapping one is a single ID on a single line.
+
+## The generated banners
+
+All nine banner files in `public/media/` are currently drawn rather than
+photographed, by `scripts/generate_banners.py`:
+
+```
+python3 scripts/generate_banners.py
+```
+
+Each is 1920x1080 in CDD's palette — deep navy through royal blue, with sky and
+light-blue accents — carrying one geometric motif for its subject: a turbine fan
+over water, a node constellation, a container yard under a gantry, clustered
+groups, a perspective plane spanned by an arc, concentric rings, interlocking
+rings, a globe graticule, a skyline that doubles as a rising chart.
+
+Darkness is enforced, not eyeballed. The script measures the 99.5th-percentile
+luminance of every image and dims it until white text clears 4.5:1 against the
+brightest part of the raw file, before the panel's own scrim. Measured on the
+built site the panels land between 18.5:1 and 19.5:1.
+
+These are a good default, not a permanent answer. Replace any of them with a
+real photograph using the same filename and nothing else needs to change — the
+script is only re-run if you want the drawn version back.
