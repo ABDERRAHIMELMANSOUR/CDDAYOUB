@@ -144,10 +144,23 @@ export function HeroSlider() {
         </div>
       ))}
 
-      {/* 2. Scrim — what actually guarantees the contrast. */}
+      {/*
+        2. Scrim — what guarantees the contrast, shaped so it costs the
+        photograph as little as possible.
+
+        The previous values were opaque gray-950 at the text edge falling only
+        to /90 and /60, which left between nothing and 40% of the photograph
+        visible anywhere on the slide. The Iftar photographs were effectively
+        invisible: a dark rectangle with a headline on it.
+
+        The copy occupies the left half from lg up and the lower half below it,
+        so the scrim is heavy exactly there and clears almost completely at the
+        opposite edge — 8% of the photograph survives behind the headline and
+        about 85% at the far side, where nothing is written.
+      */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/90 to-gray-900/75 lg:bg-gradient-to-r lg:from-gray-950 lg:via-gray-950/90 lg:to-gray-900/60"
+        className="absolute inset-0 bg-gradient-to-t from-gray-950/95 via-gray-950/80 to-gray-950/45 lg:bg-gradient-to-r lg:from-gray-950/90 lg:via-gray-950/55 lg:to-gray-950/15"
       />
 
       {/* 3. Fibre-optic constellation, over the imagery. */}

@@ -104,8 +104,8 @@ export function BrandedImage({
             The budget is spent where the text is instead. Copy sits at the top
             (label, title) and the bottom (caption), never across the middle,
             so this runs dark at top and bottom and opens up through the
-            centre: about a quarter of the image survives behind the copy and
-            nearly all of it through the middle. Measured on the built pages
+            centre: about 28% of the image survives behind the copy and all of
+            it through the middle, which is where a photograph's subject sits. Measured on the built pages
             that leaves white copy above 13:1 — far past the 4.5:1 required —
             while the artwork band runs four to six times brighter than the
             version that shipped as black rectangles.
@@ -117,10 +117,17 @@ export function BrandedImage({
 
             `to-b` rather than `to-br`: the text runs full width, so the
             gradient has to track vertical position, not diagonal.
+
+            Opacity steps must come from Tailwind's scale (multiples of 5, or
+            bracket syntax). An off-scale value like /72 generates NO rule at
+            all, and the gradient then inherits --tw-gradient-from from an
+            ancestor — which turned this scrim WHITE inside a from-gray-50
+            section, taking the label to 1.4:1. It fails silently and only in
+            the one place an ancestor happens to set the variable.
           */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950/75 via-slate-950/5 to-slate-950/75"
+            className="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/70"
           />
         </>
       )}
