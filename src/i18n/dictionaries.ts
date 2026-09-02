@@ -133,6 +133,8 @@ export interface Dictionary {
     noMatchNote: string;
     noPastMatch: string;
     recapNote: string;
+    /** Shown on a photo tile whose file has not been uploaded yet. */
+    photoPending: string;
     getNotified: string;
     register: string;
     registrationSoon: string;
@@ -557,6 +559,7 @@ const en: Dictionary = {
     noMatchNote: 'Try clearing a filter, or see what the commissions have run before.',
     noPastMatch: 'No past events match these filters.',
     recapNote: 'Recaps are published within five working days of every event.',
+    photoPending: 'Photograph to follow',
     getNotified: 'Get notified',
     register: 'Register',
     registrationSoon: 'Registration opens soon',
@@ -1133,6 +1136,7 @@ const nl: Dictionary = {
     noMatchNote: 'Wis een filter, of bekijk wat de commissies eerder hebben georganiseerd.',
     noPastMatch: 'Geen afgelopen evenementen komen overeen met deze filters.',
     recapNote: 'Verslagen worden binnen vijf werkdagen na elk evenement gepubliceerd.',
+    photoPending: 'Foto volgt',
     getNotified: 'Houd mij op de hoogte',
     register: 'Aanmelden',
     registrationSoon: 'Aanmelding opent binnenkort',
@@ -1713,6 +1717,7 @@ const fr: Dictionary = {
     noMatchNote: "Retirez un filtre, ou découvrez ce que les commissions ont déjà organisé.",
     noPastMatch: 'Aucun événement passé ne correspond à ces filtres.',
     recapNote: 'Les comptes rendus sont publiés dans les cinq jours ouvrés suivant chaque événement.',
+    photoPending: 'Photographie à venir',
     getNotified: 'Être informé',
     register: "S'inscrire",
     registrationSoon: 'Les inscriptions ouvrent prochainement',
