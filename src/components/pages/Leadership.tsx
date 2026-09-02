@@ -112,9 +112,16 @@ export function Leadership() {
               removed rather than merely swapped. A genuine photograph of the two
               belongs here.
             */}
+            {/*
+              No label or title here. This block already prints
+              `fromVisionTitle` in the overlay a few lines below, so the panel
+              was rendering the same words twice — invisible while the panel
+              was an empty gradient, obvious the moment a photograph sits
+              behind them. `alt` keeps the accessible name role="img" needs.
+            */}
             <BrandedImage
-              label={t.leadership.fromVisionTitle}
-              title={t.leadership.visionCaption}
+              src="/media/vision-reality-bg.jpg"
+              alt={t.leadership.visionCaption}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 p-12">
@@ -137,6 +144,7 @@ export function Leadership() {
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-2xl"></div>
             {/* Was a generic stock boardroom photo. */}
             <BrandedImage
+              src="/media/leadership-hero-bg.jpg"
               label={t.leadership.teamEyebrow}
               title={t.leadership.teamCaption}
               className="relative"

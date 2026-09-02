@@ -157,7 +157,14 @@ export function CommissionPage() {
             <p className="text-lg text-gray-700 leading-relaxed">{pick(commission.opportunity, locale)}</p>
           </div>
           <div className="h-72 lg:h-80">
+            {/*
+              The same photograph as the page header. Deliberate: one file per
+              commission rather than two, and the two appear far enough apart
+              — header at the top, this beside the opportunity copy — that it
+              reads as continuity rather than repetition.
+            */}
             <BrandedImage
+              src={commission.heroImage.own}
               label={`${t.commissions.commission} ${commission.number}`}
               title={pick(commission.title, locale)}
               caption={pick(commission.summary, locale)}

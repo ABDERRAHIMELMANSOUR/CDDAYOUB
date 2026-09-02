@@ -89,6 +89,7 @@ export function About() {
                 photography exists; pass `src` to BrandedImage and it takes over.
               */}
               <BrandedImage
+                src="/media/about-network-bg.jpg"
                 label={t.about.eyebrow}
                 title={t.about.whoWeAre}
                 caption={t.about.imageCaption}

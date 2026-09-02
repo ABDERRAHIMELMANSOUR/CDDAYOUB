@@ -104,6 +104,7 @@ export function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-3xl blur-2xl"></div>
               {/* Was a generic stock handshake, reused identically on Partnerships. */}
               <BrandedImage
+                src="/media/home-impact-bg.jpg"
                 label="CDD Pays-Bas"
                 title={t.home.imageCaption}
 

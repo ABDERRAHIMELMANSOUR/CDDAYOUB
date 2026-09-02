@@ -104,3 +104,31 @@ title four times tells the listener nothing.
 A photograph that has not been uploaded renders a branded panel reading
 "Photograph to follow" rather than vanishing, so the gallery keeps its shape
 and reads as awaiting content rather than missing it.
+
+## Section banners
+
+The panels that currently render as a blue gradient — "From vision to reality",
+"Experienced leadership", the Partnerships and About blocks, the homepage
+impact block, and the panel beside each commission's opportunity copy — all
+accept a background photograph at the paths below.
+
+| Where | File |
+|---|---|
+| Leadership · From vision to reality | `public/media/vision-reality-bg.jpg` |
+| Leadership · Experienced leadership | `public/media/leadership-hero-bg.jpg` |
+| Partnerships | `public/media/partnerships-bg.jpg` |
+| About · who we are | `public/media/about-network-bg.jpg` |
+| Home · our impact | `public/media/home-impact-bg.jpg` |
+
+The four commission files listed above serve double duty: each is used both as
+the commission's page header and as the panel beside its opportunity copy, so
+there is one photograph per commission rather than two.
+
+A photograph does not replace the panel, it re-grounds it: the image goes
+behind, a dark scrim goes over it, and the same eyebrow and title stay exactly
+where they are. Nothing moves when a file lands, and nothing breaks when one is
+missing — the panel falls back to the gradient it shows today.
+
+Contrast does not depend on the photograph. The scrim holds white copy above
+13.9:1 measured with a deliberately near-white test image, against the 4.5:1
+WCAG asks, so these can be chosen for composition rather than for darkness.

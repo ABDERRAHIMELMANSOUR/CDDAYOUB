@@ -37,9 +37,9 @@ export function Partnerships() {
             <div className="relative h-96">
               {/* Was the same stock handshake used on the homepage. */}
               <BrandedImage
+                src="/media/partnerships-bg.jpg"
                 label={t.partnerships.eyebrow}
                 title={t.partnerships.caption}
-                caption="Replace with photography from a CDD partnership signing or event."
                 variant="light"
               />
             </div>
