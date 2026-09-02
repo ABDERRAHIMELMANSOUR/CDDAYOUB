@@ -679,8 +679,7 @@ const en: Dictionary = {
     opportunity: 'The Netherlands–Morocco opportunity',
   },
   about: {
-    imageCaption:
-      'Replace with photography from a CDD Pays-Bas gathering or delegation.',
+    imageCaption: 'Connecting the Netherlands, Morocco and Africa.',
     eyebrow: 'About Us',
     title: 'About CDD Pays-Bas',
     subtitle:
@@ -1258,8 +1257,7 @@ const nl: Dictionary = {
     opportunity: 'De kans tussen Nederland en Marokko',
   },
   about: {
-    imageCaption:
-      'Vervang door fotografie van een bijeenkomst of missie van CDD Pays-Bas.',
+    imageCaption: 'Nederland, Marokko en Afrika met elkaar verbinden.',
     eyebrow: 'Over ons',
     title: 'Over CDD Pays-Bas',
     subtitle:
@@ -1839,8 +1837,7 @@ const fr: Dictionary = {
     opportunity: "L'opportunité Pays-Bas–Maroc",
   },
   about: {
-    imageCaption:
-      "À remplacer par une photographie d'une rencontre ou d'une mission de CDD Pays-Bas.",
+    imageCaption: 'Relier les Pays-Bas, le Maroc et l\'Afrique.',
     eyebrow: 'À propos',
     title: 'À propos de CDD Pays-Bas',
     subtitle:

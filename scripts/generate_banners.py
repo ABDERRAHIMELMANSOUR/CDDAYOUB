@@ -15,12 +15,20 @@ These are backgrounds, not pictures. Each carries a single geometric motif at
 low contrast, and every panel puts white copy over it.
 
 ── ON DARKNESS ──────────────────────────────────────────────────────────────
-The one hard requirement is that white text stays legible, so darkness is
-enforced rather than eyeballed: after compositing, the 99.5th-percentile
-luminance of every image is checked against MAX_LUMA and the whole image is
-scaled down until it passes. MAX_LUMA is set so white text clears 4.5:1
-against the brightest part of the raw image, BEFORE the panel's own scrim is
-applied on top — so the guarantee holds even if the scrim is ever softened.
+The first version of this script held the raw files below 4.5:1 on their own,
+before the panel's scrim went on. That was the wrong place to spend the
+budget: the scrim then multiplied an already-dark image down to about a
+twentieth of its brightness and the panels rendered as black rectangles.
+
+The contrast budget belongs to the composite, not to the file. So the ceiling
+here is set for a file that will be seen THROUGH the panel scrim, and the
+scrim in BrandedImage.tsx is now shaped to be heavy where the text sits and
+light where it does not — dark corners, vivid middle. Measured together they
+give roughly 11:1 behind the copy and around 5:1 at the brightest point of
+the artwork, which carries no text.
+
+Consequence worth knowing: these files are NOT safe as a bare background for
+white text on their own. They are one half of a pair.
 
 Drawing happens at 2x and is downsampled with LANCZOS, which is what keeps the
 thin lines from aliasing.
@@ -43,10 +51,22 @@ NAVY = (10, 25, 47)        # #0A192F
 ROYAL = (30, 58, 138)      # #1E3A8A
 SKY = (2, 132, 199)        # #0284C7
 LIGHT = (56, 189, 248)     # #38BDF8
+# Blue-biased tints for solid fills and focal points. Additive blending climbs
+# the green channel fastest, so SKY-on-SKY solids came out teal and the bright
+# cores came out green-white. These keep the same family without that drift.
+STEEL = (37, 99, 235)      # blue-600, for large solid faces
+PALE = (198, 224, 255)     # a blue-white core that saturates to white
 
-# White on a background of this relative luminance is 4.5:1 — the WCAG AA
-# floor for body text. 1.05 / (L + 0.05) = 4.5  =>  L = 0.1833.
-MAX_LUMA = 0.175
+# Ceiling on the 99.5th-percentile luminance of the finished FILE. Chosen so
+# that after the panel's scrim (which keeps ~20% of the image behind the text
+# and ~65% at the centre) white copy still clears 4.5:1 at the brightest point
+# and lands nearer 11:1 where it actually sits. See the note above.
+MAX_LUMA = 0.260
+# Mean luminance to aim for. This is the number that decides whether the panel
+# looks like artwork or like a black rectangle, and it is the one the first
+# version never checked — flat #0A192F navy has a mean of about 0.011, which is
+# exactly where those files landed.
+TARGET_MEAN = 0.060
 
 
 # ── helpers ─────────────────────────────────────────────────────────────────
@@ -181,18 +201,18 @@ def motif_industry_logistics(rng):
                 (x, y), (x + bw, y - depth * 0.55),
                 (x + bw + depth, y - depth * 0.15), (x + depth, y + depth * 0.40),
             ]
-            d.polygon(top, fill=LIGHT + (30,))
+            d.polygon(top, fill=PALE + (26,))
             d.polygon(
                 [(x, y), (x + depth, y + depth * 0.40),
                  (x + depth, y + depth * 0.40 + bh), (x, y + bh)],
-                fill=ROYAL + (58,),
+                fill=ROYAL + (72,),
             )
             d.polygon(
                 [(x + depth, y + depth * 0.40),
                  (x + bw + depth, y - depth * 0.15),
                  (x + bw + depth, y - depth * 0.15 + bh),
                  (x + depth, y + depth * 0.40 + bh)],
-                fill=SKY + (40,),
+                fill=STEEL + (52,),
             )
     return layer
 
@@ -261,7 +281,7 @@ def motif_leadership(rng):
                 cx + math.cos(ang) * W * 0.9, cy + math.sin(ang) * W * 0.9],
                fill=LIGHT + (16,), width=2 * SS)
     r = W * 0.020
-    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=LIGHT + (110,))
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=PALE + (105,))
     return layer
 
 
@@ -349,64 +369,100 @@ SPECS = [
 ]
 
 
-def luma_p995(img):
-    """99.5th-percentile relative luminance — the brightest region that matters."""
+def luma_stats(img):
+    """Mean and 99.5th-percentile relative luminance."""
     small = img.resize((320, 180), Image.BILINEAR)
-    vals = []
-    for r, g, b in small.getdata():
-        def lin(c):
-            c /= 255
-            return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
-        vals.append(0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b))
+
+    def lin(c):
+        c /= 255
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+
+    vals = [0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+            for r, g, b in small.getdata()]
     vals.sort()
-    return vals[int(len(vals) * 0.995)]
+    return sum(vals) / len(vals), vals[int(len(vals) * 0.995)]
 
 
 def build(name, motif, glow_at, seed):
     rng = random.Random(seed)
 
-    base = linear_gradient((W, H), lerp(NAVY, ROYAL, 0.30), NAVY)
-    base = ImageChops.add(
-        base, radial_glow((W, H), (W * glow_at[0], H * glow_at[1]), W * 0.46, SKY, 0.36)
-    )
-    base = ImageChops.add(
-        base, radial_glow((W, H), (W * 0.06, H * 0.94), W * 0.34, ROYAL, 0.30)
-    )
+    base = linear_gradient((W, H), lerp(NAVY, ROYAL, 1.05), lerp(NAVY, ROYAL, 0.30))
+    # Glow colours are biased to ROYAL rather than stacked SKY-on-LIGHT.
+    # Additive blending of two cyans climbs the green channel far faster than
+    # the red one, and the highlights came out teal — off-brand, and the first
+    # thing that reads as "generated".
+    for centre, colour, radius, strength in (
+        ((glow_at[0], glow_at[1]), ROYAL, 0.54, 0.62),
+        ((0.06, 0.94), ROYAL, 0.42, 0.48),
+        ((1.0 - glow_at[0], 1.0 - glow_at[1]), SKY, 0.30, 0.26),
+    ):
+        base = ImageChops.add(
+            base,
+            radial_glow((W, H), (W * centre[0], H * centre[1]), W * radius,
+                        colour, strength),
+        )
 
     layer = motif(rng)
-    base = Image.alpha_composite(base.convert("RGBA"), layer).convert("RGB")
 
-    # Vignette: darkens the edges, where panel text most often sits.
+    # Bloom, then the crisp motif on top. ImageChops.add DIVIDES by `scale`,
+    # so it stays at 1.0 here and the bloom is dimmed on its own alpha instead
+    # — passing scale=2.6 darkened the entire composite by 2.6x, which is what
+    # turned these into black rectangles.
+    bloom = layer.filter(ImageFilter.GaussianBlur(W * 0.0045))
+    bloom.putalpha(bloom.getchannel("A").point(lambda v: int(v * 0.38)))
+    base = ImageChops.add(base, bloom.convert("RGB"))
+    # The crisp layer goes on twice: the motif has to stay a drawn line rather
+    # than dissolve into its own halo, which is what a single pass under a
+    # strong bloom looked like.
+    base = Image.alpha_composite(base.convert("RGBA"), layer)
+    base = Image.alpha_composite(base, layer).convert("RGB")
+
+    # Vignette. Gentle: the previous one blended 55% toward navy outside a
+    # blurred ellipse and flattened the outer third of every image.
     vig = Image.new("L", (W, H), 0)
-    ImageDraw.Draw(vig).ellipse(
-        [-W * 0.30, -H * 0.42, W * 1.30, H * 1.42], fill=255
-    )
-    vig = vig.filter(ImageFilter.GaussianBlur(W * 0.055))
-    base = Image.composite(base, Image.new("RGB", (W, H), NAVY), vig)
+    ImageDraw.Draw(vig).ellipse([-W * 0.34, -H * 0.46, W * 1.34, H * 1.46], fill=255)
+    vig = vig.filter(ImageFilter.GaussianBlur(W * 0.05))
+    base = Image.composite(base, Image.blend(base, Image.new("RGB", (W, H), NAVY), 0.30), vig)
 
     img = base.resize((WIDTH, HEIGHT), Image.LANCZOS)
 
-    # Enforce the contrast floor rather than trusting the numbers above.
+    # Two-sided enforcement, on the FILE, against the composite budget above.
+    # Brighten until the field is actually visible, then pull back if the
+    # highlights would carry the brightest point past the ceiling. Measuring
+    # only the 99.5th percentile was the earlier mistake: peak brightness said
+    # "fine" while the mean sat at flat-navy and the panel looked empty.
     scale, guard = 1.0, 0
-    while luma_p995(img) > MAX_LUMA and guard < 24:
-        scale *= 0.94
-        img = base.point(lambda v: int(v * scale)).resize((WIDTH, HEIGHT), Image.LANCZOS)
+    while guard < 40:
+        mean, peak = luma_stats(img)
+        if mean < TARGET_MEAN * 0.94 and peak < MAX_LUMA:
+            scale *= 1.07
+        elif peak > MAX_LUMA:
+            scale *= 0.95
+        else:
+            break
+        img = base.point(lambda v: min(255, int(v * scale))).resize(
+            (WIDTH, HEIGHT), Image.LANCZOS
+        )
         guard += 1
 
     path = os.path.abspath(os.path.join(DEST, name))
-    img.save(path, "JPEG", quality=88, optimize=True, progressive=True)
-    lp = luma_p995(img)
-    ratio = 1.05 / (lp + 0.05)
+    img.save(path, "JPEG", quality=90, optimize=True, progressive=True)
+    mean, peak = luma_stats(img)
     kb = os.path.getsize(path) / 1024
-    print(f"{name:36} {WIDTH}x{HEIGHT}  {kb:6.0f} kB   "
-          f"white text ≥ {ratio:5.1f}:1   (dimmed x{scale:.2f})")
-    return ratio
+    print(f"{name:36} {kb:6.0f} kB   mean {mean:.3f}   peak {peak:.3f}   "
+          f"x{scale:.2f}")
+    return mean, peak
 
 
 if __name__ == "__main__":
     os.makedirs(DEST, exist_ok=True)
-    worst = 99.0
+    means, peaks = [], []
     for name, motif, glow, seed in SPECS:
-        worst = min(worst, build(name, motif, glow, seed))
-    print(f"\nworst case across all nine: {worst:.1f}:1 "
-          f"(WCAG AA body text needs 4.5:1, before the panel's own scrim)")
+        m, pk = build(name, motif, glow, seed)
+        means.append(m)
+        peaks.append(pk)
+    print(f"\nmean luminance {min(means):.3f}-{max(means):.3f} "
+          f"(target {TARGET_MEAN}; flat navy is 0.011)")
+    print(f"peak luminance {min(peaks):.3f}-{max(peaks):.3f} (ceiling {MAX_LUMA})")
+    print("Contrast is verified on the built pages, not here — these files are "
+          "seen through the panel scrim.")

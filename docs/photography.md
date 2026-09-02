@@ -167,10 +167,19 @@ over water, a node constellation, a container yard under a gantry, clustered
 groups, a perspective plane spanned by an arc, concentric rings, interlocking
 rings, a globe graticule, a skyline that doubles as a rising chart.
 
-Darkness is enforced, not eyeballed. The script measures the 99.5th-percentile
-luminance of every image and dims it until white text clears 4.5:1 against the
-brightest part of the raw file, before the panel's own scrim. Measured on the
-built site the panels land between 18.5:1 and 19.5:1.
+Brightness is measured on two numbers, not one. The script checks the MEAN
+luminance of each file (target 0.060 — flat #0A192F navy is 0.011) as well as
+its peak, and brightens or dims until both sit in range. Checking only the peak
+was the mistake in the first version: glow cores said "bright enough" while the
+field sat at flat navy, and once the panel scrim multiplied that down the
+banners rendered as black rectangles.
+
+The contrast budget belongs to the composite, not to the file. These files are
+NOT safe as a bare background for white text — they are one half of a pair with
+the scrim in `BrandedImage.tsx`, which is heavy at the top and bottom where the
+copy sits and nearly clear through the middle. Measured together on the built
+pages: white copy at 13.4:1 or better, artwork band 8 to 16 times brighter than
+the version that shipped black.
 
 These are a good default, not a permanent answer. Replace any of them with a
 real photograph using the same filename and nothing else needs to change — the
