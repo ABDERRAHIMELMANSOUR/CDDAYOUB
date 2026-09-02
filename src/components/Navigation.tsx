@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, LogIn } from 'lucide-react';
-import logo from 'figma:asset/b1faa4031595f1461db9b2a05d08177da0e5c2ec.png';
 import { visibleNav, type NavItem } from '../lib/navigation';
 import { COMMISSIONS } from '../data/commissions';
 import { useLocale, useTranslation } from '../i18n/LocaleProvider';
 import { LocaleLink } from '../i18n/LocaleLink';
 import { LocaleSwitcher } from '../i18n/LocaleSwitcher';
+import { Logo } from './Logo';
 import { localisePath } from '../i18n/config';
 import { pick } from '../i18n/localised';
 import { SMART_PLATFORM, buildLoginUrl, isPlatformLive } from '../lib/smartPlatform';
@@ -104,7 +104,7 @@ export function Navigation() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex justify-between items-center h-24">
           <LocaleLink to="/" className="flex items-center" aria-label="CDD Pays-Bas">
-            <img src={logo} alt="CDD Pays-Bas" className="h-16 w-auto" />
+            <Logo className="h-16" />
           </LocaleLink>
 
           {/* Desktop */}

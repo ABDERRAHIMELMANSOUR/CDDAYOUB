@@ -1,8 +1,8 @@
 import { LocaleLink as Link } from '../i18n/LocaleLink';
 import { useTranslation } from '../i18n/LocaleProvider';
 import { Linkedin, Mail, MapPin, Phone } from 'lucide-react';
-import logo from 'figma:asset/b1faa4031595f1461db9b2a05d08177da0e5c2ec.png';
 import { ORGANISATION } from '../data/organisation';
+import { Logo } from './Logo';
 
 export function Footer() {
   const t = useTranslation();
@@ -26,11 +26,7 @@ export function Footer() {
           {/* Identity */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <img
-                src={logo}
-                alt="CDD Pays-Bas"
-                className="h-14 w-auto brightness-0 invert opacity-90"
-              />
+              <Logo surface="dark" className="h-14" />
             </div>
             <p className="text-sm text-gray-300 max-w-md leading-relaxed">
               {t.footer.tagline}
