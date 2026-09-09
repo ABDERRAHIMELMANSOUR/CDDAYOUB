@@ -85,8 +85,12 @@ export function Events() {
       </PageHero>
 
       {/* Filters */}
-      <section className="sticky top-24 z-30 bg-white/95 backdrop-blur border-b border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-4 space-y-3">
+      {/*
+        Sticky under the navigation, so `top` has to track the nav's height at
+        each breakpoint: h-16 on mobile, h-24 from sm up.
+      */}
+      <section className="sticky top-16 sm:top-24 z-30 bg-white/95 backdrop-blur border-b border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-2.5 sm:py-4 space-y-2 sm:space-y-3">
           <FilterRow label={t.events.filterType}>
             <Chip active={typeFilter === 'all'} onClick={() => setTypeFilter('all')}>
               {t.events.allTypes}
@@ -128,10 +132,10 @@ export function Events() {
         events.ts, which a deletion would have quietly prevented forever.
       */}
       {upcoming.length > 0 && (
-        <section className="py-16 lg:py-20 bg-white">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">{t.events.upcoming}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section className="py-8 sm:py-12 lg:py-20 bg-white">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-5 sm:mb-8">{t.events.upcoming}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {upcoming.map((event) => (
                 <EventCard key={event.slug} event={event} onRsvp={() => setRsvpFor(event)} />
               ))}
@@ -141,13 +145,13 @@ export function Events() {
       )}
 
       {/* Past */}
-      <section className="py-16 lg:py-20 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">{t.events.past}</h2>
+      <section className="py-8 sm:py-12 lg:py-20 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-5 sm:mb-8">{t.events.past}</h2>
           {past.length === 0 ? (
             <p className="text-gray-700">{t.events.noPastMatch}</p>
           ) : (
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {past.map((event) => (
                 <PastEventCard key={event.slug} event={event} />
               ))}
@@ -163,13 +167,39 @@ export function Events() {
 
 /* ── Pieces ─────────────────────────────────────────────────────────────── */
 
+/**
+ * One row of filter chips.
+ *
+ * The chips used to wrap. With eight event types and four commissions beside a
+ * fixed 96px label column, that came to seven rows on a 390px screen — the
+ * filter bar measured 349px, and with the 97px navigation above it 53% of the
+ * viewport was permanently occupied by chrome that is sticky. The event cards
+ * were pushed off the bottom, which is exactly what the client reported.
+ *
+ * So on mobile the row scrolls horizontally instead: the label sits above, the
+ * chips run on a single line, and the bar costs about 60px per row rather than
+ * 175px. From sm up there is room for the original inline layout, and it is
+ * unchanged.
+ *
+ * No tabIndex on the scroller. The chips inside are buttons, so a keyboard user
+ * tabs straight to them and the browser scrolls each into view — adding a tab
+ * stop on the container would only put a focus stop in front of every row for
+ * no gain.
+ */
 function FilterRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <span className="text-xs font-bold uppercase tracking-wider text-gray-700 w-24 flex-shrink-0">
+    <div className="sm:flex sm:flex-wrap sm:items-center sm:gap-2">
+      <span className="block sm:w-24 sm:flex-shrink-0 mb-1.5 sm:mb-0 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-700">
         {label}
       </span>
-      {children}
+      {/*
+        -mx-4 px-4 lets the row bleed to the screen edge, so a half-visible chip
+        at the right shows there is more to scroll. The scrollbar itself is
+        hidden because on a 60px-tall strip it is more noise than signal.
+      */}
+      <div className="flex flex-nowrap items-center gap-2 overflow-x-auto -mx-4 px-4 pb-0.5 sm:mx-0 sm:px-0 sm:pb-0 sm:contents [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {children}
+      </div>
     </div>
   );
 }
@@ -188,7 +218,7 @@ function Chip({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`px-3.5 py-1.5 rounded-xl text-sm font-medium transition-all ${
+      className={`flex-shrink-0 whitespace-nowrap px-3.5 py-2 sm:py-1.5 rounded-xl text-sm font-medium transition-all ${
         active
           ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-md shadow-blue-500/30'
           : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'

@@ -102,9 +102,12 @@ export function Navigation() {
       className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50 shadow-sm"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="flex justify-between items-center h-24">
+        {/* h-16 on mobile: 96px of a 844px phone screen is a quarter of the
+            viewport spent on a logo and a menu button, and this bar is sticky,
+            so it is a quarter of every screenful. Unchanged from sm up. */}
+        <div className="flex justify-between items-center h-16 sm:h-24">
           <LocaleLink to="/" className="flex items-center" aria-label="CDD Pays-Bas">
-            <Logo className="h-16" />
+            <Logo className="h-10 sm:h-16" />
           </LocaleLink>
 
           {/* Desktop */}

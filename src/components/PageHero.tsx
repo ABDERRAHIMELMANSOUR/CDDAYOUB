@@ -73,7 +73,9 @@ export function PageHero({
   return (
     <section
       className={`relative overflow-hidden ${
-        size === 'compact' ? 'py-16 lg:py-20' : 'py-20 lg:py-28'
+        size === 'compact'
+          ? 'py-10 sm:py-14 lg:py-20'
+          : 'py-12 sm:py-16 lg:py-28'
       }`}
     >
       {/* Opaque ground. Everything above it is decoration. */}
@@ -93,22 +95,28 @@ export function PageHero({
       */}
       <ParticleNetwork variant="light" />
 
-      <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="max-w-3xl">
           {above}
           {eyebrow && (
-            <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm text-blue-100 rounded-full text-sm font-semibold mb-6 tracking-wide uppercase">
+            <div className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm text-blue-100 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 tracking-wide uppercase">
               {eyebrow}
             </div>
           )}
           <h1
             className={`font-bold text-white tracking-tight ${
-              size === 'compact' ? 'text-3xl lg:text-4xl' : 'text-4xl lg:text-5xl'
+              size === 'compact'
+                ? 'text-2xl sm:text-3xl lg:text-4xl'
+                : 'text-2xl sm:text-4xl lg:text-5xl'
             }`}
           >
             {title}
           </h1>
-          {children && <div className="mt-6 text-xl text-gray-200 leading-relaxed">{children}</div>}
+          {children && (
+            <div className="mt-4 sm:mt-6 text-base sm:text-lg lg:text-xl text-gray-200 leading-relaxed">
+              {children}
+            </div>
+          )}
         </div>
       </div>
     </section>
