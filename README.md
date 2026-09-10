@@ -19,6 +19,22 @@ npm run build   # production build into build/
 
 Deployment is automatic: Vercel builds from `main` on every push.
 
+### Two things to know about `vercel.json`
+
+**It takes no comments.** JSON has none, and Vercel validates the file against a
+strict schema that rejects unknown properties — including the `"//": "note"` key
+that works fine in `package.json`. Adding one fails the deployment *before the
+build runs*, so `npm run build` passes locally while Vercel reports a failure
+with no build log to read. Put notes here instead.
+
+**The SPA rewrite catches everything.** `"source": "/(.*)"` sends every path to
+`index.html`, which is what makes client-side routing work. If a serverless
+function is ever added under `api/`, that rule swallows it: `/api/whatever`
+returns `index.html` with a 200, the browser reads that as success, and — for a
+form endpoint — submissions are discarded while the form says thank you. Exclude
+it with `"source": "/((?!api/).*)"` at the same time as adding the function, and
+verify the deploy, since that pattern has not been exercised on this project.
+
 ## Stack
 
 React 18 · TypeScript · Vite · Tailwind CSS · React Router.

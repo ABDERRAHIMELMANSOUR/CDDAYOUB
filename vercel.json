@@ -4,8 +4,7 @@
   "framework": "vite",
   "rewrites": [
     {
-      "//": "The negative lookahead is deliberate even though there is no api/ directory today. A plain /(.*) swallows any serverless function added later: the request returns index.html with a 200, the browser reads that as success, and submissions are discarded while the form says thank you. That happened once already.",
-      "source": "/((?!api/).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
