@@ -772,8 +772,8 @@ const en: Dictionary = {
         bio: 'Leads CDD Pays-Bas with a strategic vision focused on strengthening economic bridges between Morocco and the Netherlands. Drives partnerships, governance, and sustainable impact initiatives.',
       },
       'Ahmed Rahmouni': {
-        role: 'Treasurer',
-        bio: 'International business professional with strong financial and commercial expertise. Supports CDD Pays-Bas with strategic financial oversight and cross-border business insight.',
+        role: 'Treasurer & Senior Advisor — Business Development & International Trade',
+        bio: 'Co-owner of Rahmouni Group, active across the Netherlands, Spain and Morocco, and formerly Regional Sales Manager at GE Power & Water in Dubai. Brings international business development, commercial leadership and financial management to the board.',
       },
     },
     ctaTitle: 'Interested in Contributing?',
@@ -1351,8 +1351,8 @@ const nl: Dictionary = {
         bio: 'Leidt CDD Pays-Bas vanuit een strategische visie gericht op sterkere economische bruggen tussen Marokko en Nederland. Stuurt op partnerschappen, governance en initiatieven met duurzame impact.',
       },
       'Ahmed Rahmouni': {
-        role: 'Penningmeester',
-        bio: 'Internationaal zakelijk professional met sterke financiële en commerciële expertise. Ondersteunt CDD Pays-Bas met strategisch financieel toezicht en internationaal zakelijk inzicht.',
+        role: 'Penningmeester & senior adviseur — business development & internationale handel',
+        bio: 'Mede-eigenaar van Rahmouni Group, actief in Nederland, Spanje en Marokko, en voorheen Regional Sales Manager bij GE Power & Water in Dubai. Brengt internationale business development, commercieel leiderschap en financieel beheer in het bestuur in.',
       },
     },
     ctaTitle: 'Wilt u bijdragen?',
@@ -1931,8 +1931,8 @@ const fr: Dictionary = {
         bio: 'Dirige CDD Pays-Bas avec une vision stratégique centrée sur le renforcement des ponts économiques entre le Maroc et les Pays-Bas. Pilote les partenariats, la gouvernance et les initiatives à impact durable.',
       },
       'Ahmed Rahmouni': {
-        role: 'Trésorier',
-        bio: "Professionnel du commerce international doté d'une solide expertise financière et commerciale. Il appuie CDD Pays-Bas par une supervision financière stratégique et une connaissance fine des affaires transfrontalières.",
+        role: 'Trésorier & conseiller senior — développement commercial & commerce international',
+        bio: "Copropriétaire du Rahmouni Group, actif aux Pays-Bas, en Espagne et au Maroc, et ancien Regional Sales Manager chez GE Power & Water à Dubaï. Il apporte au conseil son expérience du développement commercial international, du pilotage commercial et de la gestion financière.",
       },
     },
     ctaTitle: 'Envie de contribuer ?',

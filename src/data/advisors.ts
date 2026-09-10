@@ -148,7 +148,7 @@ export const ADVISORS: Advisor[] = [
       fr: "Distinction d'honneur",
     },
     bio: {
-      en: 'Recognised by the board for his long-standing contribution and commitment to the CDD network. Provides trusted guidance and historical insight to support the organization\\\'s mission.',
+      en: "Recognised by the board for his long-standing contribution and commitment to the CDD network. Provides trusted guidance and historical insight to support the organization's mission.",
       nl: 'Ere-deelnemer, erkend voor zijn langdurige bijdrage en betrokkenheid bij het CDD-netwerk. Biedt vertrouwde begeleiding en historisch inzicht ter ondersteuning van de missie van de organisatie.',
       fr: 'Distingué par le conseil pour sa contribution et son engagement de longue date au sein du réseau CDD. Il apporte des conseils de confiance et une mémoire institutionnelle au service de la mission de l\'organisation.',
     },
@@ -292,7 +292,7 @@ export const ADVISORS: Advisor[] = [
       fr: 'Responsable marketing digital',
     },
     bio: {
-      en: 'Digital marketing strategist with expertise in SEO, performance marketing, and online growth. Supports CDD\\\'s visibility and communication strategy across digital channels.',
+      en: "Digital marketing strategist with expertise in SEO, performance marketing, and online growth. Supports CDD's visibility and communication strategy across digital channels.",
       nl: 'Strateeg digitale marketing met expertise in SEO, performance marketing en online groei. Ondersteunt de zichtbaarheid en communicatiestrategie van CDD via digitale kanalen.',
       fr: 'Stratège en marketing digital, expert en SEO, marketing à la performance et croissance en ligne. Il appuie la visibilité et la stratégie de communication du CDD sur les canaux numériques.',
     },
@@ -491,6 +491,94 @@ export const ADVISORS: Advisor[] = [
     photo: photo23,
     linkedin: 'https://www.linkedin.com/in/youssef-boulal-6a6929170/',
     group: 'industry-trade-logistics',
+  },
+  /*
+   * ── ADDED SEPTEMBER 2026 ─────────────────────────────────────────────────
+   * Four appointments announced by the board. Portraits are public/media paths
+   * rather than bundled imports because these files are uploaded to the
+   * repository directly.
+   *
+   * The paths are PERCENT-ENCODED. The uploaded filenames contain spaces and,
+   * in one case, an apostrophe; browsers mostly cope with a raw space in an
+   * `src`, but "mostly" is not a contract, and an apostrophe inside a
+   * single-quoted TS string needs escaping too. Encoding here settles both at
+   * the point the path is written rather than hoping every consumer handles
+   * it. The files on disk keep their original names.
+   */
+  {
+    name: 'Abdelaziz Iourizen',
+    role: {
+      en: 'Senior Advisor Media',
+      nl: 'Senior adviseur media',
+      fr: 'Conseiller senior médias',
+    },
+    bio: {
+      en: 'Founder and President of Stichting MarocColors, with more than 25 years as a cameraman, editor and producer. Works on media strategy, storytelling and visual communication between the Netherlands and Morocco.',
+      nl: 'Oprichter en voorzitter van Stichting MarocColors, met ruim 25 jaar ervaring als cameraman, editor en producent. Werkt aan mediastrategie, storytelling en visuele communicatie tussen Nederland en Marokko.',
+      fr: "Fondateur et président de la Stichting MarocColors, fort de plus de 25 ans d'expérience comme cadreur, monteur et producteur. Il travaille sur la stratégie médias, la narration et la communication visuelle entre les Pays-Bas et le Maroc.",
+    },
+    photo: '/media/Abdelaziz%20Iourizen.png',
+    linkedin: 'https://www.linkedin.com/in/abdelaziziourizen/',
+    group: 'secretariat',
+  },
+  {
+    name: "M'barek Oubahssou",
+    role: {
+      en: 'Senior Advisor Tourism',
+      nl: 'Senior adviseur toerisme',
+      fr: 'Conseiller senior tourisme',
+    },
+    bio: {
+      en: 'Business control and finance background at PepsiCo, AAK and EBS Public Transportation, and an IVOR-certified tour guide known as DeMarokkoloog. Organises cultural tours, thematic business missions and sustainable destination development across the Dutch and Moroccan tourism sectors.',
+      nl: 'Achtergrond in business control en finance bij PepsiCo, AAK en EBS Openbaar Vervoer, en IVOR-gecertificeerd reisleider, bekend als DeMarokkoloog. Organiseert culturele reizen, thematische handelsmissies en duurzame bestemmingsontwikkeling tussen de Nederlandse en Marokkaanse toerismesector.',
+      fr: "Parcours en contrôle de gestion et en finance chez PepsiCo, AAK et EBS Public Transportation, et guide certifié IVOR connu sous le nom de DeMarokkoloog. Il organise des circuits culturels, des missions économiques thématiques et le développement durable de destinations entre les secteurs touristiques néerlandais et marocain.",
+    },
+    photo: "/media/M%27barek%20Oubahssou.png",
+    linkedin: 'https://www.linkedin.com/in/m-barek-oubahssou-803058224/',
+    group: 'talent-knowledge-society',
+  },
+  {
+    name: 'Youssef Ait Mallouk',
+    role: {
+      en: 'Senior Advisor Energy & Technology',
+      nl: 'Senior adviseur energie & technologie',
+      fr: 'Conseiller senior énergie & technologie',
+    },
+    bio: {
+      en: 'Director at Kuijpers Projecten West, previously at ENGIE Services Nederland. Specialist in sustainable building installations, the energy transition, circularity and the management of complex technical projects.',
+      nl: 'Directeur bij Kuijpers Projecten West, voorheen werkzaam bij ENGIE Services Nederland. Specialist in duurzame gebouwinstallaties, de energietransitie, circulariteit en het leiden van complexe technische projecten.',
+      fr: "Directeur chez Kuijpers Projecten West, précédemment chez ENGIE Services Nederland. Spécialiste des installations techniques durables, de la transition énergétique, de la circularité et de la conduite de projets techniques complexes.",
+    },
+    photo: '/media/Youssef%20Ait%20Mallouk.png',
+    linkedin: 'https://www.linkedin.com/in/yamallouk/',
+    group: 'talent-knowledge-society',
+  },
+  {
+    name: 'Anas Tellat',
+    /*
+     * The announcement gave a name, a role and a LinkedIn URL and nothing
+     * else — no organisation, no domain, no photograph. Rather than invent a
+     * specialism, the role stays the bare title and the biography says openly
+     * that more is coming. He renders with his initials until a portrait
+     * arrives.
+     *
+     * ACTION: `group` below is a placeholder. It decides which commission he
+     * is filed under on the Advisory Council page, and nothing in the
+     * announcement supports any particular one. Confirm it with the board.
+     */
+    role: {
+      en: 'Senior Advisor',
+      nl: 'Senior adviseur',
+      fr: 'Conseiller senior',
+    },
+    bio: {
+      en: 'Senior advisor to CDD Pays-Bas. A fuller profile will follow.',
+      nl: 'Senior adviseur van CDD Pays-Bas. Een uitgebreider profiel volgt.',
+      fr: 'Conseiller senior de CDD Pays-Bas. Un profil plus complet suivra.',
+    },
+    photo: null,
+    linkedin: 'https://www.linkedin.com/in/anas-tellat-906644111/',
+    group: 'talent-knowledge-society',
   },
   {
     name: 'Badr Ikken',
