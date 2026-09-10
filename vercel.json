@@ -4,7 +4,7 @@
   "framework": "vite",
   "rewrites": [
     {
-      "//": "Everything EXCEPT /api/* falls through to the SPA. Without the negative lookahead this rule swallows the serverless function: /api/submit would return index.html with a 200, the browser would read that as success, and every enquiry would be silently discarded while the form said thank you.",
+      "//": "The negative lookahead is deliberate even though there is no api/ directory today. A plain /(.*) swallows any serverless function added later: the request returns index.html with a 200, the browser reads that as success, and submissions are discarded while the form says thank you. That happened once already.",
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }

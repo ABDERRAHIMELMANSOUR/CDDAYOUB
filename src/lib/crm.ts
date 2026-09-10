@@ -1,38 +1,49 @@
 /**
- * CRM submission — one path for every form on the site.
+ * Form submission — one path for every form on the site.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * Submissions POST to /api/submit, the site's own serverless function, which
- * emails them to the secretariat. See api/submit.ts for the environment
- * variables that needs.
+ * Submissions POST to FormSubmit, which forwards them by email to
+ * contact@cddpaysbas.nl. No account, no API key, no environment variable, no
+ * DNS record: the destination address is the endpoint.
  *
- * VITE_CRM_WEBHOOK_URL still overrides the destination, for the day CDD adopts
- * a real CRM: set it and submissions go there instead, with no code change.
+ * ONE-TIME ACTIVATION IS STILL REQUIRED. The first submission to a new address
+ * causes FormSubmit to email that address a confirmation link. Until somebody
+ * opens the inbox and clicks it, submissions are accepted and NOT delivered.
+ * That is a click, not a signup — but it has to happen once, and until it does
+ * the forms will look like they are working while nothing arrives.
  *
- * If the endpoint reports that it has no mail provider configured, or cannot
- * reach one, `submitToCrm` says so and the calling form tells the visitor CDD
- * will be in touch. It does NOT pretend to have delivered anything. A contact
- * form that silently drops enquiries is worse than no contact form, because
- * nobody finds out for weeks.
+ * VITE_CRM_WEBHOOK_URL overrides the destination, for the day CDD adopts a CRM
+ * or its own endpoint: set it and submissions go there instead, unchanged.
  * ─────────────────────────────────────────────────────────────────────────────
  *
- * ON POSTING DIRECTLY FROM THE BROWSER
+ * ── WHAT THIS TRADES AWAY ───────────────────────────────────────────────────
+ * A previous version posted to the site's own serverless function. That was
+ * replaced on the board's instruction to avoid any account or configuration.
+ * The costs are worth stating plainly, because none of them is visible until
+ * it bites:
  *
- * The endpoint URL ships in the bundle and is therefore public. That is
- * acceptable for an inbound webhook (HubSpot, Pipedrive, Make, Zapier, n8n all
- * publish ingest URLs designed for this) but it is NOT acceptable for anything
- * carrying an API key — a key in this file is a key published to every
- * visitor. Two consequences the board should know about:
+ *   1. The address is in the bundle. Anyone can read contact@cddpaysbas.nl out
+ *      of the JavaScript, and so can an address harvester. It is already
+ *      published in the footer, so this leaks nothing new — but it does put it
+ *      somewhere machines read in bulk. FormSubmit issues a hashed alias
+ *      endpoint after activation; swapping it in below removes the address
+ *      from the bundle entirely and is worth doing.
  *
- *   1. Use an ingest-only webhook. It should be able to CREATE a record and
- *      nothing else: no read access, no export, no delete.
- *   2. A public endpoint can be posted to by anyone, so spam is expected.
- *      Filter in the CRM, or put a serverless function in front of it. The
- *      honeypot below stops naive bots, not a determined one.
+ *   2. This is a third-party cross-origin POST, which is exactly the shape
+ *      content blockers reject. A visitor running uBlock Origin or a
+ *      privacy-focused browser may have the request cancelled. They will see
+ *      the honest failure message rather than a false success, but the
+ *      enquiry is lost. A same-origin endpoint had no such problem.
  *
- * If the CRM only accepts authenticated requests, add `api/crm.ts` as a Vercel
- * function holding the key server-side and point VITE_CRM_WEBHOOK_URL at it.
+ *   3. Delivery depends on a free third-party service with no contract behind
+ *      it. If FormSubmit is down, submissions fail.
+ *
+ * The honeypot below stops naive bots. A public endpoint can be posted to by
+ * anyone, so expect some spam in the inbox.
  */
+
+/** Where submissions go when nothing else is configured. */
+const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/contact@cddpaysbas.nl';
 
 /** Which form a submission came from — the CRM routes on this. */
 export type CrmFormType = 'contact' | 'membership-application' | 'event-registration';
@@ -52,65 +63,111 @@ export type CrmResult =
   | { status: 'not-configured' }
   | { status: 'error'; message: string };
 
-/**
- * Where submissions go. The site's own endpoint unless a CRM webhook is
- * configured, in which case that wins.
- */
+/** Where submissions go. A configured CRM wins; otherwise FormSubmit. */
 function endpointUrl(): string {
-  return import.meta.env.VITE_CRM_WEBHOOK_URL || '/api/submit';
+  return import.meta.env.VITE_CRM_WEBHOOK_URL || FORMSUBMIT_ENDPOINT;
 }
 
 /**
- * True when there is somewhere for submissions to go.
+ * Human-readable labels for FormSubmit's email template.
  *
- * Always true now: /api/submit is part of the deployment. Whether that
- * endpoint can actually deliver depends on RESEND_API_KEY, which is a
- * server-side secret the browser cannot and should not be able to see — so
- * that answer only comes back in the response.
+ * FormSubmit prints the payload's keys verbatim, so a field named `fullName`
+ * arrives in the inbox as "fullName". These make the email readable by
+ * somebody who has never seen the code.
  */
-export function isCrmConfigured(): boolean {
-  return true;
-}
+const FIELD_LABELS: Record<string, string> = {
+  name: 'Name',
+  fullName: 'Name',
+  email: 'Email',
+  phone: 'Phone',
+  organization: 'Organisation',
+  organisation: 'Organisation',
+  role: 'Role',
+  subject: 'Subject',
+  message: 'Message',
+  interest: 'Interest',
+  commission: 'Commission',
+  event: 'Event',
+};
+
+const FORM_SUBJECTS: Record<CrmFormType, string> = {
+  contact: 'Contact enquiry',
+  'membership-application': 'Supporter registration',
+  'event-registration': 'Event registration',
+};
 
 /**
- * Posts a submission to the configured CRM webhook.
+ * Posts a submission to the configured endpoint.
  *
  * Never throws: a form must still be able to thank the visitor and tell them
- * the truth about what happened if the CRM is down.
+ * the truth about what happened if the endpoint is down.
  */
 export async function submitToCrm(submission: CrmSubmission): Promise<CrmResult> {
   const endpoint = endpointUrl();
+  const usingFormSubmit = endpoint === FORMSUBMIT_ENDPOINT;
+
+  /*
+   * FormSubmit takes a flat object and emails the keys as it finds them, so
+   * the payload is relabelled and flattened here. A CRM webhook gets the
+   * structured shape instead — it is the caller's own endpoint and can parse.
+   */
+  const body = usingFormSubmit
+    ? {
+        _subject: `[CDD] ${FORM_SUBJECTS[submission.form]}`,
+        // Renders the fields as a table rather than a wall of text.
+        _template: 'table',
+        // The AJAX endpoint never shows FormSubmit's captcha page, and leaving
+        // it on has been known to swallow submissions silently.
+        _captcha: 'false',
+        ...Object.fromEntries(
+          Object.entries(submission.fields)
+            .filter(([, value]) => String(value ?? '').trim().length > 0)
+            .map(([key, value]) => [FIELD_LABELS[key] ?? key, String(value)])
+        ),
+        Language: submission.locale,
+        Page: submission.sourcePath,
+        Submitted: new Date().toISOString(),
+      }
+    : { ...submission, submittedAt: new Date().toISOString() };
 
   try {
     const response = await fetch(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...submission,
-        submittedAt: new Date().toISOString(),
-      }),
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(body),
     });
 
-    if (response.ok) return { status: 'ok' };
-
-    /*
-     * 503 means the endpoint is live but has no mail provider configured.
-     * That is a deployment gap rather than a fault, and it is reported as
-     * `not-configured` so the form says "we have your details" instead of
-     * showing the visitor an error they can do nothing about.
-     */
-    if (response.status === 503) {
-      if (import.meta.env.DEV) {
-        // eslint-disable-next-line no-console
-        console.info('[crm] endpoint reachable but no mail provider set', submission);
-      }
-      return { status: 'not-configured' };
+    if (!response.ok) {
+      return { status: 'error', message: `Submission endpoint responded ${response.status}` };
     }
 
-    return { status: 'error', message: `Submission endpoint responded ${response.status}` };
+    /*
+     * A 200 is not proof of delivery. FormSubmit answers 200 with
+     * {"success":"false"} for a form it has refused — an unactivated address
+     * among them — so the body has to be read. Trusting the status code alone
+     * is how a form ends up thanking somebody for a message nobody received.
+     */
+    if (usingFormSubmit) {
+      const payload = (await response.json().catch(() => null)) as
+        | { success?: string | boolean; message?: string }
+        | null;
+
+      const accepted =
+        payload?.success === true || String(payload?.success ?? '').toLowerCase() === 'true';
+
+      if (!accepted) {
+        return {
+          status: 'error',
+          message: payload?.message || 'The submission service refused the request.',
+        };
+      }
+    }
+
+    return { status: 'ok' };
   } catch {
-    // Network failure, DNS, or an ad blocker. The visitor should not be shown
-    // a stack trace; the caller decides what to say.
+    // Network failure, DNS, CORS, or a content blocker cancelling a
+    // third-party request. The visitor should not be shown a stack trace; the
+    // caller decides what to say.
     return { status: 'error', message: 'Could not reach the submission endpoint.' };
   }
 }

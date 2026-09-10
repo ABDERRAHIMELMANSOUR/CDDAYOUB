@@ -62,7 +62,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "typecheck": "tsc --noEmit && tsc -p tsconfig.api.json",
-    "build": "tsc --noEmit && tsc -p tsconfig.api.json && vite build"
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build"
   }
 }
