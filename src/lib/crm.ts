@@ -2,12 +2,18 @@
  * CRM submission — one path for every form on the site.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * CONFIGURE THIS BEFORE LAUNCH: set VITE_CRM_WEBHOOK_URL in Vercel.
+ * Submissions POST to /api/submit, the site's own serverless function, which
+ * emails them to the secretariat. See api/submit.ts for the environment
+ * variables that needs.
  *
- * Until it is set, `submitToCrm` reports `not-configured` and the calling form
- * falls back to telling the visitor CDD will be in touch. It does NOT pretend
- * to have delivered anything. A contact form that silently drops enquiries is
- * worse than no contact form, because nobody finds out for weeks.
+ * VITE_CRM_WEBHOOK_URL still overrides the destination, for the day CDD adopts
+ * a real CRM: set it and submissions go there instead, with no code change.
+ *
+ * If the endpoint reports that it has no mail provider configured, or cannot
+ * reach one, `submitToCrm` says so and the calling form tells the visitor CDD
+ * will be in touch. It does NOT pretend to have delivered anything. A contact
+ * form that silently drops enquiries is worse than no contact form, because
+ * nobody finds out for weeks.
  * ─────────────────────────────────────────────────────────────────────────────
  *
  * ON POSTING DIRECTLY FROM THE BROWSER
@@ -46,9 +52,24 @@ export type CrmResult =
   | { status: 'not-configured' }
   | { status: 'error'; message: string };
 
-/** True when a CRM endpoint has been configured for this deployment. */
+/**
+ * Where submissions go. The site's own endpoint unless a CRM webhook is
+ * configured, in which case that wins.
+ */
+function endpointUrl(): string {
+  return import.meta.env.VITE_CRM_WEBHOOK_URL || '/api/submit';
+}
+
+/**
+ * True when there is somewhere for submissions to go.
+ *
+ * Always true now: /api/submit is part of the deployment. Whether that
+ * endpoint can actually deliver depends on RESEND_API_KEY, which is a
+ * server-side secret the browser cannot and should not be able to see — so
+ * that answer only comes back in the response.
+ */
 export function isCrmConfigured(): boolean {
-  return Boolean(import.meta.env.VITE_CRM_WEBHOOK_URL);
+  return true;
 }
 
 /**
@@ -58,15 +79,7 @@ export function isCrmConfigured(): boolean {
  * the truth about what happened if the CRM is down.
  */
 export async function submitToCrm(submission: CrmSubmission): Promise<CrmResult> {
-  const endpoint = import.meta.env.VITE_CRM_WEBHOOK_URL;
-
-  if (!endpoint) {
-    if (import.meta.env.DEV) {
-      // eslint-disable-next-line no-console
-      console.info('[crm] no VITE_CRM_WEBHOOK_URL set; submission not sent', submission);
-    }
-    return { status: 'not-configured' };
-  }
+  const endpoint = endpointUrl();
 
   try {
     const response = await fetch(endpoint, {
@@ -78,14 +91,27 @@ export async function submitToCrm(submission: CrmSubmission): Promise<CrmResult>
       }),
     });
 
-    if (!response.ok) {
-      return { status: 'error', message: `CRM responded ${response.status}` };
+    if (response.ok) return { status: 'ok' };
+
+    /*
+     * 503 means the endpoint is live but has no mail provider configured.
+     * That is a deployment gap rather than a fault, and it is reported as
+     * `not-configured` so the form says "we have your details" instead of
+     * showing the visitor an error they can do nothing about.
+     */
+    if (response.status === 503) {
+      if (import.meta.env.DEV) {
+        // eslint-disable-next-line no-console
+        console.info('[crm] endpoint reachable but no mail provider set', submission);
+      }
+      return { status: 'not-configured' };
     }
-    return { status: 'ok' };
+
+    return { status: 'error', message: `Submission endpoint responded ${response.status}` };
   } catch {
-    // Network failure, DNS, CORS, or an ad blocker. The visitor should not be
-    // shown a stack trace; the caller decides what to say.
-    return { status: 'error', message: 'Could not reach the CRM endpoint.' };
+    // Network failure, DNS, or an ad blocker. The visitor should not be shown
+    // a stack trace; the caller decides what to say.
+    return { status: 'error', message: 'Could not reach the submission endpoint.' };
   }
 }
 
