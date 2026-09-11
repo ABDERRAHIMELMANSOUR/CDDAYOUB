@@ -71,7 +71,29 @@ export interface SmartPlatformConfig {
  * links anywhere broken. Hard-coding the URL below works just as well if you
  * would rather not use an environment variable — it is one line either way.
  */
-const PORTAL_URL: string | null = import.meta.env.VITE_PORTAL_URL || null;
+const PORTAL_URL: string | null = trimTrailingSlash(import.meta.env.VITE_PORTAL_URL) || null;
+
+/**
+ * The portal's sign-in page.
+ *
+ * The control is a LOGIN button, so it points at the login screen rather than
+ * at the portal root. Landing on the root means an unauthenticated visitor is
+ * bounced to /login by the portal's own middleware — the same destination,
+ * one redirect later, and with a callbackUrl of "/portal" they never asked
+ * for. Linking straight there also means the portal can change what lives at
+ * its root without this button quietly becoming wrong.
+ */
+const PORTAL_LOGIN_PATH = '/login';
+
+/**
+ * A configured URL ending in "/" would otherwise build "https://host//login".
+ * Most servers tolerate the double slash; some redirect, and one or two 404.
+ * Normalising here means nobody has to remember the convention when setting
+ * the environment variable.
+ */
+function trimTrailingSlash(value: string | undefined): string {
+  return (value ?? '').trim().replace(/\/+$/, '');
+}
 
 export const SMART_PLATFORM: SmartPlatformConfig = {
   /*
@@ -113,7 +135,7 @@ export function buildLoginUrl(
 ): string | null {
   if (!isPlatformLive(config) || !config.baseUrl) return null;
 
-  if (config.status === 'external') return config.baseUrl;
+  if (config.status === 'external') return `${config.baseUrl}${PORTAL_LOGIN_PATH}`;
 
   if (config.protocol === 'oidc' && config.clientId) {
     const params = new URLSearchParams({
