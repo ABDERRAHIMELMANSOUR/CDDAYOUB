@@ -58,9 +58,30 @@ export interface SmartPlatformConfig {
   scopes: string[];
 }
 
+/**
+ * Where the supporter portal lives.
+ *
+ * The portal is a separate Next.js application in its own repository, so this
+ * site links to it rather than containing it — which is the whole reason the
+ * public site stays a static bundle with no authentication code in it.
+ *
+ * Set VITE_PORTAL_URL in Vercel once the portal is deployed, e.g.
+ * https://portal.cddpaysbas.nl. Until then this stays null, the control
+ * renders disabled with its existing "being prepared" wording, and nothing
+ * links anywhere broken. Hard-coding the URL below works just as well if you
+ * would rather not use an environment variable — it is one line either way.
+ */
+const PORTAL_URL: string | null = import.meta.env.VITE_PORTAL_URL || null;
+
 export const SMART_PLATFORM: SmartPlatformConfig = {
-  status: 'pending',
-  baseUrl: null,
+  /*
+   * Derived, not declared. Setting status and baseUrl independently is how a
+   * deployment ends up claiming the platform is live while pointing at
+   * nothing — isPlatformLive() then returns true and the button links to
+   * "null". One source of truth removes that state entirely.
+   */
+  status: PORTAL_URL ? 'external' : 'pending',
+  baseUrl: PORTAL_URL,
   protocol: null,
   redirectPath: '/member/callback',
   clientId: null,
