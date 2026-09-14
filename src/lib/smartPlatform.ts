@@ -76,7 +76,7 @@ export interface SmartPlatformConfig {
  * VITE_* variables are inlined at BUILD time, not read at runtime. Changing it
  * in Vercel therefore requires a redeploy of this site to take effect.
  */
-const DEFAULT_PORTAL_URL = 'https://portail.cddpaysbas.nl';
+const DEFAULT_PORTAL_URL = 'https://www.cddpaysbas.nl';
 
 /*
  * An explicitly empty VITE_PORTAL_URL ("") still disables the button, which is

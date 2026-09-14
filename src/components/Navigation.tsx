@@ -189,8 +189,6 @@ export function Navigation() {
               {loginLive && loginUrl ? (
                 <a
                   href={loginUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold border border-blue-600 text-blue-700 hover:bg-blue-600 hover:text-white transition-all duration-200"
                 >
                   <LogIn className="h-4 w-4" aria-hidden="true" />
@@ -276,8 +274,6 @@ export function Navigation() {
               {loginLive && loginUrl ? (
                 <a
                   href={loginUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold border border-blue-600 text-blue-700"
                 >
                   <LogIn className="h-4 w-4" aria-hidden="true" />
