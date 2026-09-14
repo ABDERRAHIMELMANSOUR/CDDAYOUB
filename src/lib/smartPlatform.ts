@@ -65,23 +65,41 @@ export interface SmartPlatformConfig {
  * site links to it rather than containing it — which is the whole reason the
  * public site stays a static bundle with no authentication code in it.
  *
- * Set VITE_PORTAL_URL in Vercel once the portal is deployed, e.g.
- * https://portal.cddpaysbas.nl. Until then this stays null, the control
- * renders disabled with its existing "being prepared" wording, and nothing
- * links anywhere broken. Hard-coding the URL below works just as well if you
- * would rather not use an environment variable — it is one line either way.
+ * ── WHY THERE IS A HARD-CODED DEFAULT ───────────────────────────────────────
+ * This used to be null until VITE_PORTAL_URL was set, which made the login
+ * button disabled BY DEFAULT: forget the variable on one deploy — or add a new
+ * Vercel environment that does not have it — and the button silently stops
+ * working, with nothing in the build output to say so. The portal now has a
+ * permanent address, so that address is the default and the variable is only
+ * an override (a preview deployment, a staging portal, a local test).
+ *
+ * VITE_* variables are inlined at BUILD time, not read at runtime. Changing it
+ * in Vercel therefore requires a redeploy of this site to take effect.
  */
-const PORTAL_URL: string | null = trimTrailingSlash(import.meta.env.VITE_PORTAL_URL) || null;
+const DEFAULT_PORTAL_URL = 'https://portail.cddpaysbas.nl';
+
+/*
+ * An explicitly empty VITE_PORTAL_URL ("") still disables the button, which is
+ * the one way to turn it off deliberately — distinct from forgetting to set
+ * it, which now lands on the default instead of on a dead control.
+ */
+const configured = import.meta.env.VITE_PORTAL_URL;
+const PORTAL_URL: string | null =
+  configured === undefined ? DEFAULT_PORTAL_URL : trimTrailingSlash(configured) || null;
 
 /**
  * The portal's sign-in page.
  *
  * The control is a LOGIN button, so it points at the login screen rather than
  * at the portal root. Landing on the root means an unauthenticated visitor is
- * bounced to /login by the portal's own middleware — the same destination,
- * one redirect later, and with a callbackUrl of "/portal" they never asked
- * for. Linking straight there also means the portal can change what lives at
- * its root without this button quietly becoming wrong.
+ * bounced to /login by the portal's own middleware — the same destination, one
+ * redirect later, carrying a callbackUrl of "/portal" they never asked for.
+ *
+ * There is no public REGISTRATION link, deliberately: the portal issues no
+ * self-service accounts. Credentials are created by the secretariat in
+ * /admin/members once a donateurschap is validated, which is what the login
+ * page tells anyone who arrives without one. A "register" button here would
+ * lead to a page that cannot exist.
  */
 const PORTAL_LOGIN_PATH = '/login';
 
