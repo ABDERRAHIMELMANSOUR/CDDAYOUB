@@ -129,7 +129,7 @@ export const WHY_JOIN: WhyJoinItem[] = [
     },
     text: {
       en: 'Direct access to advisors across energy and water, digital and AI, industry and logistics, and talent and society — plus the full supporter network in the Netherlands and Morocco.',
-      nl: 'Directe toegang tot adviseurs op het gebied van energie en water, digitaal en AI, industrie en logistiek, en talent en samenleving — plus het volledige deelnemersnetwerk in Nederland en Marokko.',
+      nl: 'Directe toegang tot adviseurs op het gebied van energie en water, digitaal en AI, industrie en logistiek, en talent en samenleving — plus het volledige supportersnetwerk in Nederland en Marokko.',
       fr: "Un accès direct à des conseillers en énergie et eau, numérique et IA, industrie et logistique, talents et société — ainsi qu'à l'ensemble du réseau de supporters aux Pays-Bas et au Maroc.",
     },
   },

@@ -1007,8 +1007,8 @@ const nl: Dictionary = {
     events: 'Evenementen',
     insights: 'Inzichten',
     contact: 'Contact',
-    memberLogin: 'Inloggen deelnemers',
-    memberLoginPending: 'Het deelnemersplatform wordt voorbereid',
+    memberLogin: 'Inloggen supporters',
+    memberLoginPending: 'Het supportersplatform wordt voorbereid',
     openMenu: 'Menu openen',
     closeMenu: 'Menu sluiten',
     skipToContent: 'Naar hoofdinhoud',
@@ -1020,7 +1020,7 @@ const nl: Dictionary = {
     allCommissions: 'Alle commissies',
     whyJoin: 'Waarom supporter worden',
     tiersAndDues: 'Supporterschap & bijdrage',
-    ourMembers: 'Onze deelnemers',
+    ourMembers: 'Onze supporters',
     apply: 'Aanmelden',
   },
   footer: {
@@ -1053,14 +1053,14 @@ const nl: Dictionary = {
       'Het supporterschap opent binnenkort. Meld u nu aan; wij bevestigen uw plaats en regelen de betaling zodra dit live gaat — er wordt vooraf niets in rekening gebracht.',
     title: 'Supporter worden',
     subtitle:
-      'CDD Pays-Bas is een stichting met een deelnemersnetwerk. Het supporterschap geeft u toegang tot onze senior adviseurs, onze werkende commissies en een netwerk dat Nederland en Marokko omspant.',
+      'CDD Pays-Bas is een stichting met een supportersnetwerk. Het supporterschap geeft u toegang tot onze senior adviseurs, onze werkende commissies en een netwerk dat Nederland en Marokko omspant.',
     applyCta: 'Supporterschap aanvragen',
     seeTiers: 'Bekijk de jaarlijkse bijdrage',
     whyJoin: 'Waarom supporter worden',
     whyJoinIntro: 'Beschreven als wat u daadwerkelijk krijgt, in plaats van als abstracties.',
     tiers: 'Jaarlijkse bijdrage',
     duesIntro:
-      'De jaarlijkse deelnemersbijdrage, openlijk gepubliceerd. Het supporterschap loopt twaalf maanden en is verlengbaar.',
+      'De jaarlijkse supportersbijdrage, openlijk gepubliceerd. Het supporterschap loopt twaalf maanden en is verlengbaar.',
     duesIntroPrivate:
       'Het supporterschap loopt twaalf maanden en is verlengbaar. Neem contact op voor de actuele bijdrage.',
     mostChosen: 'Meest gekozen',
@@ -1104,16 +1104,16 @@ const nl: Dictionary = {
     honoraryTitle: 'Ere-erkenning',
     honoraryText:
       'Wordt op uitnodiging van het bestuur toegekend aan personen die worden erkend voor hun bijdrage aan CDD Pays-Bas. Hiervoor kan niet worden aangemeld en er zijn geen statutaire rechten aan verbonden.',
-    ourMembers: 'Onze deelnemers',
+    ourMembers: 'Onze supporters',
     membersIntro:
       'Hier hoort een logowand van deelnemende en partnerorganisaties. Het is het sterkste bewijs dat een netwerk kan leveren, en blijft leeg in plaats van gevuld met plaatsvervangers totdat er echte namen te tonen zijn.',
     membersEmpty:
       'Deelnemende organisaties worden hier met hun toestemming vermeld. Werkt uw organisatie al samen met CDD Pays-Bas en wilt u worden opgenomen,',
     membersEmptyCta: 'laat het ons weten',
     paymentNote: 'Betaling',
-    paymentIdeal: 'Standaard voor Nederlandse deelnemers',
+    paymentIdeal: 'Standaard voor Nederlandse supporters',
     paymentSepa: 'Gebruikt voor jaarlijkse verlengingen',
-    paymentCard: 'Voor internationale deelnemers',
+    paymentCard: 'Voor internationale supporters',
     readyToJoin: 'Klaar om supporter te worden?',
     readyText:
       'De aanmelding kost een paar minuten. Wij beoordelen elke aanmelding en nemen persoonlijk contact met u op.',
@@ -1126,11 +1126,11 @@ const nl: Dictionary = {
       'Wij konden ons aanmeldsysteem zojuist niet bereiken, waardoor uw aanmelding niet automatisch is vastgelegd. Mail ons op contact@cddpaysbas.nl, dan schrijven wij u handmatig in.',
     title: 'Evenementen & bijeenkomsten',
     subtitle:
-      'Rondetafelgesprekken, handelsmissies, fora en netwerkbijeenkomsten — georganiseerd door de commissies en open voor deelnemers.',
+      'Rondetafelgesprekken, handelsmissies, fora en netwerkbijeenkomsten — georganiseerd door de commissies en open voor supporters.',
     upcoming: 'Aankomend',
     past: 'Afgelopen evenementen',
     noUpcoming: 'Ons volgende evenement wordt momenteel voorbereid.',
-    noUpcomingNote: 'Deelnemers en abonnees worden als eerste op de hoogte gebracht.',
+    noUpcomingNote: 'Supporters en abonnees worden als eerste op de hoogte gebracht.',
     noMatch: 'Geen aankomende evenementen komen overeen met deze filters.',
     noMatchNote: 'Wis een filter, of bekijk wat de commissies eerder hebben georganiseerd.',
     noPastMatch: 'Geen afgelopen evenementen komen overeen met deze filters.',
@@ -1144,7 +1144,7 @@ const nl: Dictionary = {
     allTypes: 'Alle typen',
     allCommissions: 'Alle commissies',
     places: 'plaatsen',
-    membersPrice: 'Deelnemers',
+    membersPrice: 'Supporters',
     guestsPrice: 'Gasten',
     rsvpTitle: 'Aanmelden',
     rsvpDone: 'Aanmelding ontvangen',
@@ -1325,7 +1325,7 @@ const nl: Dictionary = {
     presidentBio1:
       'Nouraddine Gribi is oprichter en voorzitter van CDD Pays-Bas en een strategisch leider die zich inzet voor sterkere economische en institutionele banden tussen Marokko en Nederland. Met ruime ervaring in bedrijfsontwikkeling, governance en internationale partnerschappen brengt hij samenwerkingen met grote impact tot stand tussen publieke en private partijen.',
     presidentBio2:
-      'Hij zet zich actief in voor ondernemerschap, inclusie en duurzame groei binnen het Marokkaans-Nederlandse ecosysteem. Onder zijn leiding blijft CDD Pays-Bas bruggen slaan, kansen creëren en meetbare waarde leveren voor deelnemers en partners.',
+      'Hij zet zich actief in voor ondernemerschap, inclusie en duurzame groei binnen het Marokkaans-Nederlandse ecosysteem. Onder zijn leiding blijft CDD Pays-Bas bruggen slaan, kansen creëren en meetbare waarde leveren voor supporters en partners.',
     contactLabel: 'Contact',
     highlights: [
       { title: 'Leiderschap & governance', description: 'Strategische visie en organisatorische kwaliteit aanjagen' },
@@ -1536,7 +1536,7 @@ const nl: Dictionary = {
   projects: {
     eyebrow: 'Projecten',
     title: 'Strategische projecten',
-    subtitle: 'Internationale initiatieven ontwikkeld met onze deelnemers en partners.',
+    subtitle: 'Internationale initiatieven ontwikkeld met onze supporters en partners.',
     comingSoon: 'Binnenkort',
     announcement:
       'Onze strategische projecten worden binnenkort aangekondigd. Houd deze pagina in de gaten voor komende initiatieven en partnerschappen die internationale samenwerking, duurzame ontwikkeling en economische groei aanjagen.',
@@ -1545,7 +1545,7 @@ const nl: Dictionary = {
     pillars: [
       { title: 'Strategische focus', description: 'Projecten die aansluiten bij de vier commissies en de agenda van beide landen' },
       { title: 'Meerdere partijen', description: 'Opgebouwd met bedrijfsleven, publieke instellingen en kennispartners samen' },
-      { title: 'Meetbare impact', description: 'Vastgestelde resultaten, gerapporteerd aan het bestuur en aan de deelnemers' },
+      { title: 'Meetbare impact', description: 'Vastgestelde resultaten, gerapporteerd aan het bestuur en aan de supporters' },
     ],
     ctaTitle: 'Dien een project in',
     ctaText: 'Ontwikkelt u een internationaal initiatief? Wij horen er graag over.',
@@ -1568,7 +1568,7 @@ const nl: Dictionary = {
     subtitle:
       'Wat het netwerk doet, wie erbij betrokken is en wat er verandert in beide markten.',
     news: 'Nieuws',
-    spotlight: 'Portret van deelnemers & adviseurs',
+    spotlight: 'Portret van supporters & adviseurs',
     briefing: 'Marktbriefing',
     all: 'Alles',
     relatedCommissions: 'Gerelateerde commissies',
