@@ -146,14 +146,14 @@ We have received your registration. A member of the board reviews every registra
 This is an automatic acknowledgement — there is no need to reply to it.
 
 ${SIGNATURE}`,
-    nl: `Hartelijk dank voor uw aanmelding als donateur van CDD Pays-Bas.
+    nl: `Hartelijk dank voor uw aanmelding als supporter van CDD Pays-Bas.
 
-Wij hebben uw aanmelding ontvangen. Een bestuurslid beoordeelt elke aanmelding persoonlijk. Wij nemen binnenkort contact met u op om uw donateurschap te bevestigen en de betaling te regelen. Er wordt vooraf niets in rekening gebracht.
+Wij hebben uw aanmelding ontvangen. Een bestuurslid beoordeelt elke aanmelding persoonlijk. Wij nemen binnenkort contact met u op om uw supporterschap te bevestigen en de betaling te regelen. Er wordt vooraf niets in rekening gebracht.
 
 Dit is een automatische ontvangstbevestiging — u hoeft hier niet op te antwoorden.
 
 ${SIGNATURE}`,
-    fr: `Merci de votre demande d'accès donateur auprès de CDD Pays-Bas.
+    fr: `Merci de votre demande d'accès supporter auprès de CDD Pays-Bas.
 
 Nous avons bien reçu votre demande. Un membre du conseil examine personnellement chaque demande et nous vous contacterons prochainement pour confirmer votre accès et organiser le paiement. Aucun montant n'est prélevé avant.
 

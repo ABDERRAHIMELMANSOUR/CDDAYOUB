@@ -58,7 +58,7 @@ export const HERO_SLIDES: HeroSlide[] = [
       fr: "Un réseau pour les dirigeants actifs entre les Pays-Bas et le Maroc — organisé en quatre commissions permanentes et ouvert à celles et ceux prêts à s'engager.",
     },
     primaryCta: {
-      label: { en: 'Join as Supporter', nl: 'Donateur worden', fr: 'Devenir donateur' },
+      label: { en: 'Join as Supporter', nl: 'Supporter worden', fr: 'Devenir supporter' },
       to: '/membership',
     },
     secondaryCta: {

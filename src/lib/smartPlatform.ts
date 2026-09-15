@@ -97,7 +97,7 @@ const PORTAL_URL: string | null =
  *
  * There is no public REGISTRATION link, deliberately: the portal issues no
  * self-service accounts. Credentials are created by the secretariat in
- * /admin/members once a donateurschap is validated, which is what the login
+ * /admin/members once a supporterschap is validated, which is what the login
  * page tells anyone who arrives without one. A "register" button here would
  * lead to a page that cannot exist.
  */

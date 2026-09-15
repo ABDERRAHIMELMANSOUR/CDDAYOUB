@@ -1003,7 +1003,7 @@ const nl: Dictionary = {
   nav: {
     about: 'Over ons',
     commissions: 'Commissies',
-    membership: 'Donateurschap',
+    membership: 'Supporterschap',
     events: 'Evenementen',
     insights: 'Inzichten',
     contact: 'Contact',
@@ -1018,8 +1018,8 @@ const nl: Dictionary = {
     partnerships: 'Partnerschappen',
     transparency: 'Transparantie',
     allCommissions: 'Alle commissies',
-    whyJoin: 'Waarom donateur worden',
-    tiersAndDues: 'Donateurschap & bijdrage',
+    whyJoin: 'Waarom supporter worden',
+    tiersAndDues: 'Supporterschap & bijdrage',
     ourMembers: 'Onze deelnemers',
     apply: 'Aanmelden',
   },
@@ -1050,25 +1050,25 @@ const nl: Dictionary = {
   membership: {
     annualComingSoon: 'Binnenkort',
     annualNote:
-      'Het donateurschap opent binnenkort. Meld u nu aan; wij bevestigen uw plaats en regelen de betaling zodra dit live gaat — er wordt vooraf niets in rekening gebracht.',
-    title: 'Donateur worden',
+      'Het supporterschap opent binnenkort. Meld u nu aan; wij bevestigen uw plaats en regelen de betaling zodra dit live gaat — er wordt vooraf niets in rekening gebracht.',
+    title: 'Supporter worden',
     subtitle:
-      'CDD Pays-Bas is een stichting met een deelnemersnetwerk. Het donateurschap geeft u toegang tot onze senior adviseurs, onze werkende commissies en een netwerk dat Nederland en Marokko omspant.',
-    applyCta: 'Donateurschap aanvragen',
+      'CDD Pays-Bas is een stichting met een deelnemersnetwerk. Het supporterschap geeft u toegang tot onze senior adviseurs, onze werkende commissies en een netwerk dat Nederland en Marokko omspant.',
+    applyCta: 'Supporterschap aanvragen',
     seeTiers: 'Bekijk de jaarlijkse bijdrage',
-    whyJoin: 'Waarom donateur worden',
+    whyJoin: 'Waarom supporter worden',
     whyJoinIntro: 'Beschreven als wat u daadwerkelijk krijgt, in plaats van als abstracties.',
     tiers: 'Jaarlijkse bijdrage',
     duesIntro:
-      'De jaarlijkse deelnemersbijdrage, openlijk gepubliceerd. Het donateurschap loopt twaalf maanden en is verlengbaar.',
+      'De jaarlijkse deelnemersbijdrage, openlijk gepubliceerd. Het supporterschap loopt twaalf maanden en is verlengbaar.',
     duesIntroPrivate:
-      'Het donateurschap loopt twaalf maanden en is verlengbaar. Neem contact op voor de actuele bijdrage.',
+      'Het supporterschap loopt twaalf maanden en is verlengbaar. Neem contact op voor de actuele bijdrage.',
     mostChosen: 'Meest gekozen',
     perYear: 'per jaar',
-    applyTitle: 'Donateurschap aanvragen',
+    applyTitle: 'Supporterschap aanvragen',
     applyIntro:
       'Drie verplichte velden. Wij beoordelen elke aanvraag en reageren persoonlijk.',
-    applyBackLink: 'Donateurschap',
+    applyBackLink: 'Supporterschap',
     yourDetails: 'Uw gegevens',
     fullName: 'Volledige naam',
     emailLabel: 'E-mailadres',
@@ -1079,25 +1079,25 @@ const nl: Dictionary = {
     messageLabel: 'Iets wat wij zouden moeten weten',
     optional: '(optioneel)',
     reviewManual:
-      'Met het verzenden leggen wij uw aanvraag vast. CDD Pays-Bas bevestigt uw donateurschap en regelt de betaling rechtstreeks met u — online betalen wordt momenteel ingericht en er wordt nu niets afgeschreven.',
+      'Met het verzenden leggen wij uw aanvraag vast. CDD Pays-Bas bevestigt uw supporterschap en regelt de betaling rechtstreeks met u — online betalen wordt momenteel ingericht en er wordt nu niets afgeschreven.',
     reviewLive:
-      'U wordt doorgestuurd naar onze betaalprovider om uw donateurschap af te ronden. Wij accepteren',
+      'U wordt doorgestuurd naar onze betaalprovider om uw supporterschap af te ronden. Wij accepteren',
     privacyLine: 'Uw gegevens worden verwerkt conform onze',
     privacyLink: 'privacyverklaring',
     submit: 'Aanvraag versturen',
     submitting: 'Bezig met versturen…',
     receivedTitle: 'Aanvraag ontvangen',
     receivedText:
-      'Dank u wel. Uw aanvraag voor het donateurschap is vastgelegd onder kenmerk',
+      'Dank u wel. Uw aanvraag voor het supporterschap is vastgelegd onder kenmerk',
     receivedReference: 'kenmerk',
     receivedFollowUp:
-      'Een bestuurslid beoordeelt elke aanvraag persoonlijk. Wij nemen binnenkort contact met u op om uw donateurschap te bevestigen en de betaling te regelen.',
+      'Een bestuurslid beoordeelt elke aanvraag persoonlijk. Wij nemen binnenkort contact met u op om uw supporterschap te bevestigen en de betaling te regelen.',
     backHome: 'Terug naar de startpagina',
-    duesTitle: 'Donateurschap — € 290 per jaar',
+    duesTitle: 'Supporterschap — € 290 per jaar',
     duesSingleIntro:
       'Toegang tot het netwerk, het platform en het programma van CDD Pays-Bas. Eén tarief: € 290 per jaar.',
     legalNotice:
-      'Stichting CDD Pays-Bas kent geen statutair lidmaatschap en geen leden met stemrecht. Het donateurschap geeft toegang tot het platform en voorrang bij evenementen, als vrijwillige bijdrage aan het netwerk. De bijdrage geeft geen zeggenschap over bestuursbesluiten.',
+      'Stichting CDD Pays-Bas kent geen statutair lidmaatschap en geen leden met stemrecht. Het supporterschap geeft toegang tot het platform en voorrang bij evenementen, als vrijwillige bijdrage aan het netwerk. De bijdrage geeft geen zeggenschap over bestuursbesluiten.',
     whatsIncluded: 'Wat is inbegrepen',
     byInvitation: 'Op uitnodiging',
     contactForDues: 'Neem contact op voor de actuele bijdrage',
@@ -1114,7 +1114,7 @@ const nl: Dictionary = {
     paymentIdeal: 'Standaard voor Nederlandse deelnemers',
     paymentSepa: 'Gebruikt voor jaarlijkse verlengingen',
     paymentCard: 'Voor internationale deelnemers',
-    readyToJoin: 'Klaar om donateur te worden?',
+    readyToJoin: 'Klaar om supporter te worden?',
     readyText:
       'De aanmelding kost een paar minuten. Wij beoordelen elke aanmelding en nemen persoonlijk contact met u op.',
   },
@@ -1173,7 +1173,7 @@ const nl: Dictionary = {
     newsNext: 'Volgende items',
     newsRead: 'Lezen',
     newsOnLinkedIn: 'Op LinkedIn',
-    becomeMember: 'Donateur worden',
+    becomeMember: 'Supporter worden',
     proofAdvisors: 'senior adviseurs',
     proofCommissions: 'vaste commissies',
     proofEvents: 'gehouden evenementen',
@@ -1182,11 +1182,11 @@ const nl: Dictionary = {
     spotlightTitle: 'Tot wie u toegang krijgt',
     spotlightAll: 'Maak kennis met de Raad van Advies',
     insightsAll: 'Alle insights',
-    joinBandTitle: 'Word donateur van CDD Pays-Bas',
+    joinBandTitle: 'Word supporter van CDD Pays-Bas',
     joinBandText:
       'Eén jaarlijkse bijdrage van € 290: toegang tot elke commissie, direct contact met senior adviseurs zowel in Nederland als in Marokko en korting op events.',
-    joinBandPrimary: 'Donateur worden',
-    joinBandSecondary: 'Wat het donateurschap omvat',
+    joinBandPrimary: 'Supporter worden',
+    joinBandSecondary: 'Wat het supporterschap omvat',
     whatWeDo: 'Wat wij doen',
     focusTitle: 'Onze vier commissies',
     focusText:
@@ -1403,7 +1403,7 @@ const nl: Dictionary = {
     eyebrow: 'Contact',
     title: 'Neem contact op',
     subtitle:
-      'Of u nu een partnerschap, een donateurschap of een concreet project verkent — wij horen graag van u.',
+      'Of u nu een partnerschap, een supporterschap of een concreet project verkent — wij horen graag van u.',
     heroTitle: 'Contact & samenwerking',
     heroSubtitle:
       'Neem contact op met CDD Pays-Bas om partnerschappen te verkennen, u bij ons netwerk aan te sluiten of deel te nemen aan internationale initiatieven.',
@@ -1583,12 +1583,12 @@ const fr: Dictionary = {
   nav: {
     about: 'À propos',
     commissions: 'Commissions',
-    membership: 'Accès Donateur',
+    membership: 'Accès Supporter',
     events: 'Événements',
     insights: 'Analyses',
     contact: 'Contact',
-    memberLogin: 'Espace donateurs',
-    memberLoginPending: 'La plateforme donateurs est en préparation',
+    memberLogin: 'Espace supporters',
+    memberLoginPending: 'La plateforme supporters est en préparation',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
     skipToContent: 'Aller au contenu principal',
@@ -1598,9 +1598,9 @@ const fr: Dictionary = {
     partnerships: 'Partenariats',
     transparency: 'Transparence',
     allCommissions: 'Toutes les commissions',
-    whyJoin: 'Pourquoi devenir donateur',
-    tiersAndDues: 'Accès Donateur & contribution annuelle',
-    ourMembers: 'Nos donateurs',
+    whyJoin: 'Pourquoi devenir supporter',
+    tiersAndDues: 'Accès Supporter & contribution annuelle',
+    ourMembers: 'Nos supporters',
     apply: 'Adhérer',
   },
   footer: {
@@ -1630,13 +1630,13 @@ const fr: Dictionary = {
   membership: {
     annualComingSoon: 'Prochainement',
     annualNote:
-      "L'accès donateur ouvre prochainement. Déposez votre demande dès maintenant : nous confirmerons votre place et organiserons le paiement dès l'ouverture — rien n'est prélevé avant.",
-    title: 'Devenir donateur',
+      "L'accès supporter ouvre prochainement. Déposez votre demande dès maintenant : nous confirmerons votre place et organiserons le paiement dès l'ouverture — rien n'est prélevé avant.",
+    title: 'Devenir supporter',
     subtitle:
-      "CDD Pays-Bas est une fondation dotée d'un réseau de donateurs. L'accès donateur vous ouvre nos conseillers seniors, nos commissions actives et un réseau qui couvre les Pays-Bas et le Maroc.",
-    applyCta: "Demander l'accès donateur",
+      "CDD Pays-Bas est une fondation dotée d'un réseau de supporters. L'accès supporter vous ouvre nos conseillers seniors, nos commissions actives et un réseau qui couvre les Pays-Bas et le Maroc.",
+    applyCta: "Demander l'accès supporter",
     seeTiers: 'Voir la contribution annuelle',
-    whyJoin: 'Pourquoi devenir donateur',
+    whyJoin: 'Pourquoi devenir supporter',
     whyJoinIntro:
       "Formulé en fonction de ce que vous obtenez réellement, plutôt qu'en abstractions.",
     tiers: 'Contribution annuelle',
@@ -1646,10 +1646,10 @@ const fr: Dictionary = {
       "L'accès court sur douze mois et est renouvelable. Contactez-nous pour la contribution en vigueur.",
     mostChosen: 'Le plus choisi',
     perYear: 'par an',
-    applyTitle: "Demander l'accès donateur",
+    applyTitle: "Demander l'accès supporter",
     applyIntro:
       'Trois champs obligatoires. Nous examinons chaque demande et répondons personnellement.',
-    applyBackLink: 'Accès Donateur',
+    applyBackLink: 'Accès Supporter',
     yourDetails: 'Vos coordonnées',
     fullName: 'Nom complet',
     emailLabel: 'E-mail',
@@ -1660,40 +1660,40 @@ const fr: Dictionary = {
     messageLabel: 'Ce que vous souhaitez nous faire savoir',
     optional: '(facultatif)',
     reviewManual:
-      "L'envoi enregistre votre demande. CDD Pays-Bas confirmera votre accès donateur et organisera le paiement directement avec vous — le paiement en ligne est en cours de mise en place et aucun montant n'est prélevé maintenant.",
+      "L'envoi enregistre votre demande. CDD Pays-Bas confirmera votre accès supporter et organisera le paiement directement avec vous — le paiement en ligne est en cours de mise en place et aucun montant n'est prélevé maintenant.",
     reviewLive:
-      'Vous serez redirigé vers notre prestataire de paiement pour finaliser votre accès donateur. Nous acceptons',
+      'Vous serez redirigé vers notre prestataire de paiement pour finaliser votre accès supporter. Nous acceptons',
     privacyLine: 'Vos données sont traitées conformément à notre',
     privacyLink: 'déclaration de confidentialité',
     submit: 'Envoyer la demande',
     submitting: 'Envoi en cours…',
     receivedTitle: 'Demande reçue',
-    receivedText: "Merci. Votre demande d'accès donateur a été enregistrée sous la référence",
+    receivedText: "Merci. Votre demande d'accès supporter a été enregistrée sous la référence",
     receivedReference: 'référence',
     receivedFollowUp:
-      "Un membre du conseil examine personnellement chaque demande. Nous vous contacterons prochainement pour confirmer votre accès donateur et organiser le paiement.",
+      "Un membre du conseil examine personnellement chaque demande. Nous vous contacterons prochainement pour confirmer votre accès supporter et organiser le paiement.",
     backHome: "Retour à l'accueil",
-    duesTitle: 'Accès donateur — 290 € par an',
+    duesTitle: 'Accès supporter — 290 € par an',
     duesSingleIntro:
       "L'accès au réseau, à la plateforme et au programme de CDD Pays-Bas. Un seul tarif : 290 € par an.",
     legalNotice:
-      "Stichting CDD Pays-Bas ne connaît pas d'adhésion statutaire et n'a pas de membres disposant du droit de vote. L'accès donateur ouvre la plateforme et donne la priorité lors des événements, à titre de contribution volontaire au réseau. La contribution ne confère aucun pouvoir de décision sur les délibérations du conseil.",
+      "Stichting CDD Pays-Bas ne connaît pas d'adhésion statutaire et n'a pas de membres disposant du droit de vote. L'accès supporter ouvre la plateforme et donne la priorité lors des événements, à titre de contribution volontaire au réseau. La contribution ne confère aucun pouvoir de décision sur les délibérations du conseil.",
     whatsIncluded: 'Ce qui est inclus',
     byInvitation: 'Sur invitation',
     contactForDues: 'Contactez-nous pour la contribution en vigueur',
     honoraryTitle: "Distinction d'honneur",
     honoraryText:
       "Accordé sur invitation du conseil aux personnes reconnues pour leur contribution à CDD Pays-Bas. Il ne peut faire l'objet d'une candidature.",
-    ourMembers: 'Nos donateurs',
+    ourMembers: 'Nos supporters',
     membersIntro:
       "Un mur de logos des organisations donatrices et partenaires a sa place ici. C'est la preuve la plus forte qu'un réseau puisse offrir : il reste vide plutôt que rempli d'espaces réservés tant qu'il n'y a pas de vrais noms à montrer.",
     membersEmpty:
       "Les organisations donatrices seront listées ici avec leur accord. Si votre organisation collabore déjà avec CDD Pays-Bas et souhaite y figurer,",
     membersEmptyCta: 'faites-le nous savoir',
     paymentNote: 'Paiement',
-    paymentIdeal: 'Standard pour les donateurs néerlandais',
+    paymentIdeal: 'Standard pour les supporters néerlandais',
     paymentSepa: 'Utilisé pour les renouvellements annuels',
-    paymentCard: 'Pour les donateurs internationaux',
+    paymentCard: 'Pour les supporters internationaux',
     readyToJoin: 'Prêt à nous rejoindre ?',
     readyText:
       'La demande prend quelques minutes. Nous examinons chaque candidature et vous répondons personnellement.',
@@ -1710,7 +1710,7 @@ const fr: Dictionary = {
     upcoming: 'À venir',
     past: 'Événements passés',
     noUpcoming: 'Notre prochain événement est en cours de finalisation.',
-    noUpcomingNote: 'Les donateurs et abonnés sont informés en priorité.',
+    noUpcomingNote: 'Les supporters et abonnés sont informés en priorité.',
     noMatch: 'Aucun événement à venir ne correspond à ces filtres.',
     noMatchNote: "Retirez un filtre, ou découvrez ce que les commissions ont déjà organisé.",
     noPastMatch: 'Aucun événement passé ne correspond à ces filtres.',
@@ -1724,7 +1724,7 @@ const fr: Dictionary = {
     allTypes: 'Tous les types',
     allCommissions: 'Toutes les commissions',
     places: 'places',
-    membersPrice: 'Donateurs',
+    membersPrice: 'Supporters',
     guestsPrice: 'Invités',
     rsvpTitle: "S'inscrire",
     rsvpDone: 'Inscription reçue',
@@ -1753,7 +1753,7 @@ const fr: Dictionary = {
     newsNext: 'Éléments suivants',
     newsRead: 'Lire',
     newsOnLinkedIn: 'Sur LinkedIn',
-    becomeMember: 'Devenir donateur',
+    becomeMember: 'Devenir supporter',
     proofAdvisors: 'conseillers seniors',
     proofCommissions: 'commissions permanentes',
     proofEvents: 'événements organisés',
@@ -1765,8 +1765,8 @@ const fr: Dictionary = {
     joinBandTitle: 'Rejoignez CDD Pays-Bas',
     joinBandText:
       "Une contribution annuelle de 290 € : l'accès à chaque commission, un contact direct avec les conseillers seniors aux Pays-Bas comme au Maroc, et une réduction sur les événements.",
-    joinBandPrimary: 'Devenir donateur',
-    joinBandSecondary: "Ce que comprend l'accès donateur",
+    joinBandPrimary: 'Devenir supporter',
+    joinBandSecondary: "Ce que comprend l'accès supporter",
     whatWeDo: 'Ce que nous faisons',
     focusTitle: 'Nos quatre commissions',
     focusText:
@@ -1905,7 +1905,7 @@ const fr: Dictionary = {
     presidentBio1:
       "Nouraddine Gribi est le fondateur et président de CDD Pays-Bas, dirigeant stratégique engagé à renforcer les liens économiques et institutionnels entre le Maroc et les Pays-Bas. Fort d'une longue expérience du développement des affaires, de la gouvernance et des partenariats internationaux, il impulse des collaborations à fort impact entre acteurs publics et privés.",
     presidentBio2:
-      "Il promeut activement l'entrepreneuriat, l'inclusion et une croissance durable au sein de l'écosystème maroco-néerlandais. Sous sa direction, CDD Pays-Bas continue de bâtir des ponts, de créer des opportunités et d'apporter une valeur mesurable à ses donateurs et partenaires.",
+      "Il promeut activement l'entrepreneuriat, l'inclusion et une croissance durable au sein de l'écosystème maroco-néerlandais. Sous sa direction, CDD Pays-Bas continue de bâtir des ponts, de créer des opportunités et d'apporter une valeur mesurable à ses supporters et partenaires.",
     contactLabel: 'Contact',
     highlights: [
       { title: 'Leadership & gouvernance', description: "Porter la vision stratégique et l'excellence organisationnelle" },
@@ -1983,7 +1983,7 @@ const fr: Dictionary = {
     eyebrow: 'Contact',
     title: 'Nous contacter',
     subtitle:
-      "Que vous exploriez un partenariat, un accès donateur ou un projet précis, nous serions heureux d'avoir de vos nouvelles.",
+      "Que vous exploriez un partenariat, un accès supporter ou un projet précis, nous serions heureux d'avoir de vos nouvelles.",
     heroTitle: 'Contact & collaboration',
     heroSubtitle:
       'Contactez CDD Pays-Bas pour explorer des partenariats, rejoindre notre réseau ou participer à des initiatives transfrontalières.',
@@ -2116,7 +2116,7 @@ const fr: Dictionary = {
   projects: {
     eyebrow: 'Projets',
     title: 'Projets stratégiques',
-    subtitle: 'Des initiatives transfrontalières développées avec nos donateurs et partenaires.',
+    subtitle: 'Des initiatives transfrontalières développées avec nos supporters et partenaires.',
     comingSoon: 'Prochainement',
     announcement:
       "Nos projets stratégiques seront annoncés prochainement. Restez informé des initiatives et partenariats à venir, qui porteront la collaboration transfrontalière, le développement durable et la croissance économique.",
@@ -2125,7 +2125,7 @@ const fr: Dictionary = {
     pillars: [
       { title: 'Orientation stratégique', description: 'Des projets alignés sur les quatre commissions et sur les agendas des deux pays' },
       { title: 'Multi-acteurs', description: 'Construits avec les entreprises, les institutions publiques et les partenaires de savoir' },
-      { title: 'Impact mesurable', description: 'Des résultats définis, rapportés au conseil et aux donateurs' },
+      { title: 'Impact mesurable', description: 'Des résultats définis, rapportés au conseil et aux supporters' },
     ],
     ctaTitle: 'Proposer un projet',
     ctaText: 'Si vous développez une initiative transfrontalière, nous serions heureux d’en entendre parler.',
@@ -2148,7 +2148,7 @@ const fr: Dictionary = {
     subtitle:
       'Ce que fait le réseau, qui le compose et ce qui évolue sur les deux marchés.',
     news: 'Actualités',
-    spotlight: 'Portrait de donateurs & conseillers',
+    spotlight: 'Portrait de supporters & conseillers',
     briefing: 'Briefing marché',
     all: 'Tout',
     relatedCommissions: 'Commissions associées',

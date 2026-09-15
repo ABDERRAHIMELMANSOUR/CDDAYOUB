@@ -56,8 +56,8 @@ export interface Membership {
 export const MEMBERSHIP: Membership = {
   name: {
     en: 'Supporter access',
-    nl: 'Donateurschap',
-    fr: 'Accès donateur',
+    nl: 'Supporterschap',
+    fr: 'Accès supporter',
   },
   audience: {
     en: 'Business leaders, investors, entrepreneurs and senior professionals working across the Netherlands and Morocco',
@@ -130,7 +130,7 @@ export const WHY_JOIN: WhyJoinItem[] = [
     text: {
       en: 'Direct access to advisors across energy and water, digital and AI, industry and logistics, and talent and society — plus the full supporter network in the Netherlands and Morocco.',
       nl: 'Directe toegang tot adviseurs op het gebied van energie en water, digitaal en AI, industrie en logistiek, en talent en samenleving — plus het volledige deelnemersnetwerk in Nederland en Marokko.',
-      fr: "Un accès direct à des conseillers en énergie et eau, numérique et IA, industrie et logistique, talents et société — ainsi qu'à l'ensemble du réseau de donateurs aux Pays-Bas et au Maroc.",
+      fr: "Un accès direct à des conseillers en énergie et eau, numérique et IA, industrie et logistique, talents et société — ainsi qu'à l'ensemble du réseau de supporters aux Pays-Bas et au Maroc.",
     },
   },
   {

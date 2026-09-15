@@ -24,7 +24,7 @@ export const INSIGHT_CATEGORY_LABELS: Record<InsightCategory, Localised<string>>
   spotlight: {
     en: 'Supporter & Advisor Spotlight',
     nl: 'Portret van deelnemers & adviseurs',
-    fr: 'Portrait de donateurs & conseillers',
+    fr: 'Portrait de supporters & conseillers',
   },
   briefing: { en: 'Market Briefing', nl: 'Marktbriefing', fr: 'Briefing marché' },
 };
