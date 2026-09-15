@@ -3,13 +3,13 @@
   "outputDirectory": "build",
   "framework": "vite",
   "rewrites": [
-    { "source": "/login", "destination": "https://REPLACE-WITH-PORTAL-DEPLOYMENT.vercel.app/login" },
-    { "source": "/portal", "destination": "https://REPLACE-WITH-PORTAL-DEPLOYMENT.vercel.app/portal" },
-    { "source": "/portal/:path*", "destination": "https://REPLACE-WITH-PORTAL-DEPLOYMENT.vercel.app/portal/:path*" },
-    { "source": "/admin", "destination": "https://REPLACE-WITH-PORTAL-DEPLOYMENT.vercel.app/admin" },
-    { "source": "/admin/:path*", "destination": "https://REPLACE-WITH-PORTAL-DEPLOYMENT.vercel.app/admin/:path*" },
-    { "source": "/api/:path*", "destination": "https://REPLACE-WITH-PORTAL-DEPLOYMENT.vercel.app/api/:path*" },
-    { "source": "/_next/:path*", "destination": "https://REPLACE-WITH-PORTAL-DEPLOYMENT.vercel.app/_next/:path*" },
+    { "source": "/login", "destination": "https://cdd-rho-lime.vercel.app/login" },
+    { "source": "/portal", "destination": "https://cdd-rho-lime.vercel.app/portal" },
+    { "source": "/portal/:path*", "destination": "https://cdd-rho-lime.vercel.app/portal/:path*" },
+    { "source": "/admin", "destination": "https://cdd-rho-lime.vercel.app/admin" },
+    { "source": "/admin/:path*", "destination": "https://cdd-rho-lime.vercel.app/admin/:path*" },
+    { "source": "/api/:path*", "destination": "https://cdd-rho-lime.vercel.app/api/:path*" },
+    { "source": "/_next/:path*", "destination": "https://cdd-rho-lime.vercel.app/_next/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
