@@ -44,6 +44,10 @@
       "destination": "https://cdd-rho-lime.vercel.app/brand/:path*"
     },
     {
+      "source": "/media/events/:path*",
+      "destination": "https://cdd-rho-lime.vercel.app/media/events/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
