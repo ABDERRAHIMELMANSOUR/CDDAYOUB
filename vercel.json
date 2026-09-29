@@ -36,6 +36,14 @@
       "destination": "https://cdd-rho-lime.vercel.app/uploads/:path*"
     },
     {
+      "source": "/media/roster/:path*",
+      "destination": "https://cdd-rho-lime.vercel.app/media/roster/:path*"
+    },
+    {
+      "source": "/brand/:path*",
+      "destination": "https://cdd-rho-lime.vercel.app/brand/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
