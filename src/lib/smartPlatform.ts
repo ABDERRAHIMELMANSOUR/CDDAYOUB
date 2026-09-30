@@ -79,13 +79,13 @@ export interface SmartPlatformConfig {
 const DEFAULT_PORTAL_URL = 'https://www.cddpaysbas.nl';
 
 /*
- * An explicitly empty VITE_PORTAL_URL ("") still disables the button, which is
- * the one way to turn it off deliberately — distinct from forgetting to set
- * it, which now lands on the default instead of on a dead control.
+ * No environment override any more. The portal is served through this same
+ * domain (vercel.json rewrites /login, /portal, /admin to it), so there is
+ * exactly one correct address. A VITE_PORTAL_URL left in Vercel pointing at
+ * portail.cddpaysbas.nl — a host that was never created — sent every
+ * "Supporter Login" click to a DNS error; ignoring it makes that impossible.
  */
-const configured = import.meta.env.VITE_PORTAL_URL;
-const PORTAL_URL: string | null =
-  configured === undefined ? DEFAULT_PORTAL_URL : trimTrailingSlash(configured) || null;
+const PORTAL_URL: string | null = DEFAULT_PORTAL_URL;
 
 /**
  * The portal's sign-in page.
@@ -102,16 +102,6 @@ const PORTAL_URL: string | null =
  * lead to a page that cannot exist.
  */
 const PORTAL_LOGIN_PATH = '/login';
-
-/**
- * A configured URL ending in "/" would otherwise build "https://host//login".
- * Most servers tolerate the double slash; some redirect, and one or two 404.
- * Normalising here means nobody has to remember the convention when setting
- * the environment variable.
- */
-function trimTrailingSlash(value: string | undefined): string {
-  return (value ?? '').trim().replace(/\/+$/, '');
-}
 
 export const SMART_PLATFORM: SmartPlatformConfig = {
   /*
