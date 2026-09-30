@@ -557,10 +557,9 @@ export const ADVISORS: Advisor[] = [
     name: 'Anas Tellat',
     /*
      * The announcement gave a name, a role and a LinkedIn URL and nothing
-     * else — no organisation, no domain, no photograph. Rather than invent a
-     * specialism, the role stays the bare title and the biography says openly
-     * that more is coming. He renders with his initials until a portrait
-     * arrives.
+     * else — no organisation, no domain. Rather than invent a specialism, the
+     * role stays the bare title and the biography says openly that more is
+     * coming. The portrait was uploaded separately (public/media).
      *
      * ACTION: `group` below is a placeholder. It decides which commission he
      * is filed under on the Advisory Council page, and nothing in the
@@ -576,7 +575,7 @@ export const ADVISORS: Advisor[] = [
       nl: 'Senior adviseur van CDD Pays-Bas. Een uitgebreider profiel volgt.',
       fr: 'Conseiller senior de CDD Pays-Bas. Un profil plus complet suivra.',
     },
-    photo: null,
+    photo: '/media/Anas%20Tellat.png',
     linkedin: 'https://www.linkedin.com/in/anas-tellat-906644111/',
     group: 'talent-knowledge-society',
   },
