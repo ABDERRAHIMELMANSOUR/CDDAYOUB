@@ -99,7 +99,11 @@ export function Navigation() {
   return (
     <nav
       ref={navRef}
-      className="bg-white/80 backdrop-blur-xl border-b border-gray-100 sticky top-0 z-50 shadow-sm"
+      /*
+       * Solid white, not translucent. The logo's wordmark is black, and an
+       * 80% white bar over the dark hero turned grey and swallowed it.
+       */
+      className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm"
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* h-16 on mobile: 96px of a 844px phone screen is a quarter of the
